@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML To Link</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="extension-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="title">HTML<span class="accent">to</span>Link</span>
+          <span class="version">v1.0</span>
+        </div>
+      </div>
+      <div class="server-badge" id="serverBadge">https://htmlto.link</div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="tabs">
+      <button type="button" class="tab-btn active" data-tab="paste">📋 粘贴代码</button>
+      <button type="button" class="tab-btn" data-tab="history">📜 历史链接</button>
+      <button type="button" class="tab-btn" data-tab="settings">⚙️ 设置</button>
+    </nav>
+
+    <!-- Main Content Panels -->
+    <main class="content">
+      <!-- Paste Code Tab -->
+      <section id="tab-paste" class="tab-panel active">
+        <div class="form-group">
+          <textarea id="htmlInput" placeholder="在此粘贴 HTML 代码 (如 <h1>Hello World</h1>)..." spellcheck="false"></textarea>
+        </div>
+        <div class="form-row">
+          <input type="text" id="filenameInput" placeholder="文件名 (默认: index.html)" value="index.html">
+        </div>
+        <button type="button" id="publishBtn" class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 14h10"/><path d="M16 4h2a2 2 0 0 1 2 2v1.344"/><path d="m17 18 4-4-4-4"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 1.793-1.113"/><rect x="8" y="2" width="8" height="4" rx="1"/>
+          </svg>
+          <span>🚀 1秒发布生成公开 URL</span>
+        </button>
+
+        <!-- Result Box -->
+        <div id="resultCard" class="result-card hidden">
+          <div class="result-header">
+            <span class="success-tag">✅ 发布成功</span>
+            <span id="resultTime" class="time-text"></span>
+          </div>
+          <div class="url-box">
+            <input type="text" id="resultUrl" readonly>
+            <button type="button" id="copyUrlBtn" title="复制链接">复制</button>
+          </div>
+          <div class="result-actions">
+            <a id="openUrlBtn" target="_blank" class="btn-link">在新标签页打开 ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- History Tab -->
+      <section id="tab-history" class="tab-panel">
+        <div id="historyList" class="history-list">
+          <div class="empty-state">暂无分享历史</div>
+        </div>
+      </section>
+
+      <!-- Settings Tab -->
+      <section id="tab-settings" class="tab-panel">
+        <div class="setting-item">
+          <label for="serverInput">服务节点地址 (API Server)</label>
+          <input type="text" id="serverInput" value="https://htmlto.link">
+          <p class="hint">生产节点: https://htmlto.link / 本地测试: http://localhost:3000</p>
+        </div>
+        <div class="setting-item">
+          <label for="tokenInput">API Token (可选)</label>
+          <input type="password" id="tokenInput" placeholder="输入您的 API Token 绑定个人账号">
+          <p class="hint">登录 htmlto.link 后在设置中心生成个人 API Token</p>
+        </div>
+        <button type="button" id="saveSettingsBtn" class="btn-secondary">保存设置</button>
+      </section>
+    </main>
+
+    <!-- Footer Toast -->
+    <div id="popupToast" class="popup-toast hidden"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

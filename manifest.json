@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "HTML To Link - Instant HTML & AI Code Publisher",
+  "version": "1.0.0",
+  "description": "Turn raw HTML, AI-generated code from ChatGPT/Claude/DeepSeek, or web selections into instant shareable URLs via htmlto.link.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "HTML To Link",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://claude.ai/*",
+        "https://chat.deepseek.com/*",
+        "https://v0.dev/*",
+        "https://kimi.moonshot.cn/*",
+        "https://yiyan.baidu.com/*",
+        "https://yuanbao.tencent.com/*",
+        "https://gemini.google.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ],
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "clipboardWrite",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://htmlto.link/*",
+    "http://localhost:3000/*"
+  ]
+}
