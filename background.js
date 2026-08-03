@@ -69,41 +69,46 @@ async function uploadContent(codeContent, filename = "index.html") {
   const isMd = filename.endsWith(".md") || filename.endsWith(".markdown");
   const mimeType = isMd ? "text/markdown" : "text/html";
 
-  const formData = new FormData();
-  const fileBlob = new Blob([codeContent], { type: mimeType });
-  formData.append("file", fileBlob, filename);
-
   const headers = {};
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
   }
 
-  const response = await fetch(`${baseUrl}/api/upload`, {
-    method: "POST",
-    headers,
-    body: formData
-  });
+  // Primary endpoint: /api/upload
+  // Secondary fallback endpoint: /api/skill/deploy
+  const endpoints = [`${baseUrl}/api/upload`, `${baseUrl}/api/skill/deploy`];
 
-  if (!response.ok) {
-    const errText = await response.text();
-    throw new Error(`Upload failed (${response.status}): ${errText}`);
+  for (const endpoint of endpoints) {
+    try {
+      const formData = new FormData();
+      const fileBlob = new Blob([codeContent], { type: mimeType });
+      formData.append("file", fileBlob, filename);
+
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers,
+        body: formData
+      });
+
+      if (!response.ok) continue;
+
+      const data = await response.json();
+      if (data.url || data.link || data.data?.url) {
+        const finalUrl = data.url || data.link || data.data?.url;
+        await saveToHistory(finalUrl, filename, isMd ? "markdown" : "html");
+        return {
+          success: true,
+          url: finalUrl,
+          manageUrl: data.manageUrl || "",
+          expiresAt: data.expiresAt || null
+        };
+      }
+    } catch (err) {
+      console.warn(`Endpoint ${endpoint} failed, trying fallback...`, err);
+    }
   }
 
-  const data = await response.json();
-  if (data.url || data.link || data.data?.url) {
-    const finalUrl = data.url || data.link || data.data?.url;
-    
-    await saveToHistory(finalUrl, filename, isMd ? "markdown" : "html");
-
-    return {
-      success: true,
-      url: finalUrl,
-      manageUrl: data.manageUrl || "",
-      expiresAt: data.expiresAt || null
-    };
-  }
-
-  return { success: false, error: data.error || "未知错误" };
+  throw new Error("上传发布服务响应异常，请检查网络或 API 节点设置。");
 }
 
 // Save share record to local storage
