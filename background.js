@@ -1,47 +1,55 @@
-// Background Service Worker for HTML To Link Extension
+// Background Service Worker for HTML & Markdown To Link Extension
 
 const DEFAULT_API_SERVER = "https://htmlto.link";
 
-// Register context menu on extension installation
+// Register context menus on extension installation
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
-    id: "htmlto_link_publish_selection",
-    title: "🚀 发布选中 HTML 为在线链接 (htmlto.link)",
+    id: "htmlto_link_publish_html",
+    title: "🌐 发布选中 HTML 为网页链接 (htmlto.link)",
+    contexts: ["selection"]
+  });
+
+  chrome.contextMenus.create({
+    id: "htmlto_link_publish_md",
+    title: "📝 发布选中 Markdown 为网页链接 (htmlto.link)",
     contexts: ["selection"]
   });
 });
 
 // Context menu click handler
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
-  if (info.menuItemId === "htmlto_link_publish_selection" && info.selectionText) {
-    try {
-      const result = await uploadHtmlCode(info.selectionText, "selection.html");
-      if (result.success && result.url) {
-        // Copy to clipboard via message or active tab injection
-        if (tab && tab.id) {
-          chrome.tabs.sendMessage(tab.id, {
-            type: "SHOW_TOAST",
-            message: `🎉 已成功生成链接并复制到剪贴板！\n${result.url}`,
-            url: result.url
-          });
-        }
-        
-        // Save to history
-        await saveToHistory(result.url, "选中文本片段.html");
+  if (!info.selectionText) return;
+
+  const isMd = info.menuItemId === "htmlto_link_publish_md";
+  const filename = isMd ? "selection.md" : "selection.html";
+  const label = isMd ? "Markdown" : "HTML";
+
+  try {
+    const result = await uploadContent(info.selectionText, filename);
+    if (result.success && result.url) {
+      if (tab && tab.id) {
+        chrome.tabs.sendMessage(tab.id, {
+          type: "SHOW_TOAST",
+          message: `🎉 已成功生成 ${label} 在线链接并复制到剪贴板！\n${result.url}`,
+          url: result.url
+        });
       }
-    } catch (err) {
-      console.error("Failed to publish selection:", err);
+      await saveToHistory(result.url, `选中 ${label} 片段`, isMd ? "markdown" : "html");
     }
+  } catch (err) {
+    console.error("Failed to publish selection:", err);
   }
 });
 
 // Listen for upload requests from content.js and popup.js
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.type === "UPLOAD_HTML") {
-    uploadHtmlCode(request.code, request.filename || "index.html")
+  if (request.type === "UPLOAD_CONTENT" || request.type === "UPLOAD_HTML") {
+    const filename = request.filename || (request.format === "md" ? "document.md" : "index.html");
+    uploadContent(request.code, filename)
       .then((res) => sendResponse(res))
       .catch((err) => sendResponse({ success: false, error: err.message }));
-    return true; // Keep message channel open for async response
+    return true;
   }
 
   if (request.type === "GET_HISTORY") {
@@ -52,14 +60,17 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-// Helper: Upload HTML Code to API
-async function uploadHtmlCode(codeContent, filename = "index.html") {
+// Helper: Upload HTML or Markdown Code to API
+async function uploadContent(codeContent, filename = "index.html") {
   const settings = await chrome.storage.local.get(["apiServer", "apiToken"]);
   const baseUrl = (settings.apiServer || DEFAULT_API_SERVER).replace(/\/$/, "");
   const token = settings.apiToken || "";
 
+  const isMd = filename.endsWith(".md") || filename.endsWith(".markdown");
+  const mimeType = isMd ? "text/markdown" : "text/html";
+
   const formData = new FormData();
-  const fileBlob = new Blob([codeContent], { type: "text/html" });
+  const fileBlob = new Blob([codeContent], { type: mimeType });
   formData.append("file", fileBlob, filename);
 
   const headers = {};
@@ -82,18 +93,7 @@ async function uploadHtmlCode(codeContent, filename = "index.html") {
   if (data.url || data.link || data.data?.url) {
     const finalUrl = data.url || data.link || data.data?.url;
     
-    // Copy URL to clipboard
-    try {
-      await chrome.offscreen?.createDocument({
-        url: 'offscreen.html',
-        reasons: ['CLIPBOARD'],
-        justification: 'Copy URL to clipboard',
-      });
-    } catch (e) {
-      // Ignore if offscreen doc exists
-    }
-
-    await saveToHistory(finalUrl, filename);
+    await saveToHistory(finalUrl, filename, isMd ? "markdown" : "html");
 
     return {
       success: true,
@@ -107,17 +107,17 @@ async function uploadHtmlCode(codeContent, filename = "index.html") {
 }
 
 // Save share record to local storage
-async function saveToHistory(url, title) {
+async function saveToHistory(url, title, type = "html") {
   const data = await chrome.storage.local.get(["shareHistory"]);
   const list = data.shareHistory || [];
   const newItem = {
     id: Date.now().toString(36),
     url,
-    title: title || "HTML Snippet",
+    title: title || (type === "markdown" ? "Markdown Document" : "HTML Snippet"),
+    type,
     createdAt: new Date().toISOString()
   };
 
-  // Keep last 30 items
   const updated = [newItem, ...list.filter(item => item.url !== url)].slice(0, 30);
   await chrome.storage.local.set({ shareHistory: updated });
 }

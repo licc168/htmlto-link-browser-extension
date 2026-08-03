@@ -1,4 +1,4 @@
-/* Popup Styles for HTML To Link Chrome Extension */
+/* Popup Styles for HTML & Markdown To Link Chrome Extension */
 
 :root {
   --primary: #2563eb;
@@ -19,7 +19,7 @@
 
 body {
   width: 360px;
-  min-height: 480px;
+  min-height: 490px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: var(--text-main);
   background-color: var(--bg-dark);
@@ -90,6 +90,33 @@ body {
   border-radius: 12px;
 }
 
+/* Format Switcher (HTML vs Markdown) */
+.format-switcher {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.format-btn {
+  padding: 6px 0;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.format-btn.active {
+  color: #ffffff;
+  background: #2563eb;
+  border-color: #3b82f6;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
 /* Tabs */
 .tabs {
   display: grid;
@@ -140,7 +167,7 @@ body {
 
 textarea {
   width: 100%;
-  height: 150px;
+  height: 140px;
   padding: 10px;
   font-family: monospace;
   font-size: 12px;
@@ -328,6 +355,15 @@ input[type="text"]:focus, input[type="password"]:focus {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.history-type-badge {
+  font-size: 9px;
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  margin-left: 4px;
 }
 
 .history-actions {

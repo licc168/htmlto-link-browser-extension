@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTML To Link</title>
+  <title>HTML & Markdown To Link</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
@@ -19,7 +19,7 @@
         </div>
         <div class="brand-text">
           <span class="title">HTML<span class="accent">to</span>Link</span>
-          <span class="version">v1.0</span>
+          <span class="version">v1.1</span>
         </div>
       </div>
       <div class="server-badge" id="serverBadge">https://htmlto.link</div>
@@ -27,17 +27,23 @@
 
     <!-- Navigation Tabs -->
     <nav class="tabs">
-      <button type="button" class="tab-btn active" data-tab="paste">📋 粘贴代码</button>
+      <button type="button" class="tab-btn active" data-tab="paste">📋 粘贴代码/文档</button>
       <button type="button" class="tab-btn" data-tab="history">📜 历史链接</button>
       <button type="button" class="tab-btn" data-tab="settings">⚙️ 设置</button>
     </nav>
 
     <!-- Main Content Panels -->
     <main class="content">
-      <!-- Paste Code Tab -->
+      <!-- Paste Code / Markdown Tab -->
       <section id="tab-paste" class="tab-panel active">
+        <!-- Format Selector -->
+        <div class="format-switcher">
+          <button type="button" class="format-btn active" data-format="html">🌐 HTML 网页</button>
+          <button type="button" class="format-btn" data-format="md">📝 Markdown 文档</button>
+        </div>
+
         <div class="form-group">
-          <textarea id="htmlInput" placeholder="在此粘贴 HTML 代码 (如 <h1>Hello World</h1>)..." spellcheck="false"></textarea>
+          <textarea id="codeInput" placeholder="在此粘贴 HTML 代码 (如 <h1>Hello World</h1>) 或 Markdown 文本..." spellcheck="false"></textarea>
         </div>
         <div class="form-row">
           <input type="text" id="filenameInput" placeholder="文件名 (默认: index.html)" value="index.html">
@@ -46,7 +52,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M11 14h10"/><path d="M16 4h2a2 2 0 0 1 2 2v1.344"/><path d="m17 18 4-4-4-4"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 1.793-1.113"/><rect x="8" y="2" width="8" height="4" rx="1"/>
           </svg>
-          <span>🚀 1秒发布生成公开 URL</span>
+          <span id="publishBtnText">🚀 1秒发布生成公开 URL</span>
         </button>
 
         <!-- Result Box -->
@@ -68,7 +74,7 @@
       <!-- History Tab -->
       <section id="tab-history" class="tab-panel">
         <div id="historyList" class="history-list">
-          <div class="empty-state">暂无分享历史</div>
+          <div class="empty-state">暂无发布历史</div>
         </div>
       </section>
 
