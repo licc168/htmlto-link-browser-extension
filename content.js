@@ -3,6 +3,7 @@
 (function () {
   console.log("HTML & Markdown To Link extension content script active.");
 
+  const CONTAINER_CLASS = "htmlto-link-btn-container";
   const BUTTON_CLASS = "htmlto-link-inject-btn";
   const PROCESSED_ATTR = "data-htmlto-link-processed";
 
@@ -41,15 +42,40 @@
       const labelText = isMd ? "生成 Markdown 链接" : "生成 HTML 链接";
       const filename = isMd ? "ai-generated-document.md" : "ai-generated-page.html";
 
+      // Container for button + template select
+      const container = document.createElement("div");
+      container.className = CONTAINER_CLASS;
+
       const btn = document.createElement("button");
       btn.className = `${BUTTON_CLASS} ${isMd ? "htmlto-link-btn-md" : ""}`;
       btn.type = "button";
       btn.innerHTML = `${iconSvg}<span>${labelText}</span>`;
 
+      let tplSelect = null;
+      if (isMd) {
+        tplSelect = document.createElement("select");
+        tplSelect.className = "htmlto-link-tpl-select";
+        tplSelect.title = "选择 Markdown 渲染模板 (默认: 简洁)";
+        tplSelect.innerHTML = `
+          <option value="plain" selected>简洁</option>
+          <option value="memo">备忘录</option>
+          <option value="bytedance">字节范</option>
+          <option value="darktech">暗黑科技</option>
+          <option value="coilnotebook">线圈笔记本</option>
+          <option value="traditionalchinese">中国传统</option>
+          <option value="popart">波普艺术</option>
+          <option value="warm">温暖柔和</option>
+          <option value="alibaba">阿里橙</option>
+        `;
+        // Prevent click events on select from triggering parent events
+        tplSelect.addEventListener("click", (e) => e.stopPropagation());
+      }
+
       btn.addEventListener("click", async (e) => {
         e.preventDefault();
         e.stopPropagation();
 
+        const selectedTemplate = tplSelect ? tplSelect.value : (isMd ? "plain" : undefined);
         const originalText = btn.innerHTML;
         btn.disabled = true;
         btn.innerHTML = `
@@ -65,7 +91,7 @@
             code: codeText,
             filename,
             format,
-            templateId: isMd ? "plain" : undefined
+            templateId: selectedTemplate
           });
 
           if (response && response.success && response.url) {
@@ -98,10 +124,15 @@
         }
       });
 
+      container.appendChild(btn);
+      if (tplSelect) {
+        container.appendChild(tplSelect);
+      }
+
       if (getComputedStyle(parentPre).position === "static") {
         parentPre.style.position = "relative";
       }
-      parentPre.appendChild(btn);
+      parentPre.appendChild(container);
     });
   }
 
