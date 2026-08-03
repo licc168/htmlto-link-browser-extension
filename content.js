@@ -38,7 +38,7 @@
         ? `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>`
         : `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 14h10"/><path d="M16 4h2a2 2 0 0 1 2 2v1.344"/><path d="m17 18 4-4-4-4"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 1.793-1.113"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>`;
 
-      const labelText = isMd ? "1秒生成 Markdown 链接" : "1秒生成 HTML 链接";
+      const labelText = isMd ? "生成 Markdown 链接" : "生成 HTML 链接";
       const filename = isMd ? "ai-generated-document.md" : "ai-generated-page.html";
 
       const btn = document.createElement("button");
@@ -64,7 +64,8 @@
             type: "UPLOAD_CONTENT",
             code: codeText,
             filename,
-            format
+            format,
+            templateId: isMd ? "plain" : undefined
           });
 
           if (response && response.success && response.url) {

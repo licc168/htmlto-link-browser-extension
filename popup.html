@@ -19,7 +19,7 @@
         </div>
         <div class="brand-text">
           <span class="title">HTML<span class="accent">to</span>Link</span>
-          <span class="version">v1.1</span>
+          <span class="version">v1.2</span>
         </div>
       </div>
       <div class="server-badge" id="serverBadge">https://htmlto.link</div>
@@ -42,6 +42,25 @@
           <button type="button" class="format-btn" data-format="md">📝 Markdown 文档</button>
         </div>
 
+        <!-- Markdown Template Selector (Visible only in MD mode) -->
+        <div id="templateRow" class="form-row hidden">
+          <div class="template-header">
+            <label for="templateSelect">Markdown 渲染模板：</label>
+            <a id="editorPreviewLink" href="https://htmlto.link/editor" target="_blank" class="preview-link">🎨 查看模板效果 ↗</a>
+          </div>
+          <select id="templateSelect" class="template-select">
+            <option value="plain" selected>简洁 (plain)</option>
+            <option value="memo">备忘录 (memo)</option>
+            <option value="bytedance">字节范 (bytedance)</option>
+            <option value="darktech">暗黑科技 (darktech)</option>
+            <option value="coilnotebook">线圈笔记本 (coilnotebook)</option>
+            <option value="traditionalchinese">中国传统 (traditionalchinese)</option>
+            <option value="popart">波普艺术 (popart)</option>
+            <option value="warm">温暖柔和 (warm)</option>
+            <option value="alibaba">阿里橙 (alibaba)</option>
+          </select>
+        </div>
+
         <div class="form-group">
           <textarea id="codeInput" placeholder="在此粘贴 HTML 代码 (如 <h1>Hello World</h1>) 或 Markdown 文本..." spellcheck="false"></textarea>
         </div>
@@ -52,7 +71,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M11 14h10"/><path d="M16 4h2a2 2 0 0 1 2 2v1.344"/><path d="m17 18 4-4-4-4"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 1.793-1.113"/><rect x="8" y="2" width="8" height="4" rx="1"/>
           </svg>
-          <span id="publishBtnText">🚀 1秒发布生成公开 URL</span>
+          <span id="publishBtnText">🚀 发布生成公开 URL</span>
         </button>
 
         <!-- Result Box -->

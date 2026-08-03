@@ -1,141 +1,172 @@
-// Popup Script for HTML & Markdown To Link Extension
+// Popup Logic for HTML & Markdown To Link Chrome Extension
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // UI Elements
+  const DEFAULT_API_SERVER = "https://htmlto.link";
+
+  // Navigation
   const tabBtns = document.querySelectorAll(".tab-btn");
   const tabPanels = document.querySelectorAll(".tab-panel");
   const formatBtns = document.querySelectorAll(".format-btn");
 
+  // Elements
   const codeInput = document.getElementById("codeInput");
   const filenameInput = document.getElementById("filenameInput");
   const publishBtn = document.getElementById("publishBtn");
   const publishBtnText = document.getElementById("publishBtnText");
+  const templateRow = document.getElementById("templateRow");
+  const templateSelect = document.getElementById("templateSelect");
+  const editorPreviewLink = document.getElementById("editorPreviewLink");
 
   const resultCard = document.getElementById("resultCard");
-  const resultUrl = document.getElementById("resultUrl");
+  const resultUrlInput = document.getElementById("resultUrl");
+  const resultTimeSpan = document.getElementById("resultTime");
   const copyUrlBtn = document.getElementById("copyUrlBtn");
   const openUrlBtn = document.getElementById("openUrlBtn");
-  const resultTime = document.getElementById("resultTime");
 
   const historyList = document.getElementById("historyList");
   const serverInput = document.getElementById("serverInput");
   const tokenInput = document.getElementById("tokenInput");
   const saveSettingsBtn = document.getElementById("saveSettingsBtn");
   const serverBadge = document.getElementById("serverBadge");
+  const popupToast = document.getElementById("popupToast");
 
-  let currentFormat = "html";
+  let currentFormat = "html"; // "html" or "md"
 
   // Load Settings
   const settings = await chrome.storage.local.get(["apiServer", "apiToken"]);
-  const currentServer = settings.apiServer || "https://htmlto.link";
-  serverInput.value = currentServer;
+  const apiServer = settings.apiServer || DEFAULT_API_SERVER;
+  serverInput.value = apiServer;
   tokenInput.value = settings.apiToken || "";
-  serverBadge.textContent = currentServer.replace(/^https?:\/\//, "");
+  serverBadge.textContent = apiServer;
+  if (editorPreviewLink) {
+    editorPreviewLink.href = `${apiServer.replace(/\/$/, "")}/editor`;
+  }
 
-  // Format Switch Handler (HTML vs Markdown)
+  // Tab switching
+  tabBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      tabBtns.forEach((b) => b.classList.remove("active"));
+      tabPanels.forEach((p) => p.classList.remove("active"));
+
+      btn.classList.add("active");
+      const targetPanel = document.getElementById(`tab-${btn.dataset.tab}`);
+      if (targetPanel) targetPanel.classList.add("active");
+
+      if (btn.dataset.tab === "history") {
+        renderHistory();
+      }
+    });
+  });
+
+  // Format Switcher (HTML vs Markdown)
   formatBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       formatBtns.forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
 
-      currentFormat = btn.getAttribute("data-format");
+      currentFormat = btn.dataset.format;
       if (currentFormat === "md") {
-        codeInput.placeholder = "在此粘贴 Markdown 文本 (如 # 标题 \\n\\n 正文描述...)...";
+        templateRow.classList.remove("hidden");
+        codeInput.placeholder = "# 示例标题\n\n在此输入或粘贴 Markdown 文本...";
         filenameInput.value = "document.md";
-        filenameInput.placeholder = "文件名 (默认: document.md)";
-        publishBtnText.textContent = "🚀 1秒发布 Markdown 生成 URL";
+        publishBtnText.textContent = "🚀 发布 Markdown 生成 URL";
       } else {
+        templateRow.classList.add("hidden");
         codeInput.placeholder = "在此粘贴 HTML 代码 (如 <h1>Hello World</h1>)...";
         filenameInput.value = "index.html";
-        filenameInput.placeholder = "文件名 (默认: index.html)";
-        publishBtnText.textContent = "🚀 1秒发布 HTML 生成 URL";
+        publishBtnText.textContent = "🚀 发布 HTML 生成 URL";
       }
     });
   });
 
-  // Tab Switch Handler
-  tabBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const tabName = btn.getAttribute("data-tab");
-
-      tabBtns.forEach((b) => b.classList.remove("active"));
-      tabPanels.forEach((p) => p.classList.remove("active"));
-
-      btn.classList.add("active");
-      document.getElementById(`tab-${tabName}`).classList.add("active");
-
-      if (tabName === "history") {
-        loadHistory();
-      }
-    });
-  });
-
-  // Publish Button Click
+  // Publish Button
   publishBtn.addEventListener("click", async () => {
     const code = codeInput.value.trim();
     if (!code) {
-      showToast(`请先输入或粘贴 ${currentFormat === "md" ? "Markdown" : "HTML"} 内容！`);
+      showToast("请先输入或粘贴代码/文档！");
       return;
     }
 
-    const defaultFilename = currentFormat === "md" ? "document.md" : "index.html";
-    const filename = filenameInput.value.trim() || defaultFilename;
-    const originalContent = publishBtn.innerHTML;
+    const filename = filenameInput.value.trim() || (currentFormat === "md" ? "document.md" : "index.html");
+    const selectedTemplate = currentFormat === "md" ? (templateSelect.value || "plain") : undefined;
 
     publishBtn.disabled = true;
-    publishBtn.innerHTML = `<span>⏳ 正在上传发布...</span>`;
+    publishBtnText.textContent = "发布处理中...";
 
     try {
       const response = await chrome.runtime.sendMessage({
         type: "UPLOAD_CONTENT",
         code,
         filename,
-        format: currentFormat
+        format: currentFormat,
+        templateId: selectedTemplate
       });
 
       if (response && response.success && response.url) {
-        const url = response.url;
-        resultUrl.value = url;
-        openUrlBtn.href = url;
-        resultTime.textContent = new Date().toLocaleTimeString();
+        resultUrlInput.value = response.url;
+        openUrlBtn.href = response.url;
+        resultTimeSpan.textContent = new Date().toLocaleTimeString();
         resultCard.classList.remove("hidden");
 
-        await navigator.clipboard.writeText(url);
-        showToast(`🎉 已成功发布 ${currentFormat === "md" ? "Markdown" : "HTML"} 并复制 URL 到剪贴板！`);
+        await navigator.clipboard.writeText(response.url);
+
+        await saveToHistory({
+          url: response.url,
+          filename,
+          format: currentFormat,
+          templateId: selectedTemplate,
+          timestamp: Date.now()
+        });
+
+        showToast("🎉 发布成功！链接已自动复制到剪贴板！");
       } else {
-        showToast(`❌ 发布失败: ${response?.error || "未知错误"}`);
+        throw new Error(response?.error || "发布失败");
       }
     } catch (err) {
-      showToast(`❌ 发布出错: ${err.message}`);
+      showToast(`❌ ${err.message}`);
     } finally {
       publishBtn.disabled = false;
-      publishBtn.innerHTML = originalContent;
+      publishBtnText.textContent = currentFormat === "md" ? "🚀 发布 Markdown 生成 URL" : "🚀 发布 HTML 生成 URL";
     }
   });
 
   // Copy Result URL
   copyUrlBtn.addEventListener("click", async () => {
-    if (resultUrl.value) {
-      await navigator.clipboard.writeText(resultUrl.value);
-      showToast("已复制 URL 到剪贴板！");
+    if (resultUrlInput.value) {
+      await navigator.clipboard.writeText(resultUrlInput.value);
+      showToast("📋 链接已复制！");
     }
   });
 
   // Save Settings
   saveSettingsBtn.addEventListener("click", async () => {
-    let server = serverInput.value.trim() || "https://htmlto.link";
-    server = server.replace(/\/$/, "");
-    const token = tokenInput.value.trim();
+    let server = serverInput.value.trim().replace(/\/$/, "");
+    if (!server) server = DEFAULT_API_SERVER;
 
-    await chrome.storage.local.set({ apiServer: server, apiToken: token });
-    serverBadge.textContent = server.replace(/^https?:\/\//, "");
-    showToast("设置保存成功！");
+    await chrome.storage.local.set({
+      apiServer: server,
+      apiToken: tokenInput.value.trim()
+    });
+
+    serverBadge.textContent = server;
+    if (editorPreviewLink) {
+      editorPreviewLink.href = `${server}/editor`;
+    }
+    showToast("✅ 设置已保存！");
   });
 
-  // Load History List
-  async function loadHistory() {
-    const data = await chrome.storage.local.get(["shareHistory"]);
-    const list = data.shareHistory || [];
+  // Local History Management
+  async function saveToHistory(item) {
+    const data = await chrome.storage.local.get(["uploadHistory"]);
+    const list = data.uploadHistory || [];
+    list.unshift(item);
+    if (list.length > 30) list.pop();
+    await chrome.storage.local.set({ uploadHistory: list });
+  }
+
+  async function renderHistory() {
+    const data = await chrome.storage.local.get(["uploadHistory"]);
+    const list = data.uploadHistory || [];
 
     if (list.length === 0) {
       historyList.innerHTML = `<div class="empty-state">暂无发布历史</div>`;
@@ -147,15 +178,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         (item) => `
       <div class="history-item">
         <div class="history-info">
-          <div class="history-title">
-            ${escapeHtml(item.title || "文档")}
-            <span class="history-type-badge">${item.type === "markdown" || item.title?.endsWith(".md") ? "MD" : "HTML"}</span>
-          </div>
-          <span class="history-url">${escapeHtml(item.url)}</span>
+          <div class="history-title">${escapeHtml(item.filename)} <span class="history-type-badge">${(item.format || "html").toUpperCase()}</span></div>
+          <div class="history-url">${escapeHtml(item.url)}</div>
         </div>
         <div class="history-actions">
-          <button type="button" class="history-btn copy-btn" data-url="${escapeHtml(item.url)}">复制</button>
-          <a href="${escapeHtml(item.url)}" target="_blank" class="history-btn">打开</a>
+          <button class="history-btn copy-btn" data-url="${escapeHtml(item.url)}">复制</button>
         </div>
       </div>
     `
@@ -164,29 +191,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.querySelectorAll(".copy-btn").forEach((btn) => {
       btn.addEventListener("click", async () => {
-        const url = btn.getAttribute("data-url");
-        if (url) {
-          await navigator.clipboard.writeText(url);
-          showToast("已复制链接！");
-        }
+        const url = btn.dataset.url;
+        await navigator.clipboard.writeText(url);
+        showToast("📋 已复制历史链接！");
       });
     });
   }
 
   function showToast(msg) {
-    const toast = document.getElementById("popupToast");
-    toast.textContent = msg;
-    toast.classList.remove("hidden");
+    popupToast.textContent = msg;
+    popupToast.classList.remove("hidden");
     setTimeout(() => {
-      toast.classList.add("hidden");
+      popupToast.classList.add("hidden");
     }, 3000);
   }
 
   function escapeHtml(str) {
-    return (str || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
+    return (str || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
 });
