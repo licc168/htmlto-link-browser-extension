@@ -1,0 +1,242 @@
+{
+  "extName": {
+    "message": "htmlto.link - HTML to URL Publisher",
+    "description": "Extension name"
+  },
+  "extDescription": {
+    "message": "Publish HTML to URL in 1 second: turn HTML or AI code from ChatGPT/Claude/DeepSeek into instant shareable links via htmlto.link.",
+    "description": "Extension description"
+  },
+  "tabPaste": {
+    "message": "📋 Paste Code / Docs",
+    "description": "Paste tab label"
+  },
+  "tabHistory": {
+    "message": "📜 History",
+    "description": "History tab label"
+  },
+  "tabSettings": {
+    "message": "⚙️ Settings",
+    "description": "Settings tab label"
+  },
+  "fmtHtml": {
+    "message": "🌐 HTML Web",
+    "description": "HTML format button"
+  },
+  "fmtMarkdown": {
+    "message": "📝 Markdown Doc",
+    "description": "Markdown format button"
+  },
+  "mdTemplateLabel": {
+    "message": "Markdown template:",
+    "description": "Template select label"
+  },
+  "previewTemplate": {
+    "message": "🎨 Preview templates ↗",
+    "description": "Preview template link"
+  },
+  "tplPlain": {
+    "message": "Plain",
+    "description": "Template option"
+  },
+  "tplMemo": {
+    "message": "Memo",
+    "description": "Template option"
+  },
+  "tplBytedance": {
+    "message": "Bytedance",
+    "description": "Template option"
+  },
+  "tplDarktech": {
+    "message": "Dark Tech",
+    "description": "Template option"
+  },
+  "tplCoilnotebook": {
+    "message": "Coil Notebook",
+    "description": "Template option"
+  },
+  "tplTraditionalchinese": {
+    "message": "Traditional Chinese",
+    "description": "Template option"
+  },
+  "tplPopart": {
+    "message": "Pop Art",
+    "description": "Template option"
+  },
+  "tplWarm": {
+    "message": "Warm",
+    "description": "Template option"
+  },
+  "tplAlibaba": {
+    "message": "Alibaba",
+    "description": "Template option"
+  },
+  "codePlaceholder": {
+    "message": "Paste HTML code (e.g. <h1>Hello World</h1>) or Markdown text here...",
+    "description": "Code input placeholder"
+  },
+  "filenamePlaceholder": {
+    "message": "Filename (default: index.html)",
+    "description": "Filename input placeholder"
+  },
+  "publishBtnText": {
+    "message": "🚀 Publish & Generate Public URL",
+    "description": "Publish button"
+  },
+  "successTag": {
+    "message": "✅ Published",
+    "description": "Success tag"
+  },
+  "copy": {
+    "message": "Copy",
+    "description": "Copy button"
+  },
+  "openNewTab": {
+    "message": "Open in new tab ↗",
+    "description": "Open link action"
+  },
+  "emptyHistory": {
+    "message": "No publish history yet",
+    "description": "Empty history state"
+  },
+  "serverLabel": {
+    "message": "API Server URL",
+    "description": "Settings server label"
+  },
+  "serverHint": {
+    "message": "Production: https://htmlto.link / Local: http://localhost:3000",
+    "description": "Server hint"
+  },
+  "tokenLabel": {
+    "message": "API Token (optional)",
+    "description": "Settings token label"
+  },
+  "tokenPlaceholder": {
+    "message": "Enter your API Token to bind your account",
+    "description": "Token input placeholder"
+  },
+  "tokenHint": {
+    "message": "Log in to htmlto.link and generate your API token in Settings",
+    "description": "Token hint"
+  },
+  "saveSettings": {
+    "message": "Save Settings",
+    "description": "Save settings button"
+  },
+  "mdPlaceholder": {
+    "message": "# Example title\n\nType or paste Markdown text here...",
+    "description": "Markdown input placeholder"
+  },
+  "publishMdBtn": {
+    "message": "🚀 Publish Markdown URL",
+    "description": "Publish markdown button"
+  },
+  "htmlPlaceholder": {
+    "message": "Paste HTML code (e.g. <h1>Hello World</h1>)...",
+    "description": "HTML input placeholder"
+  },
+  "publishHtmlBtn": {
+    "message": "🚀 Publish HTML URL",
+    "description": "Publish HTML button"
+  },
+  "emptyInput": {
+    "message": "Please enter or paste code/document first!",
+    "description": "Empty input warning"
+  },
+  "publishing": {
+    "message": "Publishing...",
+    "description": "Publishing status"
+  },
+  "publishSuccess": {
+    "message": "🎉 Published! Link copied to clipboard!",
+    "description": "Publish success toast"
+  },
+  "publishFailed": {
+    "message": "Publish failed",
+    "description": "Publish failed error"
+  },
+  "linkCopied": {
+    "message": "📋 Link copied!",
+    "description": "Link copied toast"
+  },
+  "settingsSaved": {
+    "message": "✅ Settings saved!",
+    "description": "Settings saved toast"
+  },
+  "historyCopied": {
+    "message": "📋 History link copied!",
+    "description": "History copied toast"
+  },
+  "ctxPublishHtml": {
+    "message": "🌐 Publish selected HTML",
+    "description": "Context menu item"
+  },
+  "ctxPublishMd": {
+    "message": "📝 Publish selected Markdown (plain)",
+    "description": "Context menu item"
+  },
+  "publishSelectedToast": {
+    "message": "🎉 Published selection as $FORMAT$ link!",
+    "description": "Context menu publish toast",
+    "placeholders": {
+      "format": {
+        "content": "$1",
+        "example": "HTML"
+      }
+    }
+  },
+  "publishFailedToast": {
+    "message": "❌ Publish failed: $MESSAGE$",
+    "description": "Context menu publish failure toast",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Network error"
+      }
+    }
+  },
+  "invalidLink": {
+    "message": "Failed to generate a valid link",
+    "description": "Upload response error"
+  },
+  "genHtmlLink": {
+    "message": "Generate HTML link",
+    "description": "Injected button label"
+  },
+  "genMdLink": {
+    "message": "Generate Markdown link",
+    "description": "Injected button label"
+  },
+  "tplSelectTitle": {
+    "message": "Select Markdown render template (default: plain)",
+    "description": "Template select tooltip"
+  },
+  "copiedLink": {
+    "message": "$FORMAT$ link copied!",
+    "description": "Copied link status",
+    "placeholders": {
+      "format": {
+        "content": "$1",
+        "example": "HTML"
+      }
+    }
+  },
+  "publishSuccessToast": {
+    "message": "🎉 Published and copied $FORMAT$ link!",
+    "description": "Injected button success toast",
+    "placeholders": {
+      "format": {
+        "content": "$1",
+        "example": "HTML"
+      }
+    }
+  },
+  "fmtHtmlName": {
+    "message": "HTML",
+    "description": "Format display name"
+  },
+  "fmtMdName": {
+    "message": "Markdown",
+    "description": "Format display name"
+  }
+}

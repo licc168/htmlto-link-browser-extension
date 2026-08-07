@@ -6,13 +6,13 @@ const DEFAULT_API_SERVER = "https://htmlto.link";
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: "upload-selected-html",
-    title: "🌐 发布选中 HTML",
+    title: chrome.i18n.getMessage("ctxPublishHtml"),
     contexts: ["selection"]
   });
 
   chrome.contextMenus.create({
     id: "upload-selected-md",
-    title: "📝 发布选中 Markdown (简洁)",
+    title: chrome.i18n.getMessage("ctxPublishMd"),
     contexts: ["selection"]
   });
 });
@@ -31,13 +31,19 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
       if (tab?.id) {
         chrome.tabs.sendMessage(tab.id, {
           type: "SHOW_TOAST",
-          message: `🎉 已发布选中文本并生成 ${isMd ? "Markdown" : "HTML"} 链接！`,
+          message: chrome.i18n.getMessage("publishSelectedToast", [isMd ? chrome.i18n.getMessage("fmtMdName") : chrome.i18n.getMessage("fmtHtmlName")]),
           url: result.url
         });
       }
     }
   } catch (err) {
     console.error("Context menu upload error:", err);
+    if (tab?.id) {
+      chrome.tabs.sendMessage(tab.id, {
+        type: "SHOW_TOAST",
+        message: chrome.i18n.getMessage("publishFailedToast", [err.message])
+      });
+    }
   }
 });
 
@@ -93,7 +99,7 @@ async function uploadContent(codeContent, filename = "index.html", format = "htm
         manageUrl: data.manageUrl || ""
       };
     } else {
-      throw new Error(data.error || data.message || "未能生成有效链接");
+      throw new Error(data.error || data.message || chrome.i18n.getMessage("invalidLink"));
     }
   } catch (err) {
     console.error("Upload error via /api/upload:", err);

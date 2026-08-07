@@ -1,0 +1,242 @@
+{
+  "extName": {
+    "message": "htmlto.link - HTML 转 URL 发布器",
+    "description": "扩展名称"
+  },
+  "extDescription": {
+    "message": "1 秒将 HTML 或 AI 生成的代码发布为公开可分享链接，支持 ChatGPT/Claude/DeepSeek 等，由 htmlto.link 提供。",
+    "description": "扩展描述"
+  },
+  "tabPaste": {
+    "message": "📋 粘贴代码/文档",
+    "description": "粘贴标签页"
+  },
+  "tabHistory": {
+    "message": "📜 历史链接",
+    "description": "历史标签页"
+  },
+  "tabSettings": {
+    "message": "⚙️ 设置",
+    "description": "设置标签页"
+  },
+  "fmtHtml": {
+    "message": "🌐 HTML 网页",
+    "description": "HTML 格式按钮"
+  },
+  "fmtMarkdown": {
+    "message": "📝 Markdown 文档",
+    "description": "Markdown 格式按钮"
+  },
+  "mdTemplateLabel": {
+    "message": "Markdown 渲染模板：",
+    "description": "模板选择标签"
+  },
+  "previewTemplate": {
+    "message": "🎨 查看模板效果 ↗",
+    "description": "模板预览链接"
+  },
+  "tplPlain": {
+    "message": "简洁 (plain)",
+    "description": "模板选项"
+  },
+  "tplMemo": {
+    "message": "备忘录 (memo)",
+    "description": "模板选项"
+  },
+  "tplBytedance": {
+    "message": "字节范 (bytedance)",
+    "description": "模板选项"
+  },
+  "tplDarktech": {
+    "message": "暗黑科技 (darktech)",
+    "description": "模板选项"
+  },
+  "tplCoilnotebook": {
+    "message": "线圈笔记本 (coilnotebook)",
+    "description": "模板选项"
+  },
+  "tplTraditionalchinese": {
+    "message": "中国传统 (traditionalchinese)",
+    "description": "模板选项"
+  },
+  "tplPopart": {
+    "message": "波普艺术 (popart)",
+    "description": "模板选项"
+  },
+  "tplWarm": {
+    "message": "温暖柔和 (warm)",
+    "description": "模板选项"
+  },
+  "tplAlibaba": {
+    "message": "阿里橙 (alibaba)",
+    "description": "模板选项"
+  },
+  "codePlaceholder": {
+    "message": "在此粘贴 HTML 代码 (如 <h1>Hello World</h1>) 或 Markdown 文本...",
+    "description": "代码输入占位符"
+  },
+  "filenamePlaceholder": {
+    "message": "文件名 (默认: index.html)",
+    "description": "文件名输入占位符"
+  },
+  "publishBtnText": {
+    "message": "🚀 发布生成公开 URL",
+    "description": "发布按钮"
+  },
+  "successTag": {
+    "message": "✅ 发布成功",
+    "description": "成功标签"
+  },
+  "copy": {
+    "message": "复制",
+    "description": "复制按钮"
+  },
+  "openNewTab": {
+    "message": "在新标签页打开 ↗",
+    "description": "打开链接操作"
+  },
+  "emptyHistory": {
+    "message": "暂无发布历史",
+    "description": "历史为空状态"
+  },
+  "serverLabel": {
+    "message": "服务节点地址 (API Server)",
+    "description": "设置-服务地址标签"
+  },
+  "serverHint": {
+    "message": "生产节点: https://htmlto.link / 本地测试: http://localhost:3000",
+    "description": "服务地址提示"
+  },
+  "tokenLabel": {
+    "message": "API Token (可选)",
+    "description": "设置-Token 标签"
+  },
+  "tokenPlaceholder": {
+    "message": "输入您的 API Token 绑定个人账号",
+    "description": "Token 输入占位符"
+  },
+  "tokenHint": {
+    "message": "登录 htmlto.link 后在设置中心生成个人 API Token",
+    "description": "Token 提示"
+  },
+  "saveSettings": {
+    "message": "保存设置",
+    "description": "保存设置按钮"
+  },
+  "mdPlaceholder": {
+    "message": "# 示例标题\n\n在此输入或粘贴 Markdown 文本...",
+    "description": "Markdown 输入占位符"
+  },
+  "publishMdBtn": {
+    "message": "🚀 发布 Markdown 生成 URL",
+    "description": "发布 Markdown 按钮"
+  },
+  "htmlPlaceholder": {
+    "message": "在此粘贴 HTML 代码 (如 <h1>Hello World</h1>)...",
+    "description": "HTML 输入占位符"
+  },
+  "publishHtmlBtn": {
+    "message": "🚀 发布 HTML 生成 URL",
+    "description": "发布 HTML 按钮"
+  },
+  "emptyInput": {
+    "message": "请先输入或粘贴代码/文档！",
+    "description": "空输入提示"
+  },
+  "publishing": {
+    "message": "发布处理中...",
+    "description": "发布中状态"
+  },
+  "publishSuccess": {
+    "message": "🎉 发布成功！链接已自动复制到剪贴板！",
+    "description": "发布成功提示"
+  },
+  "publishFailed": {
+    "message": "发布失败",
+    "description": "发布失败错误"
+  },
+  "linkCopied": {
+    "message": "📋 链接已复制！",
+    "description": "链接已复制提示"
+  },
+  "settingsSaved": {
+    "message": "✅ 设置已保存！",
+    "description": "设置保存提示"
+  },
+  "historyCopied": {
+    "message": "📋 已复制历史链接！",
+    "description": "历史链接复制提示"
+  },
+  "ctxPublishHtml": {
+    "message": "🌐 发布选中 HTML",
+    "description": "右键菜单项"
+  },
+  "ctxPublishMd": {
+    "message": "📝 发布选中 Markdown (简洁)",
+    "description": "右键菜单项"
+  },
+  "publishSelectedToast": {
+    "message": "🎉 已发布选中文本并生成 $FORMAT$ 链接！",
+    "description": "右键发布成功提示",
+    "placeholders": {
+      "format": {
+        "content": "$1",
+        "example": "HTML"
+      }
+    }
+  },
+  "publishFailedToast": {
+    "message": "❌ 发布失败：$MESSAGE$",
+    "description": "右键发布失败提示",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "网络错误"
+      }
+    }
+  },
+  "invalidLink": {
+    "message": "未能生成有效链接",
+    "description": "上传响应错误"
+  },
+  "genHtmlLink": {
+    "message": "生成 HTML 链接",
+    "description": "注入按钮文案"
+  },
+  "genMdLink": {
+    "message": "生成 Markdown 链接",
+    "description": "注入按钮文案"
+  },
+  "tplSelectTitle": {
+    "message": "选择 Markdown 渲染模板 (默认: 简洁)",
+    "description": "模板选择提示"
+  },
+  "copiedLink": {
+    "message": "已复制 $FORMAT$ 链接！",
+    "description": "链接已复制状态",
+    "placeholders": {
+      "format": {
+        "content": "$1",
+        "example": "HTML"
+      }
+    }
+  },
+  "publishSuccessToast": {
+    "message": "🎉 已成功发布并复制 $FORMAT$ 链接！",
+    "description": "注入按钮成功提示",
+    "placeholders": {
+      "format": {
+        "content": "$1",
+        "example": "HTML"
+      }
+    }
+  },
+  "fmtHtmlName": {
+    "message": "HTML",
+    "description": "格式显示名"
+  },
+  "fmtMdName": {
+    "message": "Markdown",
+    "description": "格式显示名"
+  }
+}

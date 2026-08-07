@@ -2,6 +2,22 @@
 
 document.addEventListener("DOMContentLoaded", async () => {
   const DEFAULT_API_SERVER = "https://htmlto.link";
+  const t = (key) => chrome.i18n.getMessage(key) || key;
+
+  // Apply i18n to all data-i18n / data-i18n-placeholder / data-i18n-title nodes
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const msg = t(el.getAttribute("data-i18n"));
+    if (msg) el.textContent = msg;
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    const msg = t(el.getAttribute("data-i18n-placeholder"));
+    if (msg) el.placeholder = msg;
+  });
+  document.querySelectorAll("[data-i18n-title]").forEach((el) => {
+    const msg = t(el.getAttribute("data-i18n-title"));
+    if (msg) el.title = msg;
+  });
+  document.title = t("extName");
 
   // Navigation
   const tabBtns = document.querySelectorAll(".tab-btn");
@@ -67,14 +83,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       currentFormat = btn.dataset.format;
       if (currentFormat === "md") {
         templateRow.classList.remove("hidden");
-        codeInput.placeholder = "# 示例标题\n\n在此输入或粘贴 Markdown 文本...";
+        codeInput.placeholder = chrome.i18n.getMessage("mdPlaceholder");
         filenameInput.value = "document.md";
-        publishBtnText.textContent = "🚀 发布 Markdown 生成 URL";
+        publishBtnText.textContent = chrome.i18n.getMessage("publishMdBtn");
       } else {
         templateRow.classList.add("hidden");
-        codeInput.placeholder = "在此粘贴 HTML 代码 (如 <h1>Hello World</h1>)...";
+        codeInput.placeholder = chrome.i18n.getMessage("htmlPlaceholder");
         filenameInput.value = "index.html";
-        publishBtnText.textContent = "🚀 发布 HTML 生成 URL";
+        publishBtnText.textContent = chrome.i18n.getMessage("publishHtmlBtn");
       }
     });
   });
@@ -83,7 +99,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   publishBtn.addEventListener("click", async () => {
     const code = codeInput.value.trim();
     if (!code) {
-      showToast("请先输入或粘贴代码/文档！");
+      showToast(chrome.i18n.getMessage("emptyInput"));
       return;
     }
 
@@ -91,7 +107,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const selectedTemplate = currentFormat === "md" ? (templateSelect.value || "plain") : undefined;
 
     publishBtn.disabled = true;
-    publishBtnText.textContent = "发布处理中...";
+    publishBtnText.textContent = chrome.i18n.getMessage("publishing");
 
     try {
       const response = await chrome.runtime.sendMessage({
@@ -108,7 +124,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         resultTimeSpan.textContent = new Date().toLocaleTimeString();
         resultCard.classList.remove("hidden");
 
-        await navigator.clipboard.writeText(response.url);
+        await copyToClipboard(response.url);
 
         await saveToHistory({
           url: response.url,
@@ -118,23 +134,23 @@ document.addEventListener("DOMContentLoaded", async () => {
           timestamp: Date.now()
         });
 
-        showToast("🎉 发布成功！链接已自动复制到剪贴板！");
+        showToast(chrome.i18n.getMessage("publishSuccess"));
       } else {
-        throw new Error(response?.error || "发布失败");
+        throw new Error(response?.error || chrome.i18n.getMessage("publishFailed"));
       }
     } catch (err) {
       showToast(`❌ ${err.message}`);
     } finally {
       publishBtn.disabled = false;
-      publishBtnText.textContent = currentFormat === "md" ? "🚀 发布 Markdown 生成 URL" : "🚀 发布 HTML 生成 URL";
+      publishBtnText.textContent = currentFormat === "md" ? chrome.i18n.getMessage("publishMdBtn") : chrome.i18n.getMessage("publishHtmlBtn");
     }
   });
 
   // Copy Result URL
   copyUrlBtn.addEventListener("click", async () => {
     if (resultUrlInput.value) {
-      await navigator.clipboard.writeText(resultUrlInput.value);
-      showToast("📋 链接已复制！");
+      await copyToClipboard(resultUrlInput.value);
+      showToast(chrome.i18n.getMessage("linkCopied"));
     }
   });
 
@@ -152,7 +168,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (editorPreviewLink) {
       editorPreviewLink.href = `${server}/editor`;
     }
-    showToast("✅ 设置已保存！");
+    showToast(chrome.i18n.getMessage("settingsSaved"));
   });
 
   // Local History Management
@@ -169,7 +185,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const list = data.uploadHistory || [];
 
     if (list.length === 0) {
-      historyList.innerHTML = `<div class="empty-state">暂无发布历史</div>`;
+      historyList.innerHTML = `<div class="empty-state">${chrome.i18n.getMessage("emptyHistory")}</div>`;
       return;
     }
 
@@ -182,7 +198,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <div class="history-url">${escapeHtml(item.url)}</div>
         </div>
         <div class="history-actions">
-          <button class="history-btn copy-btn" data-url="${escapeHtml(item.url)}">复制</button>
+          <button class="history-btn copy-btn" data-url="${escapeHtml(item.url)}">${chrome.i18n.getMessage("copy")}</button>
         </div>
       </div>
     `
@@ -192,10 +208,28 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelectorAll(".copy-btn").forEach((btn) => {
       btn.addEventListener("click", async () => {
         const url = btn.dataset.url;
-        await navigator.clipboard.writeText(url);
-        showToast("📋 已复制历史链接！");
+        await copyToClipboard(url);
+        showToast(chrome.i18n.getMessage("historyCopied"));
       });
     });
+  }
+
+  async function copyToClipboard(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (err) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand("copy");
+      } finally {
+        document.body.removeChild(ta);
+      }
+    }
   }
 
   function showToast(msg) {

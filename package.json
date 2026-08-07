@@ -1,0 +1,12 @@
+{
+  "name": "htmlto-link-browser-extension",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Icon generation for HTML To Link browser extension",
+  "scripts": {
+    "generate-icons": "node generate-icons.js"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
+}
