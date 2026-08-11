@@ -22,7 +22,18 @@
 
 ---
 
-## 🛠️ 安装与使用教程 (开发者模式/解压加载)
+## 🛠️ 安装与使用教程
+
+### 方式一：Chrome Web Store 一键安装（推荐）
+
+已在 Chrome 应用商店上架，点击即可安装：
+
+> 🔗 **Chrome Web Store**：https://chromewebstore.google.com/detail/htmltolink-html-to-url-pu/bmbgkkgaadbankkjngemdljnbjbjlbbl
+
+- **Chrome / Brave / Opera**：直接点上面链接 → 添加扩展。
+- **Edge**：打开上面链接后，Edge 会提示"允许来自其他商店的扩展"→ 允许即可安装。
+
+### 方式二：开发者模式 / 解压加载
 
 ### 步骤 1：打开浏览器扩展管理页面
 - **Chrome / Edge / Brave / Opera** 浏览器地址栏输入：
