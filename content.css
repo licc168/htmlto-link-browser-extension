@@ -66,6 +66,35 @@
   border-color: #38bdf8;
 }
 
+/* Dismiss (×) button to turn off auto-inject */
+.htmlto-link-inject-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.htmlto-link-btn-container:hover .htmlto-link-inject-close {
+  opacity: 1;
+}
+
+.htmlto-link-inject-close:hover {
+  color: #ffffff;
+  background: rgba(239, 68, 68, 0.8);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
 .htmlto-link-spin {
   animation: htmlto-link-rotate 1s linear infinite;
 }
@@ -122,4 +151,20 @@
   color: #2563eb;
   text-decoration: underline;
   word-break: break-all;
+}
+
+.htmlto-link-toast-action {
+  margin-top: 8px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #2563eb;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.htmlto-link-toast-action:hover {
+  background: #1d4ed8;
 }

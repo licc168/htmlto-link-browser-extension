@@ -40,7 +40,7 @@ function screenshot1() {
       <stop offset="0%" stop-color="#0b1020"/><stop offset="100%" stop-color="${BG_DARK}"/>
     </linearGradient></defs>
     <rect width="1280" height="800" fill="url(#bgGrad)"/>
-    ${appHeader("HTML to URL 发布器 · v1.0.0")}
+    ${appHeader("HTML to URL 发布器 · v1.1.0")}
     <text x="24" y="120" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="${TEXT}">把 HTML 或 AI 生成的代码发布为可分享链接</text>
     <text x="24" y="152" font-family="Arial, sans-serif" font-size="16" fill="${MUTED}">粘贴代码 → 点击发布 → 1 秒获得公开 URL</text>
     <rect x="24" y="180" width="620" height="560" rx="16" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
@@ -79,7 +79,7 @@ function screenshot1() {
     <circle cx="792" cy="392" r="16" fill="url(#brand)"/>
     <text x="792" y="398" font-family="Arial, sans-serif" font-size="15" font-weight="800" fill="#fff" text-anchor="middle">2</text>
     <text x="820" y="384" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">点击发布</text>
-    <text x="820" y="406" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">弹窗粘贴或右键选中即可发布</text>
+    <text x="820" y="406" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">弹窗粘贴，一键即可发布</text>
     <text x="820" y="424" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">支持 Markdown 文档与多主题渲染</text>
     <text x="820" y="442" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">自定义 API 节点与 Token 绑定</text>
     <rect x="756" y="468" width="460" height="96" rx="12" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
@@ -132,8 +132,8 @@ function screenshot3() {
       <stop offset="0%" stop-color="${PRIMARY}"/><stop offset="100%" stop-color="${PRIMARY_2}"/>
     </linearGradient></defs>
     <rect width="1280" height="800" fill="${BG_DARK}"/>
-    ${appHeader("弹窗发布、右键发布、历史记录与设置")}
-    <text x="24" y="118" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="${TEXT}">弹窗一键粘贴发布，右键选中即发布</text>
+    ${appHeader("弹窗发布、历史记录与设置")}
+    <text x="24" y="118" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="${TEXT}">弹窗一键粘贴发布，支持 Markdown 与多主题渲染</text>
     <rect x="24" y="150" width="610" height="600" rx="16" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
     <rect x="52" y="178" width="130" height="30" rx="8" fill="rgba(255,255,255,0.05)" stroke="${BORDER}" stroke-width="1"/>
     <text x="64" y="198" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${MUTED}">粘贴代码</text>
@@ -181,10 +181,10 @@ function screenshot3() {
     <text x="708" y="398" font-family="Arial, sans-serif" font-size="11" fill="${MUTED}">登录 htmlto.link 后在设置中心生成个人 API Token</text>
     <rect x="708" y="420" width="180" height="40" rx="8" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
     <text x="756" y="445" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="${TEXT}">保存设置</text>
-    <text x="708" y="500" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">右键菜单</text>
+    <text x="708" y="500" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">Markdown 模板</text>
     <rect x="708" y="520" width="520" height="54" rx="10" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
-    <text x="724" y="546" font-family="Arial, sans-serif" font-size="13" fill="${TEXT}">选中任意文本 / 代码</text>
-    <text x="724" y="564" font-family="Arial, sans-serif" font-size="11" fill="${MUTED}">→ 右键 → 发布选中 HTML 为在线链接 (htmlto.link)</text>
+    <text x="724" y="546" font-family="Arial, sans-serif" font-size="13" fill="${TEXT}">9 种内置渲染模板，一键切换风格</text>
+    <text x="724" y="564" font-family="Arial, sans-serif" font-size="11" fill="${MUTED}">简洁 · 备忘录 · 暗黑科技 · 波普艺术 · 阿里橙…</text>
     <text x="708" y="614" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">支持平台</text>
     <text x="708" y="646" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">ChatGPT · Claude · DeepSeek · v0.dev · Kimi · Gemini</text>
     <text x="708" y="668" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">通义千问 · 豆包 · 百度文心 · 腾讯元宝</text>

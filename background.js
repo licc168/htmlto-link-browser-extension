@@ -1,49 +1,15 @@
 // Background Service Worker for HTML & Markdown To Link Extension
 
 const DEFAULT_API_SERVER = "https://htmlto.link";
+const UNINSTALL_SURVEY_URL = "https://htmlto.link/uninstall-survey";
 
-// Setup Right-Click Context Menus
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.contextMenus.create({
-    id: "upload-selected-html",
-    title: chrome.i18n.getMessage("ctxPublishHtml"),
-    contexts: ["selection"]
-  });
+chrome.runtime.onInstalled.addListener((details) => {
+  // 用户卸载时打开调查页，收集真实反馈
+  chrome.runtime.setUninstallURL(UNINSTALL_SURVEY_URL);
 
-  chrome.contextMenus.create({
-    id: "upload-selected-md",
-    title: chrome.i18n.getMessage("ctxPublishMd"),
-    contexts: ["selection"]
-  });
-});
-
-chrome.contextMenus.onClicked.addListener(async (info, tab) => {
-  if (!info.selectionText) return;
-
-  const isMd = info.menuItemId === "upload-selected-md";
-  const filename = isMd ? "selected-document.md" : "selected-page.html";
-  const format = isMd ? "md" : "html";
-  const templateId = isMd ? "plain" : undefined;
-
-  try {
-    const result = await uploadContent(info.selectionText, filename, format, templateId);
-    if (result.success && result.url) {
-      if (tab?.id) {
-        chrome.tabs.sendMessage(tab.id, {
-          type: "SHOW_TOAST",
-          message: chrome.i18n.getMessage("publishSelectedToast", [isMd ? chrome.i18n.getMessage("fmtMdName") : chrome.i18n.getMessage("fmtHtmlName")]),
-          url: result.url
-        });
-      }
-    }
-  } catch (err) {
-    console.error("Context menu upload error:", err);
-    if (tab?.id) {
-      chrome.tabs.sendMessage(tab.id, {
-        type: "SHOW_TOAST",
-        message: chrome.i18n.getMessage("publishFailedToast", [err.message])
-      });
-    }
+  // 首次安装时打开引导页（仅首次，更新时不打扰）
+  if (details.reason === "install") {
+    chrome.tabs.create({ url: chrome.runtime.getURL("welcome.html") });
   }
 });
 
@@ -56,6 +22,18 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     return true;
   }
 });
+
+const MAX_UPLOAD_ATTEMPTS = 3;
+const RETRY_DELAY_MS = 900;
+const FETCH_TIMEOUT_MS = 15000;
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isRetryableHttpStatus(status) {
+  return status >= 500 || status === 408 || status === 429;
+}
 
 async function uploadContent(codeContent, filename = "index.html", format = "html", templateId = "plain") {
   const settings = await chrome.storage.local.get(["apiServer", "apiToken"]);
@@ -71,38 +49,60 @@ async function uploadContent(codeContent, filename = "index.html", format = "htm
   }
 
   const endpoint = `${baseUrl}/api/upload`;
+  const body = JSON.stringify({
+    code: codeContent,
+    filename,
+    format,
+    templateId: format === "md" ? (templateId || "plain") : undefined
+  });
 
-  try {
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        code: codeContent,
-        filename,
-        format,
-        templateId: format === "md" ? (templateId || "plain") : undefined
-      })
-    });
+  let lastError = null;
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`HTTP ${response.status}: ${errorText}`);
-    }
+  for (let attempt = 1; attempt <= MAX_UPLOAD_ATTEMPTS; attempt++) {
+    let httpStatus = 0;
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
-    const data = await response.json();
-    const finalUrl = data.url || data.shareUrl || data.link || data.data?.url;
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers,
+        body,
+        signal: controller.signal
+      });
+      httpStatus = response.status;
 
-    if (finalUrl) {
-      return {
-        success: true,
-        url: finalUrl,
-        manageUrl: data.manageUrl || ""
-      };
-    } else {
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`HTTP ${response.status}: ${errorText}`);
+      }
+
+      const data = await response.json();
+      const finalUrl = data.url || data.shareUrl || data.link || data.data?.url;
+
+      if (finalUrl) {
+        return {
+          success: true,
+          url: finalUrl,
+          manageUrl: data.manageUrl || ""
+        };
+      }
       throw new Error(data.error || data.message || chrome.i18n.getMessage("invalidLink"));
+    } catch (err) {
+      lastError = err;
+      // 无 httpStatus = 网络层错误（断网 / 抖动 / 超时），一律重试；
+      // 有 httpStatus 则只有 5xx / 408 / 429 这类服务端瞬时错误才重试，4xx 直接失败。
+      const retryable = httpStatus ? isRetryableHttpStatus(httpStatus) : true;
+      if (retryable && attempt < MAX_UPLOAD_ATTEMPTS) {
+        console.warn(`[htmlto.link] 上传第 ${attempt}/${MAX_UPLOAD_ATTEMPTS} 次失败，${RETRY_DELAY_MS * attempt}ms 后重试`, err);
+        await sleep(RETRY_DELAY_MS * attempt);
+        continue;
+      }
+      throw err;
+    } finally {
+      clearTimeout(timeoutId);
     }
-  } catch (err) {
-    console.error("Upload error via /api/upload:", err);
-    throw err;
   }
+
+  throw lastError || new Error("upload failed");
 }

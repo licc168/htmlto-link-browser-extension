@@ -43,20 +43,48 @@ document.addEventListener("DOMContentLoaded", async () => {
   const serverInput = document.getElementById("serverInput");
   const tokenInput = document.getElementById("tokenInput");
   const saveSettingsBtn = document.getElementById("saveSettingsBtn");
+  const autoInjectToggle = document.getElementById("autoInjectToggle");
   const serverBadge = document.getElementById("serverBadge");
   const popupToast = document.getElementById("popupToast");
+  const autoInjectOffBanner = document.getElementById("autoInjectOffBanner");
+  const reEnableBtn = document.getElementById("reEnableBtn");
 
   let currentFormat = "html"; // "html" or "md"
 
   // Load Settings
-  const settings = await chrome.storage.local.get(["apiServer", "apiToken"]);
+  const settings = await chrome.storage.local.get(["apiServer", "apiToken", "autoInject"]);
   const apiServer = settings.apiServer || DEFAULT_API_SERVER;
   serverInput.value = apiServer;
   tokenInput.value = settings.apiToken || "";
   serverBadge.textContent = apiServer;
+  autoInjectToggle.checked = settings.autoInject !== false;
   if (editorPreviewLink) {
     editorPreviewLink.href = `${apiServer.replace(/\/$/, "")}/editor`;
   }
+
+  function updateAutoInjectBanner() {
+    if (autoInjectToggle.checked) {
+      autoInjectOffBanner.classList.add("hidden");
+    } else {
+      autoInjectOffBanner.classList.remove("hidden");
+    }
+  }
+  updateAutoInjectBanner();
+
+  // 自动注入开关：即时保存并生效
+  autoInjectToggle.addEventListener("change", async () => {
+    await chrome.storage.local.set({ autoInject: autoInjectToggle.checked });
+    updateAutoInjectBanner();
+    showToast(chrome.i18n.getMessage("settingsSaved"));
+  });
+
+  // 顶部提示条里的「重新开启」
+  reEnableBtn.addEventListener("click", async () => {
+    autoInjectToggle.checked = true;
+    await chrome.storage.local.set({ autoInject: true });
+    updateAutoInjectBanner();
+    showToast(chrome.i18n.getMessage("settingsSaved"));
+  });
 
   // Tab switching
   tabBtns.forEach((btn) => {

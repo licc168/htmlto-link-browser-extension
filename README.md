@@ -14,10 +14,7 @@
    - 点击浏览器右上角插件图标，弹窗内粘贴 HTML 代码，一键发布。
    - 自定义文件名 (`index.html`)、实时分享历史记录及 1 键复制功能。
 
-3. **🖱️ 鼠标右键选中即发布**：
-   - 选中文本/代码 -> 右键菜单 **`🚀 发布选中 HTML 为在线链接 (htmlto.link)`** -> 自动上传并提示生成链接。
-
-4. **⚙️ 支持自定义 API 节点与 Token 账号绑定**：
+3. **⚙️ 支持自定义 API 节点与 Token 账号绑定**：
    - 可无缝切换线上生产节点 (`https://htmlto.link`) 或本地开发节点 (`http://localhost:3000`)。
 
 ---
@@ -60,7 +57,7 @@
 ```text
 htmlto-link-browser-extension/
 ├── manifest.json         # Manifest V3 配置文件
-├── background.js          # 后台 Service Worker (右键菜单 / API 上传)
+├── background.js          # 后台 Service Worker (API 上传)
 ├── content.js             # AI 页面代码块识别注入 & Toast 提示
 ├── content.css            # 注入按钮与 Toast 样式
 ├── popup.html             # 插件弹窗 HTML 界面

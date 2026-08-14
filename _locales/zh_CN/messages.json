@@ -167,34 +167,6 @@
     "message": "📋 已复制历史链接！",
     "description": "历史链接复制提示"
   },
-  "ctxPublishHtml": {
-    "message": "🌐 发布选中 HTML",
-    "description": "右键菜单项"
-  },
-  "ctxPublishMd": {
-    "message": "📝 发布选中 Markdown (简洁)",
-    "description": "右键菜单项"
-  },
-  "publishSelectedToast": {
-    "message": "🎉 已发布选中文本并生成 $FORMAT$ 链接！",
-    "description": "右键发布成功提示",
-    "placeholders": {
-      "format": {
-        "content": "$1",
-        "example": "HTML"
-      }
-    }
-  },
-  "publishFailedToast": {
-    "message": "❌ 发布失败：$MESSAGE$",
-    "description": "右键发布失败提示",
-    "placeholders": {
-      "message": {
-        "content": "$1",
-        "example": "网络错误"
-      }
-    }
-  },
   "invalidLink": {
     "message": "未能生成有效链接",
     "description": "上传响应错误"
@@ -238,5 +210,81 @@
   "fmtMdName": {
     "message": "Markdown",
     "description": "格式显示名"
+  },
+  "autoInjectLabel": {
+    "message": "在 AI 网站代码块自动注入发布按钮",
+    "description": "设置-自动注入开关标签"
+  },
+  "autoInjectHint": {
+    "message": "关闭后不再自动显示按钮，仍可在插件弹窗里粘贴发布",
+    "description": "设置-自动注入开关提示"
+  },
+  "autoInjectOffHint": {
+    "message": "自动注入已关闭",
+    "description": "弹窗顶部自动注入关闭提示"
+  },
+  "reEnable": {
+    "message": "重新开启",
+    "description": "重新开启自动注入按钮"
+  },
+  "dismissInjectTitle": {
+    "message": "关闭自动注入",
+    "description": "注入按钮关闭按钮提示"
+  },
+  "dismissInjectToast": {
+    "message": "已关闭自动注入。可点击扩展图标 → 设置 重新开启",
+    "description": "关闭自动注入后的提示"
+  },
+  "dismissInjectUndo": {
+    "message": "撤销",
+    "description": "关闭自动注入后的撤销按钮"
+  },
+  "expiryNotice": {
+    "message": "⏳ 匿名链接约 24 小时后失效，登录并绑定 Token 可长期保存",
+    "description": "匿名链接有效期提示"
+  },
+  "optionsTitle": {
+    "message": "htmlto.link 扩展设置",
+    "description": "设置页标题"
+  },
+  "welcomeTitle": {
+    "message": "htmlto.link 已安装 🎉",
+    "description": "引导页标题"
+  },
+  "welcomeSubtitle": {
+    "message": "把 AI 生成的网页，一键变成可分享的在线链接",
+    "description": "引导页副标题"
+  },
+  "welcomeStep1Title": {
+    "message": "打开 AI 对话",
+    "description": "引导页步骤1标题"
+  },
+  "welcomeStep1Desc": {
+    "message": "在 ChatGPT / Claude / DeepSeek 里生成一段 HTML 代码",
+    "description": "引导页步骤1描述"
+  },
+  "welcomeStep2Title": {
+    "message": "点击发布按钮",
+    "description": "引导页步骤2标题"
+  },
+  "welcomeStep2Desc": {
+    "message": "代码块右上角会自动出现 🚀 发布按钮",
+    "description": "引导页步骤2描述"
+  },
+  "welcomeStep3Title": {
+    "message": "分享链接",
+    "description": "引导页步骤3标题"
+  },
+  "welcomeStep3Desc": {
+    "message": "链接自动复制到剪贴板，直接发给别人即可",
+    "description": "引导页步骤3描述"
+  },
+  "welcomeGotIt": {
+    "message": "开始使用",
+    "description": "引导页按钮"
+  },
+  "welcomeNote": {
+    "message": "提示：匿名链接约 24 小时有效；可在扩展设置里关闭自动注入。",
+    "description": "引导页备注"
   }
 }

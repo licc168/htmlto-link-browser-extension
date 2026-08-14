@@ -167,34 +167,6 @@
     "message": "📋 History link copied!",
     "description": "History copied toast"
   },
-  "ctxPublishHtml": {
-    "message": "🌐 Publish selected HTML",
-    "description": "Context menu item"
-  },
-  "ctxPublishMd": {
-    "message": "📝 Publish selected Markdown (plain)",
-    "description": "Context menu item"
-  },
-  "publishSelectedToast": {
-    "message": "🎉 Published selection as $FORMAT$ link!",
-    "description": "Context menu publish toast",
-    "placeholders": {
-      "format": {
-        "content": "$1",
-        "example": "HTML"
-      }
-    }
-  },
-  "publishFailedToast": {
-    "message": "❌ Publish failed: $MESSAGE$",
-    "description": "Context menu publish failure toast",
-    "placeholders": {
-      "message": {
-        "content": "$1",
-        "example": "Network error"
-      }
-    }
-  },
   "invalidLink": {
     "message": "Failed to generate a valid link",
     "description": "Upload response error"
@@ -238,5 +210,81 @@
   "fmtMdName": {
     "message": "Markdown",
     "description": "Format display name"
+  },
+  "autoInjectLabel": {
+    "message": "Auto-inject publish buttons on AI chat sites",
+    "description": "Auto-inject toggle label"
+  },
+  "autoInjectHint": {
+    "message": "When off, buttons won't appear automatically; you can still paste & publish from the popup",
+    "description": "Auto-inject toggle hint"
+  },
+  "autoInjectOffHint": {
+    "message": "Auto-inject is off",
+    "description": "Popup banner when auto-inject is off"
+  },
+  "reEnable": {
+    "message": "Re-enable",
+    "description": "Re-enable auto-inject button"
+  },
+  "dismissInjectTitle": {
+    "message": "Turn off auto-inject",
+    "description": "Injected button dismiss tooltip"
+  },
+  "dismissInjectToast": {
+    "message": "Auto-inject turned off. Re-enable from the extension popup → Settings",
+    "description": "Dismiss toast"
+  },
+  "dismissInjectUndo": {
+    "message": "Undo",
+    "description": "Undo button after dismiss"
+  },
+  "expiryNotice": {
+    "message": "⏳ Guest links expire in ~24h. Sign in and bind a token for long-term storage",
+    "description": "Guest link expiry notice"
+  },
+  "optionsTitle": {
+    "message": "htmlto.link Extension Settings",
+    "description": "Options page title"
+  },
+  "welcomeTitle": {
+    "message": "htmlto.link installed 🎉",
+    "description": "Welcome title"
+  },
+  "welcomeSubtitle": {
+    "message": "Turn AI-generated pages into shareable links in one click",
+    "description": "Welcome subtitle"
+  },
+  "welcomeStep1Title": {
+    "message": "Open an AI chat",
+    "description": "Welcome step 1 title"
+  },
+  "welcomeStep1Desc": {
+    "message": "Generate an HTML page in ChatGPT / Claude / DeepSeek",
+    "description": "Welcome step 1 desc"
+  },
+  "welcomeStep2Title": {
+    "message": "Click the publish button",
+    "description": "Welcome step 2 title"
+  },
+  "welcomeStep2Desc": {
+    "message": "A 🚀 publish button appears on the code block",
+    "description": "Welcome step 2 desc"
+  },
+  "welcomeStep3Title": {
+    "message": "Share the link",
+    "description": "Welcome step 3 title"
+  },
+  "welcomeStep3Desc": {
+    "message": "The link is auto-copied — just share it",
+    "description": "Welcome step 3 desc"
+  },
+  "welcomeGotIt": {
+    "message": "Get started",
+    "description": "Welcome button"
+  },
+  "welcomeNote": {
+    "message": "Note: guest links last ~24h; you can turn off auto-inject in extension settings.",
+    "description": "Welcome note"
   }
 }

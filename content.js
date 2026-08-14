@@ -8,7 +8,10 @@
   const PROCESSED_ATTR = "data-htmlto-link-processed";
 
   let scanTimer = null;
+  let autoInjectEnabled = true;
+
   const observer = new MutationObserver(() => {
+    if (!autoInjectEnabled) return;
     if (scanTimer) return;
     scanTimer = setTimeout(() => {
       scanTimer = null;
@@ -16,16 +19,30 @@
     }, 300);
   });
 
-  observer.observe(document.body, { childList: true, subtree: true });
-  scanAndInjectButtons();
+  // 读取用户偏好：是否在 AI 网站自动注入发布按钮（默认开启）
+  chrome.storage.local.get({ autoInject: true }).then((cfg) => {
+    autoInjectEnabled = cfg.autoInject !== false;
+    if (autoInjectEnabled) {
+      observer.observe(document.body, { childList: true, subtree: true });
+      scanAndInjectButtons();
+    }
+  });
 
-  chrome.runtime.onMessage.addListener((msg) => {
-    if (msg.type === "SHOW_TOAST") {
-      showToast(msg.message, msg.url);
+  // 用户在设置页切换开关时，实时生效
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === "local" && changes.autoInject) {
+      autoInjectEnabled = changes.autoInject.newValue !== false;
+      if (autoInjectEnabled) {
+        observer.observe(document.body, { childList: true, subtree: true });
+        scanAndInjectButtons();
+      } else {
+        document.querySelectorAll(`.${CONTAINER_CLASS}`).forEach((el) => el.remove());
+      }
     }
   });
 
   function scanAndInjectButtons() {
+    if (!autoInjectEnabled) return;
     const codeBlocks = document.querySelectorAll("pre code, pre");
     codeBlocks.forEach((block) => {
       if (block.getAttribute(PROCESSED_ATTR)) return;
@@ -136,6 +153,35 @@
         container.appendChild(tplSelect);
       }
 
+      // 「×」关闭自动注入：点击一次即全局关闭，并移除本页所有注入按钮
+      const closeBtn = document.createElement("button");
+      closeBtn.className = "htmlto-link-inject-close";
+      closeBtn.type = "button";
+      closeBtn.title = chrome.i18n.getMessage("dismissInjectTitle");
+      closeBtn.setAttribute("aria-label", closeBtn.title);
+      closeBtn.innerHTML = "×";
+      closeBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        autoInjectEnabled = false;
+        chrome.storage.local.set({ autoInject: false });
+        document.querySelectorAll(`.${CONTAINER_CLASS}`).forEach((el) => el.remove());
+        showToast(
+          chrome.i18n.getMessage("dismissInjectToast"),
+          null,
+          chrome.i18n.getMessage("dismissInjectUndo"),
+          () => {
+            // 撤销：重新开启自动注入，并重新扫描本页代码块
+            autoInjectEnabled = true;
+            chrome.storage.local.set({ autoInject: true });
+            document.querySelectorAll(`[${PROCESSED_ATTR}]`).forEach((el) => el.removeAttribute(PROCESSED_ATTR));
+            observer.observe(document.body, { childList: true, subtree: true });
+            scanAndInjectButtons();
+          }
+        );
+      });
+      container.appendChild(closeBtn);
+
       if (getComputedStyle(parentPre).position === "static") {
         parentPre.style.position = "relative";
       }
@@ -182,7 +228,7 @@
     }
   }
 
-  function showToast(message, linkUrl) {
+  function showToast(message, linkUrl, actionLabel, onAction) {
     let toast = document.getElementById("htmlto-link-toast");
     if (!toast) {
       toast = document.createElement("div");
@@ -194,8 +240,19 @@
       <div class="htmlto-link-toast-content">
         <p>${escapeHtml(message)}</p>
         ${linkUrl ? `<a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkUrl)}</a>` : ""}
+        ${actionLabel ? `<button class="htmlto-link-toast-action" type="button">${escapeHtml(actionLabel)}</button>` : ""}
       </div>
     `;
+
+    if (actionLabel && onAction) {
+      const actionBtn = toast.querySelector(".htmlto-link-toast-action");
+      if (actionBtn) {
+        actionBtn.addEventListener("click", () => {
+          toast.classList.remove("show");
+          onAction();
+        });
+      }
+    }
 
     toast.classList.add("show");
     setTimeout(() => {

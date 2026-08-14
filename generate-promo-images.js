@@ -34,7 +34,7 @@ function appHeader() {
   return `<rect width="100%" height="72" fill="${BG_DARK}"/>
   <rect x="24" y="20" width="40" height="40" rx="10" fill="url(#brand)"/>
   <text x="76" y="38" font-family="Arial, sans-serif" font-size="19" font-weight="800" fill="${TEXT}">htmlto.link</text>
-  <text x="76" y="55" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">HTML to URL Publisher · v1.0.0</text>
+  <text x="76" y="55" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">HTML to URL Publisher · v1.1.0</text>
   <circle cx="400" cy="40" r="6" fill="${ACCENT}"/>`;
 }
 
@@ -86,7 +86,7 @@ function screenshot1() {
     <circle cx="792" cy="370" r="16" fill="url(#brand)"/>
     <text x="792" y="376" font-family="Arial, sans-serif" font-size="15" font-weight="800" fill="#fff" text-anchor="middle">2</text>
     <text x="820" y="364" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">Click publish</text>
-    <text x="820" y="384" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Paste in the popup or right-click a selection</text>
+    <text x="820" y="384" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Paste in the popup and publish in one click</text>
     <text x="820" y="402" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">No account, no server setup</text>
     <rect x="756" y="432" width="460" height="78" rx="12" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
     <circle cx="792" cy="464" r="16" fill="url(#brand)"/>
@@ -151,8 +151,8 @@ function screenshot3() {
     <rect width="1280" height="800" fill="${BG_DARK}"/>
     <rect x="24" y="20" width="40" height="40" rx="10" fill="url(#brand)"/>
     <text x="76" y="38" font-family="Arial, sans-serif" font-size="19" font-weight="800" fill="${TEXT}">htmlto.link</text>
-    <text x="76" y="55" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Popup publish, right-click publish, history &amp; settings</text>
-    <text x="24" y="118" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="${TEXT}">Publish from the popup or right-click any selection</text>
+    <text x="76" y="55" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Popup publish, history &amp; settings</text>
+    <text x="24" y="118" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="${TEXT}">Publish from the popup with one click</text>
     <rect x="24" y="150" width="610" height="600" rx="16" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
     <rect x="52" y="178" width="130" height="30" rx="8" fill="rgba(255,255,255,0.05)" stroke="${BORDER}" stroke-width="1"/>
     <text x="64" y="198" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${MUTED}">Paste code</text>
@@ -200,10 +200,10 @@ function screenshot3() {
     <text x="708" y="398" font-family="Arial, sans-serif" font-size="11" fill="${MUTED}">Log in to htmlto.link and generate your API token in Settings</text>
     <rect x="708" y="420" width="180" height="40" rx="8" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
     <text x="756" y="445" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="${TEXT}">Save Settings</text>
-    <text x="708" y="500" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">Right-click menu</text>
+    <text x="708" y="500" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">Markdown themes</text>
     <rect x="708" y="520" width="520" height="54" rx="10" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
-    <text x="724" y="546" font-family="Arial, sans-serif" font-size="13" fill="${TEXT}">Select any text / code</text>
-    <text x="724" y="564" font-family="Arial, sans-serif" font-size="11" fill="${MUTED}">→ Right-click → Publish selected HTML as an online link (htmlto.link)</text>
+    <text x="724" y="546" font-family="Arial, sans-serif" font-size="13" fill="${TEXT}">9 built-in themes, one-click switch</text>
+    <text x="724" y="564" font-family="Arial, sans-serif" font-size="11" fill="${MUTED}">Plain · Memo · Dark Tech · Pop Art · Alibaba…</text>
     <text x="708" y="614" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">Supported platforms</text>
     <text x="708" y="646" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">ChatGPT · Claude · DeepSeek · v0.dev · Kimi · Gemini</text>
     <text x="708" y="668" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Qwen · Doubao · Baidu ERNIE · Tencent Yuanbao</text>
