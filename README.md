@@ -14,7 +14,12 @@
    - 点击浏览器右上角插件图标，弹窗内粘贴 HTML 代码，一键发布。
    - 自定义文件名 (`index.html`)、实时分享历史记录及 1 键复制功能。
 
-3. **⚙️ 支持自定义 API 节点与 Token 账号绑定**：
+3. **📄 本地 HTML 一键发布**：
+   - 用 Chrome 打开电脑上的 `.html` 文件，页面右上角会出现「发布此页面」。
+   - 需在 `chrome://extensions` → htmlto.link → 打开 **允许访问文件网址**，然后刷新该 HTML。
+   - 点工具栏图标也可以发布当前本地页；弹窗里的粘贴 / Markdown / 历史仍可用。
+
+4. **⚙️ 支持自定义 API 节点与 Token 账号绑定**：
    - 可无缝切换线上生产节点 (`https://htmlto.link`) 或本地开发节点 (`http://localhost:3000`)。
 
 ---
@@ -29,6 +34,8 @@
 
 - **Chrome / Brave / Opera**：直接点上面链接 → 添加扩展。
 - **Edge**：打开上面链接后，Edge 会提示"允许来自其他商店的扩展"→ 允许即可安装。
+
+安装后请把插件固定到工具栏（拼图图标 → 图钉），然后可以先发布一个示例页面。匿名链接约 24 小时有效，登录 htmlto.link 并绑定 Token 后可长期保存。
 
 ### 方式二：开发者模式 / 解压加载
 
@@ -47,8 +54,20 @@
 - 选择本项目所在文件夹目录：`d:\licc\htmltolink\htmlto-link-browser-extension`。
 
 ### 步骤 4：开始体验！
-1. 打开 **ChatGPT** 或 **Claude** 对话框，生成一份 HTML 落地页代码，你会发现代码块右上角多了 **`[🚀 1秒生成链接]`** 按钮！
-2. 点击按钮，瞬间获得形如 `https://htmlto.link/s/xxxx` 的在线链接，直接发给同事或手机打开！
+1. 打开 **ChatGPT** 或 **Claude** 对话框，生成一份 HTML 落地页代码，你会发现代码块右上角多了 **生成链接** 按钮。
+2. 点击按钮，获得形如 `https://htmlto.link/s/xxxx` 的在线链接。
+
+---
+
+## 📦 打包上传 Chrome Web Store
+
+**不要把整个项目文件夹打成 zip。** `node_modules`（sharp）和宣传图会把体积撑到约 8MB，用户会因此卸载。
+
+```bash
+npm run pack
+```
+
+上传生成的 `dist/htmlto-link-extension.zip`（应小于 100KB）。商店详情文案见 `store-listing-copy.md`。
 
 ---
 

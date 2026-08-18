@@ -8,15 +8,15 @@
     "description": "Extension description"
   },
   "tabPaste": {
-    "message": "📋 Paste Code / Docs",
+    "message": "Publish",
     "description": "Paste tab label"
   },
   "tabHistory": {
-    "message": "📜 History",
+    "message": "History",
     "description": "History tab label"
   },
   "tabSettings": {
-    "message": "⚙️ Settings",
+    "message": "Settings",
     "description": "Settings tab label"
   },
   "fmtHtml": {
@@ -44,7 +44,7 @@
     "description": "Template option"
   },
   "tplBytedance": {
-    "message": "Bytedance",
+    "message": "ByteDance",
     "description": "Template option"
   },
   "tplDarktech": {
@@ -64,11 +64,11 @@
     "description": "Template option"
   },
   "tplWarm": {
-    "message": "Warm",
+    "message": "Warm Soft",
     "description": "Template option"
   },
   "tplAlibaba": {
-    "message": "Alibaba",
+    "message": "Alibaba Orange",
     "description": "Template option"
   },
   "codePlaceholder": {
@@ -284,7 +284,153 @@
     "description": "Welcome button"
   },
   "welcomeNote": {
-    "message": "Note: guest links last ~24h; you can turn off auto-inject in extension settings.",
+    "message": "Note: guest links last about 24 hours. Pin the icon, then publish a demo or open ChatGPT.",
     "description": "Welcome note"
+  },
+  "welcomePinTitle": {
+    "message": "Pin the extension",
+    "description": "Welcome pin title"
+  },
+  "welcomePinDesc": {
+    "message": "Click the puzzle icon in the Chrome toolbar, find htmlto.link, then click the pin so you can open it anytime.",
+    "description": "Welcome pin description"
+  },
+  "welcomePublishDemo": {
+    "message": "Publish a demo page now",
+    "description": "Welcome demo publish button"
+  },
+  "welcomeOpenChatgpt": {
+    "message": "Open ChatGPT to try it",
+    "description": "Welcome ChatGPT button"
+  },
+  "welcomeDemoSuccess": {
+    "message": "Demo published. Link copied.",
+    "description": "Welcome demo success"
+  },
+  "pinHint": {
+    "message": "Pin htmlto.link from the puzzle menu so it stays in the toolbar.",
+    "description": "Popup pin hint"
+  },
+  "dismiss": {
+    "message": "Got it",
+    "description": "Dismiss banner"
+  },
+  "tryDemo": {
+    "message": "No code yet? Load a demo page",
+    "description": "Load demo HTML into popup"
+  },
+  "moreOptions": {
+    "message": "More options",
+    "description": "Filename / advanced disclosure"
+  },
+  "keepLongTerm": {
+    "message": "Sign in to keep this link",
+    "description": "Login CTA after guest publish"
+  },
+  "reviewPrompt": {
+    "message": "If this saved you time, leave a short Chrome review",
+    "description": "Review request after 2 publishes"
+  },
+  "loginToKeep": {
+    "message": "Sign in to htmlto.link",
+    "description": "Settings login button"
+  },
+  "loginHint": {
+    "message": "After signing in, copy your API token from Settings and paste it under Advanced. Guest links expire in about 24 hours.",
+    "description": "Settings login hint"
+  },
+  "advancedSettings": {
+    "message": "Advanced: API server and token",
+    "description": "Advanced settings disclosure"
+  },
+  "accountBound": {
+    "message": "Account token saved. New links can be managed long-term.",
+    "description": "Signed-in status"
+  },
+  "accountGuest": {
+    "message": "Not signed in. Guest links expire in about 24 hours.",
+    "description": "Guest status"
+  },
+  "loggedInNotice": {
+    "message": "Published with your account. Manage it at htmlto.link/my.",
+    "description": "Signed-in expiry notice"
+  },
+  "expiryInHours": {
+    "message": "Guest link expires in about $HOURS$ hours. Sign in to keep it.",
+    "description": "Guest expiry countdown",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "24"
+      }
+    }
+  },
+  "linkExpired": {
+    "message": "This guest link has expired",
+    "description": "Expired history item"
+  },
+  "historyKept": {
+    "message": "Saved to your account",
+    "description": "Logged-in history item"
+  },
+  "open": {
+    "message": "Open",
+    "description": "Open history link"
+  },
+  "errorInvalidToken": {
+    "message": "API token is invalid. Open Settings, sign in, and paste a new token.",
+    "description": "401 error"
+  },
+  "errorQuota": {
+    "message": "Daily publish limit reached. Try again tomorrow or sign in.",
+    "description": "429 error"
+  },
+  "errorTimeout": {
+    "message": "Publish timed out. Check your network and try again.",
+    "description": "Abort/timeout error"
+  },
+  "errorNetwork": {
+    "message": "Network error. Check your connection and try again.",
+    "description": "Offline error"
+  },
+  "errorServer": {
+    "message": "htmlto.link is busy. Please try again in a moment.",
+    "description": "5xx error"
+  },
+  "localFileTitle": {
+    "message": "This is a local page — publish it in one click",
+    "description": "Popup local-file card title"
+  },
+  "localFileBtn": {
+    "message": "Publish this page",
+    "description": "Popup publish current local page"
+  },
+  "localFileNeedAccess": {
+    "message": "No button on the page? Open the extension details, turn on “Allow access to file URLs”, then reload this HTML file.",
+    "description": "Hint when file:// access is off"
+  },
+  "localFileOpenDetails": {
+    "message": "Open extension details",
+    "description": "Open chrome://extensions"
+  },
+  "localFileAccessHint": {
+    "message": "When you open a local .html file in Chrome, a publish button appears at the top-right. Enable “Allow access to file URLs” on the extension details page.",
+    "description": "Settings hint for local HTML"
+  },
+  "localFileCaptureFailed": {
+    "message": "Could not read this local page. Enable “Allow access to file URLs”, or paste the HTML below.",
+    "description": "Failed to capture local HTML"
+  },
+  "filePublishBtn": {
+    "message": "Publish this page",
+    "description": "Floating button on local HTML"
+  },
+  "filePublishDismiss": {
+    "message": "Hide",
+    "description": "Hide local publish button"
+  },
+  "filePublishCopied": {
+    "message": "Link copied",
+    "description": "Local publish success"
   }
 }

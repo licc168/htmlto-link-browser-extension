@@ -4,7 +4,11 @@
   "private": true,
   "description": "Icon generation for HTML To Link browser extension",
   "scripts": {
-    "generate-icons": "node generate-icons.js"
+    "generate-icons": "node generate-icons.js",
+    "pack": "powershell -ExecutionPolicy Bypass -File pack.ps1",
+    "promo:zh": "node generate-promo-images-zh.js",
+    "promo:en": "node generate-promo-images.js",
+    "promo": "node generate-promo-images-zh.js && node generate-promo-images.js"
   },
   "devDependencies": {
     "sharp": "^0.33.5"

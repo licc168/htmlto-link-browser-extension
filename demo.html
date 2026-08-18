@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>htmlto.link</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --btn: #2563eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .card {
+      width: 100%;
+      max-width: 480px;
+      padding: 36px 32px;
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+    }
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .brand {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+    .lang {
+      display: flex;
+      gap: 4px;
+    }
+    .lang button {
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .lang button.active {
+      color: #fff;
+      background: var(--btn);
+      border-color: var(--btn);
+    }
+    h1 {
+      font-size: 24px;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .cta {
+      display: block;
+      margin-top: 22px;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      background: var(--btn);
+      border-radius: 10px;
+    }
+    .home {
+      display: block;
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--accent);
+      text-align: center;
+      word-break: break-all;
+    }
+    .note {
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="top">
+      <div class="brand">htmlto.link</div>
+      <div class="lang">
+        <button type="button" data-lang="zh">中文</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+    <h1 id="title"></h1>
+    <p id="intro"></p>
+    <p id="detail"></p>
+    <a class="cta" id="cta" href="https://htmlto.link/"></a>
+    <a class="home" href="https://htmlto.link/">https://htmlto.link/</a>
+    <p class="note" id="note"></p>
+  </div>
+  <script>
+    var COPY = {
+      zh: {
+        htmlLang: "zh-CN",
+        docTitle: "htmlto.link — HTML 一键变成可分享链接",
+        title: "这一页是一键发布出来的",
+        intro: "htmlto.link 把 HTML 或 AI 生成的网页，变成一条可打开、可转发的链接。不用自己买服务器，也不用配置域名。",
+        detail: "适合把 ChatGPT / Claude 写好的页面发给同事或客户；匿名链接约 24 小时有效，登录后可长期保存。",
+        cta: "打开 htmlto.link，发布你的页面",
+        note: "这是浏览器插件的示例页。用你自己的 HTML 再发布一次，就会得到一条新链接。"
+      },
+      en: {
+        htmlLang: "en",
+        docTitle: "htmlto.link — Turn HTML into a shareable link",
+        title: "This page went live in one click",
+        intro: "htmlto.link turns HTML or AI-generated pages into a link you can open and share. No server or domain setup.",
+        detail: "Use it to send ChatGPT / Claude pages to teammates or clients. Guest links last about 24 hours; sign in to keep them longer.",
+        cta: "Open htmlto.link and publish your page",
+        note: "This is a demo from the browser extension. Publish your own HTML to get a new link."
+      }
+    };
+
+    function detectLang() {
+      var query = new URLSearchParams(location.search).get("lang");
+      if (query === "zh" || query === "en") return query;
+      try {
+        if (localStorage.getItem("htmlto-demo-lang") === "zh") return "zh";
+        if (localStorage.getItem("htmlto-demo-lang") === "en") return "en";
+      } catch (e) {}
+      return /^zh/i.test(navigator.language || "") ? "zh" : "en";
+    }
+
+    function setLang(lang) {
+      var t = COPY[lang] || COPY.en;
+      document.documentElement.lang = t.htmlLang;
+      document.title = t.docTitle;
+      document.getElementById("title").textContent = t.title;
+      document.getElementById("intro").textContent = t.intro;
+      document.getElementById("detail").textContent = t.detail;
+      document.getElementById("cta").textContent = t.cta;
+      document.getElementById("note").textContent = t.note;
+      document.querySelectorAll(".lang button").forEach(function (btn) {
+        btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+      });
+      try { localStorage.setItem("htmlto-demo-lang", lang); } catch (e) {}
+    }
+
+    document.querySelectorAll(".lang button").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        setLang(btn.getAttribute("data-lang"));
+      });
+    });
+
+    setLang(detectLang());
+  </script>
+</body>
+</html>

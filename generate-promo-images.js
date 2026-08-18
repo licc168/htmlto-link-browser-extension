@@ -2,9 +2,10 @@ const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 
-const outDir = path.join(__dirname, "promo-images");
-if (!fs.existsSync(outDir)) {
-  fs.mkdirSync(outDir, { recursive: true });
+const outScreens = path.join(__dirname, "..", "publish-kit", "en", "screenshots");
+const outAssets = path.join(__dirname, "..", "publish-kit", "en", "assets");
+for (const d of [outScreens, outAssets]) {
+  if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true });
 }
 
 const BG_DARK = "#0f172a";
@@ -34,7 +35,7 @@ function appHeader() {
   return `<rect width="100%" height="72" fill="${BG_DARK}"/>
   <rect x="24" y="20" width="40" height="40" rx="10" fill="url(#brand)"/>
   <text x="76" y="38" font-family="Arial, sans-serif" font-size="19" font-weight="800" fill="${TEXT}">htmlto.link</text>
-  <text x="76" y="55" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">HTML to URL Publisher · v1.1.0</text>
+  <text x="76" y="55" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">HTML to URL Publisher · v1.2.0</text>
   <circle cx="400" cy="40" r="6" fill="${ACCENT}"/>`;
 }
 
@@ -50,7 +51,7 @@ function screenshot1() {
     <rect width="1280" height="800" fill="url(#bgGrad)"/>
     ${appHeader()}
     <text x="24" y="120" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="${TEXT}">Publish HTML or AI-generated code as a shareable link</text>
-    <text x="24" y="152" font-family="Arial, sans-serif" font-size="16" fill="${MUTED}">Paste code → Click publish → Get a public URL in 1 second</text>
+    <text x="24" y="152" font-family="Arial, sans-serif" font-size="16" fill="${MUTED}">Paste code → Click publish → Get a public URL · Guest links last ~24h</text>
     <rect x="24" y="180" width="620" height="560" rx="16" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
     <rect x="52" y="208" width="130" height="30" rx="8" fill="${PRIMARY}"/>
     <text x="64" y="228" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff">HTML Web</text>
@@ -70,24 +71,26 @@ function screenshot1() {
     <text x="256" y="589" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">🚀 Publish &amp; Generate Public URL</text>
     <rect x="52" y="626" width="564" height="92" rx="10" fill="${BG_INPUT}" stroke="rgba(16,185,129,0.3)" stroke-width="1"/>
     <text x="68" y="650" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="${ACCENT}">✅ Published successfully</text>
-    <rect x="68" y="662" width="380" height="30" rx="6" fill="${BG_DARK}" stroke="${BORDER}" stroke-width="1"/>
+    <rect x="68" y="662" width="250" height="30" rx="6" fill="${BG_DARK}" stroke="${BORDER}" stroke-width="1"/>
     <text x="80" y="682" font-family="Consolas, monospace" font-size="13" fill="${LINK}">https://htmlto.link/s/abc123</text>
-    <rect x="458" y="662" width="70" height="30" rx="6" fill="${PRIMARY}"/>
-    <text x="480" y="682" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff">Copy</text>
-    <text x="68" y="706" font-family="Arial, sans-serif" font-size="12" fill="${LINK}" text-decoration="underline">Open in new tab ↗</text>
+    <rect x="328" y="662" width="70" height="30" rx="6" fill="${PRIMARY}"/>
+    <text x="348" y="682" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff">Copy</text>
+    <rect x="406" y="662" width="194" height="30" rx="6" fill="rgba(37,99,235,0.25)" stroke="${PRIMARY}" stroke-width="1"/>
+    <text x="418" y="682" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="${LINK}">Sign in to keep this link</text>
+    <text x="68" y="706" font-family="Arial, sans-serif" font-size="11" fill="${MUTED}">Expires in ~23 hours · Sign in and bind a token to keep it</text>
     <text x="756" y="220" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="${TEXT}">How it works</text>
     <rect x="756" y="244" width="460" height="78" rx="12" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
     <circle cx="792" cy="276" r="16" fill="url(#brand)"/>
     <text x="792" y="282" font-family="Arial, sans-serif" font-size="15" font-weight="800" fill="#fff" text-anchor="middle">1</text>
     <text x="820" y="270" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">Copy an AI code block</text>
-    <text x="820" y="290" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">ChatGPT / Claude / DeepSeek / v0 / Kimi</text>
-    <text x="820" y="308" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">A publish button is auto-injected onto the code</text>
+    <text x="820" y="290" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">ChatGPT / Claude / DeepSeek / v0 / Kimi / Qwen</text>
+    <text x="820" y="308" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">“Generate HTML link” appears on the code block</text>
     <rect x="756" y="338" width="460" height="78" rx="12" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
     <circle cx="792" cy="370" r="16" fill="url(#brand)"/>
     <text x="792" y="376" font-family="Arial, sans-serif" font-size="15" font-weight="800" fill="#fff" text-anchor="middle">2</text>
     <text x="820" y="364" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">Click publish</text>
-    <text x="820" y="384" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Paste in the popup and publish in one click</text>
-    <text x="820" y="402" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">No account, no server setup</text>
+    <text x="820" y="384" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Paste HTML / Markdown in the popup</text>
+    <text x="820" y="402" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Guest ~24h · Sign in to keep long-term</text>
     <rect x="756" y="432" width="460" height="78" rx="12" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
     <circle cx="792" cy="464" r="16" fill="url(#brand)"/>
     <text x="792" y="470" font-family="Arial, sans-serif" font-size="15" font-weight="800" fill="#fff" text-anchor="middle">3</text>
@@ -115,7 +118,7 @@ function screenshot2() {
     <rect x="24" y="20" width="40" height="40" rx="10" fill="url(#brand)"/>
     <text x="76" y="38" font-family="Arial, sans-serif" font-size="19" font-weight="800" fill="${TEXT}">htmlto.link</text>
     <text x="76" y="55" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Auto-injects a publish button on AI chat pages</text>
-    <text x="24" y="110" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="${TEXT}">One-click publish on ChatGPT / Claude / DeepSeek / v0 / Kimi</text>
+    <text x="24" y="110" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="${TEXT}">One-click publish on ChatGPT / Claude / DeepSeek / v0 / Kimi / Qwen</text>
     <rect x="24" y="140" width="1232" height="24" rx="6" fill="#1a1f33"/>
     <text x="40" y="157" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">You: Generate an HTML landing page for my product</text>
     <rect x="24" y="180" width="1232" height="480" rx="12" fill="#0d1424" stroke="${BORDER}" stroke-width="1"/>
@@ -123,8 +126,10 @@ function screenshot2() {
     <text x="40" y="208" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${TEXT}">HTML</text>
     <rect x="24" y="180" width="1232" height="44" rx="12" fill="none" stroke="rgba(56,189,248,0.4)" stroke-width="1"/>
     <rect x="24" y="180" width="1232" height="44" rx="12" fill="none"/>
-    <rect x="1010" y="188" width="230" height="28" rx="14" fill="url(#brand)"/>
-    <text x="1028" y="207" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff">🚀 Publish in 1s (htmlto.link)</text>
+    <rect x="968" y="188" width="210" height="28" rx="14" fill="url(#brand)"/>
+    <text x="986" y="207" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff">Generate HTML link</text>
+    <circle cx="1204" cy="202" r="12" fill="rgba(255,255,255,0.08)" stroke="${BORDER}" stroke-width="1"/>
+    <text x="1204" y="206" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${MUTED}" text-anchor="middle">×</text>
     <text x="48" y="268" font-family="Consolas, monospace" font-size="15" fill="#7dd3fc">&lt;!DOCTYPE html&gt;</text>
     <text x="48" y="296" font-family="Consolas, monospace" font-size="15" fill="#f8fafc">&lt;html lang="en"&gt;</text>
     <text x="48" y="324" font-family="Consolas, monospace" font-size="15" fill="#f8fafc">&lt;head&gt;</text>
@@ -137,7 +142,7 @@ function screenshot2() {
     <text x="48" y="520" font-family="Consolas, monospace" font-size="15" fill="#f8fafc">&lt;/head&gt;</text>
     <text x="48" y="548" font-family="Consolas, monospace" font-size="15" fill="#e2e8f0">  &lt;h1&gt;Hello World&lt;/h1&gt;</text>
     <text x="48" y="576" font-family="Consolas, monospace" font-size="15" fill="#f8fafc">&lt;/html&gt;</text>
-    <text x="24" y="700" font-family="Arial, sans-serif" font-size="15" fill="${MUTED}">Click the button and the file uploads automatically — the URL is written to your clipboard instantly.</text>
+    <text x="24" y="700" font-family="Arial, sans-serif" font-size="15" fill="${MUTED}">Click to upload and copy the URL. Too noisy? Hit × to hide auto-inject; you can still publish from the popup.</text>
     <text x="24" y="730" font-family="Arial, sans-serif" font-size="15" fill="${MUTED}">Supports: ChatGPT · Claude · DeepSeek · v0.dev · Kimi · Qwen · Doubao · Gemini</text>
   </svg>`;
 }
@@ -155,14 +160,15 @@ function screenshot3() {
     <text x="24" y="118" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="${TEXT}">Publish from the popup with one click</text>
     <rect x="24" y="150" width="610" height="600" rx="16" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
     <rect x="52" y="178" width="130" height="30" rx="8" fill="rgba(255,255,255,0.05)" stroke="${BORDER}" stroke-width="1"/>
-    <text x="64" y="198" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${MUTED}">Paste code</text>
+    <text x="80" y="198" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${MUTED}">Publish</text>
     <rect x="188" y="178" width="130" height="30" rx="8" fill="${PRIMARY}"/>
-    <text x="200" y="198" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff">History</text>
+    <text x="220" y="198" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff">History</text>
     <rect x="324" y="178" width="130" height="30" rx="8" fill="rgba(255,255,255,0.05)" stroke="${BORDER}" stroke-width="1"/>
-    <text x="336" y="198" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${MUTED}">Settings</text>
+    <text x="352" y="198" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${MUTED}">Settings</text>
     <rect x="52" y="230" width="554" height="74" rx="10" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
-    <text x="68" y="258" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${TEXT}">Landing Page</text>
-    <text x="68" y="280" font-family="Consolas, monospace" font-size="12" fill="${LINK}">https://htmlto.link/s/abc123</text>
+    <text x="68" y="254" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${TEXT}">Landing Page</text>
+    <text x="68" y="272" font-family="Consolas, monospace" font-size="12" fill="${LINK}">https://htmlto.link/s/abc123</text>
+    <text x="68" y="292" font-family="Arial, sans-serif" font-size="10" fill="${MUTED}">~23 hours left</text>
     <rect x="470" y="244" width="50" height="24" rx="6" fill="rgba(255,255,255,0.05)" stroke="${BORDER}" stroke-width="1"/>
     <text x="478" y="260" font-family="Arial, sans-serif" font-size="10" fill="${MUTED}">HTML</text>
     <rect x="540" y="244" width="50" height="24" rx="6" fill="${PRIMARY}"/>
@@ -190,16 +196,18 @@ function screenshot3() {
     <text x="552" y="524" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">Copy</text>
     <rect x="680" y="150" width="576" height="600" rx="16" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
     <text x="708" y="190" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="${TEXT}">⚙️ Settings</text>
-    <text x="708" y="230" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="${TEXT}">API Server URL</text>
-    <rect x="708" y="242" width="520" height="38" rx="8" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
-    <text x="720" y="266" font-family="Consolas, monospace" font-size="13" fill="${LINK}">https://htmlto.link</text>
-    <text x="708" y="296" font-family="Arial, sans-serif" font-size="11" fill="${MUTED}">Production: https://htmlto.link / Local: http://localhost:3000</text>
-    <text x="708" y="330" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="${TEXT}">API Token (optional)</text>
-    <rect x="708" y="342" width="520" height="38" rx="8" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
-    <circle cx="732" cy="361" r="3" fill="${MUTED}"/><circle cx="744" cy="361" r="3" fill="${MUTED}"/><circle cx="756" cy="361" r="3" fill="${MUTED}"/><circle cx="768" cy="361" r="3" fill="${MUTED}"/><circle cx="780" cy="361" r="3" fill="${MUTED}"/>
-    <text x="708" y="398" font-family="Arial, sans-serif" font-size="11" fill="${MUTED}">Log in to htmlto.link and generate your API token in Settings</text>
-    <rect x="708" y="420" width="180" height="40" rx="8" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
-    <text x="756" y="445" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="${TEXT}">Save Settings</text>
+    <rect x="708" y="214" width="520" height="70" rx="10" fill="${BG_INPUT}" stroke="rgba(56,189,248,0.35)" stroke-width="1"/>
+    <text x="724" y="240" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${TEXT}">Not signed in. Guest links expire in about 24 hours.</text>
+    <rect x="724" y="252" width="168" height="22" rx="6" fill="url(#brand)"/>
+    <text x="748" y="267" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff">Sign in at htmlto.link</text>
+    <text x="708" y="316" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="${TEXT}">Auto-inject button</text>
+    <rect x="1148" y="300" width="44" height="24" rx="12" fill="${ACCENT}"/>
+    <circle cx="1176" cy="312" r="9" fill="#ffffff"/>
+    <text x="708" y="344" font-family="Arial, sans-serif" font-size="11" fill="${MUTED}">Turn off to hide code-block buttons; you can still paste in Publish</text>
+    <text x="708" y="380" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="${TEXT}">Advanced · API Token</text>
+    <rect x="708" y="392" width="520" height="38" rx="8" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
+    <circle cx="732" cy="411" r="3" fill="${MUTED}"/><circle cx="744" cy="411" r="3" fill="${MUTED}"/><circle cx="756" cy="411" r="3" fill="${MUTED}"/><circle cx="768" cy="411" r="3" fill="${MUTED}"/><circle cx="780" cy="411" r="3" fill="${MUTED}"/>
+    <text x="708" y="450" font-family="Arial, sans-serif" font-size="11" fill="${MUTED}">After signing in, copy the token from site Settings and paste it here</text>
     <text x="708" y="500" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">Markdown themes</text>
     <rect x="708" y="520" width="520" height="54" rx="10" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
     <text x="724" y="546" font-family="Arial, sans-serif" font-size="13" fill="${TEXT}">9 built-in themes, one-click switch</text>
@@ -227,7 +235,7 @@ function promoSmall() {
     <text x="96" y="68" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">HTML to URL Publisher</text>
     <text x="16" y="120" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="${TEXT}">Publish HTML / AI code</text>
     <text x="16" y="144" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="${LINK}">as a shareable link in 1s</text>
-    <text x="16" y="178" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Paste code · Click publish · Get a public URL</text>
+    <text x="16" y="178" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Guest ~24h · Sign in to keep</text>
     <rect x="16" y="200" width="176" height="34" rx="17" fill="url(#brand)"/>
     <text x="60" y="223" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff">🚀 Install Now</text>
   </svg>`;
@@ -250,51 +258,49 @@ function promoMarquee() {
     <text x="168" y="132" font-family="Arial, sans-serif" font-size="17" fill="${MUTED}">HTML to URL Publisher · Chrome / Edge Extension</text>
     <text x="60" y="240" font-family="Arial, sans-serif" font-size="46" font-weight="800" fill="#ffffff">Publish HTML / AI code</text>
     <text x="60" y="300" font-family="Arial, sans-serif" font-size="46" font-weight="800" fill="${LINK}">as shareable online links</text>
-    <text x="60" y="352" font-family="Arial, sans-serif" font-size="20" fill="${MUTED}">Paste code · Click publish · Get a public URL in 1 second</text>
-    <text x="60" y="386" font-family="Arial, sans-serif" font-size="20" fill="${MUTED}">Supports ChatGPT · Claude · DeepSeek · v0.dev · Kimi · Gemini</text>
+    <text x="60" y="352" font-family="Arial, sans-serif" font-size="20" fill="${MUTED}">Paste · Publish · Guest ~24h · Sign in to keep long-term</text>
+    <text x="60" y="386" font-family="Arial, sans-serif" font-size="20" fill="${MUTED}">Supports ChatGPT · Claude · DeepSeek · v0 · Kimi · Qwen · Gemini</text>
     <rect x="60" y="420" width="240" height="56" rx="28" fill="url(#brand)"/>
     <text x="128" y="455" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff">🚀 Install Now</text>
     <g transform="translate(760,40)">
       <rect x="0" y="0" width="520" height="440" rx="20" fill="#141d33" stroke="${BORDER}" stroke-width="1"/>
-      <rect x="24" y="24" width="472" height="30" rx="8" fill="url(#brand)"/>
-      <text x="160" y="45" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">🚀 Publish in 1s (htmlto.link)</text>
+      <rect x="24" y="24" width="220" height="30" rx="8" fill="url(#brand)"/>
+      <text x="42" y="45" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">Generate HTML link</text>
+      <circle cx="268" cy="39" r="12" fill="rgba(255,255,255,0.08)" stroke="${BORDER}" stroke-width="1"/>
+      <text x="268" y="43" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${MUTED}" text-anchor="middle">×</text>
       <text x="24" y="92" font-family="Consolas, monospace" font-size="15" fill="#7dd3fc">&lt;!DOCTYPE html&gt;</text>
       <text x="24" y="118" font-family="Consolas, monospace" font-size="15" fill="#f8fafc">&lt;html lang="en"&gt;</text>
       <text x="24" y="144" font-family="Consolas, monospace" font-size="15" fill="#e2e8f0">  &lt;h1&gt;Hello World&lt;/h1&gt;</text>
       <text x="24" y="170" font-family="Consolas, monospace" font-size="15" fill="#f8fafc">&lt;/html&gt;</text>
       <rect x="24" y="216" width="472" height="76" rx="10" fill="${BG_INPUT}" stroke="rgba(16,185,129,0.3)" stroke-width="1"/>
-      <text x="40" y="244" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="${ACCENT}">✅ Published</text>
+      <text x="40" y="244" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="${ACCENT}">✅ Published · expires in ~23 hours</text>
       <text x="40" y="272" font-family="Consolas, monospace" font-size="14" fill="${LINK}">https://htmlto.link/s/abc123</text>
       <rect x="300" y="234" width="90" height="32" rx="8" fill="${PRIMARY}"/>
       <text x="318" y="255" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#fff">Copy link</text>
       <text x="24" y="336" font-family="Arial, sans-serif" font-size="13" fill="${MUTED}">3 easy steps:</text>
-      <text x="24" y="366" font-family="Arial, sans-serif" font-size="13" fill="${TEXT}">1. Copy HTML code from an AI chat</text>
-      <text x="24" y="392" font-family="Arial, sans-serif" font-size="13" fill="${TEXT}">2. Click the publish button on the code block</text>
-      <text x="24" y="418" font-family="Arial, sans-serif" font-size="13" fill="${TEXT}">3. The URL is copied — share it with anyone</text>
+      <text x="24" y="366" font-family="Arial, sans-serif" font-size="13" fill="${TEXT}">1. Pin the extension to the toolbar</text>
+      <text x="24" y="392" font-family="Arial, sans-serif" font-size="13" fill="${TEXT}">2. Click “Generate HTML link” on the code block</text>
+      <text x="24" y="418" font-family="Arial, sans-serif" font-size="13" fill="${TEXT}">3. URL copied — sign in to keep it longer</text>
     </g>
   </svg>`;
 }
 
-async function render(svg, file, format) {
+async function render(svg, file, dir) {
   const buf = Buffer.from(svg);
-  let img = sharp(buf);
-  img = img.flatten({ background: "#0f172a" });
-  if (format === "jpeg") {
-    img = img.jpeg({ quality: 90 });
-  } else {
-    img = img.png({ palette: false });
-  }
-  await img.toFile(path.join(outDir, file));
+  await sharp(buf)
+    .flatten({ background: "#0f172a" })
+    .png({ palette: false })
+    .toFile(path.join(dir, file));
   console.log(`Generated ${file}`);
 }
 
 (async () => {
-  await render(screenshot1(), "screenshot-1-publish.png", "png");
-  await render(screenshot2(), "screenshot-2-ai-code-block.png", "png");
-  await render(screenshot3(), "screenshot-3-settings-history.png", "png");
-  await render(promoSmall(), "promo-tile-440x280.png", "png");
-  await render(promoMarquee(), "promo-tile-1400x560.png", "png");
-  console.log("All promo images generated in promo-images/");
+  await render(screenshot1(), "screenshot-1-publish.png", outScreens);
+  await render(screenshot2(), "screenshot-2-ai-code-block.png", outScreens);
+  await render(screenshot3(), "screenshot-3-settings-history.png", outScreens);
+  await render(promoSmall(), "promo-tile-440x280.png", outAssets);
+  await render(promoMarquee(), "promo-tile-1400x560.png", outAssets);
+  console.log("All EN promo images generated.");
 })().catch((err) => {
   console.error("Generation failed:", err);
   process.exit(1);

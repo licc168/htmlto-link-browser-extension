@@ -3,6 +3,9 @@
 (function () {
   console.log("HTML & Markdown To Link extension content script active.");
 
+  const t = (key, substitutions) =>
+    (typeof htmltoLinkT === "function" ? htmltoLinkT(key, substitutions) : chrome.i18n.getMessage(key, substitutions)) || key;
+
   const CONTAINER_CLASS = "htmlto-link-btn-container";
   const BUTTON_CLASS = "htmlto-link-inject-btn";
   const PROCESSED_ATTR = "data-htmlto-link-processed";
@@ -43,25 +46,28 @@
 
   function scanAndInjectButtons() {
     if (!autoInjectEnabled) return;
-    const codeBlocks = document.querySelectorAll("pre code, pre");
-    codeBlocks.forEach((block) => {
-      if (block.getAttribute(PROCESSED_ATTR)) return;
+    document.querySelectorAll("pre").forEach((parentPre) => {
+      if (parentPre.getAttribute(PROCESSED_ATTR)) return;
 
-      const codeText = block.innerText || block.textContent || "";
-      const format = detectCodeFormat(codeText);
-      if (!format) return;
+      const codeEl = parentPre.querySelector("code") || parentPre;
+      const codeText = codeEl.innerText || codeEl.textContent || "";
+      const langHint = getLanguageHint(codeEl, parentPre);
+      const format = detectCodeFormat(codeText, codeEl, parentPre);
+      if (!format) {
+        if (langHint && !["html", "htm", "xhtml", "svg", "markdown", "md", "xml", "vue", "svelte"].includes(langHint)) {
+          parentPre.setAttribute(PROCESSED_ATTR, "true");
+        }
+        return;
+      }
 
-      block.setAttribute(PROCESSED_ATTR, "true");
-
-      const parentPre = block.tagName.toLowerCase() === "pre" ? block : block.closest("pre");
-      if (!parentPre) return;
+      parentPre.setAttribute(PROCESSED_ATTR, "true");
 
       const isMd = format === "md";
       const iconSvg = isMd
         ? `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>`
         : `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 14h10"/><path d="M16 4h2a2 2 0 0 1 2 2v1.344"/><path d="m17 18 4-4-4-4"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 1.793-1.113"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>`;
 
-      const labelText = isMd ? chrome.i18n.getMessage("genMdLink") : chrome.i18n.getMessage("genHtmlLink");
+      const labelText = isMd ? t("genMdLink") : t("genHtmlLink");
       const filename = isMd ? "ai-generated-document.md" : "ai-generated-page.html";
 
       // Container for button + template select
@@ -77,17 +83,17 @@
       if (isMd) {
         tplSelect = document.createElement("select");
         tplSelect.className = "htmlto-link-tpl-select";
-        tplSelect.title = chrome.i18n.getMessage("tplSelectTitle");
+        tplSelect.title = t("tplSelectTitle");
         tplSelect.innerHTML = `
-          <option value="plain" selected>${chrome.i18n.getMessage("tplPlain")}</option>
-          <option value="memo">${chrome.i18n.getMessage("tplMemo")}</option>
-          <option value="bytedance">${chrome.i18n.getMessage("tplBytedance")}</option>
-          <option value="darktech">${chrome.i18n.getMessage("tplDarktech")}</option>
-          <option value="coilnotebook">${chrome.i18n.getMessage("tplCoilnotebook")}</option>
-          <option value="traditionalchinese">${chrome.i18n.getMessage("tplTraditionalchinese")}</option>
-          <option value="popart">${chrome.i18n.getMessage("tplPopart")}</option>
-          <option value="warm">${chrome.i18n.getMessage("tplWarm")}</option>
-          <option value="alibaba">${chrome.i18n.getMessage("tplAlibaba")}</option>
+          <option value="plain" selected>${t("tplPlain")}</option>
+          <option value="memo">${t("tplMemo")}</option>
+          <option value="bytedance">${t("tplBytedance")}</option>
+          <option value="darktech">${t("tplDarktech")}</option>
+          <option value="coilnotebook">${t("tplCoilnotebook")}</option>
+          <option value="traditionalchinese">${t("tplTraditionalchinese")}</option>
+          <option value="popart">${t("tplPopart")}</option>
+          <option value="warm">${t("tplWarm")}</option>
+          <option value="alibaba">${t("tplAlibaba")}</option>
         `;
         // Prevent click events on select from triggering parent events
         tplSelect.addEventListener("click", (e) => e.stopPropagation());
@@ -99,14 +105,14 @@
 
         const selectedTemplate = tplSelect ? tplSelect.value : (isMd ? "plain" : undefined);
         const originalText = btn.innerHTML;
-        const freshCode = block.innerText || block.textContent || "";
-        const fmtName = isMd ? chrome.i18n.getMessage("fmtMdName") : chrome.i18n.getMessage("fmtHtmlName");
+        const freshCode = codeEl.innerText || codeEl.textContent || "";
+        const fmtName = isMd ? t("fmtMdName") : t("fmtHtmlName");
         btn.disabled = true;
         btn.innerHTML = `
           <svg class="htmlto-link-spin" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
           </svg>
-          <span>${chrome.i18n.getMessage("publishing")}</span>
+          <span>${t("publishing")}</span>
         `;
 
         try {
@@ -123,13 +129,23 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 6 9 17l-5-5"/>
               </svg>
-              <span>${chrome.i18n.getMessage("copiedLink", [fmtName])}</span>
+              <span>${t("copiedLink", [fmtName])}</span>
             `;
             btn.classList.add("htmlto-link-success");
 
             await copyToClipboard(response.url);
+            await savePublishHistory({
+              url: response.url,
+              filename,
+              format,
+              templateId: selectedTemplate,
+              timestamp: Date.now(),
+              expiresAt: response.expiresAt || null,
+              manageUrl: response.manageUrl || "",
+              temporary: response.temporary !== false
+            });
 
-            showToast(chrome.i18n.getMessage("publishSuccessToast", [fmtName]), response.url);
+            showToast(t("publishSuccessToast", [fmtName]), response.url);
 
             setTimeout(() => {
               btn.innerHTML = originalText;
@@ -137,10 +153,11 @@
               btn.classList.remove("htmlto-link-success");
             }, 3500);
           } else {
-            throw new Error(response?.error || chrome.i18n.getMessage("publishFailed"));
+            throw new Error(response?.error || t("publishFailed"));
           }
         } catch (err) {
-          btn.innerHTML = `❌ ${chrome.i18n.getMessage("publishFailed")}`;
+          btn.innerHTML = t("publishFailed");
+          showToast(err.message || t("publishFailed"));
           setTimeout(() => {
             btn.innerHTML = originalText;
             btn.disabled = false;
@@ -148,16 +165,16 @@
         }
       });
 
-      container.appendChild(btn);
       if (tplSelect) {
         container.appendChild(tplSelect);
       }
+      container.appendChild(btn);
 
       // 「×」关闭自动注入：点击一次即全局关闭，并移除本页所有注入按钮
       const closeBtn = document.createElement("button");
       closeBtn.className = "htmlto-link-inject-close";
       closeBtn.type = "button";
-      closeBtn.title = chrome.i18n.getMessage("dismissInjectTitle");
+      closeBtn.title = t("dismissInjectTitle");
       closeBtn.setAttribute("aria-label", closeBtn.title);
       closeBtn.innerHTML = "×";
       closeBtn.addEventListener("click", (e) => {
@@ -167,9 +184,9 @@
         chrome.storage.local.set({ autoInject: false });
         document.querySelectorAll(`.${CONTAINER_CLASS}`).forEach((el) => el.remove());
         showToast(
-          chrome.i18n.getMessage("dismissInjectToast"),
+          t("dismissInjectToast"),
           null,
-          chrome.i18n.getMessage("dismissInjectUndo"),
+          t("dismissInjectUndo"),
           () => {
             // 撤销：重新开启自动注入，并重新扫描本页代码块
             autoInjectEnabled = true;
@@ -189,25 +206,59 @@
     });
   }
 
-  // Detect format (HTML or Markdown)
-  function detectCodeFormat(code) {
-    const trimmed = code.trim();
-    const lower = trimmed.toLowerCase();
+  function getLanguageHint(...nodes) {
+    for (const el of nodes) {
+      if (!el) continue;
+      const cls = String(el.className || "");
+      const langAttr = el.getAttribute("data-language") || el.getAttribute("data-lang") || "";
+      const classMatch = cls.match(/(?:language|lang)-([a-z0-9+#]+)/i);
+      if (classMatch) return classMatch[1].toLowerCase();
+      if (langAttr) return langAttr.toLowerCase();
+    }
 
-    // HTML detection
+    const pre = nodes.find((el) => el && el.tagName === "PRE") || nodes[0]?.closest?.("pre");
+    const header = pre?.previousElementSibling;
+    if (header) {
+      const label = header.textContent.trim().toLowerCase().split(/\s+/)[0];
+      const cleaned = label.replace(/[^a-z0-9+#]/g, "");
+      if (["html", "htm", "xhtml", "svg", "markdown", "md", "xml"].includes(cleaned)) {
+        return cleaned;
+      }
+    }
+    return "";
+  }
+
+  function detectCodeFormat(code, codeEl, parentPre) {
+    const lang = getLanguageHint(codeEl, parentPre);
+    if (["html", "htm", "xhtml", "svg"].includes(lang)) return "html";
+    if (["markdown", "md"].includes(lang)) return "md";
+    if (lang && !["xml", "vue", "svelte"].includes(lang)) return null;
+
+    const trimmed = (code || "").trim();
+    if (trimmed.length < 80) return null;
+
+    const lower = trimmed.toLowerCase();
     if (lower.startsWith("<!doctype html") || lower.startsWith("<html")) return "html";
     if (lower.includes("<body") && lower.includes("</body>")) return "html";
-    if (lower.includes("<div") && (lower.includes("class=") || lower.includes("id="))) return "html";
-    if (lower.includes("</html>") || lower.includes("</script>") || lower.includes("</style>")) return "html";
+    if (lower.includes("</html>") || (lower.includes("</style>") && lower.includes("</script>"))) return "html";
 
-    // Markdown detection
     if (trimmed.startsWith("# ") || trimmed.startsWith("## ") || trimmed.startsWith("### ")) return "md";
     if (trimmed.includes("\n# ") || trimmed.includes("\n## ") || trimmed.includes("\n### ")) return "md";
     if (trimmed.includes("| --- |") || trimmed.includes("|--- |") || trimmed.includes("| ---|")) return "md";
-    if (trimmed.startsWith("- ") && trimmed.includes("\n- ") && trimmed.includes("**")) return "md";
     if (trimmed.startsWith("```markdown") || trimmed.startsWith("```md")) return "md";
 
     return null;
+  }
+
+  async function savePublishHistory(item) {
+    const data = await chrome.storage.local.get(["uploadHistory", "publishCount"]);
+    const list = data.uploadHistory || [];
+    list.unshift(item);
+    if (list.length > 30) list.pop();
+    await chrome.storage.local.set({
+      uploadHistory: list,
+      publishCount: (data.publishCount || 0) + 1
+    });
   }
 
   async function copyToClipboard(text) {

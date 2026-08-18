@@ -168,3 +168,27 @@ input[type="password"]:focus {
 .toast.hidden {
   display: none;
 }
+
+.account-status {
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.more-options {
+  margin-top: 8px;
+}
+
+.more-options summary {
+  margin-bottom: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+a.btn-primary {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}

@@ -8,15 +8,15 @@
     "description": "扩展描述"
   },
   "tabPaste": {
-    "message": "📋 粘贴代码/文档",
+    "message": "粘贴发布",
     "description": "粘贴标签页"
   },
   "tabHistory": {
-    "message": "📜 历史链接",
+    "message": "历史",
     "description": "历史标签页"
   },
   "tabSettings": {
-    "message": "⚙️ 设置",
+    "message": "设置",
     "description": "设置标签页"
   },
   "fmtHtml": {
@@ -36,39 +36,39 @@
     "description": "模板预览链接"
   },
   "tplPlain": {
-    "message": "简洁 (plain)",
+    "message": "简洁",
     "description": "模板选项"
   },
   "tplMemo": {
-    "message": "备忘录 (memo)",
+    "message": "备忘录",
     "description": "模板选项"
   },
   "tplBytedance": {
-    "message": "字节范 (bytedance)",
+    "message": "字节范",
     "description": "模板选项"
   },
   "tplDarktech": {
-    "message": "暗黑科技 (darktech)",
+    "message": "暗黑科技",
     "description": "模板选项"
   },
   "tplCoilnotebook": {
-    "message": "线圈笔记本 (coilnotebook)",
+    "message": "线圈笔记本",
     "description": "模板选项"
   },
   "tplTraditionalchinese": {
-    "message": "中国传统 (traditionalchinese)",
+    "message": "中国传统",
     "description": "模板选项"
   },
   "tplPopart": {
-    "message": "波普艺术 (popart)",
+    "message": "波普艺术",
     "description": "模板选项"
   },
   "tplWarm": {
-    "message": "温暖柔和 (warm)",
+    "message": "温暖柔和",
     "description": "模板选项"
   },
   "tplAlibaba": {
-    "message": "阿里橙 (alibaba)",
+    "message": "阿里橙",
     "description": "模板选项"
   },
   "codePlaceholder": {
@@ -284,7 +284,153 @@
     "description": "引导页按钮"
   },
   "welcomeNote": {
-    "message": "提示：匿名链接约 24 小时有效；可在扩展设置里关闭自动注入。",
+    "message": "提示：匿名链接约 24 小时有效。先把图标固定到工具栏，再发布示例或打开 ChatGPT。",
     "description": "引导页备注"
+  },
+  "welcomePinTitle": {
+    "message": "把插件固定到工具栏",
+    "description": "引导页固定标题"
+  },
+  "welcomePinDesc": {
+    "message": "点击 Chrome 工具栏的拼图图标，找到 htmlto.link，点图钉固定。以后点一下就能发布。",
+    "description": "引导页固定描述"
+  },
+  "welcomePublishDemo": {
+    "message": "先发布一个示例页面",
+    "description": "引导页示例发布按钮"
+  },
+  "welcomeOpenChatgpt": {
+    "message": "打开 ChatGPT 试用",
+    "description": "引导页 ChatGPT 按钮"
+  },
+  "welcomeDemoSuccess": {
+    "message": "示例已发布，链接已复制",
+    "description": "引导页示例成功"
+  },
+  "pinHint": {
+    "message": "在拼图菜单里把 htmlto.link 固定到工具栏，下次才能快速打开。",
+    "description": "弹窗固定提示"
+  },
+  "dismiss": {
+    "message": "知道了",
+    "description": "关闭提示"
+  },
+  "tryDemo": {
+    "message": "还没有代码？先加载一个示例",
+    "description": "弹窗加载示例"
+  },
+  "moreOptions": {
+    "message": "更多选项",
+    "description": "文件名等折叠项"
+  },
+  "keepLongTerm": {
+    "message": "登录后长期保存",
+    "description": "游客发布后的登录按钮"
+  },
+  "reviewPrompt": {
+    "message": "如果帮到你了，欢迎去 Chrome 商店写一句评价",
+    "description": "两次成功后求评"
+  },
+  "loginToKeep": {
+    "message": "登录 htmlto.link",
+    "description": "设置页登录按钮"
+  },
+  "loginHint": {
+    "message": "登录后到网站设置里复制 API Token，再粘贴到下方「高级」中。未登录的匿名链接约 24 小时失效。",
+    "description": "设置页登录提示"
+  },
+  "advancedSettings": {
+    "message": "高级：API 节点与 Token",
+    "description": "高级设置折叠"
+  },
+  "accountBound": {
+    "message": "已保存账号 Token，新链接可长期管理。",
+    "description": "已绑定状态"
+  },
+  "accountGuest": {
+    "message": "未登录。匿名链接约 24 小时后失效。",
+    "description": "游客状态"
+  },
+  "loggedInNotice": {
+    "message": "已用账号发布，可在 htmlto.link/my 管理。",
+    "description": "登录后有效期提示"
+  },
+  "expiryInHours": {
+    "message": "匿名链接约 $HOURS$ 小时后失效，登录后可长期保存",
+    "description": "游客倒计时",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "24"
+      }
+    }
+  },
+  "linkExpired": {
+    "message": "该匿名链接已过期",
+    "description": "历史过期"
+  },
+  "historyKept": {
+    "message": "已保存到账号",
+    "description": "登录用户历史"
+  },
+  "open": {
+    "message": "打开",
+    "description": "打开历史链接"
+  },
+  "errorInvalidToken": {
+    "message": "API Token 无效。请打开设置登录，并粘贴新的 Token。",
+    "description": "401 错误"
+  },
+  "errorQuota": {
+    "message": "今日发布次数已用完，请明天再试或登录后再发。",
+    "description": "429 错误"
+  },
+  "errorTimeout": {
+    "message": "发布超时，请检查网络后重试。",
+    "description": "超时错误"
+  },
+  "errorNetwork": {
+    "message": "网络异常，请检查连接后重试。",
+    "description": "网络错误"
+  },
+  "errorServer": {
+    "message": "htmlto.link 暂时繁忙，请稍后再试。",
+    "description": "5xx 错误"
+  },
+  "localFileTitle": {
+    "message": "当前是本地页面，可一键发布",
+    "description": "弹窗本地文件卡片标题"
+  },
+  "localFileBtn": {
+    "message": "一键发布此页面",
+    "description": "弹窗发布当前本地页"
+  },
+  "localFileNeedAccess": {
+    "message": "页面右上角没有按钮时：打开扩展详情，打开「允许访问文件网址」，再刷新这个 HTML。",
+    "description": "未授权 file:// 时的提示"
+  },
+  "localFileOpenDetails": {
+    "message": "打开扩展详情",
+    "description": "打开 chrome://extensions"
+  },
+  "localFileAccessHint": {
+    "message": "用 Chrome 打开本地 .html 时，页面右上角会出现发布按钮。需在扩展详情打开「允许访问文件网址」。",
+    "description": "设置页本地文件说明"
+  },
+  "localFileCaptureFailed": {
+    "message": "读不到这个本地页面。请打开「允许访问文件网址」，或把 HTML 粘贴到下方发布。",
+    "description": "抓取本地 HTML 失败"
+  },
+  "filePublishBtn": {
+    "message": "发布此页面",
+    "description": "本地 HTML 浮动按钮"
+  },
+  "filePublishDismiss": {
+    "message": "隐藏",
+    "description": "隐藏本地发布按钮"
+  },
+  "filePublishCopied": {
+    "message": "链接已复制",
+    "description": "本地发布成功"
   }
 }
