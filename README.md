@@ -77,7 +77,11 @@ npm run pack
 htmlto-link-browser-extension/
 ├── manifest.json         # Manifest V3 配置文件
 ├── background.js          # 后台 Service Worker (API 上传)
-├── content.js             # AI 页面代码块识别注入 & Toast 提示
+├── content.js             # 平台无关的注入、发布、复制与 Toast 核心
+├── platforms/             # 各 AI 平台独立 DOM 适配器，互不影响
+│   ├── chatgpt.js
+│   ├── deepseek.js
+│   └── ...
 ├── content.css            # 注入按钮与 Toast 样式
 ├── popup.html             # 插件弹窗 HTML 界面
 ├── popup.js               # 插件弹窗交互逻辑

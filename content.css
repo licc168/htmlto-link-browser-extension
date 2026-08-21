@@ -11,6 +11,57 @@
   user-select: none;
 }
 
+/* DeepSeek owns and rewrites <pre> children, so its engine mounts on the
+   stable outer .md-code-block and keeps the button below the native toolbar. */
+.htmlto-link-btn-container[data-htmlto-link-platform="deepseek"] {
+  top: 40px;
+}
+
+/* Doubao has a 32px toolbar whose native actions occupy the rightmost 112px.
+   Keep our action in that toolbar, immediately to the left with an 8px gap. */
+.htmlto-link-btn-container[data-htmlto-link-platform="doubao"] {
+  top: 3px;
+  right: 120px;
+}
+
+/* Doubao gives toolbar buttons a 24px line-height, which made the shared
+   button 36px tall and overflowed its 32px toolbar. Lock this platform's
+   controls to compact toolbar dimensions. */
+.htmlto-link-btn-container[data-htmlto-link-platform="doubao"] .htmlto-link-inject-btn {
+  height: 26px;
+  min-height: 26px;
+  padding: 0 10px;
+  line-height: 1;
+}
+
+.htmlto-link-btn-container[data-htmlto-link-platform="doubao"] .htmlto-link-inject-close {
+  min-width: 22px;
+  min-height: 22px;
+  line-height: 1;
+}
+
+/* Qianwen's 36px sticky toolbar reserves its rightmost 101px for three
+   native actions. Place our action immediately to their left. */
+.htmlto-link-btn-container[data-htmlto-link-platform="qwen"] {
+  top: 5px;
+  right: 112px;
+}
+
+/* Qianwen applies a 26px line-height to toolbar descendants, which inflated
+   the shared button to 38px and pushed it below the 36px toolbar. */
+.htmlto-link-btn-container[data-htmlto-link-platform="qwen"] .htmlto-link-inject-btn {
+  height: 26px;
+  min-height: 26px;
+  padding: 0 10px;
+  line-height: 1;
+}
+
+.htmlto-link-btn-container[data-htmlto-link-platform="qwen"] .htmlto-link-inject-close {
+  min-width: 22px;
+  min-height: 22px;
+  line-height: 1;
+}
+
 .htmlto-link-inject-btn {
   display: inline-flex;
   align-items: center;

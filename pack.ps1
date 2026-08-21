@@ -40,6 +40,7 @@ foreach ($file in $files) {
 
 Copy-Item (Join-Path $root "icons") (Join-Path $stage "icons") -Recurse
 Copy-Item (Join-Path $root "_locales") (Join-Path $stage "_locales") -Recurse
+Copy-Item (Join-Path $root "platforms") (Join-Path $stage "platforms") -Recurse
 
 # Icons used at runtime; keep generator source out of the store zip.
 $iconSvg = Join-Path $stage "icons\icon.svg"
