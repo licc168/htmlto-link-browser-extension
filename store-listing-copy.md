@@ -1,85 +1,113 @@
-# Chrome 应用商店详情页文案（htmlto.link 浏览器插件）
+# Chrome Web Store listing copy
 
-> 用途：直接复制到 Chrome Web Store 详情页。
-> 务必写明：匿名链接约 24 小时、登录可长期管理；不要再写已删除的右键菜单。
-> 上传商店时只用 `npm run pack` 生成的 `dist/htmlto-link-extension.zip`，不要打包整个文件夹。
+Paste this into the Chrome Web Store developer dashboard.
+English is the default listing. Chinese is for the zh_CN locale.
 
----
+Do not mention Markdown themes, API tokens, or developer endpoints on the listing.
+Anonymous links last about 24 hours; signed-in users can keep them.
 
-## 1. 名称（Title）
-
-```
-htmlto.link - 一键把 HTML/AI 代码变成在线链接
-```
-
-## 2. 简短描述（Short description）
-
-```
-把 AI 生成的 HTML 一键变成可分享链接，自动复制。匿名链接约 24 小时，登录可长期保存。
-```
-
-## 3. 详细描述（Detailed description）
-
-```
-把 AI 生成的网页，1 秒变成可分享的在线链接。
-
-有没有遇到过：让 AI 写了个漂亮网页，想发给同事或客户，却只能截图、发代码文件，对方根本打不开？htmlto.link 解决的就是这个痛点。
-
-安装后请把插件固定到浏览器工具栏（拼图图标 → 图钉），然后可以直接发布示例。
-
-✅ 一键生成链接
-在常见 AI 对话页面里，HTML / Markdown 代码块右上角会出现「生成链接」按钮，点一下：上传 → 生成分享网址 → 自动复制到剪贴板，直接发给同事或客户。觉得打扰可以点按钮旁的 × 关闭。
-
-✅ 弹窗粘贴即发
-点击浏览器右上角图标，粘贴 HTML 或 Markdown，一键发布。支持发布历史与一键复制。
-
-✅ 本地 HTML 一键发布
-用 Chrome 打开电脑上的 .html 文件，页面右上角会出现「发布此页面」。需在扩展详情打开「允许访问文件网址」，刷新后再点。点工具栏图标也可以发布当前本地页。
-
-✅ Markdown 也能发，内置 9 套渲染模板
-同一篇文档可一键换风格。
-
-✅ 登录后长期保存
-未登录发布的匿名链接约 24 小时后失效。在插件设置里登录 htmlto.link 并绑定 Token 后，可长期保存、管理和续期。
-
-🔒 隐私与透明
-- 代码只会发送到 https://htmlto.link 用于生成链接，绝不用于其他用途。
-- 插件只在你主动点击发布时才上传，不会后台扫描或收集你的聊天内容。
-- 可以在设置里随时关闭「自动注入按钮」，不影响在弹窗里手动发布。
-
-如果你在使用中遇到任何问题，欢迎通过 https://htmlto.link 联系我们。
-```
+Upload the zip from `npm run pack` only.
 
 ---
 
-## 4. 权限说明（Permission justification）
+## English (default)
 
-| 权限 | 为什么需要 |
-|------|-----------|
-| 读取和更改你在所列网站上的数据 | 仅在受支持网站的**代码块右上角注入一个发布按钮**，方便你一键发布；不会读取你的聊天内容，也不会修改页面其他内容。可在设置里一键关闭。 |
-| 读取本地文件页面（file://） | 仅当你用 Chrome 打开本地 HTML，并主动点击「发布此页面」时，读取当前页 HTML 用于生成链接。需在扩展详情打开「允许访问文件网址」。 |
-| 当前标签页（activeTab） | 仅在用户点击工具栏图标后，临时访问当前标签页，用于识别并读取正在打开的本地 HTML，以便一键发布。不会后台读取其他标签页。 |
-| 脚本（scripting） | 仅在用户点击「一键发布此页面」时，读取当前标签页的 HTML 源码并上传到 htmlto.link 生成分享链接。不注入广告，不修改页面内容。 |
-| 存储（storage） | 记住你的发布历史、自定义 API 节点与 Token、以及「是否自动注入按钮」的偏好设置。 |
-| 剪贴板写入（clipboardWrite） | 发布成功后自动把生成的链接复制到剪贴板，方便你直接粘贴分享。 |
-| 与 htmlto.link 通信（host_permissions） | 仅用于把你要发布的代码上传到 https://htmlto.link 生成链接。 |
+### Title (max 45 characters)
+
+```
+Share ChatGPT pages as a link
+```
+
+### Short description (max 132 characters)
+
+```
+ChatGPT made a page? Click once and get a link anyone can open on their phone.
+```
+
+### Detailed description
+
+```
+ChatGPT made a webpage. Send it as a link.
+
+If you asked ChatGPT for a birthday page, a quiz, a menu, or a class handout, the other person cannot open the code. This extension turns that page into a normal link.
+
+How to use
+1. Install and pin the extension.
+2. Open ChatGPT (also works on Claude and Gemini).
+3. When you see a webpage code block, click “Generate link”.
+4. The link is copied. Send it. They open it on any phone.
+
+You can also click the toolbar icon and paste the code yourself.
+
+Guest links last about 24 hours. Sign in at htmlto.link to keep a page longer.
+
+Privacy
+- Code is sent to https://htmlto.link only when you click publish.
+- The extension does not read your chats in the background.
+- You can turn off the in-page button and still publish from the popup.
+
+Website: https://htmlto.link
+```
+
+### Screenshots (upload in this order)
+
+1. `screenshot-1-chatgpt-button.png` — ChatGPT code block with “Generate link”
+2. `screenshot-2-link-copied.png` — link copied, ready to send
+3. `screenshot-3-phone-opens.png` — the other person opens it on a phone
+
+Promo tiles: `promo-tile-440x280.png`, `promo-tile-1400x560.png`
 
 ---
 
-## 5. 隐私实践（Privacy practices）
+## 中文（zh_CN 语言）
 
-- **收集的数据**：仅在用户主动点击发布时，上传其粘贴/选中的 HTML 或 Markdown，或当前正在查看并选择发布的本地 HTML 页面；设置里填写 API Token 时保存在浏览器本地。
-- **数据用途**：仅用于生成可访问的分享链接。
-- **不收集**：不收集浏览历史、聊天记录、个人身份信息；不上传与发布无关的页面内容。
-- **数据存储**：匿名链接约 24 小时后自动清理；登录用户的页面按其账号规则保留。
-- **关闭方式**：在扩展弹窗的「设置」里可关闭自动注入；卸载时不会残留远程数据。
+### 名称（最多 45 个字符）
+
+```
+ChatGPT 网页一键变成链接
+```
+
+### 简短描述
+
+```
+ChatGPT 做好的网页，点一下变成链接，发给谁都能在手机打开。
+```
+
+### 详细描述
+
+```
+ChatGPT 做好了一页网页，发给别人时请发链接，不要发代码。
+
+生日页、菜单、测验、课件，对方打不开代码。装上插件后，在 ChatGPT 代码块上点「生成链接」，链接会复制好，发到微信或短信就能打开。
+
+使用步骤
+1. 安装并把插件固定到工具栏
+2. 打开 ChatGPT（也支持 Claude、Gemini、豆包、Kimi）
+3. 看到网页代码时，点「生成链接」
+4. 把链接发出去即可
+
+也可以点浏览器右上角图标，自己粘贴代码再发布。
+
+未登录的链接大约 24 小时后失效。到 htmlto.link 登录后可以长期保存。
+
+隐私
+- 只有你点发布时，代码才会发到 https://htmlto.link
+- 不会在后台读取你的对话
+- 可以关掉页面上的按钮，仍可从弹窗发布
+
+网站：https://htmlto.link
+```
 
 ---
 
-## 6. 商店截图建议（Screenshot ideas）
+## Permission justifications (keep)
 
-1. 封面：弹窗粘贴 HTML → 发布成功（含 24h 有效期和「登录后长期保存」）。
-2. AI 聊天：代码块右上角「生成 HTML 链接」按钮 + 可关闭的 ×。
-3. 历史 + 设置：剩余有效期、登录入口、自动注入开关；Token 在高级项。
-
-> 说明：`npm run promo` 会把中英素材写到 `publish-kit/`。上架包请用 `npm run pack`。
+| Permission | Why |
+|---|---|
+| Read and change data on listed sites | Only adds a “Generate link” button on code blocks. Does not read chat text. Can be turned off. |
+| file:// access | Only if you open a local HTML file and click “Publish this page”. |
+| activeTab | After you click the toolbar icon, to publish the current local HTML page. |
+| scripting | Reads the current page HTML when you choose to publish it. |
+| storage | Saves publish history and whether the in-page button is on. |
+| clipboardWrite | Copies the new link after publish. |
+| htmlto.link host permission | Uploads the page so it can become a public link. |

@@ -1,6 +1,6 @@
 # 🚀 HTML To Link - 浏览器插件 (Chrome / Edge Extension)
 
-一款极其高效的浏览器扩展插件，帮助开发者、设计师与 AI 使用者一键将 HTML 代码、AI 网页生成结果（ChatGPT / Claude / DeepSeek / v0 / Kimi）或网页选中文本转换为**可在线分享的公开 URL** (https://htmlto.link/s/xxxxx)。
+把 ChatGPT（以及 Claude / Gemini）做好的网页，一键变成可分享链接。商店文案与截图见 `store-listing-copy.md`。
 
 ---
 

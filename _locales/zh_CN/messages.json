@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "htmlto.link - HTML 转 URL 发布器",
+    "message": "ChatGPT 网页一键变成链接",
     "description": "扩展名称"
   },
   "extDescription": {
-    "message": "1 秒将 HTML 或 AI 生成的代码发布为公开可分享链接，支持 ChatGPT/Claude/DeepSeek 等，由 htmlto.link 提供。",
+    "message": "ChatGPT 做好的网页，点一下变成链接，发给谁都能在手机打开。",
     "description": "扩展描述"
   },
   "tabPaste": {

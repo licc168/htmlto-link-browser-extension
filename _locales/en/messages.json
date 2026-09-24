@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "htmlto.link - HTML to URL Publisher",
+    "message": "Share ChatGPT pages as a link",
     "description": "Extension name"
   },
   "extDescription": {
-    "message": "Publish HTML to URL in 1 second: turn HTML or AI code from ChatGPT/Claude/DeepSeek into instant shareable links via htmlto.link.",
+    "message": "ChatGPT made a page? Click once and get a link anyone can open on their phone.",
     "description": "Extension description"
   },
   "tabPaste": {

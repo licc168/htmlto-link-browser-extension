@@ -4,302 +4,139 @@ const sharp = require("sharp");
 
 const outScreens = path.join(__dirname, "..", "publish-kit", "en", "screenshots");
 const outAssets = path.join(__dirname, "..", "publish-kit", "en", "assets");
-for (const d of [outScreens, outAssets]) {
+const outLocal = path.join(__dirname, "promo-images");
+for (const d of [outScreens, outAssets, outLocal]) {
   if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true });
 }
 
-const BG_DARK = "#0f172a";
-const BG_CARD = "#1e293b";
-const BG_INPUT = "#182232";
 const PRIMARY = "#2563eb";
 const PRIMARY_2 = "#4f46e5";
 const ACCENT = "#10b981";
 const LINK = "#38bdf8";
 const TEXT = "#f8fafc";
 const MUTED = "#94a3b8";
+const BG = "#0f172a";
+const CARD = "#1e293b";
+const INPUT = "#182232";
 const BORDER = "rgba(255,255,255,0.12)";
 
-function shieldSvg(size) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24">
-    <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="${PRIMARY}"/>
-      <stop offset="100%" stop-color="${PRIMARY_2}"/>
-    </linearGradient></defs>
-    <rect x="1" y="1" width="22" height="22" rx="5.5" fill="url(#bg)"/>
-    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>`;
-}
-
-function appHeader() {
-  return `<rect width="100%" height="72" fill="${BG_DARK}"/>
-  <rect x="24" y="20" width="40" height="40" rx="10" fill="url(#brand)"/>
-  <text x="76" y="38" font-family="Arial, sans-serif" font-size="19" font-weight="800" fill="${TEXT}">htmlto.link</text>
-  <text x="76" y="55" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">HTML to URL Publisher · v1.2.0</text>
-  <circle cx="400" cy="40" r="6" fill="${ACCENT}"/>`;
-}
+const brandDef = `<defs>
+  <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="${PRIMARY}"/>
+    <stop offset="100%" stop-color="${PRIMARY_2}"/>
+  </linearGradient>
+</defs>`;
 
 function screenshot1() {
-  // Popup: paste HTML -> published URL
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800">
-    <defs><linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="${PRIMARY}"/><stop offset="100%" stop-color="${PRIMARY_2}"/>
-    </linearGradient>
-    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0b1020"/><stop offset="100%" stop-color="${BG_DARK}"/>
-    </linearGradient></defs>
-    <rect width="1280" height="800" fill="url(#bgGrad)"/>
-    ${appHeader()}
-    <text x="24" y="120" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="${TEXT}">Publish HTML or AI-generated code as a shareable link</text>
-    <text x="24" y="152" font-family="Arial, sans-serif" font-size="16" fill="${MUTED}">Paste code → Click publish → Get a public URL · Guest links last ~24h</text>
-    <rect x="24" y="180" width="620" height="560" rx="16" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
-    <rect x="52" y="208" width="130" height="30" rx="8" fill="${PRIMARY}"/>
-    <text x="64" y="228" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff">HTML Web</text>
-    <rect x="188" y="208" width="130" height="30" rx="8" fill="rgba(255,255,255,0.05)" stroke="${BORDER}" stroke-width="1"/>
-    <text x="200" y="228" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${MUTED}">Markdown</text>
-    <rect x="52" y="256" width="564" height="240" rx="10" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
-    <text x="68" y="284" font-family="Consolas, monospace" font-size="15" fill="#7dd3fc">&lt;!DOCTYPE html&gt;</text>
-    <text x="68" y="310" font-family="Consolas, monospace" font-size="15" fill="#f8fafc">&lt;html lang="en"&gt;</text>
-    <text x="68" y="336" font-family="Consolas, monospace" font-size="15" fill="#f8fafc">&lt;head&gt;</text>
-    <text x="68" y="362" font-family="Consolas, monospace" font-size="15" fill="#e2e8f0">  &lt;title&gt;Landing Page&lt;/title&gt;</text>
-    <text x="68" y="388" font-family="Consolas, monospace" font-size="15" fill="#f8fafc">&lt;/head&gt;</text>
-    <text x="68" y="414" font-family="Consolas, monospace" font-size="15" fill="#e2e8f0">  &lt;h1&gt;Hello World&lt;/h1&gt;</text>
-    <text x="68" y="440" font-family="Consolas, monospace" font-size="15" fill="#f8fafc">&lt;/html&gt;</text>
-    <rect x="52" y="514" width="564" height="34" rx="8" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
-    <text x="64" y="535" font-family="Arial, sans-serif" font-size="13" fill="${MUTED}">Filename (default: index.html)</text>
-    <rect x="52" y="562" width="564" height="44" rx="10" fill="url(#brand)"/>
-    <text x="256" y="589" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">🚀 Publish &amp; Generate Public URL</text>
-    <rect x="52" y="626" width="564" height="92" rx="10" fill="${BG_INPUT}" stroke="rgba(16,185,129,0.3)" stroke-width="1"/>
-    <text x="68" y="650" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="${ACCENT}">✅ Published successfully</text>
-    <rect x="68" y="662" width="250" height="30" rx="6" fill="${BG_DARK}" stroke="${BORDER}" stroke-width="1"/>
-    <text x="80" y="682" font-family="Consolas, monospace" font-size="13" fill="${LINK}">https://htmlto.link/s/abc123</text>
-    <rect x="328" y="662" width="70" height="30" rx="6" fill="${PRIMARY}"/>
-    <text x="348" y="682" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff">Copy</text>
-    <rect x="406" y="662" width="194" height="30" rx="6" fill="rgba(37,99,235,0.25)" stroke="${PRIMARY}" stroke-width="1"/>
-    <text x="418" y="682" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="${LINK}">Sign in to keep this link</text>
-    <text x="68" y="706" font-family="Arial, sans-serif" font-size="11" fill="${MUTED}">Expires in ~23 hours · Sign in and bind a token to keep it</text>
-    <text x="756" y="220" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="${TEXT}">How it works</text>
-    <rect x="756" y="244" width="460" height="78" rx="12" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
-    <circle cx="792" cy="276" r="16" fill="url(#brand)"/>
-    <text x="792" y="282" font-family="Arial, sans-serif" font-size="15" font-weight="800" fill="#fff" text-anchor="middle">1</text>
-    <text x="820" y="270" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">Copy an AI code block</text>
-    <text x="820" y="290" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">ChatGPT / Claude / DeepSeek / v0 / Kimi / Qwen</text>
-    <text x="820" y="308" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">“Generate HTML link” appears on the code block</text>
-    <rect x="756" y="338" width="460" height="78" rx="12" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
-    <circle cx="792" cy="370" r="16" fill="url(#brand)"/>
-    <text x="792" y="376" font-family="Arial, sans-serif" font-size="15" font-weight="800" fill="#fff" text-anchor="middle">2</text>
-    <text x="820" y="364" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">Click publish</text>
-    <text x="820" y="384" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Paste HTML / Markdown in the popup</text>
-    <text x="820" y="402" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Guest ~24h · Sign in to keep long-term</text>
-    <rect x="756" y="432" width="460" height="78" rx="12" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
-    <circle cx="792" cy="464" r="16" fill="url(#brand)"/>
-    <text x="792" y="470" font-family="Arial, sans-serif" font-size="15" font-weight="800" fill="#fff" text-anchor="middle">3</text>
-    <text x="820" y="458" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">Get a public URL</text>
-    <text x="820" y="478" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">https://htmlto.link/s/xxxx auto-copied</text>
-    <text x="820" y="496" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Open it on any device, share it anywhere</text>
-    <rect x="756" y="526" width="460" height="78" rx="12" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
-    <circle cx="792" cy="558" r="16" fill="url(#brand)"/>
-    <text x="792" y="564" font-family="Arial, sans-serif" font-size="15" font-weight="800" fill="#fff" text-anchor="middle">4</text>
-    <text x="820" y="552" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">Share the link</text>
-    <text x="820" y="572" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Also publish Markdown docs with themes</text>
-    <text x="820" y="590" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Full control: custom API endpoint &amp; token</text>
-    <text x="756" y="660" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff">Stop sending screenshots of code.</text>
-    <text x="756" y="690" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="${LINK}">Publish real, clickable pages in seconds.</text>
+    ${brandDef}
+    <rect width="1280" height="800" fill="${BG}"/>
+    <text x="48" y="56" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="${TEXT}">ChatGPT made a page. Click once.</text>
+    <text x="48" y="88" font-family="Arial, sans-serif" font-size="16" fill="${MUTED}">A “Generate link” button appears on the code block.</text>
+    <rect x="48" y="120" width="1184" height="56" rx="12" fill="#10a37f"/>
+    <text x="72" y="154" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#fff">ChatGPT</text>
+    <text x="180" y="154" font-family="Arial, sans-serif" font-size="15" fill="rgba(255,255,255,0.85)">Make a birthday page for my mom</text>
+    <rect x="48" y="192" width="1184" height="520" rx="16" fill="#0d1424" stroke="${BORDER}" stroke-width="1"/>
+    <rect x="48" y="192" width="1184" height="52" fill="#161d31"/>
+    <text x="72" y="224" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">HTML</text>
+    <rect x="860" y="204" width="250" height="28" rx="14" fill="url(#brand)"/>
+    <text x="888" y="223" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">Generate link</text>
+    <text x="72" y="280" font-family="Consolas, monospace" font-size="16" fill="#7dd3fc">&lt;!DOCTYPE html&gt;</text>
+    <text x="72" y="312" font-family="Consolas, monospace" font-size="16" fill="${TEXT}">&lt;title&gt;Happy Birthday, Mom&lt;/title&gt;</text>
+    <text x="72" y="344" font-family="Consolas, monospace" font-size="16" fill="#93c5fd">&lt;h1&gt;Happy Birthday!&lt;/h1&gt;</text>
+    <text x="72" y="376" font-family="Consolas, monospace" font-size="16" fill="${MUTED}">&lt;p&gt;A page you can open on any phone.&lt;/p&gt;</text>
+    <text x="48" y="750" font-family="Arial, sans-serif" font-size="16" fill="${MUTED}">Also works on Claude and Gemini. No website. No code knowledge.</text>
   </svg>`;
 }
 
 function screenshot2() {
-  // AI chat code block with injected publish button
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800">
-    <defs><linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="${PRIMARY}"/><stop offset="100%" stop-color="${PRIMARY_2}"/>
-    </linearGradient></defs>
-    <rect width="1280" height="800" fill="${BG_DARK}"/>
-    <rect x="24" y="20" width="40" height="40" rx="10" fill="url(#brand)"/>
-    <text x="76" y="38" font-family="Arial, sans-serif" font-size="19" font-weight="800" fill="${TEXT}">htmlto.link</text>
-    <text x="76" y="55" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Auto-injects a publish button on AI chat pages</text>
-    <text x="24" y="110" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="${TEXT}">One-click publish on ChatGPT / Claude / DeepSeek / v0 / Kimi / Qwen</text>
-    <rect x="24" y="140" width="1232" height="24" rx="6" fill="#1a1f33"/>
-    <text x="40" y="157" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">You: Generate an HTML landing page for my product</text>
-    <rect x="24" y="180" width="1232" height="480" rx="12" fill="#0d1424" stroke="${BORDER}" stroke-width="1"/>
-    <rect x="24" y="180" width="1232" height="44" rx="12" fill="#161d31"/>
-    <text x="40" y="208" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${TEXT}">HTML</text>
-    <rect x="24" y="180" width="1232" height="44" rx="12" fill="none" stroke="rgba(56,189,248,0.4)" stroke-width="1"/>
-    <rect x="24" y="180" width="1232" height="44" rx="12" fill="none"/>
-    <rect x="968" y="188" width="210" height="28" rx="14" fill="url(#brand)"/>
-    <text x="986" y="207" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff">Generate HTML link</text>
-    <circle cx="1204" cy="202" r="12" fill="rgba(255,255,255,0.08)" stroke="${BORDER}" stroke-width="1"/>
-    <text x="1204" y="206" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${MUTED}" text-anchor="middle">×</text>
-    <text x="48" y="268" font-family="Consolas, monospace" font-size="15" fill="#7dd3fc">&lt;!DOCTYPE html&gt;</text>
-    <text x="48" y="296" font-family="Consolas, monospace" font-size="15" fill="#f8fafc">&lt;html lang="en"&gt;</text>
-    <text x="48" y="324" font-family="Consolas, monospace" font-size="15" fill="#f8fafc">&lt;head&gt;</text>
-    <text x="48" y="352" font-family="Consolas, monospace" font-size="15" fill="#e2e8f0">  &lt;meta charset="UTF-8"&gt;</text>
-    <text x="48" y="380" font-family="Consolas, monospace" font-size="15" fill="#e2e8f0">  &lt;title&gt;My Product Landing Page&lt;/title&gt;</text>
-    <text x="48" y="408" font-family="Consolas, monospace" font-size="15" fill="#e2e8f0">  &lt;style&gt;</text>
-    <text x="48" y="436" font-family="Consolas, monospace" font-size="15" fill="#93c5fd">    body { font-family: system-ui; margin: 0; }</text>
-    <text x="48" y="464" font-family="Consolas, monospace" font-size="15" fill="#93c5fd">    .hero { background: linear-gradient(...); }</text>
-    <text x="48" y="492" font-family="Consolas, monospace" font-size="15" fill="#e2e8f0">  &lt;/style&gt;</text>
-    <text x="48" y="520" font-family="Consolas, monospace" font-size="15" fill="#f8fafc">&lt;/head&gt;</text>
-    <text x="48" y="548" font-family="Consolas, monospace" font-size="15" fill="#e2e8f0">  &lt;h1&gt;Hello World&lt;/h1&gt;</text>
-    <text x="48" y="576" font-family="Consolas, monospace" font-size="15" fill="#f8fafc">&lt;/html&gt;</text>
-    <text x="24" y="700" font-family="Arial, sans-serif" font-size="15" fill="${MUTED}">Click to upload and copy the URL. Too noisy? Hit × to hide auto-inject; you can still publish from the popup.</text>
-    <text x="24" y="730" font-family="Arial, sans-serif" font-size="15" fill="${MUTED}">Supports: ChatGPT · Claude · DeepSeek · v0.dev · Kimi · Qwen · Doubao · Gemini</text>
+    ${brandDef}
+    <rect width="1280" height="800" fill="${BG}"/>
+    <text x="48" y="56" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="${TEXT}">The link is copied. Send it.</text>
+    <text x="48" y="88" font-family="Arial, sans-serif" font-size="16" fill="${MUTED}">Anyone can open it. You do not send the code.</text>
+    <rect x="240" y="160" width="800" height="420" rx="24" fill="${CARD}" stroke="${BORDER}" stroke-width="1"/>
+    <circle cx="640" cy="250" r="44" fill="rgba(16,185,129,0.2)"/>
+    <text x="640" y="266" font-family="Arial, sans-serif" font-size="40" font-weight="800" fill="${ACCENT}" text-anchor="middle">✓</text>
+    <text x="640" y="340" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="${TEXT}" text-anchor="middle">Link copied</text>
+    <rect x="340" y="370" width="600" height="56" rx="12" fill="${INPUT}" stroke="${BORDER}" stroke-width="1"/>
+    <text x="640" y="406" font-family="Consolas, monospace" font-size="20" fill="${LINK}" text-anchor="middle">https://htmlto.link/s/mom-bday</text>
+    <text x="640" y="470" font-family="Arial, sans-serif" font-size="16" fill="${MUTED}" text-anchor="middle">Paste into WhatsApp, iMessage, or email</text>
+    <text x="640" y="530" font-family="Arial, sans-serif" font-size="14" fill="${MUTED}" text-anchor="middle">Guest links last about 24 hours · Sign in to keep them</text>
   </svg>`;
 }
 
 function screenshot3() {
-  // Settings / control
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800">
-    <defs><linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="${PRIMARY}"/><stop offset="100%" stop-color="${PRIMARY_2}"/>
-    </linearGradient></defs>
-    <rect width="1280" height="800" fill="${BG_DARK}"/>
-    <rect x="24" y="20" width="40" height="40" rx="10" fill="url(#brand)"/>
-    <text x="76" y="38" font-family="Arial, sans-serif" font-size="19" font-weight="800" fill="${TEXT}">htmlto.link</text>
-    <text x="76" y="55" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Popup publish, history &amp; settings</text>
-    <text x="24" y="118" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="${TEXT}">Publish from the popup with one click</text>
-    <rect x="24" y="150" width="610" height="600" rx="16" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
-    <rect x="52" y="178" width="130" height="30" rx="8" fill="rgba(255,255,255,0.05)" stroke="${BORDER}" stroke-width="1"/>
-    <text x="80" y="198" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${MUTED}">Publish</text>
-    <rect x="188" y="178" width="130" height="30" rx="8" fill="${PRIMARY}"/>
-    <text x="220" y="198" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff">History</text>
-    <rect x="324" y="178" width="130" height="30" rx="8" fill="rgba(255,255,255,0.05)" stroke="${BORDER}" stroke-width="1"/>
-    <text x="352" y="198" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${MUTED}">Settings</text>
-    <rect x="52" y="230" width="554" height="74" rx="10" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
-    <text x="68" y="254" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${TEXT}">Landing Page</text>
-    <text x="68" y="272" font-family="Consolas, monospace" font-size="12" fill="${LINK}">https://htmlto.link/s/abc123</text>
-    <text x="68" y="292" font-family="Arial, sans-serif" font-size="10" fill="${MUTED}">~23 hours left</text>
-    <rect x="470" y="244" width="50" height="24" rx="6" fill="rgba(255,255,255,0.05)" stroke="${BORDER}" stroke-width="1"/>
-    <text x="478" y="260" font-family="Arial, sans-serif" font-size="10" fill="${MUTED}">HTML</text>
-    <rect x="540" y="244" width="50" height="24" rx="6" fill="${PRIMARY}"/>
-    <text x="552" y="260" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">Copy</text>
-    <rect x="52" y="318" width="554" height="74" rx="10" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
-    <text x="68" y="346" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${TEXT}">README.md</text>
-    <text x="68" y="368" font-family="Consolas, monospace" font-size="12" fill="${LINK}">https://htmlto.link/s/def456</text>
-    <rect x="470" y="332" width="50" height="24" rx="6" fill="rgba(255,255,255,0.05)" stroke="${BORDER}" stroke-width="1"/>
-    <text x="478" y="348" font-family="Arial, sans-serif" font-size="10" fill="${MUTED}">MD</text>
-    <rect x="540" y="332" width="50" height="24" rx="6" fill="${PRIMARY}"/>
-    <text x="552" y="348" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">Copy</text>
-    <rect x="52" y="406" width="554" height="74" rx="10" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
-    <text x="68" y="434" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${TEXT}">AI Landing Page</text>
-    <text x="68" y="456" font-family="Consolas, monospace" font-size="12" fill="${LINK}">https://htmlto.link/s/ghi789</text>
-    <rect x="470" y="420" width="50" height="24" rx="6" fill="rgba(255,255,255,0.05)" stroke="${BORDER}" stroke-width="1"/>
-    <text x="478" y="436" font-family="Arial, sans-serif" font-size="10" fill="${MUTED}">HTML</text>
-    <rect x="540" y="420" width="50" height="24" rx="6" fill="${PRIMARY}"/>
-    <text x="552" y="436" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">Copy</text>
-    <rect x="52" y="494" width="554" height="74" rx="10" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
-    <text x="68" y="522" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${TEXT}">Markdown Memo</text>
-    <text x="68" y="544" font-family="Consolas, monospace" font-size="12" fill="${LINK}">https://htmlto.link/s/jkl012</text>
-    <rect x="470" y="508" width="50" height="24" rx="6" fill="rgba(255,255,255,0.05)" stroke="${BORDER}" stroke-width="1"/>
-    <text x="478" y="524" font-family="Arial, sans-serif" font-size="10" fill="${MUTED}">MD</text>
-    <rect x="540" y="508" width="50" height="24" rx="6" fill="${PRIMARY}"/>
-    <text x="552" y="524" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">Copy</text>
-    <rect x="680" y="150" width="576" height="600" rx="16" fill="${BG_CARD}" stroke="${BORDER}" stroke-width="1"/>
-    <text x="708" y="190" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="${TEXT}">⚙️ Settings</text>
-    <rect x="708" y="214" width="520" height="70" rx="10" fill="${BG_INPUT}" stroke="rgba(56,189,248,0.35)" stroke-width="1"/>
-    <text x="724" y="240" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${TEXT}">Not signed in. Guest links expire in about 24 hours.</text>
-    <rect x="724" y="252" width="168" height="22" rx="6" fill="url(#brand)"/>
-    <text x="748" y="267" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff">Sign in at htmlto.link</text>
-    <text x="708" y="316" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="${TEXT}">Auto-inject button</text>
-    <rect x="1148" y="300" width="44" height="24" rx="12" fill="${ACCENT}"/>
-    <circle cx="1176" cy="312" r="9" fill="#ffffff"/>
-    <text x="708" y="344" font-family="Arial, sans-serif" font-size="11" fill="${MUTED}">Turn off to hide code-block buttons; you can still paste in Publish</text>
-    <text x="708" y="380" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="${TEXT}">Advanced · API Token</text>
-    <rect x="708" y="392" width="520" height="38" rx="8" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
-    <circle cx="732" cy="411" r="3" fill="${MUTED}"/><circle cx="744" cy="411" r="3" fill="${MUTED}"/><circle cx="756" cy="411" r="3" fill="${MUTED}"/><circle cx="768" cy="411" r="3" fill="${MUTED}"/><circle cx="780" cy="411" r="3" fill="${MUTED}"/>
-    <text x="708" y="450" font-family="Arial, sans-serif" font-size="11" fill="${MUTED}">After signing in, copy the token from site Settings and paste it here</text>
-    <text x="708" y="500" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">Markdown themes</text>
-    <rect x="708" y="520" width="520" height="54" rx="10" fill="${BG_INPUT}" stroke="${BORDER}" stroke-width="1"/>
-    <text x="724" y="546" font-family="Arial, sans-serif" font-size="13" fill="${TEXT}">9 built-in themes, one-click switch</text>
-    <text x="724" y="564" font-family="Arial, sans-serif" font-size="11" fill="${MUTED}">Plain · Memo · Dark Tech · Pop Art · Alibaba…</text>
-    <text x="708" y="614" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">Supported platforms</text>
-    <text x="708" y="646" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">ChatGPT · Claude · DeepSeek · v0.dev · Kimi · Gemini</text>
-    <text x="708" y="668" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Qwen · Doubao · Baidu ERNIE · Tencent Yuanbao</text>
+    ${brandDef}
+    <rect width="1280" height="800" fill="${BG}"/>
+    <text x="48" y="56" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="${TEXT}">They open it on their phone.</text>
+    <text x="48" y="88" font-family="Arial, sans-serif" font-size="16" fill="${MUTED}">No app to install. It is just a normal link.</text>
+    <rect x="460" y="130" width="360" height="620" rx="40" fill="#111827" stroke="${BORDER}" stroke-width="2"/>
+    <rect x="476" y="168" width="328" height="540" rx="24" fill="#fff7ed"/>
+    <text x="640" y="230" font-family="Arial, sans-serif" font-size="18" fill="#9a3412" text-anchor="middle">htmlto.link</text>
+    <text x="640" y="340" font-family="Arial, sans-serif" font-size="36" font-weight="800" fill="#9a3412" text-anchor="middle">Happy</text>
+    <text x="640" y="386" font-family="Arial, sans-serif" font-size="36" font-weight="800" fill="#9a3412" text-anchor="middle">Birthday</text>
+    <text x="640" y="430" font-family="Arial, sans-serif" font-size="36" font-weight="800" fill="#9a3412" text-anchor="middle">Mom!</text>
+    <text x="640" y="500" font-family="Arial, sans-serif" font-size="16" fill="#c2410c" text-anchor="middle">A page anyone can open</text>
+    <rect x="540" y="540" width="200" height="48" rx="24" fill="#ea580c"/>
+    <text x="640" y="570" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">Open card</text>
   </svg>`;
 }
 
 function promoSmall() {
-  // 440x280 small promo tile
   return `<svg xmlns="http://www.w3.org/2000/svg" width="440" height="280" viewBox="0 0 440 280">
-    <defs><linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="${PRIMARY}"/><stop offset="100%" stop-color="${PRIMARY_2}"/>
-    </linearGradient>
-    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0b1020"/><stop offset="100%" stop-color="${BG_DARK}"/>
-    </linearGradient></defs>
-    <rect width="440" height="280" fill="url(#bgGrad)"/>
-    <rect x="16" y="16" width="64" height="64" rx="14" fill="url(#brand)"/>
-    <path d="M33 46a9 9 0 0 0 13.6 1l5.4-5.4a9 9 0 0 0-12.7-12.7l-3.1 3.1" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M47 34a9 9 0 0 0-13.6-1L28 38.4A9 9 0 0 0 40.7 51l3.1-3.1" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="96" y="48" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff">htmlto.link</text>
-    <text x="96" y="68" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">HTML to URL Publisher</text>
-    <text x="16" y="120" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="${TEXT}">Publish HTML / AI code</text>
-    <text x="16" y="144" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="${LINK}">as a shareable link in 1s</text>
-    <text x="16" y="178" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Guest ~24h · Sign in to keep</text>
-    <rect x="16" y="200" width="176" height="34" rx="17" fill="url(#brand)"/>
-    <text x="60" y="223" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff">🚀 Install Now</text>
+    ${brandDef}
+    <rect width="440" height="280" fill="${BG}"/>
+    <rect x="20" y="20" width="56" height="56" rx="14" fill="url(#brand)"/>
+    <text x="48" y="56" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="#fff" text-anchor="middle">&lt;/&gt;</text>
+    <text x="90" y="44" font-family="Arial, sans-serif" font-size="20" font-weight="800" fill="#fff">htmlto.link</text>
+    <text x="90" y="66" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Share a ChatGPT page</text>
+    <text x="20" y="130" font-family="Arial, sans-serif" font-size="20" font-weight="800" fill="${TEXT}">ChatGPT → link</text>
+    <text x="20" y="162" font-family="Arial, sans-serif" font-size="16" fill="${LINK}">One click. Anyone can open it.</text>
+    <rect x="20" y="200" width="180" height="40" rx="20" fill="url(#brand)"/>
+    <text x="110" y="226" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">Add to Chrome</text>
   </svg>`;
 }
 
 function promoMarquee() {
-  // 1400x560 marquee promo tile
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="560" viewBox="0 0 1400 560">
-    <defs><linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="${PRIMARY}"/><stop offset="100%" stop-color="${PRIMARY_2}"/>
-    </linearGradient>
-    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0b1020"/><stop offset="55%" stop-color="${BG_DARK}"/><stop offset="100%" stop-color="#111c3a"/>
-    </linearGradient></defs>
-    <rect width="1400" height="560" fill="url(#bgGrad)"/>
-    <rect x="60" y="60" width="84" height="84" rx="18" fill="url(#brand)"/>
-    <path d="M92 96a12 12 0 0 0 18 1.4l7.2-7.2a12 12 0 0 0-17-17l-4.1 4.1" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M124 80a12 12 0 0 0-18-1.4l-7.2 7.2a12 12 0 0 0 17 17l4.1-4.1" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="168" y="100" font-family="Arial, sans-serif" font-size="34" font-weight="800" fill="#ffffff">htmlto.link</text>
-    <text x="168" y="132" font-family="Arial, sans-serif" font-size="17" fill="${MUTED}">HTML to URL Publisher · Chrome / Edge Extension</text>
-    <text x="60" y="240" font-family="Arial, sans-serif" font-size="46" font-weight="800" fill="#ffffff">Publish HTML / AI code</text>
-    <text x="60" y="300" font-family="Arial, sans-serif" font-size="46" font-weight="800" fill="${LINK}">as shareable online links</text>
-    <text x="60" y="352" font-family="Arial, sans-serif" font-size="20" fill="${MUTED}">Paste · Publish · Guest ~24h · Sign in to keep long-term</text>
-    <text x="60" y="386" font-family="Arial, sans-serif" font-size="20" fill="${MUTED}">Supports ChatGPT · Claude · DeepSeek · v0 · Kimi · Qwen · Gemini</text>
-    <rect x="60" y="420" width="240" height="56" rx="28" fill="url(#brand)"/>
-    <text x="128" y="455" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff">🚀 Install Now</text>
-    <g transform="translate(760,40)">
-      <rect x="0" y="0" width="520" height="440" rx="20" fill="#141d33" stroke="${BORDER}" stroke-width="1"/>
-      <rect x="24" y="24" width="220" height="30" rx="8" fill="url(#brand)"/>
-      <text x="42" y="45" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">Generate HTML link</text>
-      <circle cx="268" cy="39" r="12" fill="rgba(255,255,255,0.08)" stroke="${BORDER}" stroke-width="1"/>
-      <text x="268" y="43" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="${MUTED}" text-anchor="middle">×</text>
-      <text x="24" y="92" font-family="Consolas, monospace" font-size="15" fill="#7dd3fc">&lt;!DOCTYPE html&gt;</text>
-      <text x="24" y="118" font-family="Consolas, monospace" font-size="15" fill="#f8fafc">&lt;html lang="en"&gt;</text>
-      <text x="24" y="144" font-family="Consolas, monospace" font-size="15" fill="#e2e8f0">  &lt;h1&gt;Hello World&lt;/h1&gt;</text>
-      <text x="24" y="170" font-family="Consolas, monospace" font-size="15" fill="#f8fafc">&lt;/html&gt;</text>
-      <rect x="24" y="216" width="472" height="76" rx="10" fill="${BG_INPUT}" stroke="rgba(16,185,129,0.3)" stroke-width="1"/>
-      <text x="40" y="244" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="${ACCENT}">✅ Published · expires in ~23 hours</text>
-      <text x="40" y="272" font-family="Consolas, monospace" font-size="14" fill="${LINK}">https://htmlto.link/s/abc123</text>
-      <rect x="300" y="234" width="90" height="32" rx="8" fill="${PRIMARY}"/>
-      <text x="318" y="255" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#fff">Copy link</text>
-      <text x="24" y="336" font-family="Arial, sans-serif" font-size="13" fill="${MUTED}">3 easy steps:</text>
-      <text x="24" y="366" font-family="Arial, sans-serif" font-size="13" fill="${TEXT}">1. Pin the extension to the toolbar</text>
-      <text x="24" y="392" font-family="Arial, sans-serif" font-size="13" fill="${TEXT}">2. Click “Generate HTML link” on the code block</text>
-      <text x="24" y="418" font-family="Arial, sans-serif" font-size="13" fill="${TEXT}">3. URL copied — sign in to keep it longer</text>
-    </g>
+    ${brandDef}
+    <rect width="1400" height="560" fill="${BG}"/>
+    <rect x="64" y="64" width="84" height="84" rx="20" fill="url(#brand)"/>
+    <text x="106" y="118" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="#fff" text-anchor="middle">&lt;/&gt;</text>
+    <text x="172" y="108" font-family="Arial, sans-serif" font-size="36" font-weight="800" fill="#fff">htmlto.link</text>
+    <text x="172" y="140" font-family="Arial, sans-serif" font-size="18" fill="${MUTED}">Share ChatGPT pages as a link</text>
+    <text x="64" y="250" font-family="Arial, sans-serif" font-size="48" font-weight="800" fill="#fff">ChatGPT made a page.</text>
+    <text x="64" y="312" font-family="Arial, sans-serif" font-size="48" font-weight="800" fill="${LINK}">Send it as a link.</text>
+    <text x="64" y="372" font-family="Arial, sans-serif" font-size="22" fill="${MUTED}">One click on ChatGPT. Open on any phone.</text>
+    <rect x="64" y="420" width="280" height="56" rx="28" fill="url(#brand)"/>
+    <text x="204" y="456" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">Add to Chrome</text>
+    <rect x="820" y="80" width="500" height="400" rx="24" fill="${CARD}" stroke="${BORDER}" stroke-width="1"/>
+    <text x="852" y="130" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="${TEXT}">ChatGPT</text>
+    <rect x="1040" y="108" width="240" height="32" rx="16" fill="url(#brand)"/>
+    <text x="1160" y="130" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">Generate link</text>
+    <text x="852" y="190" font-family="Consolas, monospace" font-size="16" fill="#7dd3fc">&lt;h1&gt;Happy Birthday&lt;/h1&gt;</text>
+    <rect x="852" y="240" width="436" height="80" rx="12" fill="${INPUT}" stroke="rgba(16,185,129,0.35)" stroke-width="1"/>
+    <text x="872" y="274" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${ACCENT}">Link copied</text>
+    <text x="872" y="300" font-family="Consolas, monospace" font-size="16" fill="${LINK}">https://htmlto.link/s/mom-bday</text>
   </svg>`;
 }
 
-async function render(svg, file, dir) {
+async function render(svg, file, dirs) {
   const buf = Buffer.from(svg);
-  await sharp(buf)
-    .flatten({ background: "#0f172a" })
-    .png({ palette: false })
-    .toFile(path.join(dir, file));
-  console.log(`Generated ${file}`);
+  for (const dir of dirs) {
+    await sharp(buf).flatten({ background: BG }).png({ palette: false }).toFile(path.join(dir, file));
+  }
+  console.log("Generated", file);
 }
 
 (async () => {
-  await render(screenshot1(), "screenshot-1-publish.png", outScreens);
-  await render(screenshot2(), "screenshot-2-ai-code-block.png", outScreens);
-  await render(screenshot3(), "screenshot-3-settings-history.png", outScreens);
-  await render(promoSmall(), "promo-tile-440x280.png", outAssets);
-  await render(promoMarquee(), "promo-tile-1400x560.png", outAssets);
+  await render(screenshot1(), "screenshot-1-chatgpt-button.png", [outScreens, outLocal]);
+  await render(screenshot2(), "screenshot-2-link-copied.png", [outScreens, outLocal]);
+  await render(screenshot3(), "screenshot-3-phone-opens.png", [outScreens, outLocal]);
+  await render(promoSmall(), "promo-tile-440x280.png", [outAssets, outLocal]);
+  await render(promoMarquee(), "promo-tile-1400x560.png", [outAssets, outLocal]);
   console.log("All EN promo images generated.");
 })().catch((err) => {
   console.error("Generation failed:", err);
