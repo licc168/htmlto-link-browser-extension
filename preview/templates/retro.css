@@ -1,0 +1,166 @@
+/* Retro - 复古 Win95 风格 */
+/* Windows 95 银灰 + 3D凸边框 + 海军蓝标题栏 */
+
+.card-retro {
+  font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, Geneva, Verdana, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background-color: #c0c0c0;
+  color: #000000;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #0a0a0a;
+}
+
+.card-retro .card-content {
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.card-retro .card-content::before {
+  content: "📎 htmltolink.exe";
+  display: block;
+  background: linear-gradient(90deg, #000080, #1084d0);
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  padding: 3px 6px;
+}
+
+.card-retro .card-content-inner {
+  padding: 18px 20px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  background: #c0c0c0;
+}
+
+.card-retro .card-content-inner h1 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #000080;
+  margin-top: 0;
+  margin-bottom: 12px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 6px 12px;
+  box-shadow: inset 1px 1px 0 #0a0a0a, inset -1px -1px 0 #dfdfdf;
+}
+
+.card-retro .card-content-inner h2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000080;
+  margin: 16px 0 10px;
+  padding: 4px 10px;
+  background: #c0c0c0;
+  border-bottom: 2px solid #808080;
+}
+
+.card-retro .card-content-inner h3 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #800000;
+  margin: 14px 0 8px;
+}
+
+.card-retro .card-content-inner p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #000000;
+  margin-bottom: 12px;
+}
+
+.card-retro .card-content-inner ol,
+.card-retro .card-content-inner ul {
+  margin-bottom: 12px;
+  padding-left: 24px;
+}
+
+.card-retro .card-content-inner li {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #000000;
+  margin-bottom: 4px;
+}
+
+.card-retro .card-content-inner strong {
+  font-weight: bold;
+  color: #000080;
+}
+
+.card-retro .card-content-inner blockquote {
+  margin: 14px 0;
+  padding: 10px 14px;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  background: #ffffcc;
+  color: #000000;
+  box-shadow: inset 1px 1px 0 #0a0a0a, inset -1px -1px 0 #dfdfdf;
+}
+
+.card-retro .card-content-inner blockquote p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.card-retro .card-content-inner code {
+  font-family: 'Fixedsys', 'Courier New', monospace;
+  background: #ffffff;
+  padding: 1px 4px;
+  font-size: 13px;
+  color: #000000;
+  border: 1px solid #808080;
+}
+
+.card-retro .card-content-inner pre {
+  background: #000080;
+  padding: 12px 14px;
+  overflow-x: auto;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  margin: 14px 0;
+  box-shadow: inset 1px 1px 0 #0a0a0a;
+}
+
+.card-retro .card-content-inner pre code {
+  background: transparent;
+  padding: 0;
+  color: #c0c0c0;
+  border: none;
+  font-size: 13px;
+  display: block;
+}
+
+.card-retro .card-content-inner table,
+.card-retro .card-content-inner table.tableWrapper {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 13px;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.card-retro .card-content-inner th {
+  background: linear-gradient(180deg, #000080, #0000cd);
+  font-weight: bold;
+  padding: 6px 10px;
+  color: #ffffff;
+  text-align: left;
+}
+
+.card-retro .card-content-inner td {
+  padding: 6px 10px;
+  border-bottom: 1px solid #c0c0c0;
+  color: #000000;
+  background: #ffffff;
+}
+
+.card-retro .card-content-inner tr:nth-child(even) td {
+  background-color: #e8e8e8;
+}

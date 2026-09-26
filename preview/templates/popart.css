@@ -1,0 +1,609 @@
+/* styles/templates/pop-art.css */
+
+/* Pop Art 主题特定颜色变量 */
+.card-popart {
+  --pop-primary: #ff2e63;
+  --pop-secondary: #51bafa;
+  --pop-accent1: var(--pop-primary);
+  --pop-accent2: var(--pop-secondary);
+  --pop-accent3: rgb(255, 98, 90);
+  --pop-bg: #fde041;
+  --pop-text: #252a34;
+  --pop-border: var(--pop-text);
+  --pop-white: #ffffff;
+  --pop-dots-svg-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='2' cy='2' r='2' fill='%23d3b000'/%3E%3C/svg%3E");
+  --pop-shadow-color: rgba(37, 42, 52, 0.8);
+  --pop-code-bg: #252a34;
+  --pop-code-text: #f8f8f2;
+  --pop-primary-rgb: 255, 46, 99;
+  --pop-secondary-rgb: 81, 186, 250;
+  --pop-white-rgb: 255, 255, 255;
+}
+/** 黄色主题 **/
+.card-popart.yellow-mode {
+  --pop-primary: #ff9500;
+  --pop-secondary: #4a90e2;
+  --pop-bg: #ffeb3b;
+  --pop-dots-svg-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='2' cy='2' r='2' fill='%23ffc107'/%3E%3C/svg%3E");
+  --pop-accent1: #ff9500;
+  --pop-accent2: #4a90e2;
+  --pop-accent3: #ff5252;
+  --pop-text: #333333;
+  --pop-border: #333333;
+  --pop-shadow-color: rgba(0, 0, 0, 0.4);
+  --pop-primary-rgb: 255, 149, 0;
+  --pop-secondary-rgb: 74, 144, 226;
+}
+
+/** 热辣红 **/
+.card-popart.hot-red-mode {
+  --pop-primary: #ff3d3d;
+  --pop-secondary: #ffcc00;
+  --pop-bg: #ff6b6b;
+  --pop-dots-svg-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='2' cy='2' r='2' fill='%23ff9999'/%3E%3C/svg%3E");
+  --pop-accent1: #ff3d3d;
+  --pop-accent2: #ffcc00;
+  --pop-accent3: #ff9966;
+  --pop-text: #333333;
+  --pop-border: #333333;
+  --pop-shadow-color: rgba(255, 61, 61, 0.4);
+  --pop-primary-rgb: 255, 61, 61;
+  --pop-secondary-rgb: 255, 204, 0;
+}
+/**森林绿主题**/
+.card-popart.forest-green-mode {
+  --pop-primary: #2e7d32;
+  --pop-secondary: #ffeb3b;
+  --pop-bg: #e8f5e9;
+  --pop-dots-svg-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='2' cy='2' r='2' fill='%23c8e6c9'/%3E%3C/svg%3E");
+  --pop-accent1: #2e7d32;
+  --pop-accent2: #ffeb3b;
+  --pop-accent3: #81c784;
+  --pop-text: #1b5e20;
+  --pop-border: #1b5e20;
+  --pop-shadow-color: rgba(46, 125, 50, 0.4);
+  --pop-primary-rgb: 46, 125, 50;
+  --pop-secondary-rgb: 255, 235, 59;
+}
+/**海洋蓝主题**/
+.card-popart.ocean-blue-mode {
+  --pop-primary: #1a73e8;
+  --pop-secondary: #00e5ff;
+  --pop-bg: #e3f2fd;
+  --pop-dots-svg-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='2' cy='2' r='2' fill='%23bbdefb'/%3E%3C/svg%3E");
+  --pop-accent1: #1a73e8;
+  --pop-accent2: #00e5ff;
+  --pop-accent3: #64b5f6;
+  --pop-text: #0d47a1;
+  --pop-border: #0d47a1;
+  --pop-shadow-color: rgba(26, 115, 232, 0.4);
+  --pop-primary-rgb: 26, 115, 232;
+  --pop-secondary-rgb: 0, 229, 255;
+}
+/* 主题颜色覆盖 */
+.card-popart.pink-blue-mode {
+  --pop-primary: #ff4e79;
+  --pop-secondary: #7fd1ae;
+  --pop-bg: #a6dcef;
+  --pop-dots-svg-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='2' cy='2' r='2' fill='%238ac6d0'/%3E%3C/svg%3E");
+  --pop-accent1: #ff4e79;
+  --pop-accent2: #7fd1ae;
+  --pop-accent3: #ffd666;
+  --pop-text: #252a34;
+  --pop-border: #252a34;
+  --pop-shadow-color: rgba(0, 0, 0, 0.5);
+  --pop-primary-rgb: 255, 78, 121;
+  --pop-secondary-rgb: 127, 209, 174;
+}
+/**霓虹粉主题**/
+.card-popart.neon-pink-mode {
+  --pop-primary: #ff00ff;
+  --pop-secondary: #00ffff;
+  --pop-bg: #000000;
+  --pop-dots-svg-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='2' cy='2' r='2' fill='%23333333'/%3E%3C/svg%3E");
+  --pop-accent1: #ff00ff;
+  --pop-accent2: #00ffff;
+  --pop-accent3: #ffff00;
+  --pop-text: #ffffff;
+  --pop-border: #ffffff;
+  --pop-white: #000000;
+  --pop-shadow-color: rgba(255, 0, 255, 0.6);
+  --pop-code-bg: #333333;
+  --pop-code-text: #00ffff;
+  --pop-primary-rgb: 255, 0, 255;
+  --pop-secondary-rgb: 0, 255, 255;
+  --pop-white-rgb: 0, 0, 0;
+}
+
+/**复古橙主题 **/
+
+.card-popart.retro-orange-mode {
+  --pop-primary: #ff5722;
+  --pop-secondary: #8bc34a;
+  --pop-bg: #fff3e0;
+  --pop-dots-svg-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='2' cy='2' r='2' fill='%23ffe0b2'/%3E%3C/svg%3E");
+  --pop-accent1: #ff5722;
+  --pop-accent2: #8bc34a;
+  --pop-accent3: #ffc107;
+  --pop-text: #3e2723;
+  --pop-border: #3e2723;
+  --pop-shadow-color: rgba(255, 87, 34, 0.4);
+  --pop-primary-rgb: 255, 87, 34;
+  --pop-secondary-rgb: 139, 195, 74;
+}
+/** 糖果色主题 **/
+.card-popart.candy-mode {
+  --pop-primary: #ec407a;
+  --pop-secondary: #42a5f5;
+  --pop-bg: #f8bbd0;
+  --pop-dots-svg-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='2' cy='2' r='2' fill='%23f48fb1'/%3E%3C/svg%3E");
+  --pop-accent1: #ec407a;
+  --pop-accent2: #42a5f5;
+  --pop-accent3: #7e57c2;
+  --pop-text: #4a148c;
+  --pop-border: #4a148c;
+  --pop-shadow-color: rgba(236, 64, 122, 0.4);
+  --pop-primary-rgb: 236, 64, 122;
+  --pop-secondary-rgb: 66, 165, 245;
+}
+
+.card-popart.mint-mode {
+  --pop-primary: #7fd1ae;
+  --pop-secondary: #ff4e79;
+  --pop-bg: #e0f7fa;
+  --pop-dots-svg-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='2' cy='2' r='2' fill='%23b2ebf2'/%3E%3C/svg%3E");
+  --pop-accent1: #7fd1ae;
+  --pop-accent2: #ff4e79;
+  --pop-accent3: #51bafa;
+  --pop-border: #4db6ac;
+  --pop-shadow-color: rgba(77, 182, 172, 0.3);
+  --pop-text: #004d40;
+  --pop-primary-rgb: 127, 209, 174;
+  --pop-secondary-rgb: 255, 78, 121;
+}
+
+.card-popart.purple-mode {
+  --pop-primary: #9c27b0;
+  --pop-secondary: #ffab40;
+  --pop-bg: #3a1f75;
+  --pop-dots-svg-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='2' cy='2' r='2' fill='%23a87fff'/%3E%3C/svg%3E");
+  --pop-accent1: #9c27b0;
+  --pop-accent2: #ffab40;
+  --pop-accent3: #64b5f6;
+  --pop-border: #673ab7;
+  --pop-shadow-color: rgba(156, 39, 176, 0.4);
+  --pop-text: #f3e5f5;
+  --pop-white: #2e0f54;
+  --pop-code-bg: #311b92;
+  --pop-code-text: #e1bee7;
+  --pop-primary-rgb: 156, 39, 176;
+  --pop-secondary-rgb: 255, 171, 64;
+  --pop-white-rgb: 46, 15, 84;
+}
+
+/* Pop Art 卡片基础样式 */
+.card-popart {
+  background-color: var(--pop-bg);
+  background-image: var(--pop-dots-svg-url);
+  background-size: 24px 24px;
+  background-position: 12px 12px;
+  color: var(--pop-text);
+  font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", sans-serif;
+  padding: 30px;
+  position: relative;
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pop Art 装饰元素 */
+.card-popart::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 70px;
+  height: 70px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M50 10C60 10 70 15 75 25C80 35 80 45 75 55C70 65 60 70 50 70C40 70 30 65 25 55C20 45 20 35 25 25C30 15 40 10 50 10Z' fill='%2351bafa' stroke='%23252a34' stroke-width='3'/%3E%3Ctext x='50' y='50' font-family='Arial' font-size='20' font-weight='bold' text-anchor='middle' dominant-baseline='middle' fill='%23252a34'%3EPOP!%3C/text%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
+}
+
+.card-popart::after {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 70px;
+  height: 70px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 5L47.8 27.1H71.7L52.3 40.8L60.1 62.9L40 49.2L19.9 62.9L27.7 40.8L8.3 27.1H32.2L40 5Z' fill='%23ff2e63' stroke='%23333' stroke-width='3' /%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
+}
+
+/* Pop Art 内容区域容器 */
+.card-popart .card-content {
+  position: relative;
+  z-index: 2;
+  padding: 12px;
+  border: 2px solid var(--pop-border);
+  height: 100%;
+  background: var(--pop-white);
+  box-shadow: 10px 10px 0 var(--pop-shadow-color);
+  box-sizing: border-box;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* 当 isLongContent=false 时裁剪 */
+}
+
+/* Pop Art 文本内容实际渲染的容器 */
+.card-popart .card-content-inner {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; 
+}
+/* 当非长图且需要严格裁剪时，确保文本内容容器也不滚动 */
+.card-popart:not(.long-content-mode) .card-content-inner,
+.card-popart.height-overflow-hidden .card-content-inner {
+  overflow:hidden;
+}
+
+/* Pop Art 标题样式 */
+.card-popart .card-content-inner h1 {
+  font-size: 2em;
+  font-weight: 800;
+  color: var(--pop-text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 3px 3px 0 var(--pop-primary);
+  position: relative;
+  padding-bottom: 10px;
+  margin-top: 0.5em;
+  margin-bottom: 0.8em;
+  overflow: hidden;
+}
+
+.card-popart .card-content-inner h1::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--pop-primary),
+    var(--pop-primary) 10px,
+    var(--pop-text) 10px,
+    var(--pop-text) 20px
+  );
+}
+
+.card-popart .card-content-inner h1 strong {
+  color: var(--pop-primary);
+  background-color: var(--pop-white);
+  padding: 0 5px;
+  border: 3px solid var(--pop-border);
+  display: inline-block;
+  transform: rotate(-2deg);
+}
+
+.card-popart .card-content-inner h2 {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--pop-text);
+  background-color: var(--pop-accent2);
+  padding: 4px 10px;
+  transform: rotate(-2deg);
+  display: inline-block;
+  margin-top: 0.8em;
+  margin-bottom: 0.6em;
+}
+
+.card-popart .card-content-inner h3 {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: var(--pop-text);
+  background-color: var(--pop-accent3);
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 0.6em;
+  margin-bottom: 0.4em;
+}
+
+.card-popart .card-content-inner h4 {
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline wavy var(--pop-primary);
+  margin-top: 0.5em;
+  margin-bottom: 0.3em;
+}
+
+/* 段落样式 */
+.card-popart .card-content-inner p {
+  color: var(--pop-text);
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+/* 列表容器样式 */
+.card-popart .card-content-inner ul,
+.card-popart .card-content-inner ol {
+  background-color: rgba(var(--pop-white-rgb), 0.7);
+  padding: 15px;
+  border: 2px solid var(--pop-border);
+  border-radius: 8px;
+  margin: 1em 0;
+  margin-left: 0;
+  padding-left: 0; /* 重置容器的 padding-left */
+  list-style: none;
+}
+
+/* 列表项通用样式 */
+.card-popart .card-content-inner li {
+  position: relative;
+  padding-left: 35px; /* 为25px的数字圆圈 + 10px的间距 */
+  margin-bottom: 0.6em;
+  /* line-height 继承自 .card-popart (1.7) */
+}
+.card-popart .card-content-inner li p {
+  margin: 0; /* 确保 li 内的 p 不影响对齐 */
+}
+
+/* 无序列表 (ul) 项目符号 */
+.card-popart .card-content-inner ul > li::before {
+  content: "★";
+  position: absolute;
+  left: 10px;   /* (35px padding-left - 符号宽度)/2 (近似) 或固定值 */
+  top: 0.05em;  /* 根据字体和行高微调，目标是与文本第一行顶部对齐 */
+  color: var(--pop-primary);
+  font-size: 1em; /* 与 li 文本大小一致 */
+  line-height: inherit;
+  width: 1em; /* 给符号一个宽度以便 text-align（如果需要）*/
+  text-align: center;
+}
+
+/* 有序列表 (ol) 数字圆圈 - 完全模仿 md2card 的请求 */
+.card-popart .card-content-inner ol > li::before {
+  content: attr(data-index); /* 确保 JS 设置的是 data-index */
+  position: absolute;
+  left: 0;      /* 紧贴 li 的 padding-left 区域的左边缘 */
+  top: 0;         /* 使圆圈的顶部与列表项文本行的顶部对齐 */
+  background-color: var(--pop-primary);
+  color: var(--pop-white);
+  font-weight: 700;
+  width: 25px;    /* 固定宽度 */
+  height: 25px;   /* 固定高度 */
+  border-radius: 50%;
+  text-align: center;
+  line-height: 25px; /* 与高度一致，使单行数字垂直居中于圆圈内 */
+  border: 2px solid var(--pop-border);
+  box-sizing: border-box;
+  font-size: 13px; /* 圆圈内数字的固定字体大小 */
+  /* 可选：使用flex进行更精确的内部对齐，但对于单行数字line-height通常足够 */
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+
+/* 引用样式 */
+.card-popart .card-content-inner blockquote {
+  padding: 15px;
+  border-left: 8px solid var(--pop-primary);
+  color: var(--pop-text);
+  font-style: italic;
+  font-weight: 600;
+  background-color: rgba(var(--pop-primary-rgb), 0.1);
+  border-radius: 0 8px 8px 0;
+  position: relative;
+  margin: 1em 0;
+}
+.card-popart .card-content-inner blockquote::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 5px;
+  font-size: 3.75em;
+  color: var(--pop-primary);
+  opacity: 0.5;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+.card-popart .card-content-inner blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* 代码块样式 (pre) */
+.card-popart .card-content-inner pre {
+  background-color: var(--pop-code-bg) !important;
+  color: var(--pop-code-text) !important;
+  border-radius: 8px;
+  padding: 15px;
+  border: 2px solid var(--pop-primary);
+  box-shadow: 5px 5px 0 var(--pop-accent2);
+  margin: 1em 0;
+  font-size: 0.875em;
+}
+/* 行内代码样式 */
+.card-popart .card-content-inner code:not(pre code) {
+  background-color: var(--pop-code-bg);
+  color: var(--pop-code-text);
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--pop-primary);
+  font-size: 0.9em;
+}
+
+/* 表格样式 */
+.card-popart .card-content-inner table.tableWrapper,
+.card-popart .card-content-inner table {
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: rgba(var(--pop-white-rgb), 0.7);
+  border: 3px solid var(--pop-border);
+  border-radius: 8px;
+  box-shadow: 5px 5px 0 var(--pop-primary);
+  margin: 1.5em 0;
+  font-size: 0.9em;
+  width: 100%;
+}
+
+.card-popart .card-content-inner table.tableWrapper th,
+.card-popart .card-content-inner table th {
+  background-color: var(--pop-code-bg);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 12px;
+  color: var(--pop-white);
+  font-weight: bold;
+}
+
+.card-popart .card-content-inner table.tableWrapper th p,
+.card-popart .card-content-inner table th p {
+  color: var(--pop-white);
+  margin: 0;
+}
+
+.card-popart .card-content-inner table.tableWrapper td,
+.card-popart .card-content-inner table td {
+  border-bottom: 2px solid var(--pop-border);
+  padding: 10px 12px;
+}
+
+.card-popart .card-content-inner table.tableWrapper tr:last-child td,
+.card-popart .card-content-inner table tr:last-child td {
+  border-bottom: none;
+}
+
+.card-popart .card-content-inner table.tableWrapper tr:nth-child(odd) td,
+.card-popart .card-content-inner table tr:nth-child(odd) td {
+  background-color: rgba(var(--pop-secondary-rgb), 0.2);
+}
+
+.card-popart .card-content-inner table.tableWrapper td p,
+.card-popart .card-content-inner table td p {
+  margin: 0;
+  padding: 0;
+}
+
+/* 水平线样式 */
+.card-popart .card-content-inner hr {
+  border: 0;
+  height: 6px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--pop-primary),
+    var(--pop-primary) 10px,
+    var(--pop-text) 10px,
+    var(--pop-text) 20px
+  );
+  border-radius: 3px;
+  margin: 1.5em 0;
+}
+
+/* 图片样式 */
+.card-popart .card-content-inner img {
+  border: 5px solid var(--pop-border);
+  box-shadow: 8px 8px 0 var(--pop-primary);
+  transform: rotate(-1deg);
+  border-radius: 0;
+  display: block;
+  margin: 1.5em auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 高亮标记 */
+.card-popart .card-content-inner mark {
+  background-color: var(--pop-primary) !important;
+  color: var(--pop-white) !important;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-weight: 700;
+  box-shadow: 2px 2px 0 var(--pop-text);
+}
+.card-popart .card-content-inner mark::after {
+  display: none !important;
+}
+
+/* 链接样式 */
+.card-popart .card-content-inner a {
+  color: var(--pop-primary);
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 3px solid var(--pop-border);
+  padding: 0 3px;
+  transition: all 0.3s ease;
+}
+.card-popart .card-content-inner a:hover {
+  background-color: var(--pop-primary);
+  color: var(--pop-white);
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+/* 语音气泡效果 */
+.card-popart .card-content-inner .speech-bubble {
+  position: relative;
+  background: var(--pop-white);
+  border-radius: 10px;
+  padding: 15px;
+  margin: 1.5em 0;
+  border: 3px solid var(--pop-border);
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 5px 5px 0 var(--pop-primary);
+}
+.card-popart .card-content-inner .speech-bubble::before {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-width: 10px;
+  border-style: solid;
+  border-color: var(--pop-border) transparent transparent transparent;
+}
+.card-popart .card-content-inner .speech-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-width: 8px;
+  border-style: solid;
+  border-color: var(--pop-white) transparent transparent transparent;
+}
+
+/* KaTeX 和 Mermaid 样式调整 */
+.card-popart .card-content-inner .math-inline,
+.card-popart .card-content-inner .math-block {
+  color: var(--pop-text) !important;
+  background-color: rgba(var(--pop-white-rgb), 0.1) !important;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+.card-popart .card-content-inner .math-block {
+  padding: 0.5em;
+  border: 1px dashed var(--pop-primary);
+  margin: 1em 0;
+}
+.card-popart .card-content-inner .mermaid {
+    margin: 1em 0;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+

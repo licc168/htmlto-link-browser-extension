@@ -1,0 +1,298 @@
+/* styles/templates/imageCard.css */
+:root {
+  --scale-factor: 1; /* 添加缩放因子变量 */
+}
+
+.image-card-content {
+  /* 基本文本样式（如果需要），通常被继承 */
+  font-size: 16px; /* 示例基础字号 */
+  line-height: var(--image-card-line-height, 1.6); /* 使用CSS变量控制行距，默认1.6 */
+  word-wrap: break-word; /* 确保长单词或URL能换行 */
+  overflow-wrap: break-word; /* 同上，更现代的属性 */
+  color: var(--image-card-text-color, inherit); /* 从 PreviewContainer 根据深浅模式继承，或使用默认值 */
+  overflow: hidden; /* 添加overflow:hidden确保内容不会溢出 */
+}
+
+.image-card-content p {
+  margin-bottom: calc(1em * var(--scale-factor));
+}
+
+.image-card-content h1,
+.image-card-content h2,
+.image-card-content h3,
+.image-card-content h4,
+.image-card-content h5,
+.image-card-content h6 {
+  margin-top: calc(1.2em * var(--scale-factor));
+  margin-bottom: calc(0.6em * var(--scale-factor));
+  line-height: 1.3;
+  font-weight: 600; /* 标题加粗 */
+}
+
+.image-card-content h1 {
+  font-size: calc(2em * var(--scale-factor));
+}
+.image-card-content h2 {
+  font-size: calc(1.75em * var(--scale-factor));
+}
+.image-card-content h3 {
+  font-size: calc(1.5em * var(--scale-factor));
+}
+.image-card-content h4 {
+  font-size: calc(1.25em * var(--scale-factor));
+}
+.image-card-content h5 {
+  font-size: calc(1.1em * var(--scale-factor));
+}
+.image-card-content h6 {
+  font-size: calc(1em * var(--scale-factor));
+}
+
+.image-card-content ul,
+.image-card-content ol {
+  margin-bottom: calc(1em * var(--scale-factor));
+  padding-left: calc(1.8em * var(--scale-factor)); /* 标准缩进，略微增加以便容纳标记 */
+}
+
+.image-card-content li {
+  margin-bottom: calc(0.4em * var(--scale-factor)); /* 列表项间距 */
+}
+
+.image-card-content ol > li {
+  list-style-position: outside;
+}
+
+/* 为有序列表和无序列表添加基本标记样式 (如果Tiptap不提供) */
+.image-card-content ul li::marker {
+  color: var(--image-card-marker-color, inherit); /* 标记颜色继承 */
+}
+.image-card-content ol {
+  list-style-type: decimal; /* 确保有序列表是数字 */
+}
+.image-card-content ol li::marker {
+  color: var(--image-card-marker-color, inherit);
+}
+
+
+.image-card-content blockquote {
+  margin: calc(1em * var(--scale-factor)) 0;
+  padding: calc(0.5em * var(--scale-factor)) calc(1em * var(--scale-factor));
+  border-left: 4px solid var(--image-card-blockquote-border-color, rgba(128, 128, 128, 0.5));
+  background-color: var(--image-card-blockquote-bg-color, rgba(128, 128, 128, 0.05));
+  color: inherit;
+}
+
+.image-card-content blockquote p:last-child {
+  margin-bottom: 0; /* 移除引用块内最后一个段落的下边距 */
+}
+
+.image-card-content em,
+.image-card-content i {
+  font-style: italic;
+  color: inherit;
+}
+
+.image-card-content pre {
+  margin-bottom: calc(1em * var(--scale-factor));
+  /* 代码块样式由 highlight.js 和 code-block.css 处理 */
+  white-space: pre-wrap;
+  word-break: break-all;
+  border-radius: 6px;
+  /* 代码块背景和文本颜色应由 code-block.css 或主题变量控制 */
+}
+
+.image-card-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: calc(0.8em * var(--scale-factor)) 0;
+  display: block;
+}
+
+.image-card-content hr {
+  border: none;
+  border-top: 1px solid var(--image-card-hr-color, rgba(128, 128, 128, 0.3));
+  margin: calc(1.5em * var(--scale-factor)) 0;
+}
+
+/* ImageCard 表格样式 - 简约主题版 */
+/* Ensure your HTML table has the class "tableWrapper" for these styles to apply */
+.tableWrapper,
+.image-card-content table {
+  width: 100%;
+  margin: calc(1.5em * var(--scale-factor)) 0;
+  border-collapse: collapse; /* Crucial for the border model with border-radius */
+  font-size: calc(14px * var(--scale-factor));
+  border: 1px solid var(--image-card-table-outer-border-color, #d1d5db); /* 表格外边框 - Light mode default */
+  border-radius: 8px; /* 为整个表格添加圆角 */
+  overflow: hidden; /* 配合圆角，隐藏内部单元格溢出的直角 */
+  /* box-shadow: 0 1px 3px var(--image-card-table-shadow-color, rgba(0, 0, 0, 0.05)); */ /* 移除了阴影，追求简约 */
+}
+
+.tableWrapper th,
+.tableWrapper td,
+.image-card-content table th,
+.image-card-content table td {
+  border: 1px solid var(--image-card-table-cell-border-color, #d1d5db); /* 单元格边框 - Light mode default */
+  padding: calc(0.6em * var(--scale-factor)) calc(0.8em * var(--scale-factor)); /* 调整内边距 */
+  text-align: center;
+  line-height: 1.4; /* 调整行高 */
+  vertical-align: middle;
+  color: var(--image-card-table-text-color, inherit);
+}
+
+.tableWrapper th,
+.image-card-content table th {
+  background-color: var(--image-card-table-header-bg, #f3f4f6); /* 表头背景色 - Light mode default */
+  color: var(--image-card-table-header-text-color, #1f2937); /* 表头文字颜色 - Light mode default */
+  font-weight: 600; /* 保持加粗 */
+  /* 表头下边框由单元格边框提供，不再特别加重，追求简约 */
+  /* border-bottom: 2px solid var(--image-card-table-header-border-bottom-color, #cccccc); */
+}
+
+/* 移除第一列左边框和最后一列右边框，因为表格本身有带圆角的边框 */
+.tableWrapper th:first-child,
+.tableWrapper td:first-child,
+.image-card-content table th:first-child,
+.image-card-content table td:first-child {
+  border-left: none;
+}
+
+.tableWrapper th:last-child,
+.tableWrapper td:last-child,
+.image-card-content table th:last-child,
+.image-card-content table td:last-child {
+  border-right: none;
+}
+
+/* 移除表头行的上边框 */
+.tableWrapper thead tr:first-child th,
+.image-card-content table thead tr:first-child th {
+  border-top: none;
+}
+/* 移除最后一行（如果不是表头）的下边框 */
+.tableWrapper tbody tr:last-child td,
+.image-card-content table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* 移除 td 的背景色，包括斑马条纹和悬停效果，追求简约 */
+.tableWrapper tr:nth-child(even) td,
+.image-card-content table tr:nth-child(even) td {
+  background-color: transparent; /* 确保 td 无背景色 */
+}
+
+.tableWrapper tr:hover td,
+.image-card-content table tr:hover td {
+  background-color: transparent; /* 确保 td 悬停时也无背景色 */
+  /* 如果需要细微的悬停反馈，可以考虑改变文字颜色或边框颜色 */
+  /* color: var(--image-card-table-row-hover-text-color); */
+}
+
+.tableWrapper caption,
+.image-card-content table caption {
+  caption-side: bottom;
+  text-align: center;
+  margin-top: calc(0.8em * var(--scale-factor));
+  font-size: calc(13px * var(--scale-factor));
+  color: var(--image-card-caption-text-color, #6b7280); /* 标题颜色 - Light mode default */
+  font-style: italic;
+}
+
+/*
+  关于主题化的说明：
+  请在您的 globals.css (或类似的主题样式文件) 中定义以下 CSS 变量。
+  这些变量可以根据亮色模式 (body.light 或 :root) 和暗色模式 (body.dark) 进行设置。
+
+  示例 (globals.css):
+
+  :root { // 或者 body.light
+    --scale-factor: 1; // 添加缩放因子
+    --image-card-text-color: #1f2937; // 更深的灰色，对比度更好
+    --image-card-marker-color: #4b5563;
+    --image-card-blockquote-border-color: #d1d5db;
+    --image-card-blockquote-bg-color: #f9fafb;
+    --image-card-blockquote-text-color: #374151;
+    --image-card-hr-color: #e5e7eb;
+
+    // 简约表格变量 - 亮色模式
+    --image-card-table-outer-border-color: #d1d5db; // 例如 Tailwind gray-300
+    // --image-card-table-shadow-color: rgba(0, 0, 0, 0.05); // 已移除
+    --image-card-table-cell-border-color: #e5e7eb;   // 例如 Tailwind gray-200 (比外边框略浅)
+    --image-card-table-text-color: #1f2937;        // 例如 Tailwind gray-800
+    --image-card-table-header-bg: #f3f4f6;         // 例如 Tailwind gray-100
+    --image-card-table-header-text-color: #111827; // 例如 Tailwind gray-900
+    // --image-card-table-header-border-bottom-color: #d1d5db; // 已移除，由单元格边框处理
+    // --image-card-table-row-even-bg: transparent; // 已设为 transparent
+    // --image-card-table-row-hover-bg: transparent; // 已设为 transparent
+    --image-card-caption-text-color: #6b7280;      // 例如 Tailwind gray-500
+  }
+
+  body.dark { // 或者 .dark-theme
+    --scale-factor: 1; // 添加缩放因子
+    --image-card-text-color: #d1d5db; // 浅灰色
+    --image-card-marker-color: #9ca3af;
+    --image-card-blockquote-border-color: #4b5563;
+    --image-card-blockquote-bg-color: #1f2937; // 深灰色背景
+    --image-card-blockquote-text-color: #9ca3af;
+    --image-card-hr-color: #374151;
+
+    // 简约表格变量 - 暗色模式
+    --image-card-table-outer-border-color: #4b5563; // 例如 Tailwind gray-600
+    // --image-card-table-shadow-color: rgba(0, 0, 0, 0.2); // 已移除
+    --image-card-table-cell-border-color: #374151;   // 例如 Tailwind gray-700 (比外边框略深)
+    --image-card-table-text-color: #d1d5db;        // 例如 Tailwind gray-300
+    --image-card-table-header-bg: #1f2937;         // 例如 Tailwind gray-800
+    --image-card-table-header-text-color: #f9fafb; // 例如 Tailwind gray-50
+    // --image-card-table-header-border-bottom-color: #4b5563; // 已移除
+    // --image-card-table-row-even-bg: transparent;
+    // --image-card-table-row-hover-bg: transparent;
+    --image-card-caption-text-color: #9ca3af;      // 例如 Tailwind gray-400
+    --image-card-caption-text-color: #9ca3af;      // 例如 Tailwind gray-400
+  }
+*/
+
+/* Callout Styles for ImageCard */
+.image-card-content .callout {
+  display: flex;
+  margin: calc(1.2em * var(--scale-factor)) 0;
+  padding: calc(1em * var(--scale-factor));
+  border-radius: 8px;
+  border-width: 1px;
+  border-style: solid;
+  gap: calc(0.8em * var(--scale-factor));
+  align-items: flex-start;
+}
+
+.image-card-content .callout-info {
+  background-color: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: #1e40af;
+}
+
+.image-card-content .callout-success {
+  background-color: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #065f46;
+}
+
+.image-card-content .callout-warning {
+  background-color: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #92400e;
+}
+
+.image-card-content .callout-error {
+  background-color: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #991b1b;
+}
+
+.image-card-content .callout-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.image-card-content .callout-content p:last-child {
+  margin-bottom: 0;
+}

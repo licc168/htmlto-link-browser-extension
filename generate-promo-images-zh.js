@@ -2,8 +2,8 @@ const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 
-const outScreens = path.join(__dirname, "..", "publish-kit", "zh_CN", "截图");
-const outAssets = path.join(__dirname, "..", "publish-kit", "zh_CN", "素材");
+const outScreens = path.join(__dirname, "素材", "zh", "截图");
+const outAssets = path.join(__dirname, "素材", "zh", "宣传图");
 for (const d of [outScreens, outAssets]) {
   if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true });
 }

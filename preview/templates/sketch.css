@@ -1,0 +1,167 @@
+/* Sketch - 手绘涂鸦风格 */
+/* 点阵纸背景 + 红色马克笔 + 不规则手绘边框 */
+
+.card-sketch {
+  font-family: 'Comic Neue', 'Comic Sans MS', 'PingFang SC', 'Microsoft YaHei', cursive, sans-serif;
+  background-color: #fffef8;
+  color: #2d2d2d;
+  overflow: hidden;
+  position: relative;
+  background-image: radial-gradient(circle, #ddd 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.card-sketch .card-content {
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.card-sketch .card-content-inner {
+  padding: 24px 28px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.card-sketch .card-content-inner h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #e63946;
+  margin-top: 0;
+  margin-bottom: 18px;
+  padding: 8px 16px;
+  border: 3px dashed #e63946;
+  border-radius: 8px 2px 16px 4px;
+  display: inline-block;
+  transform: rotate(-0.5deg);
+  background: rgba(230, 57, 70, 0.04);
+}
+
+.card-sketch .card-content-inner h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1d3557;
+  margin: 20px 0 12px;
+  padding-bottom: 4px;
+  border-bottom: 3px solid #457b9d;
+  border-bottom-style: wavy;
+  display: inline-block;
+}
+
+.card-sketch .card-content-inner h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2a9d8f;
+  margin: 14px 0 8px;
+}
+
+.card-sketch .card-content-inner h3::before {
+  content: "✏️ ";
+}
+
+.card-sketch .card-content-inner p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 14px;
+}
+
+.card-sketch .card-content-inner ol,
+.card-sketch .card-content-inner ul {
+  margin-bottom: 14px;
+  padding-left: 24px;
+}
+
+.card-sketch .card-content-inner li {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.card-sketch .card-content-inner li::marker {
+  color: #e63946;
+}
+
+.card-sketch .card-content-inner strong {
+  font-weight: 700;
+  color: #e63946;
+  background: linear-gradient(transparent 60%, #ffeaa7 60%);
+  padding: 0 2px;
+}
+
+.card-sketch .card-content-inner blockquote {
+  margin: 16px 0;
+  padding: 12px 16px;
+  border-left: 4px dashed #457b9d;
+  background-color: #f1faee;
+  color: #1d3557;
+  border-radius: 2px 12px 8px 2px;
+  transform: rotate(0.3deg);
+}
+
+.card-sketch .card-content-inner blockquote p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.card-sketch .card-content-inner code {
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  background: #fff3cd;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #6c5ce7;
+  border: 2px solid #fdcb6e;
+}
+
+.card-sketch .card-content-inner pre {
+  background: #f8f9fa;
+  border-radius: 8px 2px 12px 4px;
+  padding: 14px 18px;
+  overflow-x: auto;
+  border: 2px dashed #ccc;
+  margin: 16px 0;
+  transform: rotate(-0.2deg);
+}
+
+.card-sketch .card-content-inner pre code {
+  background: transparent;
+  padding: 0;
+  color: #2d3436;
+  border: none;
+  font-size: 14px;
+  display: block;
+}
+
+.card-sketch .card-content-inner table,
+.card-sketch .card-content-inner table.tableWrapper {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+  border: 2px dashed #ccc;
+  border-radius: 6px;
+}
+
+.card-sketch .card-content-inner th {
+  background: #ffeaa7;
+  font-weight: 700;
+  padding: 10px 14px;
+  color: #2d3436;
+  border-bottom: 2px dashed #e17055;
+  text-align: left;
+}
+
+.card-sketch .card-content-inner td {
+  padding: 10px 14px;
+  border-bottom: 1px dashed #ddd;
+  color: #636e72;
+}
+
+.card-sketch .card-content-inner tr:nth-child(even) td {
+  background-color: #f1faee;
+}

@@ -11,6 +11,18 @@
       if (classMatch) return classMatch[1];
       const header = block.closest(".code-area")?.querySelector('[class*="header"]');
       return header?.textContent || "";
+    },
+    extractConversation(root) {
+      const { pushTurn, firstMatch } = globalThis.htmltoLinkMarkdown;
+      const turns = [];
+      root.querySelectorAll('[data-message-id], div[data-testid="union_message"]').forEach((wrapper) => {
+        const roleAttr = wrapper.getAttribute("data-role") || wrapper.getAttribute("data-message-author-role") || "";
+        const className = String(wrapper.className || "");
+        const isUser = roleAttr === "user" || className.includes("justify-end") || wrapper.querySelector('[class*="send-msg-bubble"]');
+        const content = firstMatch(wrapper, 'div[data-testid="message_text_content"], .md-box-root, .markdown-body, .message-content, .whitespace-pre-wrap') || wrapper;
+        pushTurn(turns, isUser ? "user" : "assistant", content, wrapper);
+      });
+      return turns;
     }
   };
 })();

@@ -1,0 +1,176 @@
+/* Botanical - 植物图鉴风格 */
+/* 古书纸白 + 铜版绿色调，维多利亚植物图鉴学术风 */
+
+.card-botanical {
+  font-family: Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif;
+  background-color: #faf8f2;
+  color: #2c4a2c;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-botanical .card-content {
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.card-botanical .card-content::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 2px solid #c5b899;
+  margin: 8px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.card-botanical .card-content::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 1px solid #d4c9a8;
+  margin: 12px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.card-botanical .card-content-inner {
+  padding: 28px 30px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.card-botanical .card-content-inner h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2d5a27;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #2d5a27;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card-botanical .card-content-inner h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #3a6b35;
+  margin: 20px 0 10px;
+  padding-left: 14px;
+  border-left: 3px solid #3a6b35;
+}
+
+.card-botanical .card-content-inner h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #4a7c44;
+  margin: 14px 0 8px;
+  font-style: italic;
+}
+
+.card-botanical .card-content-inner p {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #3d4f3d;
+  margin-bottom: 14px;
+  text-align: justify;
+}
+
+.card-botanical .card-content-inner ol,
+.card-botanical .card-content-inner ul {
+  margin-bottom: 14px;
+  padding-left: 28px;
+}
+
+.card-botanical .card-content-inner li {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #3d4f3d;
+  margin-bottom: 4px;
+}
+
+.card-botanical .card-content-inner li::marker {
+  color: #3a6b35;
+}
+
+.card-botanical .card-content-inner strong {
+  font-weight: 700;
+  color: #2d5a27;
+}
+
+.card-botanical .card-content-inner blockquote {
+  margin: 16px 0;
+  padding: 12px 20px;
+  border-left: 3px solid #a8c6a2;
+  background-color: #f5f2e8;
+  color: #4a6148;
+  font-style: italic;
+  border-radius: 0 4px 4px 0;
+}
+
+.card-botanical .card-content-inner blockquote p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.card-botanical .card-content-inner code {
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  background: #f0ebe0;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 14px;
+  color: #5c7a56;
+  border: 1px solid #d4c9a8;
+}
+
+.card-botanical .card-content-inner pre {
+  background: #f5f2e8;
+  border-radius: 4px;
+  padding: 14px 18px;
+  overflow-x: auto;
+  border: 1px solid #d4c9a8;
+  margin: 16px 0;
+}
+
+.card-botanical .card-content-inner pre code {
+  background: transparent;
+  padding: 0;
+  color: #3d4f3d;
+  border: none;
+  font-size: 14px;
+  display: block;
+}
+
+.card-botanical .card-content-inner table,
+.card-botanical .card-content-inner table.tableWrapper {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+}
+
+.card-botanical .card-content-inner th {
+  background: #e8e0ce;
+  font-weight: 600;
+  padding: 10px 14px;
+  color: #2d5a27;
+  border-bottom: 2px solid #c5b899;
+  text-align: left;
+}
+
+.card-botanical .card-content-inner td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #e8e0ce;
+  color: #4a6148;
+}
+
+.card-botanical .card-content-inner tr:nth-child(even) td {
+  background-color: #f9f6ef;
+}

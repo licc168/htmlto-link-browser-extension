@@ -2,10 +2,9 @@ const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 
-const outScreens = path.join(__dirname, "..", "publish-kit", "en", "screenshots");
-const outAssets = path.join(__dirname, "..", "publish-kit", "en", "assets");
-const outLocal = path.join(__dirname, "promo-images");
-for (const d of [outScreens, outAssets, outLocal]) {
+const outScreens = path.join(__dirname, "素材", "en", "screenshots");
+const outAssets = path.join(__dirname, "素材", "en", "promo");
+for (const d of [outScreens, outAssets]) {
   if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true });
 }
 
@@ -132,11 +131,11 @@ async function render(svg, file, dirs) {
 }
 
 (async () => {
-  await render(screenshot1(), "screenshot-1-chatgpt-button.png", [outScreens, outLocal]);
-  await render(screenshot2(), "screenshot-2-link-copied.png", [outScreens, outLocal]);
-  await render(screenshot3(), "screenshot-3-phone-opens.png", [outScreens, outLocal]);
-  await render(promoSmall(), "promo-tile-440x280.png", [outAssets, outLocal]);
-  await render(promoMarquee(), "promo-tile-1400x560.png", [outAssets, outLocal]);
+  await render(screenshot1(), "screenshot-1-chatgpt-button.png", [outScreens]);
+  await render(screenshot2(), "screenshot-2-link-copied.png", [outScreens]);
+  await render(screenshot3(), "screenshot-3-phone-opens.png", [outScreens]);
+  await render(promoSmall(), "promo-tile-440x280.png", [outAssets]);
+  await render(promoMarquee(), "promo-tile-1400x560.png", [outAssets]);
   console.log("All EN promo images generated.");
 })().catch((err) => {
   console.error("Generation failed:", err);

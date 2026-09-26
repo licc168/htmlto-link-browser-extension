@@ -17,7 +17,9 @@
   const demoError = document.getElementById("demoError");
 
   chatgptBtn.addEventListener("click", () => {
-    chrome.tabs.create({ url: "https://chatgpt.com/" });
+    const lang = (chrome.i18n.getUILanguage() || "").toLowerCase();
+    const url = lang.startsWith("zh") ? "https://chat.deepseek.com/" : "https://chatgpt.com/";
+    chrome.tabs.create({ url });
   });
 
   demoBtn.addEventListener("click", async () => {

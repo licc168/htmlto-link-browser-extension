@@ -1,0 +1,152 @@
+/* Ayu Light - 温暖橙色调编辑器风格 */
+/* Ayu Light 配色：温暖的灰白背景 + 橙色强调 */
+
+.card-ayulight {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background-color: #fcfcfc;
+  color: #5c6166;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-ayulight .card-content {
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.card-ayulight .card-content-inner {
+  padding: 24px 28px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.card-ayulight .card-content-inner h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #5c6166;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f29718;
+}
+
+.card-ayulight .card-content-inner h2 {
+  font-size: 19px;
+  font-weight: 600;
+  color: #fcfcfc;
+  background-color: #f29718;
+  padding: 2px 12px;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 18px 0 10px;
+}
+
+.card-ayulight .card-content-inner h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #f29718;
+  margin: 14px 0 8px;
+}
+
+.card-ayulight .card-content-inner p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #5c6166;
+  margin-bottom: 14px;
+}
+
+.card-ayulight .card-content-inner ol,
+.card-ayulight .card-content-inner ul {
+  margin-bottom: 14px;
+  padding-left: 28px;
+}
+
+.card-ayulight .card-content-inner li {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #5c6166;
+  margin-bottom: 5px;
+}
+
+.card-ayulight .card-content-inner li::marker {
+  font-weight: bold;
+  color: #828e9f;
+}
+
+.card-ayulight .card-content-inner strong {
+  font-weight: 600;
+  color: #f29718;
+}
+
+.card-ayulight .card-content-inner blockquote {
+  margin: 14px 0;
+  padding: 12px 20px;
+  border-left: 3px solid #f29718;
+  background: #f8f9fa;
+  color: #5c6166;
+  border-radius: 0 4px 4px 0;
+}
+
+.card-ayulight .card-content-inner blockquote p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.card-ayulight .card-content-inner code {
+  font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+  background: #f8f9fa;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 14px;
+  color: #f29718;
+}
+
+.card-ayulight .card-content-inner pre {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 14px 18px;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+.card-ayulight .card-content-inner pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font-size: 14px;
+  display: block;
+  line-height: 1.5;
+}
+
+.card-ayulight .card-content-inner table,
+.card-ayulight .card-content-inner table.tableWrapper {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 15px;
+}
+
+.card-ayulight .card-content-inner th {
+  font-weight: bold;
+  padding: 8px 12px;
+  color: #f29718;
+  border: 1px solid #e6e8eb;
+  text-align: center;
+  min-width: 6em;
+}
+
+.card-ayulight .card-content-inner td {
+  padding: 8px 12px;
+  border: 1px solid #e6e8eb;
+  text-align: left;
+}
+
+.card-ayulight .card-content-inner tr:nth-child(even) td {
+  background-color: #fafafa;
+}

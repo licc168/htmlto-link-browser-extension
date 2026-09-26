@@ -1,0 +1,202 @@
+.custom-background-template {
+  position: relative;
+  border-radius: 0; /* 移除圆角 */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  /* 添加深色背景，方便用户看到图片位置 */
+  background-color: #2a2a2a;
+}
+
+.custom-background-template .image-card-content {
+  position: absolute;
+  color: #333;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* 代码块样式 */
+.custom-background-template .image-card-content pre {
+  background-color: rgba(40, 44, 52, 0.9);
+  border-radius: 6px;
+  padding: 12px;
+  margin: 8px 0;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.custom-background-template .image-card-content code {
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.custom-background-template .image-card-content pre code {
+  background: none;
+  padding: 0;
+  border: none;
+  color: #abb2bf;
+}
+
+.custom-background-template .image-card-content p code {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 0.9em;
+  color: #e06c75;
+}
+
+/* 标题样式 */
+.custom-background-template .image-card-content h1,
+.custom-background-template .image-card-content h2,
+.custom-background-template .image-card-content h3,
+.custom-background-template .image-card-content h4,
+.custom-background-template .image-card-content h5,
+.custom-background-template .image-card-content h6 {
+  margin: 16px 0 8px 0;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.custom-background-template .image-card-content h1 {
+  font-size: 1.8em;
+  color: #2c3e50;
+}
+
+.custom-background-template .image-card-content h2 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+.custom-background-template .image-card-content h3 {
+  font-size: 1.3em;
+  color: #34495e;
+}
+
+/* 列表样式 (参考 memo.css 风格) */
+.custom-background-template .image-card-content ul,
+.custom-background-template .image-card-content ol {
+  margin: 1em 0; /* 调整 margin */
+  padding-left: 0; /* 移除默认 padding */
+  list-style: none; /* 移除默认列表标记 */
+}
+
+.custom-background-template .image-card-content ol {
+  counter-reset: list-item; /* 为有序列表初始化计数器 */
+}
+
+.custom-background-template .image-card-content li {
+  position: relative; /* 为 ::before 伪元素定位 */
+  padding-left: 28px; /* 为自定义标记留出空间 */
+  margin-bottom: 0.5em; /* 调整下方间距 */
+  line-height: 1.5; /* 保持行高 */
+  color: #333; /* 确保列表项文本颜色 */
+}
+
+.custom-background-template .image-card-content li p {
+  margin: 0; /* 移除列表项内段落的默认边距 */
+}
+
+/* 无序列表 (ul) 项目符号 */
+.custom-background-template .image-card-content ul > li::before {
+  content: "\2022"; /* Unicode for • */
+  position: absolute;
+  left: 10px; /* 调整标记位置 */
+  top: 0.05em; /* 微调垂直对齐 */
+  color: #555; /* 列表标记颜色 */
+  font-size: 1.2em; /* 标记大小 */
+  line-height: inherit; /* 继承行高 */
+}
+
+/* 有序列表 (ol) 数字 */
+.custom-background-template .image-card-content ol > li::before {
+  content: counter(list-item) "."; /* 显示计数器值和点 */
+  counter-increment: list-item; /* 增加计数器 */
+  position: absolute;
+  left: 0; /* 调整标记位置 */
+  top: 0; /* 微调垂直对齐 */
+  color: #555; /* 列表标记颜色 */
+  font-weight: normal;
+  min-width: 20px; /* 确保数字对齐 */
+  text-align: right; /* 数字右对齐 */
+  padding-right: 8px; /* 数字和文本之间的间距 */
+  box-sizing: border-box;
+}
+
+/* 段落样式 */
+.custom-background-template .image-card-content p {
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+/* 引用样式 */
+.custom-background-template .image-card-content blockquote {
+  border-left: 4px solid #3498db;
+  margin: 12px 0;
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+}
+
+/* 链接样式 */
+.custom-background-template .image-card-content a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom-color 0.2s;
+}
+
+.custom-background-template .image-card-content a:hover {
+  border-bottom-color: #3498db;
+}
+
+/* 表格样式 */
+.custom-background-template .image-card-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.custom-background-template .image-card-content th,
+.custom-background-template .image-card-content td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.custom-background-template .image-card-content th {
+  background-color: rgba(52, 73, 94, 0.1);
+  font-weight: 600;
+}
+
+/* 数学公式样式 */
+.custom-background-template .image-card-content .katex {
+  font-size: 1em;
+}
+
+.custom-background-template .image-card-content .katex-display {
+  margin: 12px 0;
+  text-align: center;
+}
+
+/* 分隔线样式 */
+.custom-background-template .image-card-content hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.2), transparent);
+  margin: 16px 0;
+}
+
+/* 强调文本样式 */
+.custom-background-template .image-card-content strong {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.custom-background-template .image-card-content em {
+  font-style: italic;
+  color: #7f8c8d;
+}

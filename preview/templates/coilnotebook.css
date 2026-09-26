@@ -1,0 +1,324 @@
+.card-coilnotebook {
+  --coil-text: #24292e;
+  --coil-border: #a6a6a6;
+  --coil-bg-color: #5271ff;
+  --coil-grid-color: rgba(255, 255, 255, 0.2);
+  --coil-content-bg: #fff;
+  --coil-list-bg: rgba(255, 255, 255, 0.72);
+  --coil-shadow: rgba(23, 33, 84, 0.18);
+  --coil-gutter-color: #6d7cff;
+  --coil-accent: #5db1ff;
+  --coil-sub-accent: #8d63d6;
+  --coil-note-line: rgba(109, 124, 255, 0.18);
+  --coil-hole: #eff2ff;
+  --coil-callout: #e83f7d;
+  --coil-badge-text: #452d96;
+}
+
+.card-coilnotebook.blue-mode {
+  --coil-bg-color: #5271ff;
+  --coil-gutter-color: #5570ff;
+  --coil-accent: #5db1ff;
+  --coil-sub-accent: #8d63d6;
+}
+
+.card-coilnotebook.pink-mode {
+  --coil-bg-color: #ff4e79;
+  --coil-gutter-color: #ff5f8d;
+  --coil-accent: #ff95c8;
+  --coil-sub-accent: #ff6f91;
+  --coil-note-line: rgba(255, 78, 121, 0.14);
+}
+
+.card-coilnotebook.mint-mode {
+  --coil-bg-color: #7fd1ae;
+  --coil-gutter-color: #62c79b;
+  --coil-accent: #8cdcc7;
+  --coil-sub-accent: #56b9a1;
+  --coil-note-line: rgba(98, 199, 155, 0.16);
+}
+
+.card-coilnotebook.yellow-mode {
+  --coil-bg-color: #ffd666;
+  --coil-grid-color: rgba(0, 0, 0, 0.1);
+  --coil-list-bg: rgba(255, 255, 255, 0.9);
+  --coil-gutter-color: #f2c94c;
+  --coil-accent: #ffd666;
+  --coil-sub-accent: #f29d38;
+  --coil-note-line: rgba(242, 201, 76, 0.18);
+}
+
+.card-coilnotebook {
+  background-color: var(--coil-bg-color) !important;
+  background-image:
+    linear-gradient(var(--coil-grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--coil-grid-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: -5px -5px;
+  padding: 28px;
+  overflow: hidden;
+}
+
+.card-coilnotebook .card-content {
+  position: relative;
+  background: var(--coil-content-bg);
+  border-radius: 18px;
+  padding-left: 26px;
+  box-shadow: 0 16px 40px var(--coil-shadow);
+  height: 100%;
+  overflow: hidden;
+}
+
+.card-coilnotebook .card-content::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 16px;
+  background:
+    linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.98) 0,
+      rgba(255, 255, 255, 0.98) 12px,
+      rgba(123, 136, 198, 0.22) 12px,
+      rgba(123, 136, 198, 0.22) 13px,
+      transparent 13px
+    );
+}
+
+.card-coilnotebook .card-content::after {
+  content: "";
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: -1px;
+  width: 18px;
+  background:
+    radial-gradient(
+      circle at left center,
+      var(--coil-gutter-color) 0 8px,
+      transparent 8.5px
+    ) left top / 18px 34px repeat-y;
+}
+
+.card-coilnotebook .card-content-inner {
+  position: relative;
+  height: 100%;
+  background: var(--coil-content-bg);
+  padding: 24px 20px 24px 0;
+  overflow: visible;
+  color: var(--coil-text);
+  line-height: 1.72;
+}
+
+.card-coilnotebook .card-content-inner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  border-left: 2px solid var(--coil-note-line);
+}
+
+.card-coilnotebook .card-content-inner > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card-coilnotebook .card-content-inner > *:first-child {
+  margin-top: 0;
+}
+
+.card-coilnotebook.is-long-content .card-content,
+.card-coilnotebook.is-long-content .card-content-inner {
+  height: auto;
+}
+
+.card-coilnotebook .card-content h1,
+.card-coilnotebook .card-content h2,
+.card-coilnotebook .card-content h3,
+.card-coilnotebook .card-content h4,
+.card-coilnotebook .card-content p,
+.card-coilnotebook .card-content blockquote,
+.card-coilnotebook .card-content ul,
+.card-coilnotebook .card-content ol,
+.card-coilnotebook .card-content hr,
+.card-coilnotebook .card-content table,
+.card-coilnotebook .card-content .tableWrapper {
+  margin-left: 14px;
+  margin-right: 6px;
+}
+
+.card-coilnotebook .card-content h1 {
+  margin-top: 0;
+  margin-bottom: 18px;
+  font-size: 2.15em;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #2f2e43;
+}
+
+.card-coilnotebook .card-content blockquote {
+  margin-top: 0;
+  margin-bottom: 26px;
+  padding: 16px 18px;
+  border-left: 6px solid var(--coil-callout);
+  background: #f8eaf1;
+  border-radius: 10px;
+  color: #4f4d67;
+  font-style: normal;
+}
+
+.card-coilnotebook .card-content h2,
+.card-coilnotebook .card-content h3 {
+  display: block;
+  width: fit-content;
+  max-width: calc(100% - 24px);
+  margin-top: 14px;
+  margin-bottom: 18px;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 1.18em;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.card-coilnotebook .card-content h2 {
+  background: var(--coil-accent);
+  color: var(--coil-badge-text);
+}
+
+.card-coilnotebook .card-content h3 {
+  background: var(--coil-sub-accent);
+  color: white;
+}
+
+.card-coilnotebook .card-content h4 {
+  margin-top: 12px;
+  margin-bottom: 14px;
+  font-size: 1.2em;
+  line-height: 1.4;
+  font-weight: 700;
+  color: #443f6c;
+}
+
+.card-coilnotebook .card-content p {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.04em;
+}
+
+.card-coilnotebook .card-content hr {
+  margin-top: 18px;
+  margin-bottom: 18px;
+  border: 0;
+  border-top: 1px dashed rgba(36, 41, 46, 0.28);
+}
+
+.card-coilnotebook .card-content ul,
+.card-coilnotebook .card-content ol {
+  background-color: var(--coil-list-bg);
+  padding: 16px 18px;
+  border: 1px dashed var(--coil-border);
+  border-radius: 10px;
+  list-style: none;
+}
+
+.card-coilnotebook .card-content ol {
+  counter-reset: coil-step;
+}
+
+.card-coilnotebook .card-content ul li,
+.card-coilnotebook .card-content ol li {
+  position: relative;
+  margin: 10px 0;
+  padding-left: 34px;
+  min-height: 24px;
+}
+
+.card-coilnotebook .card-content ul li {
+  list-style: none;
+}
+
+.card-coilnotebook .card-content ul li::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  color: var(--coil-text);
+  font-size: 14px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffd666;
+  text-align: center;
+  line-height: 24px;
+}
+
+.card-coilnotebook .card-content ol li::before {
+  counter-increment: coil-step;
+  content: counter(coil-step);
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  color: var(--coil-text);
+  font-weight: 700;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffd666;
+  text-align: center;
+  line-height: 24px;
+}
+
+.card-coilnotebook .card-content table.tableWrapper,
+.card-coilnotebook .card-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  background-color: var(--coil-content-bg);
+  border: 1px solid var(--coil-border);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.card-coilnotebook .card-content table.tableWrapper th,
+.card-coilnotebook .card-content table th {
+  background-color: var(--coil-bg-color);
+  color: white;
+  padding: 10px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.card-coilnotebook .card-content table.tableWrapper td,
+.card-coilnotebook .card-content table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--coil-border);
+  border-right: 1px solid var(--coil-border);
+}
+
+.card-coilnotebook .card-content table.tableWrapper tr:last-child td,
+.card-coilnotebook .card-content table tr:last-child td {
+  border-bottom: none;
+}
+
+.card-coilnotebook .card-content table.tableWrapper td:last-child,
+.card-coilnotebook .card-content table td:last-child {
+  border-right: none;
+}
+
+.card-coilnotebook .card-content table.tableWrapper tr:nth-child(even),
+.card-coilnotebook .card-content table tr:nth-child(even) {
+  background-color: var(--coil-list-bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  .card-coilnotebook {
+    --coil-grid-color: rgba(255, 255, 255, 0.15);
+    --coil-content-bg: #ffffff;
+    --coil-list-bg: rgba(255, 255, 255, 0.8);
+    --coil-shadow: rgba(0, 0, 0, 0.2);
+  }
+}

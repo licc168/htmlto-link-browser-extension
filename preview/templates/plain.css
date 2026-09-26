@@ -1,0 +1,175 @@
+/* Plain - 简洁（无样式） */
+/* 最简模板：白底黑字，无任何装饰性样式。
+   common.css 重置了浏览器默认排版（margin、list-style 等），
+   这里将其恢复为接近浏览器默认的朴素外观。 */
+
+.card-plain {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.card-plain .card-content {
+  padding: 0;
+  position: relative;
+  min-height: 100%;
+}
+
+.card-plain .card-content-inner {
+  padding: 24px 28px;
+}
+
+/* 标题：恢复浏览器默认字号与黑色 */
+.card-plain .card-content-inner h1 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #000;
+  margin: 0.67em 0;
+}
+
+.card-plain .card-content-inner h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #000;
+  margin: 0.83em 0;
+}
+
+.card-plain .card-content-inner h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+  color: #000;
+  margin: 1em 0;
+}
+
+.card-plain .card-content-inner h4,
+.card-plain .card-content-inner h5,
+.card-plain .card-content-inner h6 {
+  font-size: 1em;
+  font-weight: bold;
+  color: #000;
+  margin: 1.33em 0;
+}
+
+/* 段落 */
+.card-plain .card-content-inner p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #000;
+  margin: 1em 0;
+}
+
+/* 列表：恢复默认项目符号 */
+.card-plain .card-content-inner ul {
+  list-style: disc;
+  padding-left: 1.5em;
+  margin: 1em 0;
+}
+
+.card-plain .card-content-inner ol {
+  list-style: decimal;
+  padding-left: 1.5em;
+  margin: 1em 0;
+}
+
+.card-plain .card-content-inner li {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #000;
+  margin: 0.25em 0;
+  padding-left: 0;
+}
+
+.card-plain .card-content-inner li::before {
+  content: none;
+}
+
+/* 行内元素 */
+.card-plain .card-content-inner strong {
+  font-weight: bold;
+  color: #000;
+}
+
+.card-plain .card-content-inner em {
+  font-style: italic;
+}
+
+.card-plain .card-content-inner a {
+  color: #0000EE;
+  text-decoration: underline;
+}
+
+/* 引用：无装饰 */
+.card-plain .card-content-inner blockquote {
+  margin: 1em 0;
+  padding: 0 0 0 1em;
+  border-left: none;
+  background: none;
+  color: #000;
+}
+
+.card-plain .card-content-inner blockquote p {
+  margin: 0;
+  color: #000;
+}
+
+/* 行内代码 */
+.card-plain .card-content-inner code {
+  font-family: 'SF Mono', Consolas, Monaco, 'Courier New', monospace;
+  background: #f0f0f0;
+  padding: 2px 5px;
+  border-radius: 3px;
+  color: #000;
+  font-size: 0.9em;
+}
+
+/* 代码块 */
+.card-plain .card-content-inner pre {
+  background: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin: 1em 0;
+  overflow-x: auto;
+}
+
+.card-plain .card-content-inner pre code {
+  display: block;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+/* 表格：最简黑色边框 */
+.card-plain .card-content-inner table,
+.card-plain .card-content-inner table.tableWrapper {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 16px;
+}
+
+.card-plain .card-content-inner th,
+.card-plain .card-content-inner td {
+  border: 1px solid #000;
+  padding: 6px 8px;
+  text-align: left;
+  background: none;
+  color: #000;
+}
+
+/* 分隔线 */
+.card-plain .card-content-inner hr {
+  border: none;
+  border-top: 1px solid #000;
+  margin: 1em 0;
+}
+
+/* 图片自适应 */
+.card-plain .card-content-inner img {
+  max-width: 100%;
+  height: auto;
+}

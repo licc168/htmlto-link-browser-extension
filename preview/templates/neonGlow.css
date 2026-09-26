@@ -1,0 +1,578 @@
+/* 霓虹灯风格模板样式 */
+.card-neonglow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #22004d; /* 更清晰的深紫色 */
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* 背景效果 */
+.neon-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(123, 31, 162, 0.5), transparent 40%),
+              radial-gradient(circle at 70% 70%, rgba(32, 156, 238, 0.5), transparent 40%);
+  z-index: 0;
+}
+
+/* 霓虹线条装饰 */
+.neon-decorations {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.neon-line {
+  position: absolute;
+  background: linear-gradient(90deg, #FF00CC, #3393FF);
+  opacity: 0.8;
+  filter: blur(2px);
+  box-shadow: 0 0 15px rgba(255, 0, 204, 0.8),
+              0 0 30px rgba(255, 0, 204, 0.4),
+              0 0 45px rgba(255, 0, 204, 0.2);
+  animation: neonPulse 2s infinite alternate;
+}
+
+.neon-line-top {
+  top: 20px;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+}
+
+.neon-line-right {
+  top: 15%;
+  right: 20px;
+  width: 2px;
+  height: 70%;
+}
+
+.neon-line-bottom {
+  bottom: 20px;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+}
+
+.neon-line-left {
+  top: 15%;
+  left: 20px;
+  width: 2px;
+  height: 70%;
+}
+
+/* 霓虹圆形装饰 */
+.neon-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0 20px rgba(51, 147, 255, 0.8),
+              0 0 40px rgba(51, 147, 255, 0.4),
+              0 0 60px rgba(51, 147, 255, 0.2);
+  animation: neonFloat 6s infinite ease-in-out;
+}
+
+.neon-circle-1 {
+  top: 15%;
+  right: 10%;
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgba(51, 147, 255, 0.8);
+}
+
+.neon-circle-2 {
+  bottom: 15%;
+  left: 10%;
+  width: 150px;
+  height: 150px;
+  border: 2px solid rgba(255, 0, 204, 0.8);
+  animation-delay: -3s;
+}
+
+/* 内容区域样式 */
+.card-neonglow .card-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.card-neonglow .card-content-inner {
+  background: rgba(22, 11, 42, 0.7);
+  border-radius: 12px;
+  padding: 30px;
+  border: 1px solid rgba(123, 31, 162, 0.3);
+  box-shadow: 0 0 20px rgba(123, 31, 162, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  flex-grow: 1;
+  overflow: hidden;
+  color: white;
+  position: relative;
+}
+
+/* 标题样式 */
+.card-neonglow h1 {
+  font-size: 38px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #FF00CC, #3393FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0.3em 0;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(255, 0, 204, 0.8),
+               0 0 20px rgba(255, 0, 204, 0.4);
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+.card-neonglow h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #00FFFF;
+  margin: 0.8em 0 0.5em;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+  letter-spacing: 1px;
+  line-height: 1.3;
+}
+
+.card-neonglow h3 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #FE53BB;
+  margin: 0.8em 0 0.5em;
+  text-shadow: 0 0 8px rgba(254, 83, 187, 0.8);
+  line-height: 1.4;
+}
+
+.card-neonglow h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #3393FF;
+  margin: 0.8em 0 0.5em;
+  text-shadow: 0 0 8px rgba(51, 147, 255, 0.8);
+  line-height: 1.4;
+}
+
+/* 段落样式 */
+.card-neonglow p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.2em;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+/* strong标签样式 */
+.card-neonglow strong {
+  color: #3393FF;
+  text-shadow: 0 0 5px rgba(51, 147, 255, 0.8);
+}
+
+/* 引用样式 */
+.card-neonglow blockquote {
+  background: rgba(28, 21, 51, 0.6);
+  border-left: 3px solid #3393FF;
+  color: #FFFFFF;
+  padding: 15px 20px;
+  margin: 20px 0;
+  font-style: italic;
+  position: relative;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 0 15px rgba(51, 147, 255, 0.3);
+}
+
+.card-neonglow blockquote::before {
+  content: "\201C";
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  font-size: 40px;
+  color: rgba(51, 147, 255, 0.2);
+  line-height: 1;
+}
+
+.card-neonglow blockquote p {
+  color: #FFFFFF;
+  font-style: italic;
+  margin: 0;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* 列表样式 */
+.card-neonglow ul,
+.card-neonglow ol {
+  padding-left: 0;
+  margin: 20px 0;
+}
+
+.card-neonglow li {
+  position: relative;
+  list-style: none;
+  margin-bottom: 1.5em;
+  padding-left: 40px;
+  color: #ffffff;
+  line-height: 1.6;
+  font-size: 16px;
+  display: block;
+}
+
+/* 列表项中的段落样式 */
+.card-neonglow ol > li::before {
+  content: attr(data-index);
+  position: absolute;
+  left: -1.5rem;
+  top: 0.25em;
+  width: 28px;
+  height: 28px;
+  background: rgba(254, 83, 187, 0.2);
+  border: 1px solid rgba(254, 83, 187, 0.5);
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: #FE53BB;
+  text-align: center;
+  line-height: 28px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.card-neonglow ul > li::before {
+  content: "\2022";
+  position: absolute;
+  left: 10px;
+  top: 0.05em;
+  color: var(--neonglow-accent-neon);
+  font-size: 1.2em;
+  line-height: inherit;
+  filter: drop-shadow(0 0 3px currentColor);
+}
+
+/* 嵌套列表样式优化 */
+/* 有序列表内的无序列表 */
+.card-neonglow ol ul {
+  margin-top: 0.5em;
+  padding-left: 5px;
+  margin-bottom: 0.5em;
+}
+
+.card-neonglow ol ul li {
+  list-style: none;
+  padding-left: 28px;
+  margin-bottom: 0.5em;
+  position: relative;
+}
+
+.card-neonglow ol ul li::before {
+  content: "\2022";
+  position: absolute;
+  left: -0.5rem;
+  top: 0.25em;
+  color: var(--neonglow-accent-neon);
+  font-size: 1.2em;
+  line-height: inherit;
+  filter: drop-shadow(0 0 3px currentColor);
+}
+
+/* 无序列表内的有序列表 */
+.card-neonglow ul ol {
+  margin-top: 0.5em;
+  padding-left: 5px;
+}
+
+.card-neonglow ul ol li {
+  list-style: none;
+  padding-left: 24px;
+  margin-bottom: 0.5em;
+  position: relative;
+}
+
+.card-neonglow ul ol li::before {
+  content: attr(data-index);
+  position: absolute;
+  left: -0.5rem;
+  top: 0.25em;
+  width: 28px;
+  height: 28px;
+  background: rgba(254, 83, 187, 0.2);
+  border: 1px solid rgba(254, 83, 187, 0.5);
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: #FE53BB;
+  text-align: center;
+  line-height: 28px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* 多层嵌套样式 */
+.card-neonglow ol ol,
+.card-neonglow ul ul {
+  padding-left: 10px;
+  margin-top: 0.5em;
+}
+
+.card-neonglow ol ol li::before {
+  content: attr(data-index);
+  position: absolute;
+  left: -0.5rem;
+  top: 0.25em;
+  width: 28px;
+  height: 28px;
+  background: rgba(254, 83, 187, 0.2);
+  border: 1px solid rgba(254, 83, 187, 0.5);
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: #FE53BB;
+  text-align: center;
+  line-height: 28px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.card-neonglow ul ul li {
+  list-style: none;
+}
+
+.card-neonglow ul ul li::before {
+  content: "\2022";
+  position: absolute;
+  left: -0.5rem;
+  top: 0.25em;
+  color: var(--neonglow-accent-neon);
+  font-size: 1.2em;
+  line-height: inherit;
+  filter: drop-shadow(0 0 3px currentColor);
+}
+
+/* 特别处理 li > p + ol 的情况 */
+.card-neonglow li > p + ol {
+  margin-top: 0.5em;
+  padding-left: 0;
+}
+
+.card-neonglow li > p + ol > li {
+  list-style: none;
+  padding-left: 24px;
+  margin-bottom: 0.5em;
+  position: relative;
+}
+
+.card-neonglow li > p + ol > li::before {
+  content: attr(data-index);
+  position: absolute;
+  left: -0.5rem;
+  top: 0.25em;
+  width: 28px;
+  height: 28px;
+  background: rgba(254, 83, 187, 0.2);
+  border: 1px solid rgba(254, 83, 187, 0.5);
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: #FE53BB;
+  text-align: center;
+  line-height: 28px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* 底部署名区域 */
+.neon-footer {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 2px;
+  text-shadow: 0 0 5px rgba(51, 147, 255, 0.8);
+}
+
+/* 动画效果 */
+@keyframes neonPulse {
+  0% {
+    opacity: 0.6;
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(3px);
+  }
+}
+
+@keyframes neonFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* 确保霓虹文本正确缩放 */
+.card-neonglow .neon-text {
+  font-size: calc(1rem * 1);
+}
+
+/* 确保霓虹效果元素的大小也相应调整 */
+.card-neonglow .neon-glow-1,
+.card-neonglow .neon-glow-2 {
+  transform: scale(1);
+  transform-origin: center;
+}
+
+/* 如果有其他特殊效果元素也需要一一处理 */
+
+/* 霓虹灯表格样式 */
+.card-neonglow table.tableWrapper,
+.card-neonglow table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 2em 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(22, 11, 42, 0.7);
+  box-shadow: 0 0 15px rgba(51, 147, 255, 0.5),
+              inset 0 0 10px rgba(123, 31, 162, 0.3);
+  border: 1px solid rgba(51, 147, 255, 0.4);
+  position: relative;
+  animation: tablePulse 3s infinite alternate;
+}
+
+/* 表头和单元格通用样式 */
+.card-neonglow table.tableWrapper th,
+.card-neonglow table.tableWrapper td,
+.card-neonglow th,
+.card-neonglow td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(51, 147, 255, 0.3);
+  color: #ffffff; /* 纯白色 */
+  font-size: 16px;
+  position: relative;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+  background: rgba(22, 11, 42, 0.7); /* 确保所有单元格有暗色背景 */
+}
+
+/* 表头样式 */
+.card-neonglow table.tableWrapper th,
+.card-neonglow th {
+  background: rgba(123, 31, 162, 0.4);
+  color: #00FFFF;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+  border-bottom: 2px solid #00FFFF;
+}
+
+/* 表格行样式 */
+.card-neonglow table.tableWrapper tr,
+.card-neonglow tr {
+  background: rgba(22, 11, 42, 0.7); /* 确保所有行有暗色背景 */
+}
+
+/* 表格行交替颜色 */
+.card-neonglow table.tableWrapper tr:nth-child(even),
+.card-neonglow tr:nth-child(even) {
+  background: rgba(28, 21, 51, 0.5); /* 稍微更暗的背景 */
+}
+
+/* 表格行悬停效果 */
+.card-neonglow table.tableWrapper tr:hover,
+.card-neonglow tr:hover {
+  background: rgba(51, 147, 255, 0.2);
+}
+
+.card-neonglow table.tableWrapper td:hover,
+.card-neonglow td:hover {
+  color: #FF00CC;
+  text-shadow: 0 0 8px rgba(255, 0, 204, 0.8);
+  background: rgba(22, 11, 42, 0.9); /* 悬停时保持暗色背景 */
+}
+
+/* 确保单元格内的段落没有边距 */
+.card-neonglow table.tableWrapper td p,
+.card-neonglow td p {
+  margin: 0;
+  padding: 0;
+}
+
+/* 表格容器样式 */
+.card-neonglow .table-container {
+  overflow-x: auto;
+  margin-bottom: 2em;
+  padding: 5px;
+  position: relative;
+}
+
+/* 霓虹灯表格装饰效果 */
+.card-neonglow table.tableWrapper::before,
+.card-neonglow table::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #FF00CC, #3393FF, #00FFFF, #FF00CC);
+  z-index: -1;
+  border-radius: 10px;
+  opacity: 0.5;
+  filter: blur(5px);
+  animation: borderGlow 3s infinite linear;
+  background-size: 400% 400%;
+}
+
+/* 特殊单元格样式 */
+.card-neonglow .highlight-cell {
+  color: #FE53BB;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(254, 83, 187, 0.8);
+}
+
+/* 表格动画效果 */
+@keyframes tablePulse {
+  0% {
+    box-shadow: 0 0 15px rgba(51, 147, 255, 0.5),
+                inset 0 0 10px rgba(123, 31, 162, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(51, 147, 255, 0.7),
+                inset 0 0 15px rgba(123, 31, 162, 0.5);
+  }
+}
+
+@keyframes borderGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 蓝色变体的列表样式 */
+.card-neonglow.blue-variant .card-content-inner ul > li::before {
+  content: "\2022";
+  color: var(--neonglow-accent-blue);
+}
+
+/* 紫色变体的列表样式 */
+.card-neonglow.purple-variant .card-content-inner ul > li::before {
+  content: "\2022";
+  color: var(--neonglow-accent-purple);
+} 

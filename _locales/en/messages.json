@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "Share ChatGPT pages as a link",
+    "message": "HTML to URL",
     "description": "Extension name"
   },
   "extDescription": {
-    "message": "ChatGPT made a page? Click once and get a link anyone can open on their phone.",
+    "message": "Turn an HTML page or a whole AI chat into a link anyone can open.",
     "description": "Extension description"
   },
   "tabPaste": {
@@ -223,6 +223,14 @@
     "message": "Auto-inject is off",
     "description": "Popup banner when auto-inject is off"
   },
+  "hideCodeButtons": {
+    "message": "Hide code buttons",
+    "description": "Panel control to hide generate-link buttons on code blocks"
+  },
+  "showCodeButtons": {
+    "message": "Show code buttons",
+    "description": "Panel control to show generate-link buttons on code blocks"
+  },
   "reEnable": {
     "message": "Re-enable",
     "description": "Re-enable auto-inject button"
@@ -432,5 +440,93 @@
   "filePublishCopied": {
     "message": "Link copied",
     "description": "Local publish success"
+  },
+  "shareChat": {
+    "message": "Publish chat",
+    "description": "Publish the whole conversation"
+  },
+  "copyChatMd": {
+    "message": "Copy chat Markdown",
+    "description": "Copy the current conversation"
+  },
+  "chatCopied": {
+    "message": "Chat Markdown copied",
+    "description": "Copy success"
+  },
+  "panelTemplate": {
+    "message": "Template",
+    "description": "Template picker"
+  },
+  "panelTheme": {
+    "message": "Theme",
+    "description": "Theme picker"
+  },
+  "previewChat": {
+    "message": "Preview",
+    "description": "Preview the conversation in the selected template"
+  },
+  "previewExit": {
+    "message": "Exit preview",
+    "description": "Close the template preview"
+  },
+  "previewing": {
+    "message": "Loading preview",
+    "description": "Preview in progress"
+  },
+  "previewReady": {
+    "message": "Preview is open",
+    "description": "Preview finished"
+  },
+  "previewClosed": {
+    "message": "Preview closed",
+    "description": "Preview dismissed"
+  },
+  "previewUpdating": {
+    "message": "Updating preview",
+    "description": "Template change while preview is open"
+  },
+  "copyingChat": {
+    "message": "Copying conversation",
+    "description": "Copy in progress"
+  },
+  "publishingChat": {
+    "message": "Publishing conversation",
+    "description": "Publish in progress"
+  },
+  "previewOn": {
+    "message": "Previewing",
+    "description": "Preview status"
+  },
+  "previewToc": {
+    "message": "Contents",
+    "description": "Preview outline title"
+  },
+  "previewFailed": {
+    "message": "Preview could not be built. Try again.",
+    "description": "Preview failed"
+  },
+  "themeDefault": {
+    "message": "Default",
+    "description": "Default theme"
+  },
+  "chatRoleUser": {
+    "message": "You",
+    "description": "User turn label"
+  },
+  "chatRoleAssistant": {
+    "message": "Assistant",
+    "description": "Assistant turn label"
+  },
+  "chatEmpty": {
+    "message": "No conversation on this page yet",
+    "description": "Empty conversation export"
+  },
+  "chatSelect": {
+    "message": "Include this message",
+    "description": "Message checkbox"
+  },
+  "chatNoneSelected": {
+    "message": "Select at least one message",
+    "description": "Nothing selected"
   }
 }

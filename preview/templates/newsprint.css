@@ -1,0 +1,157 @@
+/* Newsprint - 报纸印刷风格 */
+/* 经典印刷美学，黑白高对比度 */
+
+.card-newsprint {
+  font-family: Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif;
+  background-color: #f9f9f7;
+  color: #333333;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-newsprint .card-content {
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.card-newsprint .card-content-inner {
+  padding: 24px 28px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.card-newsprint .card-content-inner h1 {
+  font-size: 28px;
+  font-weight: 900;
+  color: #111111;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 3px double #111111;
+  text-transform: uppercase;
+}
+
+.card-newsprint .card-content-inner h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 20px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #111111;
+}
+
+.card-newsprint .card-content-inner h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2a2a2a;
+  margin: 16px 0 8px;
+  padding-left: 10px;
+  border-left: 4px solid #111111;
+}
+
+.card-newsprint .card-content-inner p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333333;
+  margin-bottom: 12px;
+  text-align: justify;
+}
+
+.card-newsprint .card-content-inner ol,
+.card-newsprint .card-content-inner ul {
+  margin-bottom: 12px;
+  padding-left: 24px;
+}
+
+.card-newsprint .card-content-inner li {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333333;
+  margin-bottom: 3px;
+}
+
+.card-newsprint .card-content-inner li::marker {
+  color: #111111;
+  font-weight: 700;
+}
+
+.card-newsprint .card-content-inner strong {
+  font-weight: 700;
+  color: #111111;
+}
+
+.card-newsprint .card-content-inner blockquote {
+  margin: 14px 0;
+  padding: 10px 14px;
+  border-left: 4px solid #111111;
+  border-right: 1px solid #cccccc;
+  background-color: #f5f5f3;
+  color: #2a2a2a;
+}
+
+.card-newsprint .card-content-inner blockquote p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.card-newsprint .card-content-inner code {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #f0f0ee;
+  color: #111111;
+  padding: 2px 5px;
+  border: 1px solid #cccccc;
+  font-size: 14px;
+}
+
+.card-newsprint .card-content-inner pre {
+  background-color: #f5f5f3;
+  border: 1px solid #111111;
+  border-top: 3px solid #111111;
+  padding: 12px 16px;
+  overflow-x: auto;
+  margin: 14px 0;
+}
+
+.card-newsprint .card-content-inner pre code {
+  background: transparent;
+  padding: 0;
+  border: none;
+  color: inherit;
+  font-size: 14px;
+  display: block;
+  line-height: 1.5;
+}
+
+.card-newsprint .card-content-inner table,
+.card-newsprint .card-content-inner table.tableWrapper {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 14px;
+  border: 1px solid #111111;
+}
+
+.card-newsprint .card-content-inner th {
+  font-weight: 700;
+  background-color: #111111;
+  color: #f9f9f7;
+  padding: 8px 12px;
+  text-transform: uppercase;
+  font-size: 13px;
+  text-align: left;
+}
+
+.card-newsprint .card-content-inner td {
+  padding: 8px 12px;
+  border: 1px solid #888888;
+  text-align: left;
+}
+
+.card-newsprint .card-content-inner tr:nth-child(even) td {
+  background-color: #f5f5f3;
+}

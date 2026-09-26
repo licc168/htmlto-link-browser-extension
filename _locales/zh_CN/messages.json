@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "ChatGPT 网页一键变成链接",
+    "message": "HTML转URL",
     "description": "扩展名称"
   },
   "extDescription": {
-    "message": "ChatGPT 做好的网页，点一下变成链接，发给谁都能在手机打开。",
+    "message": "把网页或一整段 AI 对话变成链接，手机上就能打开。",
     "description": "扩展描述"
   },
   "tabPaste": {
@@ -223,6 +223,14 @@
     "message": "自动注入已关闭",
     "description": "弹窗顶部自动注入关闭提示"
   },
+  "hideCodeButtons": {
+    "message": "隐藏代码块按钮",
+    "description": "面板里关闭代码块上的生成链接按钮"
+  },
+  "showCodeButtons": {
+    "message": "显示代码块按钮",
+    "description": "面板里打开代码块上的生成链接按钮"
+  },
   "reEnable": {
     "message": "重新开启",
     "description": "重新开启自动注入按钮"
@@ -284,7 +292,7 @@
     "description": "引导页按钮"
   },
   "welcomeNote": {
-    "message": "提示：匿名链接约 24 小时有效。先把图标固定到工具栏，再发布示例或打开 ChatGPT。",
+    "message": "提示：匿名链接约 24 小时有效。先把图标固定到工具栏，再发布示例或打开 DeepSeek。",
     "description": "引导页备注"
   },
   "welcomePinTitle": {
@@ -300,7 +308,7 @@
     "description": "引导页示例发布按钮"
   },
   "welcomeOpenChatgpt": {
-    "message": "打开 ChatGPT 试用",
+    "message": "打开 DeepSeek 试用",
     "description": "引导页 ChatGPT 按钮"
   },
   "welcomeDemoSuccess": {
@@ -432,5 +440,93 @@
   "filePublishCopied": {
     "message": "链接已复制",
     "description": "本地发布成功"
+  },
+  "shareChat": {
+    "message": "发布对话",
+    "description": "导出整段对话"
+  },
+  "copyChatMd": {
+    "message": "复制对话 Markdown",
+    "description": "复制当前对话"
+  },
+  "chatCopied": {
+    "message": "对话 Markdown 已复制",
+    "description": "复制成功"
+  },
+  "panelTemplate": {
+    "message": "模板",
+    "description": "模板选择"
+  },
+  "panelTheme": {
+    "message": "主题",
+    "description": "主题选择"
+  },
+  "previewChat": {
+    "message": "预览",
+    "description": "用当前模板预览对话"
+  },
+  "previewExit": {
+    "message": "退出预览",
+    "description": "关闭模板预览"
+  },
+  "previewing": {
+    "message": "加载预览数据中",
+    "description": "预览生成中"
+  },
+  "previewReady": {
+    "message": "预览已打开",
+    "description": "预览完成"
+  },
+  "previewClosed": {
+    "message": "已退出预览",
+    "description": "关闭预览"
+  },
+  "previewUpdating": {
+    "message": "正在更新预览",
+    "description": "切换模板时更新预览"
+  },
+  "copyingChat": {
+    "message": "正在复制对话",
+    "description": "复制进行中"
+  },
+  "publishingChat": {
+    "message": "正在发布对话",
+    "description": "发布进行中"
+  },
+  "previewOn": {
+    "message": "预览中",
+    "description": "预览状态"
+  },
+  "previewToc": {
+    "message": "文档目录",
+    "description": "预览目录标题"
+  },
+  "previewFailed": {
+    "message": "预览没有生成，请再试一次",
+    "description": "预览失败"
+  },
+  "themeDefault": {
+    "message": "默认",
+    "description": "默认主题"
+  },
+  "chatRoleUser": {
+    "message": "我",
+    "description": "对话里的用户"
+  },
+  "chatRoleAssistant": {
+    "message": "回答",
+    "description": "对话里的助手"
+  },
+  "chatEmpty": {
+    "message": "这一页还没有读到对话",
+    "description": "导出对话为空"
+  },
+  "chatSelect": {
+    "message": "发布时包含这条",
+    "description": "消息复选框"
+  },
+  "chatNoneSelected": {
+    "message": "请至少勾选一条对话",
+    "description": "没有勾选"
   }
 }

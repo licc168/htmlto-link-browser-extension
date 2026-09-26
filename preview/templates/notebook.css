@@ -1,0 +1,523 @@
+/* 笔记本模板样式 */
+.notebook-content {
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+/* 笔记本模板变量 */
+.card-notebook {
+  --notebook-bg: #f5f5f5;
+  --notebook-text: #34495e;
+  --notebook-title-color: #2c3e50;
+  --notebook-accent: #3498db;
+  --notebook-border: #ddd;
+  --notebook-quote-color: #7f8c8d;
+  --notebook-code-bg: #f8f9fa;
+  --notebook-mark-bg: #fff9c4;
+  --notebook-table-header: #f8f9fa;
+  --notebook-table-border: #ecf0f1;
+  --notebook-header-height: 10px; /* 头部高度变量 */
+}
+
+/* 最外层容器 */
+.card-notebook {
+  background: var(--notebook-bg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  padding: 35px 25px 25px;
+  
+  position: relative;
+  overflow: hidden;
+}
+
+/* 笔记本装订线效果 */
+.card-notebook:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 20px;
+  width: 2px;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 10px,
+    #e74c3c 10px,
+    #e74c3c 15px
+  );
+}
+
+/* 笔记本顶部装饰 */
+.card-notebook:after {
+  content: "📒";
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  font-size: 24px;
+  transform: rotate(-10deg);
+}
+
+/* 卡片内容区域 */
+.card-notebook .card-content {
+  position: relative;
+  background: #fff;
+  color: var(--notebook-text);
+  border: 1px solid var(--notebook-border);
+  padding: 16px;
+  height: 100%;
+  background-image: linear-gradient(#eee 1px, transparent 1px);
+  background-size: 100% 24px;
+  overflow: hidden;
+  padding-top: calc(var(--notebook-header-height) + 16px); /* 增加头部高度 */
+}
+
+/* 卡片头部效果，使用伪元素 */
+.card-notebook .card-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--notebook-header-height);
+  background: var(--notebook-accent);
+  z-index: 2;
+}
+
+/* 头部装饰小圆点 */
+.card-notebook .card-content::after {
+  content: "";
+  position: absolute;
+  top: var(--notebook-header-height);
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: repeating-radial-gradient(
+    circle at 10px -5px,
+    var(--notebook-accent) 0,
+    var(--notebook-accent) 4px,
+    transparent 4px,
+    transparent 14px
+  );
+  z-index: 2;
+}
+
+/* 实际文本内容的容器 */
+.card-notebook .card-content-inner {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* 标题样式 */
+.card-notebook .card-content-inner h1 {
+  
+  font-size: 28px;
+  line-height: 1.5;
+  position: relative;
+  color: var(--notebook-title-color);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-align: center;
+  padding-bottom: 5px;
+  border-bottom: 2px dashed var(--notebook-accent);
+}
+
+.card-notebook .card-content-inner h2 {
+  font-size: 16px;
+  color: #2c3e50;
+  margin-bottom: 24px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-align: center;
+  position: relative;
+  font-style: italic;
+  background: rgba(52, 152, 219, 0.2);
+}
+
+.card-notebook .card-content-inner h2:after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: var(--notebook-accent);
+}
+
+.card-notebook .card-content-inner h3 {
+  color: var(--notebook-text);
+  font-weight: bold;
+}
+
+/* 段落样式 */
+.card-notebook .card-content-inner p {
+  color: var(--notebook-text);
+  font-size: 15px;
+  line-height: 24px;
+  margin: 16px 0;
+  position: relative;
+  z-index: 1;
+  font-style: italic;
+}
+
+.card-notebook .card-content-inner p strong {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.card-notebook .card-content-inner p em {
+  color: var(--notebook-accent);
+  font-style: italic;
+}
+
+/* 列表样式 */
+.card-notebook .card-content-inner ul,
+.card-notebook .card-content-inner ol {
+  list-style: none;
+  margin: 20px 0;
+  padding-left: 20px;
+}
+
+.card-notebook .card-content-inner ul li,
+.card-notebook .card-content-inner ol li {
+  position: relative;
+  list-style: none;
+  margin-bottom: 16px;
+  line-height: 24px;
+  color: var(--notebook-text);
+  font-size: 15px;
+}
+
+.card-notebook .card-content-inner ul > li:before {
+  content: "✎";
+  color: var(--notebook-accent);
+  font-size: 16px;
+  position: absolute;
+  left: -20px;
+  top: 0;
+}
+
+.card-notebook .card-content-inner ol > li:before {
+  content: attr(data-index);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--notebook-accent);
+  background: var(--notebook-table-header);
+  color: var(--notebook-accent);
+  text-align: center;
+  line-height: 22px;
+  font-weight: bold;
+  display: block;
+  float: left;
+  transform: translate(-8px, 0);
+}
+
+/* 引用块样式 */
+.card-notebook .card-content-inner blockquote {
+  background-color: var(--notebook-table-header);
+  border-left: 4px solid var(--notebook-accent);
+  color: var(--notebook-quote-color);
+  padding: 10px 20px;
+  margin: 20px 0;
+  font-style: italic;
+  position: relative;
+  
+}
+
+.card-notebook .card-content-inner blockquote:before {
+  content: "\"";
+  height: 1px;
+  transform: translate(0px, -16px);
+  display: block;
+  font-size: 40px;
+  color: rgba(52, 152, 219, 0.2);
+}
+
+/* 表格样式 */
+.card-notebook .card-content-inner table.tableWrapper,
+.card-notebook .card-content-inner table {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 20px 0;
+  border-collapse: collapse;
+  background-color: var(--notebook-table-header);
+  width: 100%;
+}
+
+.card-notebook .card-content-inner table.tableWrapper th,
+.card-notebook .card-content-inner table th {
+  background-color: var(--notebook-table-header);
+  color: var(--notebook-title-color);
+  border-bottom: 2px solid var(--notebook-accent);
+  padding: 10px;
+  font-weight: 600;
+}
+
+.card-notebook .card-content-inner table.tableWrapper td,
+.card-notebook .card-content-inner table td {
+  color: var(--notebook-text);
+  padding: 10px;
+  border-bottom: 1px solid var(--notebook-table-border);
+}
+
+.card-notebook .card-content-inner table.tableWrapper tr:nth-child(even),
+.card-notebook .card-content-inner table tr:nth-child(even) {
+  background-color: var(--notebook-table-header);
+}
+
+/* 代码块样式 */
+.card-notebook .card-content-inner pre {
+  border: 1px solid var(--notebook-table-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background-color: var(--notebook-code-bg);
+  border-radius: 4px;
+  padding: 16px;
+  
+  font-size: 13px;
+  overflow-x: auto;
+}
+
+.card-notebook .card-content-inner code:not(pre code) {
+  background-color: var(--notebook-code-bg);
+  color: #e74c3c;
+  padding: 2px 5px;
+  border-radius: 3px;
+  
+  font-size: 0.9em;
+}
+
+/* 水平线样式 */
+.card-notebook .card-content-inner hr {
+  border: 0;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 5px,
+    var(--notebook-accent) 5px,
+    var(--notebook-accent) 10px
+  );
+  margin: 24px 0;
+}
+
+/* 图片样式 */
+.card-notebook .card-content-inner img {
+  max-width: 100%;
+  border: 1px solid var(--notebook-table-border);
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  padding: 5px;
+  background: white;
+}
+
+/* 便签效果 */
+.card-notebook .card-content-inner .note {
+  background: var(--notebook-mark-bg);
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 4px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transform: rotate(-1deg);
+}
+
+.card-notebook .card-content-inner .note:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 10px;
+  background: rgba(231, 76, 60, 0.5);
+  border-radius: 3px;
+}
+
+/* 手写笔记效果 */
+.card-notebook .card-content-inner .handwritten {
+  
+  color: var(--notebook-title-color);
+  font-size: 18px;
+  line-height: 1.5;
+  transform: rotate(-1deg);
+}
+
+/* 笔记本风格引用块样式 */
+.card-notebook .card-content-inner blockquote {
+  position: relative;
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  margin: 20px 0;
+  font-size: calc(16px * 1);
+  line-height: 1.5;
+  border: none;
+  border-left: 4px solid #3498db;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+/* 引号装饰 */
+.notebook-text blockquote::before {
+  content: "\"";
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  font-size: 40px;
+  color: rgba(52, 152, 219, 0.2);
+  
+}
+
+/* 引用内容样式 */
+.notebook-text blockquote p {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  position: relative;
+  z-index: 1;
+}
+
+/* 笔记本表格样式 */
+.notebook-text table.tableWrapper {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 20px 0;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  border: 1px solid #e2e8f0;
+}
+
+/* 表头和单元格通用样式 */
+.notebook-text table.tableWrapper th,
+.notebook-text table.tableWrapper td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  color: #333;
+  font-size: calc(15px * 1);
+}
+
+/* 表头样式 */
+.notebook-text table.tableWrapper th {
+  background-color: #e8f4f8;
+  color: #1d3557;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* 表格行交替颜色 */
+.notebook-text table.tableWrapper tr:nth-child(even) {
+  background-color: #f8fafe;
+}
+
+/* 表格行悬停效果 */
+.notebook-text table.tableWrapper tr:hover {
+  background-color: #f0f7ff;
+}
+
+/* 确保单元格内的段落没有边距 */
+.notebook-text table.tableWrapper td p {
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* 表格容器样式 */
+.notebook-text .table-container {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+/* 笔记本手绘风格装饰 - 修改为圆形装饰 */
+.notebook-text table.tableWrapper::before,
+.notebook-text table.tableWrapper::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.notebook-text table.tableWrapper::before {
+  top: -5px;
+  left: -5px;
+  background: radial-gradient(circle, #4a86e8, transparent 60%);
+  opacity: 0.6;
+}
+
+.notebook-text table.tableWrapper::after {
+  bottom: -5px;
+  right: -5px;
+  background: radial-gradient(circle, #3498db, transparent 60%);
+  opacity: 0.6;
+}
+
+/* 强调单元格样式 */
+.notebook-text table.tableWrapper .highlight-cell {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.notebook-text table.tableWrapper .note-cell {
+  color: #3498db;
+  font-style: italic;
+}
+
+/* 嵌套列表样式优化 */
+/* 有序列表内的无序列表 */
+.notebook-text ol ul {
+  margin-top: 8px;
+  padding-left: 5px;
+}
+.notebook-text ol ul li {
+  list-style: none;
+  padding-left: 28px;
+  margin-bottom: 5px;
+  position: relative;
+}
+.notebook-text ol ul li::before {
+  content: "✧";
+  position: absolute;
+  left: -0.3rem;
+  top: 20px;
+
+  color: #3498db;
+  font-size: 1rem;
+}
+
+/* 无序列表内的有序列表 */
+.notebook-text ul ol {
+  margin-top: 8px;
+  padding-left: 5px;
+}
+.notebook-text ul ol li {
+  list-style: none;
+  padding-left: 24px;
+  margin-bottom: 5px;
+  position: relative;
+}
+.notebook-text ul ol li::before {
+  content:attr(data-index);
+  position: absolute;
+  left: -10px;
+  top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: #4a86e8;
+  color: white;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+

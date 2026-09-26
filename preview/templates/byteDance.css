@@ -1,0 +1,431 @@
+.card-bytedance {
+  font-family: "PingFang SC", "SF Pro Text", "Microsoft YaHei", sans-serif;
+  box-shadow: 0 10px 30px rgba(0, 104, 255, 0.08);
+  background: white;
+  overflow: hidden;
+  position: relative;
+  border: none;
+}
+
+/* 卡片背景SVG装饰 */
+.card-bytedance::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' fill='none'%3E%3Ccircle cx='85' cy='15' r='3' fill='%230066FF' opacity='0.1'/%3E%3Ccircle cx='75' cy='15' r='2' fill='%230066FF' opacity='0.08'/%3E%3Ccircle cx='65' cy='15' r='1' fill='%230066FF' opacity='0.06'/%3E%3Ccircle cx='15' cy='85' r='3' fill='%23FA2C19' opacity='0.1'/%3E%3Ccircle cx='15' cy='75' r='2' fill='%23FA2C19' opacity='0.08'/%3E%3Ccircle cx='15' cy='65' r='1' fill='%23FA2C19' opacity='0.06'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position:
+    top right,
+    bottom left;
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+
+.card-bytedance .card-content {
+  position: relative;
+  background: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  height: 100%;
+  box-shadow: 0 0 20px rgba(22, 119, 255, 0.1);
+  overflow: hidden;
+}
+
+/* 字节跳动特色顶部装饰 - 移动到content内部 */
+.card-bytedance .card-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(90deg, #0066ff 0%, #fa2c19 100%);
+  border-radius: 8px 8px 0 0;
+  z-index: 2;
+}
+
+/* 添加字节跳动品牌标识点阵 - 移动到content内部 */
+.card-bytedance .card-content::after {
+  content: "";
+  position: absolute;
+  right: 15px;
+  top: 20px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fa2c19;
+  box-shadow:
+    -12px 0 0 rgba(250, 44, 25, 0.6),
+    -24px 0 0 rgba(250, 44, 25, 0.4),
+    -36px 0 0 rgba(250, 44, 25, 0.2);
+  z-index: 2;
+}
+
+/* 添加波浪形SVG装饰 - 移动到content内部 */
+.card-bytedance .card-content-inner::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -14px;
+  height: 10px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.05' fill='%230066FF'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+/* 字节跳动特色装饰元素 */
+.card-bytedance .card-content-inner::after {
+  content: "";
+  position: absolute;
+  left: 35px;
+  bottom: 25px;
+  width: 18px;
+  height: 18px;
+  border-radius: 0 50% 50% 50%;
+  background: rgba(250, 44, 25, 0.06);
+  z-index: 1;
+}
+
+.card-bytedance .card-content-inner {
+  position: relative;
+  font-family: var(--font-noto-sans-sc), -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: #4e5969;
+  padding: 0;
+  z-index: 3;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 标题样式 - 居中 */
+.card-bytedance .card-content-inner h1 {
+  font-size: 22px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #1c1f23;
+  margin-top: 0;
+  margin-bottom: 22px;
+  position: relative;
+  text-align: center;
+  padding: 0 0 14px 0;
+}
+
+/* 字节跳动风格的标题装饰 - 水平线 */
+.card-bytedance .card-content-inner h1::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 40px;
+  height: 4px;
+  background: linear-gradient(90deg, #0066ff, #fa2c19);
+  border-radius: 4px;
+  transform: translateX(-50%);
+}
+
+/* 标题装饰元素 */
+.card-bytedance .card-content-inner h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 二级标题样式 - 双色系优化 */
+.card-bytedance h2 {
+  display: table;
+  padding: 0.4em 1.4em;
+  margin: 1em auto 1.5em;
+  color: #fff;
+  background: linear-gradient(135deg, #1677ff, #05d4cd);
+  font-size: 1.3em;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 8px 24px 8px 24px;
+  box-shadow: 0 4px 12px rgba(5, 212, 205, 0.15);
+  position: relative;
+  letter-spacing: 0.02em;
+}
+
+.card-bytedance h2::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #1677ff, #05d4cd);
+  border-radius: 10px 26px 10px 26px;
+  z-index: -1;
+  opacity: 0.3;
+  filter: blur(8px);
+}
+
+.card-bytedance h2::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #05d4cd;
+}
+
+/* 三级标题样式 - 双色系优化 */
+.card-bytedance h3 {
+  padding: 0.5em 1em 0.5em 12px;
+  font-size: 1.2em;
+  border-radius: 6px;
+  line-height: 1.6;
+  border-left: 4px solid #1677ff;
+  border-right: 1px solid rgba(22, 119, 255, 0.1);
+  border-bottom: 1px solid rgba(22, 119, 255, 0.1);
+  border-top: 1px solid rgba(22, 119, 255, 0.1);
+  background: rgba(22, 119, 255, 0.05);
+  color: #1677ff;
+  margin: 2em 0 0.75em;
+  font-weight: 600;
+  position: relative;
+}
+
+.card-bytedance h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-radius: 0 0 6px 0;
+  background: #05d4cd;
+  opacity: 0.4;
+}
+
+/* 正文样式 */
+.card-bytedance .card-content-inner p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #4e5969;
+  margin-bottom: 16px;
+  padding: 0 2px;
+}
+
+/* 列表容器样式 */
+.card-bytedance .card-content-inner ol {
+  list-style: none;
+}
+.card-bytedance .card-content-inner ol li {
+  padding-left: 10px;
+}
+.card-bytedance .card-content-inner ol,
+.card-bytedance .card-content-inner ul {
+  margin-bottom: 16px;
+  background: rgba(0, 102, 255, 0.02);
+  padding: 12px 12px 12px 32px;
+  border-radius: 8px 16px 8px 16px;
+}
+
+.card-bytedance .card-content-inner li {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #4e5969;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+/* 自定义列表序号/符号 */
+.card-bytedance .card-content-inner ol li::before {
+  content: attr(data-index);
+  position: absolute;
+  left: -19px;
+  top: 4px;
+  background-color: #0066ff;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  line-height: 20px;
+}
+
+.card-bytedance .card-content-inner ul li {
+  list-style-type: none;
+  padding-left: 6px;
+}
+
+.card-bytedance .card-content-inner ul li::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  background: #fa2c19;
+  border-radius: 0 2px 2px 2px;
+  transform: rotate(45deg);
+}
+
+/* 强调/加粗文本 */
+.card-bytedance .card-content-inner strong {
+  font-weight: 600;
+  color: #1c1f23;
+  position: relative;
+  z-index: 1;
+  padding: 0 2px;
+}
+
+/* 加粗文本下划线装饰 */
+.card-bytedance .card-content-inner strong::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 6px;
+  background: rgba(0, 102, 255, 0.1);
+  z-index: -1;
+  border-radius: 2px;
+}
+
+/* 引用样式 */
+.card-bytedance .card-content-inner blockquote {
+  margin: 20px 0;
+  padding: 12px 20px;
+  background: rgba(0, 102, 255, 0.04);
+  border-left: 4px solid #0066ff;
+  border-radius: 0 8px 8px 0;
+  position: relative;
+}
+
+.card-bytedance .card-content-inner blockquote::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16'%3E%3Cpath d='M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z' fill='%230066FF' opacity='0.3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+}
+
+.card-bytedance .card-content-inner blockquote p {
+  margin: 0;
+  color: #4e5969;
+}
+
+/* 代码样式 */
+.card-bytedance .card-content-inner code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #fa2c19;
+  border-bottom: 2px solid rgba(250, 44, 25, 0.1);
+}
+
+.card-bytedance .card-content-inner pre {
+  background: #f7f8fa;
+  border-radius: 6px 12px 6px 12px;
+  padding: 16px;
+  overflow-x: auto;
+  position: relative;
+  border: 1px solid #ebedf0;
+}
+
+.card-bytedance .card-content-inner pre::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fa2c19;
+  box-shadow:
+    16px 0 0 rgba(250, 44, 25, 0.6),
+    32px 0 0 rgba(250, 44, 25, 0.3);
+}
+
+.card-bytedance .card-content-inner pre code {
+  background: transparent;
+  padding: 0;
+  color: #1c1f23;
+  border: none;
+  display: block;
+  margin-top: 8px;
+}
+
+/* 表格样式 */
+.card-bytedance .card-content-inner table.tableWrapper,
+.card-bytedance .card-content-inner table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 16px 0;
+  font-size: 14px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(0, 102, 255, 0.1);
+}
+
+.card-bytedance .card-content-inner table.tableWrapper th,
+.card-bytedance .card-content-inner table th {
+  background: rgba(0, 102, 255, 0.06);
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 12px;
+  color: #1c1f23;
+  border-bottom: 2px solid rgba(0, 102, 255, 0.1);
+}
+
+.card-bytedance .card-content-inner table.tableWrapper td,
+.card-bytedance .card-content-inner table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #ebedf0;
+  color: #4e5969;
+}
+
+.card-bytedance .card-content-inner table.tableWrapper tr:last-child td,
+.card-bytedance .card-content-inner table tr:last-child td {
+  border-bottom: none;
+}
+
+/* 底部样式 */
+.card-bytedance .card-footer {
+  padding: 16px 24px;
+  border-top: 1px solid #ebedf0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #86909c;
+  font-size: 14px;
+  position: relative;
+  background: linear-gradient(
+    to right,
+    rgba(0, 102, 255, 0.02),
+    rgba(250, 44, 25, 0.02)
+  );
+}
+
+/* 字节跳动标志 */
+.card-bytedance .card-footer::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 100 100'%3E%3Cpath d='M27.4 69.4c5-4.3 10-8.5 14.8-12.8l-14.7-15.3c-4.8 4.2-9.8 8.3-14.9 12.5 5 5.2 9.9 10.3 14.8 15.6zm22.7-19.6c-5 4.3-10 8.5-14.9 12.9 5 5.2 9.9 10.3 14.7 15.5 5-4.2 10-8.4 14.9-12.6l-14.7-15.8zm7.9-13.5c-5-4.2-10-8.5-14.8-12.8-4.9 4.3-9.9 8.4-14.9 12.6 4.9 5.2 9.9 10.4 14.8 15.5 5-4.2 10-8.4 14.9-12.6v-2.7zm15.5 13.2c5-4.3 10-8.5 14.9-12.8-5-5.1-9.9-10.3-14.8-15.6-4.9 4.2-9.9 8.4-14.9 12.6l14.8 15.8z' fill='%23808695'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+}

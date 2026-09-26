@@ -60,18 +60,6 @@
     btn.className = "htmlto-link-file-btn";
     btn.innerHTML = `<span>${escapeHtml(t("filePublishBtn"))}</span>`;
 
-    const closeBtn = document.createElement("button");
-    closeBtn.type = "button";
-    closeBtn.className = "htmlto-link-file-close";
-    closeBtn.title = t("filePublishDismiss");
-    closeBtn.setAttribute("aria-label", closeBtn.title);
-    closeBtn.textContent = "×";
-    closeBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      wrap.remove();
-    });
-
     btn.addEventListener("click", async (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -79,7 +67,6 @@
     });
 
     wrap.appendChild(btn);
-    wrap.appendChild(closeBtn);
     document.body.appendChild(wrap);
   }
 

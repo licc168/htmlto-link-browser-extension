@@ -1,0 +1,178 @@
+/* Playful Geometric - 活泼几何风格 */
+/* Memphis 设计 + 硬阴影 + 明亮纯色 + 药丸形状 */
+
+.card-playfulgeometric {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background-color: #fffdf5;
+  color: #1e293b;
+  overflow: hidden;
+  position: relative;
+  background-image: radial-gradient(circle, #e2e8f0 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+.card-playfulgeometric .card-content {
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.card-playfulgeometric .card-content-inner {
+  padding: 24px 26px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.card-playfulgeometric .card-content-inner h1 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  padding: 10px 18px;
+  background-color: #8b5cf6;
+  border: 3px solid #1e293b;
+  border-radius: 0 28px 0 28px;
+  box-shadow: 6px 6px 0 #1e293b;
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
+.card-playfulgeometric .card-content-inner h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #7c3aed;
+  padding: 7px 14px;
+  background-color: #fffdf5;
+  border: 3px solid #1e293b;
+  border-left: 10px solid #8b5cf6;
+  border-radius: 0 20px 20px 0;
+  box-shadow: 5px 5px 0 #f472b6;
+  margin: 18px 0 12px;
+}
+
+.card-playfulgeometric .card-content-inner h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: #1e293b;
+  padding: 5px 16px;
+  background-color: #fbbf24;
+  border: 2px solid #1e293b;
+  border-radius: 9999px;
+  display: inline-block;
+  box-shadow: 4px 4px 0 #1e293b;
+  margin: 14px 0 8px;
+}
+
+.card-playfulgeometric .card-content-inner p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #1e293b;
+  margin-bottom: 14px;
+}
+
+.card-playfulgeometric .card-content-inner ol,
+.card-playfulgeometric .card-content-inner ul {
+  margin-bottom: 14px;
+  padding-left: 24px;
+}
+
+.card-playfulgeometric .card-content-inner li {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #1e293b;
+  margin-bottom: 5px;
+}
+
+.card-playfulgeometric .card-content-inner li::marker {
+  color: #8b5cf6;
+  font-weight: 700;
+}
+
+.card-playfulgeometric .card-content-inner strong {
+  font-weight: 700;
+  color: #1e293b;
+  background-color: #fbbf24;
+  padding: 1px 5px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 rgba(30, 41, 59, 0.2);
+}
+
+.card-playfulgeometric .card-content-inner blockquote {
+  margin: 14px 0;
+  padding: 12px 16px 12px 20px;
+  background-color: #f472b6;
+  color: #1e293b;
+  border: 3px solid #1e293b;
+  border-left: 10px solid #fbbf24;
+  border-radius: 0 28px 28px 0;
+  box-shadow: 6px 6px 0 #1e293b;
+}
+
+.card-playfulgeometric .card-content-inner blockquote p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.card-playfulgeometric .card-content-inner code {
+  font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+  background-color: #fbbf24;
+  color: #1e293b;
+  padding: 2px 7px;
+  border: 2px solid #1e293b;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.card-playfulgeometric .card-content-inner pre {
+  background-color: #1e293b;
+  padding: 14px 16px;
+  border: 3px solid #1e293b;
+  border-radius: 20px;
+  box-shadow: 8px 8px 0 #8b5cf6;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+.card-playfulgeometric .card-content-inner pre code {
+  background: transparent;
+  color: #ffffff;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  font-size: 14px;
+  display: block;
+  line-height: 1.55;
+}
+
+.card-playfulgeometric .card-content-inner table,
+.card-playfulgeometric .card-content-inner table.tableWrapper {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+  border: 3px solid #1e293b;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 6px 6px 0 #1e293b;
+}
+
+.card-playfulgeometric .card-content-inner th {
+  font-weight: 700;
+  background-color: #8b5cf6;
+  color: #ffffff;
+  padding: 8px 12px;
+  border: 2px solid #1e293b;
+  text-align: left;
+}
+
+.card-playfulgeometric .card-content-inner td {
+  padding: 8px 12px;
+  border: 2px solid #1e293b;
+  text-align: left;
+}
+
+.card-playfulgeometric .card-content-inner tr:nth-child(even) td {
+  background-color: rgba(139, 92, 246, 0.08);
+}

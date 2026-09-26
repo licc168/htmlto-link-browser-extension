@@ -1,0 +1,450 @@
+/* 桌游风格主题样式 */
+.card-boardgame {
+  width: 100%;
+  height: 100%; /* 确保占满容器 */
+  display: flex; /* 启用flex布局 */
+  flex-direction: column; /* 纵向排列 */
+  background: #dec394;
+  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.005' numOctaves='2' /%3E%3CfeColorMatrix type='saturate' values='0' /%3E%3CfeBlend mode='multiply' in='SourceGraphic' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' fill='%23dec394'/%3E%3C/svg%3E");
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.2);
+  padding: 15px 15px; /* 更进一步减小内边距 */
+  font-family: "var(--font-noto-sans-sc), -apple-system, BlinkMacSystemFont, sans-serif";
+  position: relative;
+  overflow: hidden;
+  color: #34495e;
+}
+
+/* 添加骰子装饰 */
+.card-boardgame:before {
+  content: "⚄";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  color: #5d4037;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  transform: rotate(15deg);
+}
+
+/* 添加卡牌装饰 */
+.card-boardgame:after {
+  content: "🂡";
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  font-size: 24px;
+  color: #c0392b;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  transform: rotate(-15deg);
+}
+
+.card-boardgame .card-content {
+  position: relative;
+  z-index: 2;
+  border-radius: 12px;
+  padding: 12px; /* 更小的内边距 */
+  flex-grow: 1; /* 重要:确保内容区占据所有可用空间 */
+  display: flex; /* 使用flex布局 */
+  flex-direction: column; /* 垂直方向 */
+  background: linear-gradient(to bottom, #f9f9f9, #ececec);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+}
+
+/* 添加游戏板网格背景 */
+.card-boardgame .card-content:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(93, 64, 55, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(93, 64, 55, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-boardgame .card-content-inner {
+  position: relative;
+  z-index: 3;
+  overflow: hidden;
+  flex-grow: 1; /* 重要:确保内容占据所有可用空间 */
+}
+
+/* 主标题样式 */
+.card-boardgame h1 {
+  font-size: 28px;
+  color: #e67e22;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0px rgba(232, 212, 185, 0.8);
+}
+
+/* 添加游戏棋子装饰到标题 */
+.card-boardgame h1:before {
+  content: "♟";
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #5d4037;
+}
+
+.card-boardgame h1:after {
+  content: "♜";
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #5d4037;
+}
+
+/* 副标题样式 */
+.card-boardgame h2 {
+  font-size: 16px;
+  color: #34495e;
+  margin-bottom: 24px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-align: center;
+  position: relative;
+  border-bottom: 2px solid rgba(230, 126, 34, 0.3);
+  padding-bottom: 0.3em;
+}
+
+/* 小标题样式 */
+.card-boardgame h3 {
+  display: block;
+  color: #16a085;
+  margin-bottom: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* 段落样式 */
+.card-boardgame p {
+  color: #34495e;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 16px 0;
+  position: relative;
+}
+
+.card-boardgame p strong {
+  color: #c0392b;
+  font-weight: 600;
+}
+
+.card-boardgame p em {
+  color: #16a085;
+  font-style: italic;
+}
+
+.card-boardgame a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 2px solid rgba(52, 152, 219, 0.3);
+  transition: all 0.3s ease;
+}
+
+.card-boardgame a:hover {
+  color: #2980b9;
+  border-bottom: 2px solid rgba(41, 128, 185, 0.7);
+}
+
+/* 有序列表样式 */
+.card-boardgame ol {
+  counter-reset: item;
+  padding-left: 0;
+  margin: 20px 0;
+}
+
+.card-boardgame ol > li {
+  position: relative;
+  counter-increment: item;
+  list-style: none;
+  margin-bottom: 16px;
+  padding-left: 40px;
+  color: #34495e;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* 添加骰子装饰到序号 */
+.card-boardgame ol > li:before {
+  content: attr(data-index);
+  position: absolute;
+  left: 0;
+  top: -3px;
+  width: 28px;
+  height: 28px;
+  background: rgba(230, 126, 34, 0.2);
+  border: 1px solid rgba(230, 126, 34, 0.4);
+  color: #e67e22;
+  text-align: center;
+  line-height: 26px;
+  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-boardgame strong {
+  color: #c0392b;
+}
+
+/* 表格样式 */
+.card-boardgame table,
+.card-boardgame table.tableWrapper {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background-color: rgba(236, 240, 241, 0.8);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 2px #5d4037, 0 0 0 6px rgba(236, 240, 241, 0.8);
+  position: relative;
+}
+
+.card-boardgame table:before,
+.card-boardgame table.tableWrapper:before {
+  content: "🂮";
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  font-size: 24px;
+  color: rgba(93, 64, 55, 0.2);
+  transform: rotate(15deg);
+}
+
+.card-boardgame th,
+.card-boardgame table.tableWrapper th {
+  background-color: #5d4037;
+  color: #ecf0f1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px;
+  font-weight: 600;
+  text-align: left;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.card-boardgame td,
+.card-boardgame table.tableWrapper td {
+  color: #34495e;
+  padding: 12px;
+  border-bottom: 1px solid rgba(93, 64, 55, 0.2);
+}
+
+.card-boardgame tr:last-child td,
+.card-boardgame table.tableWrapper tr:last-child td {
+  border-bottom: none;
+}
+
+.card-boardgame tr:nth-child(even),
+.card-boardgame table.tableWrapper tr:nth-child(even) {
+  background-color: rgba(236, 240, 241, 0.5);
+}
+
+/* 代码块样式 */
+.card-boardgame pre {
+  background-color: #f2f2f2 !important;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 20px 0;
+  overflow-x: auto;
+  position: relative;
+}
+
+.card-boardgame pre:before {
+  content: "</>";
+  position: absolute;
+  top: 4px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #e67e22;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(230, 126, 34, 0.3);
+}
+
+.card-boardgame code:not(pre code) {
+  background-color: #f2f2f2;
+  color: #e74c3c;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.9em;
+  border: 1px solid #ddd;
+}
+
+/* 引用块样式 */
+.card-boardgame blockquote {
+  background: rgba(236, 240, 241, 0.8);
+  border: 2px solid #5d4037;
+  color: #7f8c8d;
+  padding: 15px 20px;
+  margin: 20px 0;
+  font-style: italic;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 添加游戏棋子装饰到引用块 */
+.card-boardgame blockquote:before {
+  content: "♞";
+  position: absolute;
+  left: 10px;
+  top: 5px;
+  color: rgba(93, 64, 55, 0.3);
+  font-size: 20px;
+}
+
+/* 无序列表样式 */
+.card-boardgame ul {
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.card-boardgame ul > li {
+  margin: 0;
+  flex: 1;
+  background: rgba(236, 240, 241, 0.8);
+  border-radius: 8px;
+  padding: 15px;
+  border: 1px solid rgba(93, 64, 55, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-boardgame ul > li:before {
+  content: "🂢";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 16px;
+  color: rgba(93, 64, 55, 0.2);
+  transform: rotate(15deg);
+}
+
+.card-boardgame ul > li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-boardgame ul > li strong {
+  font-size: 16px;
+  color: #e67e22;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* 水平线样式 */
+.card-boardgame hr {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(230, 126, 34, 0.5),
+    transparent
+  );
+  margin: 25px 0;
+}
+
+/* 图片样式 */
+.card-boardgame img {
+  max-width: 100%;
+  border: 1px solid rgba(93, 64, 55, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin: 20px 0;
+}
+
+/* 特殊元素：信息卡片 */
+.card-boardgame .info-card {
+  background: rgba(230, 126, 34, 0.1);
+  border: 1px solid rgba(230, 126, 34, 0.3);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.card-boardgame .info-card:before {
+  content: "i";
+  position: absolute;
+  top: -10px;
+  left: 15px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #e67e22;
+  color: white;
+  text-align: center;
+  line-height: 20px;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 12px;
+}
+
+/* 特殊元素：标签 */
+.card-boardgame .tag {
+  display: inline-block;
+  background: rgba(230, 126, 34, 0.15);
+  color: #e67e22;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(230, 126, 34, 0.3);
+  transition: all 0.3s ease;
+}
+
+.card-boardgame .tag:hover {
+  background: rgba(230, 126, 34, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(230, 126, 34, 0.2);
+}
+
+/* 特殊元素：进度条 */
+.card-boardgame .progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(236, 240, 241, 0.8);
+  border-radius: 3px;
+  margin: 20px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-boardgame .progress-bar:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 70%; /* 可调整进度 */
+  background: linear-gradient(90deg, #e67e22, #d35400);
+  border-radius: 3px;
+} 

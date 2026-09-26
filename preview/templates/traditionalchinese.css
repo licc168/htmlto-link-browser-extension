@@ -1,0 +1,409 @@
+/* styles/templates/traditional-chinese.css */
+
+/* 中国传统风格模板变量 */
+.card-traditionalchinese {
+  --traditional-bg: #f8f0e0; /* 米黄色背景，模拟宣纸 */
+  --traditional-text-main: #333333; /* 主要文本颜色 */
+  --traditional-text-title: #8b0000; /* 标题暗红色 */
+  --traditional-text-subtitle: #5c3317; /* 副标题深棕色 */
+  --traditional-accent-primary: #a52a2a; /* 主要强调色/边框 - 赭石色/深红 */
+  --traditional-accent-secondary: #8b0000;
+  --traditional-font-serif: "STKaiti", "FangSong", "SimSun", serif; /* 主要衬线字体 */
+  --traditional-font-sans: "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif; /* 辅助无衬线字体 */
+  --traditional-shadow: rgba(160, 82, 45, 0.15);
+  --traditional-paper-texture-opacity: 0.6; /* 仿古纸纹理透明度 */
+  --traditional-ink-wash-opacity: 0.1; /* 水墨装饰透明度 */
+}
+
+/* 最外层卡片容器 */
+.card-traditionalchinese {
+  background-color: var(--traditional-bg);
+  
+  color: var(--traditional-text-main);
+  box-shadow: 0 10px 25px var(--traditional-shadow);
+  position: relative; /* 确保伪元素可以相对于它定位 */
+  overflow: hidden; /* 防止装饰元素溢出卡片边界 */
+  font-size: 16px; /* 基础字号 */
+  line-height: 1.8; /* 基础行高 */
+}
+
+/* "福"字印章 - 应用到卡片右上角 */
+.card-traditionalchinese::after {
+  content: "\798f"; /* "福"的Unicode编码 */
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background: var(--traditional-accent-primary);
+  color: var(--traditional-bg); /* 印章文字颜色用背景色，形成对比 */
+  
+  font-size: 24px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 3px;
+  transform: rotate(15deg);
+  box-shadow: 0 2px 5px rgba(165, 42, 42, 0.3);
+  z-index: 30; /* 确保在最上层 */
+  pointer-events: none; /* 避免干扰可能的交互 */
+}
+
+/* 卡片内容区域 */
+.card-traditionalchinese .card-content {
+  padding: 20px; /* 内边距 */
+  position: relative; /* 为内部伪元素定位 */
+  z-index: 2; /* 高于可能的背景伪元素 */
+  background: rgba(248, 240, 224, 0.8); /* 轻微的内层背景，增加层次感 */
+  border: 1px solid rgba(165, 42, 42, 0.3); /* 内层边框 */
+  border-radius: 4px;
+  height: 100%; /* 尝试填充父容器 */
+  box-sizing: border-box;
+  overflow-y: hidden; /* 允许内容滚动 */
+  flex-grow: 1; /* 如果父级是flex */
+}
+
+/* 当非长图且需要严格裁剪时 */
+.card-traditionalchinese:not(.long-content-mode) .card-content,
+.card-traditionalchinese.height-overflow-hidden .card-content {
+  overflow-y: hidden;
+}
+
+
+/* 左下角水墨装饰 - 应用到内容区域的::before */
+.card-traditionalchinese .card-content::before {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(
+    circle,
+    rgba(165, 42, 42, var(--traditional-ink-wash-opacity)) 10%, /* 使用变量控制透明度 */
+    rgba(165, 42, 42, calc(var(--traditional-ink-wash-opacity) * 0.5)) 50%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  z-index: 1; /* 在文本内容之下，但在卡片背景之上 */
+  pointer-events: none;
+}
+
+/* 实际渲染HTML的容器 */
+.card-traditionalchinese .card-content-inner {
+  position: relative; /* 确保内容在装饰之上 */
+  z-index: 2;
+  height: 100%; /* 填充.card-content */
+}
+
+/* 标题样式 */
+.card-traditionalchinese .card-content-inner h1,
+.card-traditionalchinese .card-content-inner h2,
+.card-traditionalchinese .card-content-inner h3,
+.card-traditionalchinese .card-content-inner h4,
+.card-traditionalchinese .card-content-inner h5,
+.card-traditionalchinese .card-content-inner h6 {
+  
+  font-weight: 600; /* 标题通常较粗 */
+  line-height: 1.4;
+  margin-top: 1.2em;
+  margin-bottom: 0.8em;
+}
+
+.card-traditionalchinese .card-content-inner h1 {
+  font-size: 2em; /* 32px */
+  color: var(--traditional-text-title);
+  text-align: center;
+  letter-spacing: 4px;
+  padding: 10px 0;
+  position: relative; /* 为双线边框定位 */
+}
+.card-traditionalchinese .card-content-inner h1::before,
+.card-traditionalchinese .card-content-inner h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: var(--traditional-accent-primary);
+}
+.card-traditionalchinese .card-content-inner h1::before { top: 0; }
+.card-traditionalchinese .card-content-inner h1::after { bottom: 0; }
+
+.card-traditionalchinese .card-content-inner h2 {
+  font-size: 1.5em; /* 24px */
+  color: var(--traditional-text-subtitle);
+  text-align: center; /* h2也居中 */
+  letter-spacing: 2px;
+  padding-bottom: 15px; /* 为下面的装饰点留空间 */
+  position: relative;
+}
+.card-traditionalchinese .card-content-inner h2::after {
+  content: "•";
+  position: absolute;
+  bottom: -5px; /* 调整位置 */
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--traditional-accent-primary);
+  font-size: 1.25em; /* 20px */
+}
+
+.card-traditionalchinese .card-content-inner h3 {
+  font-size: 1.25em; /* 20px */
+  color: var(--traditional-text-subtitle);
+  border-bottom: 1px solid rgba(165, 42, 42, 0.2); /* 细下划线 */
+  padding-bottom: 0.3em;
+}
+.card-traditionalchinese .card-content-inner h4 {
+  font-size: 1.1em; /* 18px */
+  color: var(--traditional-text-subtitle);
+}
+
+/* 段落样式 */
+.card-traditionalchinese .card-content-inner p {
+  color: var(--traditional-text-main);
+  text-align: justify; /* 两端对齐 */
+  letter-spacing: 0.5px; /* 轻微增加字间距以模仿印刷感 */
+  margin-bottom: 1em;
+}
+.card-traditionalchinese .card-content-inner strong {
+  color: var(--traditional-text-title); /* 加粗文本用标题色 */
+  font-weight: 600; /* common.css 可能已定义 */
+}
+.card-traditionalchinese .card-content-inner em {
+  color: var(--traditional-accent-primary); /* 斜体用强调色 */
+  font-style: normal; /* 移除默认斜体，通过颜色或下划线强调 */
+  /* border-bottom: 1px dotted var(--traditional-accent-primary); */ /* 可选的强调方式 */
+}
+.card-traditionalchinese .card-content-inner a {
+  color: var(--traditional-text-title);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(165, 42, 42, 0.3);
+  transition: all 0.3s ease;
+}
+.card-traditionalchinese .card-content-inner a:hover {
+  color: var(--traditional-accent-primary);
+  border-bottom-color: var(--traditional-accent-primary);
+}
+
+
+/* 列表容器样式 */
+.card-traditionalchinese .card-content-inner ul,
+.card-traditionalchinese .card-content-inner ol {
+  margin: 1em 0;
+  padding-left: 0; /* 重置 */
+  list-style: none;
+  color: var(--traditional-text-main);
+}
+
+/* 列表项 */
+.card-traditionalchinese .card-content-inner li {
+  position: relative;
+  padding-left: 40px; /* 为28px宽的序号和间距留出空间 */
+  margin-bottom: 0.8em; /* 列表项间距 */
+  text-align: justify; /* 列表项文本也两端对齐 */
+}
+.card-traditionalchinese .card-content-inner li p {
+  margin: 0; /* 去除 li > p 的默认边距 */
+}
+
+/* 有序列表数字样式 - 中国风 */
+.card-traditionalchinese .card-content-inner ol > li::before {
+  content: attr(data-index);
+  position: absolute;
+  left: 0;
+  top: 0; /* 与文本顶部对齐 */
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--traditional-accent-primary);
+  color: var(--traditional-text-title);
+  background: rgba(248, 240, 224, 0.8); /* 轻微背景 */
+  text-align: center;
+  line-height: 28px; /* 垂直居中数字 */
+  font-weight: bold;
+  font-size: 0.9em; /* 数字字体略小 */
+  box-sizing: border-box;
+}
+
+/* 无序列表符号样式 - 中国风 */
+.card-traditionalchinese .card-content-inner ul > li::before {
+  content: "\2022"; /* "•"的Unicode编码 */
+  position: absolute;
+  left: 10px;
+  top: 0.05em;
+  color: var(--traditional-text-main);
+  font-size: 1.2em;
+  line-height: inherit;
+}
+
+
+
+
+
+
+/* 引用块样式 */
+.card-traditionalchinese .card-content-inner blockquote {
+  background-color: rgba(248, 240, 224, 0.7);
+  border-left: 4px solid var(--traditional-accent-primary);
+  color: var(--traditional-text-subtitle);
+  padding: 15px 20px;
+  margin: 1.5em 0 1.5em 10px; /* 左边也加点边距 */
+  font-style: italic;
+  position: relative;
+}
+.card-traditionalchinese .card-content-inner blockquote::before {
+  content: "“";
+  position: absolute;
+  top: 5px;
+  left: -5px; /* 调整到边框外或部分覆盖 */
+  color: rgba(165, 42, 42, 0.3);
+  font-size: 2.5em; /* 40px */
+  
+  line-height: 1;
+}
+.card-traditionalchinese .card-content-inner blockquote::after {
+  content: "”";
+  position: absolute;
+  bottom: -15px; /* 调整位置 */
+  right: 5px;
+  color: rgba(165, 42, 42, 0.3);
+  font-size: 2.5em;
+  
+  line-height: 1;
+}
+.card-traditionalchinese .card-content-inner blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* 代码块样式 */
+.card-traditionalchinese .card-content-inner pre {
+  border: 1px solid rgba(165, 42, 42, 0.3);
+  background-color: rgba(248, 240, 224, 0.5);
+  border-radius: 4px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 1em 0;
+  
+  font-size: 0.875em; /* 14px */
+  color: var(--traditional-text-main); /* 代码颜色与正文接近 */
+}
+.card-traditionalchinese .card-content-inner code:not(pre code) {
+  background-color: rgba(165, 42, 42, 0.1);
+  color: var(--traditional-accent-secondary);
+  padding: 2px 5px;
+  border-radius: 3px;
+  
+  font-size: 0.9em;
+}
+
+/* 表格样式 */
+.card-traditionalchinese .card-content-inner table.tableWrapper,
+.card-traditionalchinese .card-content-inner table {
+  width: 100%;
+  margin: 1.5em 0;
+  border-collapse: collapse;
+  border: 2px solid var(--traditional-accent-primary);
+  background-color: rgba(248, 240, 224, 0.5);
+}
+
+.card-traditionalchinese .card-content-inner table.tableWrapper th,
+.card-traditionalchinese .card-content-inner table.tableWrapper td,
+.card-traditionalchinese .card-content-inner table th,
+.card-traditionalchinese .card-content-inner table td {
+  border: 1px solid var(--traditional-accent-primary);
+  padding: 8px 12px;
+  text-align: center;
+}
+
+.card-traditionalchinese .card-content-inner table.tableWrapper th,
+.card-traditionalchinese .card-content-inner table th {
+  background-color: rgba(165, 42, 42, 0.1);
+  color: var(--traditional-text-title);
+}
+
+.card-traditionalchinese .card-content-inner table.tableWrapper tr:nth-child(even),
+.card-traditionalchinese .card-content-inner table tr:nth-child(even) {
+  background-color: rgba(248, 240, 224, 0.8);
+}
+
+.card-traditionalchinese .card-content-inner table.tableWrapper td p,
+.card-traditionalchinese .card-content-inner table td p {
+  margin: 0;
+}
+
+/* 水平线样式 */
+.card-traditionalchinese .card-content-inner hr {
+  height: 1px;
+  border: none;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--traditional-accent-primary),
+    var(--traditional-accent-primary) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  margin: 1.5em 0;
+}
+
+/* 图片样式 */
+.card-traditionalchinese .card-content-inner img {
+  border: 4px double var(--traditional-accent-primary); /* 双线边框 */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.5em auto; /* 上下边距，水平居中 */
+  padding: 4px; /* 图片与边框间距 */
+  background-color: var(--traditional-bg); /* 图片背景与卡片背景一致 */
+}
+
+/* KaTeX 数学公式 */
+.card-traditionalchinese .card-content-inner .math-inline {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0.25em;
+  padding: 2px 4px;
+  background-color: hsla(40, 63%, 93%, .6);
+  border: 1px solid rgba(165, 42, 42, 0.2);
+  border-radius: 3px;
+  color: var(--traditional-text-subtitle);
+}
+.card-traditionalchinese .card-content-inner .math-block {
+  display: block;
+  margin: 1em auto;
+  padding: 10px 15px;
+  text-align: center;
+  background-color: hsla(40, 63%, 93%, .7);
+  border: 1px solid rgba(165, 42, 42, 0.3);
+  border-radius: 4px;
+  max-width: 90%;
+  position: relative;
+  color: var(--traditional-text-subtitle);
+}
+.card-traditionalchinese .card-content-inner .math-block::before,
+.card-traditionalchinese .card-content-inner .math-block::after {
+  content: "❖"; /* 装饰符 */
+  position: absolute;
+  color: rgba(165, 42, 42, 0.6);
+  font-size: 14px;
+}
+.card-traditionalchinese .card-content-inner .math-block::before { top: 5px; left: 5px;}
+.card-traditionalchinese .card-content-inner .math-block::after { bottom: 5px; right: 5px;}
+
+
+/* 页脚 (如果使用) */
+.card-traditionalchinese .card-footer {
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 0.875em; /* 14px */
+  color: var(--traditional-text-subtitle);
+  
+  border-top: 1px solid rgba(165, 42, 42, 0.2);
+  flex-shrink: 0; /* 防止被压缩 */
+}
+.card-traditionalchinese .card-footer::before {
+  content: "※";
+  display: block;
+  color: var(--traditional-accent-primary);
+  margin-bottom: 5px;
+}

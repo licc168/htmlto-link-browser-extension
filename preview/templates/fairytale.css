@@ -1,0 +1,764 @@
+/* 儿童童话风格样式 */
+.fairy-tale-content {
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+.fairy-tale-text {
+  color: #333; /* 默认黑色文本 */
+  line-height: 1.6;
+}
+
+.fairy-tale-text h1 {
+  font-size: calc(28px * 1);
+  position: relative;
+  color: #5e7cff;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-align: center; /* 改回居中对齐 */
+  padding: 5px 0;
+  text-shadow: 1px 1px 2px rgba(165, 199, 254, 0.5);
+}
+
+/* 标题两侧的花朵装饰 */
+.fairy-tale-text h1::before,
+.fairy-tale-text h1::after {
+  content: "✿";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ffb7c5;
+  font-size: 20px;
+}
+
+.fairy-tale-text h1::before {
+  left: 0;
+}
+
+.fairy-tale-text h1::after {
+  right: 0;
+}
+
+.fairy-tale-text h2 {
+  font-size: calc(28px * 1);
+  color: #6A5ACD; /* 深紫色副标题 */
+  font-weight: 500;
+  text-align: left; /* 从center改为left */
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  position: relative;
+}
+
+/* 如果h2下方有装饰线，也需要调整为左对齐 */
+.fairy-tale-text h2:after {
+  content: "";
+  display: block;
+  width: 30%; /* 或更合适的宽度 */
+  height: 2px;
+  background: #4169E1;
+  margin: 5px 0 0 0; /* 移除左右的auto，改为左对齐 */
+}
+
+.fairy-tale-text h3 {
+  font-size: calc(22px * 1);
+  color: #4169E1; /* 蓝色小标题 */
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+  margin-top: 0.8rem;
+  text-align: left; /* 确保左对齐 */
+}
+
+.fairy-tale-text h4 {
+  font-size: calc(18px * 1);
+  color: #000; /* 黑色最小标题 */
+  font-weight: 500;
+  margin-bottom: 0.7rem;
+  margin-top: 0.7rem;
+  text-align: left; /* 确保左对齐 */
+}
+
+.fairy-tale-text p {
+  margin-bottom: 0.8rem;
+  margin-left: 1rem;
+  line-height: 1.6;
+  color: #333; /* 黑色文本 */
+  font-size: calc(16px * 1);
+  text-align: left; /* 添加这一行确保所有段落左对齐 */
+}
+
+/* 修改这部分，使其更具体，只针对特定类或ID的最后一个p元素 */
+.fairy-tale-text p.ending:last-of-type,  /* 使用特定类名来标记需要居中的结尾段落 */
+.fairy-tale-text .centered-text p:last-of-type {  /* 或者使用特定的容器来包裹需要居中的段落 */
+  color: #8A6FDF; 
+  text-align: center;
+}
+
+/* 无序列表样式 - 圆圈里面带菱形 */
+.fairy-tale-text ul {
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  list-style: none;
+}
+
+.fairy-tale-text ul li,
+.fairy-tale-text ol li {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.7;
+  min-height: 2rem;
+  display: block; /* 改为 block 布局 */
+  padding-top: 0.2rem;
+  color: #333 !important;
+  font-size: calc(16px * 1);
+}
+
+/* 列表项中的段落样式 */
+.fairy-tale-text ol li p,
+.fairy-tale-text ul li p {
+  margin-bottom: 0.5em;
+  display: block;
+}
+
+/* 无序列表图标 */
+.fairy-tale-text ul li::before {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  top: 18px;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #D8BFD8, #E6E6FA);
+  border-radius: 50%;
+}
+
+/* 菱形符号 */
+.fairy-tale-text ul li::after {
+  content: "◆";
+  position: absolute;
+  left: -0.5rem;
+  top: 18px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4169E1;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+/* 有序列表样式 - 圆圈内数字 */
+.fairy-tale-text ol {
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  list-style: none;
+}
+
+/* 圆形背景 */
+.fairy-tale-text ol > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, #E6E6FA, #B19CD9);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+
+/* 星标和数字项样式 */
+.fairy-tale-text .star-item {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.7;
+  min-height: 2rem;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 0.2rem;
+  color: #333 !important;
+}
+
+.fairy-tale-text .star-item::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #FFFACD, #FFCC66);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff4500;
+  font-size: 14px;
+}
+
+.fairy-tale-text .number-item {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.7;
+  min-height: 2rem;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 0.2rem;
+  color: #333 !important;
+}
+
+.fairy-tale-text .number-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #E6E6FA, #B19CD9);
+  border-radius: 50%;
+}
+
+.fairy-tale-text .number-item::after {
+  content: attr(data-index);
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4169E1;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* 确保列表项内文本是黑色 */
+.fairy-tale-text ul li p,
+.fairy-tale-text ol li p,
+.fairy-tale-text ul li span,
+.fairy-tale-text ol li span {
+  color: #333 !important;
+}
+
+.fairy-tale-text strong {
+  color: #FF69B4; /* 粉色强调 */
+  font-weight: 600;
+}
+
+.fairy-tale-text em {
+  font-style: italic;
+  color: #9370DB; /* 紫色斜体 */
+}
+
+/* 童话风格引用块 */
+.fairy-tale-text blockquote {
+  background-color: rgba(248, 240, 255, 0.7);
+  border-left: 4px solid #ffb7c5;
+  color: #7a6cb0;
+  padding: 15px 20px;
+  margin: 20px 0;
+  border-radius: 0 10px 10px 0;
+  font-style: italic;
+  position: relative;
+}
+
+/* 引用内容样式 */
+.fairy-tale-text blockquote p {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  
+  position: relative;
+  z-index: 1;
+}
+
+.fairy-tale-content img {
+  border: 3px solid #fff;
+  box-shadow: 0 5px 15px rgba(165, 199, 254, .3);
+  border-radius: 15px;
+  max-width: 100%;
+  height: auto;
+  margin: 15px 0;
+  transition: transform .3s ease;
+  display: block;
+}
+
+/* 添加悬停效果 */
+.fairy-tale-content img:hover {
+  transform: translateY(-5px);
+}
+
+/* 当图片在段落内时的样式调整 */
+.fairy-tale-content p img {
+  margin: 15px auto;
+} 
+
+/* 童话风格表格样式 */
+.fairy-tale-content table.tableWrapper,
+.fairy-tale-content table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 3px;
+  margin: 25px 0;
+  background-color: #fff;
+  position: relative;
+  border: 2px solid #b19cd9;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(165, 199, 254, .3);
+  
+}
+
+/* 表头和单元格通用样式 */
+.fairy-tale-content table.tableWrapper th,
+.fairy-tale-content table.tableWrapper td,
+.fairy-tale-content table th,
+.fairy-tale-content table td {
+  padding: 12px 15px;
+  text-align: center;
+  border: 1px solid #d8bfd8;
+  color: #333;
+  font-size: calc(15px * 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 表头样式 */
+.fairy-tale-content table.tableWrapper th,
+.fairy-tale-content table th {
+  background-color: #e6e6fa;
+  color: #6a5acd;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-bottom: 2px dashed #b19cd9;
+}
+
+/* 单元格颜色交替 - 柔和的童话色彩 */
+.fairy-tale-content table.tableWrapper tr:nth-child(odd) td:nth-child(odd),
+.fairy-tale-content table tr:nth-child(odd) td:nth-child(odd) {
+  background-color: rgba(230, 230, 250, 0.3);
+}
+
+.fairy-tale-content table.tableWrapper tr:nth-child(odd) td:nth-child(even),
+.fairy-tale-content table tr:nth-child(odd) td:nth-child(even) {
+  background-color: rgba(216, 191, 216, 0.2);
+}
+
+.fairy-tale-content table.tableWrapper tr:nth-child(even) td:nth-child(odd),
+.fairy-tale-content table tr:nth-child(even) td:nth-child(odd) {
+  background-color: rgba(255, 183, 197, 0.2);
+}
+
+.fairy-tale-content table.tableWrapper tr:nth-child(even) td:nth-child(even),
+.fairy-tale-content table tr:nth-child(even) td:nth-child(even) {
+  background-color: rgba(173, 216, 230, 0.2);
+}
+
+/* 表格行悬停效果 */
+.fairy-tale-content table.tableWrapper tr:hover,
+.fairy-tale-content table tr:hover {
+  background-color: rgba(177, 156, 217, 0.15);
+}
+
+/* 确保单元格内的段落没有边距 */
+.fairy-tale-content table.tableWrapper td p,
+.fairy-tale-content table td p {
+  margin: 0;
+  padding: 0;
+}
+
+/* 表格容器样式 */
+.fairy-tale-content .table-container {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+/* 添加童话风格装饰 */
+.fairy-tale-content table.tableWrapper::before,
+.fairy-tale-content table.tableWrapper::after,
+.fairy-tale-content table::before,
+.fairy-tale-content table::after {
+  content: "✿";
+  position: absolute;
+  font-size: 24px;
+  color: #ffb7c5;
+}
+
+.fairy-tale-content table.tableWrapper::before,
+.fairy-tale-content table::before {
+  top: -15px;
+  left: -10px;
+  transform: rotate(-15deg);
+}
+
+.fairy-tale-content table.tableWrapper::after,
+.fairy-tale-content table::after {
+  bottom: -15px;
+  right: -10px;
+  transform: rotate(15deg);
+}
+
+/* 表格标题 - 可选 */
+.fairy-tale-content .table-title {
+  
+  font-size: calc(20px * 1);
+  text-align: center;
+  margin-bottom: 10px;
+  color: #6a5acd;
+  position: relative;
+  display: inline-block;
+}
+
+/* 标题装饰 */
+.fairy-tale-content .table-title::before,
+.fairy-tale-content .table-title::after {
+  content: "♦";
+  color: #ffb7c5;
+  font-size: 14px;
+  position: relative;
+  top: -5px;
+  margin: 0 8px;
+}
+
+
+
+
+/* 童话风格样式 */
+.card-fairytale {
+  width: 100%;
+  background: #f8f0ff; /* 柔和的淡紫色背景 */
+  padding: 30px 25px;
+  
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(150, 180, 255, 0.2);
+}
+
+/* 童话书页边框效果 */
+.card-fairytale:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 15px solid transparent;
+  border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,0 C20,10 30,30 20,50 C10,70 30,90 50,100 C70,90 90,70 80,50 C70,30 80,10 100,0 C90,20 70,30 50,20 C30,30 10,20 0,0 Z" fill="none" stroke="%23a5c7fe" stroke-width="2"/></svg>')
+    30 stretch;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 右上角童话星星装饰 */
+.card-fairytale:before {
+  content: "★";
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  color: #ffcc66;
+  text-shadow: 0 0 5px rgba(255, 204, 102, 0.5);
+  z-index: 3;
+}
+
+/* 左下角云朵装饰 */
+.card-fairytale .card-content:before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
+  width: 100px;
+  height: 60px;
+  background: radial-gradient(
+    50px 30px at 30px 30px,
+    rgba(255, 255, 255, 0.8) 10%,
+    rgba(255, 255, 255, 0.4) 60%,
+    transparent 80%
+  );
+  border-radius: 50%;
+  z-index: 1;
+  transform: rotate(-5deg);
+}
+
+/* 右下角彩虹装饰 */
+.card-fairytale .card-content:before {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 80px;
+  height: 40px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 183, 197, 0.3),
+    rgba(255, 204, 102, 0.3),
+    rgba(165, 199, 254, 0.3)
+  );
+  border-radius: 40px 40px 0 0;
+  z-index: 1;
+  opacity: 0.7;
+}
+
+.card-fairytale .card-content {
+  position: relative;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 25px;
+  height: 100%;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(165, 199, 254, 0.2);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.card-fairytale .card-content-inner {
+  position: relative;
+  z-index: 3;
+  overflow: hidden;
+}
+
+/* 主标题样式 - 童话风格 */
+.card-fairytale h1 {
+  
+  font-size: 28px;
+  position: relative;
+  color: #5e7cff;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-align: center;
+  padding: 5px 0;
+  text-shadow: 1px 1px 2px rgba(165, 199, 254, 0.5);
+}
+
+/* 标题童话装饰 */
+.card-fairytale h1:before {
+  content: "✿";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ffb7c5;
+  font-size: 20px;
+}
+
+/* 副标题样式 */
+.card-fairytale h2 {
+  font-size: 18px;
+  color: #7a6cb0;
+  margin-bottom: 20px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+  
+}
+
+.card-fairytale h2:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(to right, #ffb7c5, #a5c7fe);
+  border-radius: 3px;
+}
+
+/* 段落样式 */
+.card-fairytale li,
+.card-fairytale p {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 16px 0;
+  
+}
+
+.card-fairytale p strong {
+  color: #5e7cff;
+  font-weight: 600;
+}
+
+.card-fairytale p em {
+  color: #ff8eb2;
+  font-style: italic;
+}
+
+.card-fairytale p a {
+  color: #7a6cb0;
+  text-decoration: none;
+  border-bottom: 1px dashed #a5c7fe;
+  transition: all 0.3s ease;
+}
+
+.card-fairytale p a:hover {
+  color: #5e7cff;
+  border-bottom: 1px solid #5e7cff;
+}
+
+/* 有序列表样式 - 童话风格数字 */
+.card-fairytale li {
+  position: relative;
+  counter-increment: item;
+  list-style: none;
+  margin-bottom: 20px;
+  padding-left: 36px;
+  color: #555;
+  line-height: 1.7;
+  font-size: 16px;
+  
+}
+
+/* 序号童话风格 */
+.card-fairytale li::before {
+  content: attr(data-index);
+  position: absolute;
+  left: -1.2rem;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffb7c5, #a5c7fe);
+  color: white;
+  text-align: center;
+  line-height: 24px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(165, 199, 254, 0.3);
+}
+
+/* 小标题样式 */
+.card-fairytale h3 {
+  display: block;
+  color: #5e7cff;
+  margin-bottom: 6px;
+  font-size: 17px;
+  font-weight: 600;
+  
+}
+
+/* 表格样式 */
+.card-fairytale table {
+  box-shadow: 0 4px 15px rgba(165, 199, 254, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  border-collapse: collapse;
+  margin: 20px 0;
+  border: 2px dashed #a5c7fe;
+}
+
+.card-fairytale th {
+  background-color: rgba(165, 199, 254, 0.2);
+  color: #5e7cff;
+  padding: 10px 15px;
+  text-align: left;
+  border-bottom: 2px dashed #a5c7fe;
+}
+
+.card-fairytale td {
+  color: #555;
+  padding: 10px 15px;
+  border-bottom: 1px dashed #a5c7fe;
+}
+
+.card-fairytale tr:nth-child(even) {
+  background-color: rgba(248, 240, 255, 0.5);
+}
+
+/* 代码块样式 */
+.card-fairytale pre {
+  border: 2px dashed #a5c7fe;
+  box-shadow: 0 4px 15px rgba(165, 199, 254, 0.1);
+  background-color: rgba(248, 240, 255, 0.7);
+  border-radius: 10px;
+  padding: 15px;
+  overflow-x: auto;
+}
+
+.card-fairytale code:not(pre code) {
+  background-color: rgba(165, 199, 254, 0.2);
+  color: #7a6cb0;
+  padding: 2px 5px;
+  border-radius: 4px;
+  
+}
+
+/* 引用块样式 */
+.card-fairytale blockquote {
+  background-color: rgba(248, 240, 255, 0.7);
+  border-left: 4px solid #ffb7c5;
+  color: #7a6cb0;
+  padding: 15px 20px;
+  margin: 20px 0;
+  border-radius: 0 10px 10px 0;
+  font-style: italic;
+}
+
+.card-content ol,
+.card-content ul {
+  padding-left: 20px;
+}
+
+/* 无序列表样式 */
+.card-fairytale ul > li:before {
+  content: "✧";
+  position: absolute;
+  left: -1.1rem;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffcc66;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* 水平线样式 */
+.card-fairytale hr {
+  height: 3px;
+  border: none;
+  background: repeating-linear-gradient(
+    90deg,
+    #ffb7c5,
+    #ffb7c5 10px,
+    #a5c7fe 10px,
+    #a5c7fe 20px
+  );
+  border-radius: 3px;
+  margin: 25px 0;
+}
+
+/* 图片样式 */
+.card-fairytale img {
+  border: 3px solid white;
+  box-shadow: 0 5px 15px rgba(165, 199, 254, 0.3);
+  border-radius: 15px;
+  max-width: 100%;
+  height: auto;
+  margin: 15px 0;
+  transition: transform 0.3s ease;
+}
+
+/* 添加童话风格的页脚装饰 */
+.card-fairytale .card-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #7a6cb0;
+  
+}
+
+.card-fairytale .card-footer:before {
+  content: "~ ✧ ~";
+  display: block;
+  color: #ffcc66;
+  margin-bottom: 5px;
+} 

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extName__",
-  "version": "1.3.7",
+  "version": "1.4.0",
   "description": "__MSG_extDescription__",
   "default_locale": "en",
   "icons": {
@@ -33,17 +33,17 @@
         "https://chatgpt.com/*",
         "https://chat.openai.com/*"
       ],
-      "js": ["page-i18n.js", "platforms/chatgpt.js", "content.js"],
+      "js": ["page-i18n.js", "preview/vendor/marked.umd.js", "preview/capture-marked.js", "preview/vendor/katex/katex.min.js", "preview/capture-katex.js", "preview/preview-render.js", "platforms/conversation.js", "platforms/chatgpt.js", "content.js"],
       "css": ["content.css"]
     },
     {
       "matches": ["https://claude.ai/*"],
-      "js": ["page-i18n.js", "platforms/claude.js", "content.js"],
+      "js": ["page-i18n.js", "preview/vendor/marked.umd.js", "preview/capture-marked.js", "preview/vendor/katex/katex.min.js", "preview/capture-katex.js", "preview/preview-render.js", "platforms/conversation.js", "platforms/claude.js", "content.js"],
       "css": ["content.css"]
     },
     {
       "matches": ["https://chat.deepseek.com/*"],
-      "js": ["page-i18n.js", "platforms/deepseek.js", "content.js"],
+      "js": ["page-i18n.js", "preview/vendor/marked.umd.js", "preview/capture-marked.js", "preview/vendor/katex/katex.min.js", "preview/capture-katex.js", "preview/preview-render.js", "platforms/conversation.js", "platforms/deepseek.js", "content.js"],
       "css": ["content.css"]
     },
     {
@@ -51,7 +51,7 @@
         "https://v0.dev/*",
         "https://v0.app/*"
       ],
-      "js": ["page-i18n.js", "platforms/v0.js", "content.js"],
+      "js": ["page-i18n.js", "preview/vendor/marked.umd.js", "preview/capture-marked.js", "preview/vendor/katex/katex.min.js", "preview/capture-katex.js", "preview/preview-render.js", "platforms/conversation.js", "platforms/v0.js", "content.js"],
       "css": ["content.css"]
     },
     {
@@ -60,7 +60,7 @@
         "https://kimi.com/*",
         "https://www.kimi.com/*"
       ],
-      "js": ["page-i18n.js", "platforms/kimi.js", "content.js"],
+      "js": ["page-i18n.js", "preview/vendor/marked.umd.js", "preview/capture-marked.js", "preview/vendor/katex/katex.min.js", "preview/capture-katex.js", "preview/preview-render.js", "platforms/conversation.js", "platforms/kimi.js", "content.js"],
       "css": ["content.css"]
     },
     {
@@ -68,17 +68,17 @@
         "https://yiyan.baidu.com/*",
         "https://wenxin.baidu.com/*"
       ],
-      "js": ["page-i18n.js", "platforms/yiyan.js", "content.js"],
+      "js": ["page-i18n.js", "preview/vendor/marked.umd.js", "preview/capture-marked.js", "preview/vendor/katex/katex.min.js", "preview/capture-katex.js", "preview/preview-render.js", "platforms/conversation.js", "platforms/yiyan.js", "content.js"],
       "css": ["content.css"]
     },
     {
       "matches": ["https://yuanbao.tencent.com/*"],
-      "js": ["page-i18n.js", "platforms/yuanbao.js", "content.js"],
+      "js": ["page-i18n.js", "preview/vendor/marked.umd.js", "preview/capture-marked.js", "preview/vendor/katex/katex.min.js", "preview/capture-katex.js", "preview/preview-render.js", "platforms/conversation.js", "platforms/yuanbao.js", "content.js"],
       "css": ["content.css"]
     },
     {
       "matches": ["https://tongyi.aliyun.com/*"],
-      "js": ["page-i18n.js", "platforms/tongyi.js", "content.js"],
+      "js": ["page-i18n.js", "preview/vendor/marked.umd.js", "preview/capture-marked.js", "preview/vendor/katex/katex.min.js", "preview/capture-katex.js", "preview/preview-render.js", "platforms/conversation.js", "platforms/tongyi.js", "content.js"],
       "css": ["content.css"]
     },
     {
@@ -87,17 +87,26 @@
         "https://qianwen.com/*",
         "https://www.qianwen.com/*"
       ],
-      "js": ["page-i18n.js", "platforms/qwen.js", "content.js"],
+      "js": ["page-i18n.js", "preview/vendor/marked.umd.js", "preview/capture-marked.js", "preview/vendor/katex/katex.min.js", "preview/capture-katex.js", "preview/preview-render.js", "platforms/conversation.js", "platforms/qwen.js", "content.js"],
       "css": ["content.css"]
     },
     {
       "matches": ["https://www.doubao.com/*"],
-      "js": ["page-i18n.js", "platforms/doubao.js", "content.js"],
+      "js": ["page-i18n.js", "preview/vendor/marked.umd.js", "preview/capture-marked.js", "preview/vendor/katex/katex.min.js", "preview/capture-katex.js", "preview/preview-render.js", "platforms/conversation.js", "platforms/doubao.js", "content.js"],
+      "css": ["content.css"]
+    },
+    {
+      "matches": [
+        "https://grok.com/*",
+        "https://x.com/i/grok*",
+        "https://twitter.com/i/grok*"
+      ],
+      "js": ["page-i18n.js", "preview/vendor/marked.umd.js", "preview/capture-marked.js", "preview/vendor/katex/katex.min.js", "preview/capture-katex.js", "preview/preview-render.js", "platforms/conversation.js", "platforms/grok.js", "content.js"],
       "css": ["content.css"]
     },
     {
       "matches": ["https://gemini.google.com/*"],
-      "js": ["page-i18n.js", "platforms/gemini.js", "content.js"],
+      "js": ["page-i18n.js", "preview/vendor/marked.umd.js", "preview/capture-marked.js", "preview/vendor/katex/katex.min.js", "preview/capture-katex.js", "preview/preview-render.js", "platforms/conversation.js", "platforms/gemini.js", "content.js"],
       "css": ["content.css"]
     },
     {
@@ -114,6 +123,14 @@
     "scripting"
   ],
   "host_permissions": [
-    "https://htmlto.link/*"
+    "https://htmlto.link/*",
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["preview/*", "preview/templates/*", "preview/vendor/*", "preview/vendor/katex/*", "preview/vendor/katex/fonts/*"],
+      "matches": ["<all_urls>"]
+    }
   ]
 }

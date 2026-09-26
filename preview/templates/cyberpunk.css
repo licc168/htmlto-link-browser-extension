@@ -1,0 +1,353 @@
+/* 赛博朋克风格样式 */
+.card-cyberpunk {
+  width: 100%;
+  background: #0d0e19;
+  position: relative;
+  overflow: hidden;
+  color: #e0e0e0;
+  padding: 30px 25px;
+  font-family: "var(--font-noto-sans-sc), -apple-system, BlinkMacSystemFont, sans-serif";
+}
+
+.card-cyberpunk:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #ff0080, #0ff);
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-cyberpunk .card-content {
+  position: relative;
+  z-index: 2;
+  border-radius: 12px;
+  padding: 24px;
+  height: 100%;
+  background: rgba(13, 14, 25, 0.7);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.card-cyberpunk .card-content:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(0deg, rgba(255, 0, 128, 0.1) 1px, transparent 1px);
+  background-size: 100% 30px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-cyberpunk .card-content:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(90deg, rgba(255, 0, 128, 0.1) 1px, transparent 1px);
+  background-size: 30px 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-cyberpunk .card-content-inner {
+  position: relative;
+  z-index: 3;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  overflow: hidden;
+}
+
+/* 确保行距均匀 */
+.card-cyberpunk .card-content-inner * {
+  line-height: 30px;
+}
+
+.card-cyberpunk h1 {
+  font-size: 28px;
+  position: relative;
+  color: #fff;
+  margin: 0 0 25px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-align: left;
+  padding: 0 0 10px;
+  text-shadow: 0 0 5px rgba(0, 255, 255, .7), 0 0 10px rgba(0, 255, 255, .5);
+  border-bottom: 2px solid rgba(255, 0, 128, .5);
+}
+
+.card-cyberpunk h2 {
+  font-size: 24px;
+  color: #0ff;
+  margin: 25px 0 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: left;
+  position: relative;
+  padding-left: 15px;
+  border-left: 3px solid rgba(255, 0, 128, .7);
+}
+
+.card-cyberpunk h3 {
+  color: #0ff;
+  margin: 20px 0 10px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-shadow: 0 0 3px rgba(0, 255, 255, .5);
+}
+
+.card-cyberpunk p {
+  font-size: 16px;
+  margin-bottom: 1em;
+  line-height: 1.8;
+  text-align: justify;
+  color: #e0e0e0;
+}
+
+.card-cyberpunk strong {
+  color: #ff0080; 
+  text-shadow: 0 0 3px rgba(255, 0, 128, 0.7);
+}
+
+.card-cyberpunk ul,
+.card-cyberpunk ol {
+  padding-left: 0;
+  margin: 0px 0;
+  margin-left: 20px;
+}
+
+.card-cyberpunk li {
+  position: relative;
+  list-style: none;
+  margin-bottom: 1.5em;
+  padding-left: 40px;
+  color: #e0e0e0;
+  line-height: 1.6;
+  font-size: 16px;
+  display: block;
+}
+
+/* 列表项中的段落样式 */
+.card-cyberpunk ol li p,
+.card-cyberpunk ul li p {
+  margin-bottom: 0.5em;
+  display: block;
+}
+
+.card-cyberpunk ul > li::before {
+  content: ">";
+  position: absolute;
+  left: -1.2rem;
+  top: 0;
+  color: #0ff;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.card-cyberpunk ol > li::before {
+  content: attr(data-index);
+  position: absolute;
+  left: -1.2rem;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 0, 128, .2);
+  border: 1px solid rgba(255, 0, 128, .5);
+  box-shadow: 0 0 5px rgba(255, 0, 128, .3);
+  color: #ff0080;
+  text-align: center;
+  line-height: 28px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* 星标项目样式 */
+.card-cyberpunk .star-item {
+  position: relative;
+  margin-bottom: 1.5em;
+  padding-left: 40px;
+  color: #e0e0e0;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.card-cyberpunk .star-item::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  background: rgba(0, 255, 255, .2);
+  color: #0ff;
+  text-align: center;
+  line-height: 28px;
+  font-weight: 700;
+  font-size: 14px;
+  border: 1px solid rgba(0, 255, 255, .5);
+  box-shadow: 0 0 5px rgba(0, 255, 255, .3);
+}
+
+/* 数字项目样式 */
+.card-cyberpunk .number-item {
+  position: relative;
+  margin-bottom: 1.5em;
+  padding-left: 40px;
+  color: #e0e0e0;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.card-cyberpunk .number-item::before {
+  content: attr(data-index);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 0, 128, .2);
+  border: 1px solid rgba(255, 0, 128, .5);
+  box-shadow: 0 0 5px rgba(255, 0, 128, .3);
+  color: #ff0080;
+  text-align: center;
+  line-height: 28px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.card-cyberpunk blockquote {
+  background-color: rgba(255, 0, 128, .1);
+  border-left: 3px solid rgba(255, 0, 128, .5);
+  color: #e0e0e0;
+  padding: 15px 20px;
+  margin: 20px 0;
+  font-style: italic;
+  position: relative;
+}
+
+/* 赛博朋克风格表格样式 */
+.card-cyberpunk table.tableWrapper,
+.card-cyberpunk table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 2px;
+  margin: 25px 0;
+  background-color: rgba(5, 10, 25, 0.7);
+  position: relative;
+  border: 1px solid #0ff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 
+              inset 0 0 5px rgba(0, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+/* 表头和单元格通用样式 */
+.card-cyberpunk table.tableWrapper th,
+.card-cyberpunk table.tableWrapper td,
+.card-cyberpunk th,
+.card-cyberpunk td {
+  padding: 12px 15px;
+  text-align: center;
+  border: 1px solid rgba(255, 0, 128, 0.5);
+  color: #ffffff;
+  font-size: 15px;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(13, 14, 25, 0.7);
+}
+
+/* 表头样式 */
+.card-cyberpunk table.tableWrapper th,
+.card-cyberpunk th {
+  background-color: rgba(255, 0, 128, 0.4);
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #ff0080;
+}
+
+/* 单元格光晕效果 */
+.card-cyberpunk table.tableWrapper td::after,
+.card-cyberpunk td::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+/* 表格行样式 - 确保所有行都有暗色背景 */
+.card-cyberpunk table.tableWrapper tr,
+.card-cyberpunk table tr {
+  background-color: rgba(13, 14, 25, 0.7);
+}
+
+/* 为偶数行添加略微不同的背景色以增强可读性 */
+.card-cyberpunk table.tableWrapper tr:nth-child(even),
+.card-cyberpunk table tr:nth-child(even) {
+  background-color: rgba(20, 21, 35, 0.7);
+}
+
+/* 确保单元格内的段落没有边距 */
+.card-cyberpunk table.tableWrapper td p,
+.card-cyberpunk td p {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* 表格容器样式 */
+.card-cyberpunk .table-container {
+  overflow-x: auto;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* 添加故障艺术装饰 */
+.card-cyberpunk table.tableWrapper::before,
+.card-cyberpunk table::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  background-color: transparent;
+  border: 1px solid rgba(255, 0, 128, 0.5);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* 添加扫描线效果 */
+.card-cyberpunk table.tableWrapper::after,
+.card-cyberpunk table::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.5;
+} 

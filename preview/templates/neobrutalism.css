@@ -1,0 +1,171 @@
+/* Neo-Brutalism - 新粗野主义风格 */
+/* 厚重黑色边框 + 硬阴影 + 高饱和色块 */
+
+.card-neobrutalism {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background-color: #fffdf5;
+  color: #000000;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-neobrutalism .card-content {
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.card-neobrutalism .card-content-inner {
+  padding: 24px 26px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.card-neobrutalism .card-content-inner h1 {
+  font-size: 24px;
+  font-weight: 900;
+  color: #000000;
+  padding: 10px 16px;
+  background-color: #feca57;
+  border: 5px solid #000000;
+  box-shadow: 8px 8px 0 #000000;
+  margin-top: 0;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.card-neobrutalism .card-content-inner h2 {
+  font-size: 20px;
+  font-weight: 900;
+  color: #000000;
+  padding: 8px 14px;
+  background-color: #ffffff;
+  border: 4px solid #000000;
+  border-left: 10px solid #ff4757;
+  box-shadow: 6px 6px 0 #000000;
+  margin: 18px 0 12px;
+}
+
+.card-neobrutalism .card-content-inner h3 {
+  font-size: 17px;
+  font-weight: 900;
+  color: #000000;
+  padding: 5px 12px;
+  background-color: #00d2d3;
+  border: 4px solid #000000;
+  box-shadow: 4px 4px 0 #000000;
+  display: inline-block;
+  margin: 14px 0 8px;
+}
+
+.card-neobrutalism .card-content-inner p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #000000;
+  margin-bottom: 14px;
+}
+
+.card-neobrutalism .card-content-inner ol,
+.card-neobrutalism .card-content-inner ul {
+  margin-bottom: 14px;
+  padding-left: 24px;
+  list-style-type: square;
+}
+
+.card-neobrutalism .card-content-inner li {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #000000;
+  margin-bottom: 5px;
+}
+
+.card-neobrutalism .card-content-inner li::marker {
+  color: #ff4757;
+  font-weight: 900;
+}
+
+.card-neobrutalism .card-content-inner strong {
+  font-weight: 900;
+  color: #000000;
+  background-color: #feca57;
+  padding: 1px 4px;
+  border: 2px solid #000000;
+}
+
+.card-neobrutalism .card-content-inner blockquote {
+  margin: 16px 0;
+  padding: 12px 14px;
+  background-color: #a29bfe;
+  color: #000000;
+  border: 5px solid #000000;
+  border-left: 12px solid #ff4757;
+  box-shadow: 8px 8px 0 #000000;
+}
+
+.card-neobrutalism .card-content-inner blockquote p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.card-neobrutalism .card-content-inner code {
+  font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+  background-color: #feca57;
+  color: #000000;
+  padding: 2px 6px;
+  border: 3px solid #000000;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.card-neobrutalism .card-content-inner pre {
+  background-color: #000000;
+  padding: 14px 16px;
+  border: 5px solid #000000;
+  box-shadow: 10px 10px 0 #ff4757;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+.card-neobrutalism .card-content-inner pre code {
+  background: transparent;
+  color: #ffffff;
+  padding: 0;
+  border: none;
+  font-weight: 400;
+  font-size: 14px;
+  display: block;
+  line-height: 1.55;
+}
+
+.card-neobrutalism .card-content-inner table,
+.card-neobrutalism .card-content-inner table.tableWrapper {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+  border: 5px solid #000000;
+  box-shadow: 8px 8px 0 #000000;
+}
+
+.card-neobrutalism .card-content-inner th {
+  font-weight: 900;
+  background-color: #feca57;
+  color: #000000;
+  padding: 8px 12px;
+  border: 3px solid #000000;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.card-neobrutalism .card-content-inner td {
+  padding: 8px 12px;
+  border: 3px solid #000000;
+  text-align: left;
+}
+
+.card-neobrutalism .card-content-inner tr:nth-child(even) td {
+  background-color: #f1f2f6;
+}

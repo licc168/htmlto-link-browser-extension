@@ -1,13 +1,13 @@
 # 🚀 HTML To Link - 浏览器插件 (Chrome / Edge Extension)
 
-把 ChatGPT（以及 Claude / Gemini）做好的网页，一键变成可分享链接。商店文案与截图见 `store-listing-copy.md`。
+把 AI 对话或一段网页代码变成可分享链接。商店文案与图片在 `素材/`，按中英文分开。
 
 ---
 
 ## ✨ 核心功能亮点
 
 1. **🤖 AI 聊天页面自动注入**：
-   - 自动识别 **ChatGPT、Claude、DeepSeek、v0.dev、Kimi、通义千问、豆包** 等平台的代码块。
+   - 自动识别 **ChatGPT、Claude、DeepSeek、Grok、v0.dev、Kimi、通义千问、豆包** 等平台的代码块。
    - 在 HTML 代码块右上角注入 **`[🚀 1秒生成链接 (htmlto.link)]`** 浮动按钮，点击直接生成 URL 并自动复制剪贴板！
 
 2. **📋 插件弹窗一键粘贴发布**：
@@ -67,7 +67,7 @@
 npm run pack
 ```
 
-上传生成的 `dist/htmlto-link-extension.zip`（应小于 100KB）。商店详情文案见 `store-listing-copy.md`。
+上传生成的 `dist/htmlto-link-extension.zip`（应小于 100KB）。商店文案和图片在 `素材/`。
 
 ---
 

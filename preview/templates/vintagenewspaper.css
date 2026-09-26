@@ -1,0 +1,725 @@
+/* 复古报纸主题样式 */
+.card-vintagenewspaper {
+  width: 100%;
+  height: 100%;
+  color: #222;
+  line-height: 1.6;
+  font-size: 14px;
+  position: relative;
+  background: #f8f2e2;
+  border: 1px solid #d4c8a8;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  padding: 24px;
+  overflow: hidden;
+}
+
+.card-vintagenewspaper .card-content {
+  min-height: 300px;
+  padding: 0;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.card-vintagenewspaper .card-content-inner {
+  width: 100%;
+  height: 100%;
+  font-family: 'Times New Roman', serif;
+}
+
+.card-vintagenewspaper .card-content-inner p {
+  margin-bottom: 1.2em;
+  text-align: justify;
+  font-size: 14px;
+  text-indent: 0.5em;
+  hyphens: auto;
+}
+
+.card-vintagenewspaper .card-content-inner h1,
+.card-vintagenewspaper .card-content-inner h2,
+.card-vintagenewspaper .card-content-inner h3,
+.card-vintagenewspaper .card-content-inner h4 {
+  font-weight: bold;
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+  text-align: left;
+  break-after: avoid;
+}
+
+.card-vintagenewspaper .card-content-inner h1 {
+  font-size: 1.8em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  text-align: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: 5px;
+  margin-top: 0;
+}
+
+.card-vintagenewspaper .card-content-inner h2 {
+  font-size: 1.5em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-vintagenewspaper .card-content-inner h3 {
+  font-size: 1.3em;
+  line-height: 1.3;
+  font-style: italic;
+}
+
+.card-vintagenewspaper .card-content-inner h4 {
+  font-size: 1.1em;
+  line-height: 1.4;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+.card-vintagenewspaper .card-content-inner ul,
+.card-vintagenewspaper .card-content-inner ol {
+  margin: 1em 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.card-vintagenewspaper .card-content-inner ul li,
+.card-vintagenewspaper .card-content-inner ol li {
+  list-style-type: none;
+  margin-bottom: 1em;
+  padding-left: 2rem;
+  position: relative;
+  line-height: 1.5;
+  text-align: left;
+  display: block;
+}
+
+.card-vintagenewspaper .card-content-inner ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  width: 20px;
+  height: 20px;
+  background-color: #f8f2e2;
+  border: 1px solid #222;
+}
+
+.card-vintagenewspaper .card-content-inner ul > li::after {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #222;
+  font-size: 11px;
+}
+
+.card-vintagenewspaper .card-content-inner ol {
+  counter-reset: item;
+}
+
+.card-vintagenewspaper .card-content-inner ol > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.25em;
+  width: 20px;
+  height: 20px;
+  background-color: #f8f2e2;
+  border: 1px solid #222;
+}
+
+.card-vintagenewspaper .card-content-inner ol > li::after {
+  content: attr(data-index);
+  position: absolute;
+  left: 0;
+  top: 0.25em;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #222;
+  font-weight: bold;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.card-vintagenewspaper .card-content-inner blockquote {
+  margin: 1.5em 2em;
+  padding: 0.8em 1.2em;
+  font-style: italic;
+  position: relative;
+  font-size: 0.9em;
+  line-height: 1.7;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-left: 3px double #000;
+}
+
+.card-vintagenewspaper .card-content-inner blockquote::before,
+.card-vintagenewspaper .card-content-inner blockquote::after {
+  content: '"';
+  font-size: 2em;
+  line-height: 0.1em;
+}
+
+.card-vintagenewspaper .card-content-inner blockquote::before {
+  position: absolute;
+  left: 0.2em;
+  top: 0.5em;
+}
+
+.card-vintagenewspaper .card-content-inner blockquote::after {
+  position: absolute;
+  right: 0.2em;
+  bottom: 0;
+}
+
+.card-vintagenewspaper .card-content-inner hr {
+  border: none;
+  border-top: 1px dotted #000;
+  margin: 2em 0;
+  position: relative;
+}
+
+.card-vintagenewspaper .card-content-inner hr::before {
+  content: "☙";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f8f2e2;
+  padding: 0 10px;
+  font-size: 1em;
+  color: #000;
+}
+
+.card-vintagenewspaper .card-content-inner img {
+  max-width: 100%;
+  height: auto;
+  margin: 1em auto;
+  display: block;
+  filter: grayscale(100%) contrast(1.2);
+  border: 1px solid #000;
+  padding: 5px;
+  background: #fff;
+}
+
+.card-vintagenewspaper .card-content-inner table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  border: 1px solid #222;
+  font-size: 13px;
+  background-color: #f8f2e2;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.card-vintagenewspaper .card-content-inner th,
+.card-vintagenewspaper .card-content-inner td {
+  padding: 8px 12px;
+  text-align: left;
+  border: 1px solid #222;
+  vertical-align: top;
+  line-height: 1.4;
+}
+
+.card-vintagenewspaper .card-content-inner th {
+  background-color: #222;
+  color: #f8f2e2;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  padding: 10px 12px;
+}
+
+.card-vintagenewspaper .card-content-inner tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.card-vintagenewspaper .card-content-inner tr:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.card-vintagenewspaper .card-content-inner td p {
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+}
+
+.card-vintagenewspaper .card-content-inner .table-container {
+  overflow-x: auto;
+  margin-bottom: 2em;
+  position: relative;
+}
+
+.card-vintagenewspaper .card-content-inner table::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: calc(100% + 6px);
+  height: calc(100% + 6px);
+  pointer-events: none;
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  z-index: -1;
+}
+
+/* 段落样式 */
+.vintage-newspaper-text p {
+  margin-bottom: 1.2em;
+  text-align: justify;
+  font-size: calc(14px * 1);
+  text-indent: 0.5em;
+  hyphens: auto;
+}
+
+/* 标题样式 */
+.vintage-newspaper-text h1,
+.vintage-newspaper-text h2,
+.vintage-newspaper-text h3,
+.vintage-newspaper-text h4 {
+  font-weight: bold;
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+  text-align: left;
+  break-after: avoid;
+}
+
+.vintage-newspaper-text h1 {
+  font-size: calc(1.8em * 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  text-align: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: 5px;
+  margin-top: 0;
+}
+
+.vintage-newspaper-text h2 {
+  font-size: calc(1.5em * 1);
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.vintage-newspaper-text h3 {
+  font-size: calc(1.3em * 1);
+  line-height: 1.3;
+  font-style: italic;
+}
+
+.vintage-newspaper-text h4 {
+  font-size: calc(1.1em * 1);
+  line-height: 1.4;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+/* 列表样式 */
+.vintage-newspaper-text ul,
+.vintage-newspaper-text ol {
+  margin: 1em 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.vintage-newspaper-text ul li,
+.vintage-newspaper-text ol li {
+  list-style-type: none;
+  margin-bottom: 1em;
+  padding-left: 2rem;
+  position: relative;
+  line-height: 1.5;
+  text-align: left;
+  display: block;
+}
+
+/* 无序列表样式 - 复古风格装饰 */
+.vintage-newspaper-text ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  width: 20px;
+  height: 20px;
+  background-color: #f8f2e2;
+  border: 1px solid #222;
+}
+
+.vintage-newspaper-text ul > li::after {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #222;
+  font-size: calc(11px * 1);
+}
+
+/* 有序列表样式 - 复古编号 */
+.vintage-newspaper-text ol {
+  counter-reset: item;
+}
+
+.vintage-newspaper-text ol > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.25em;
+  width: 20px;
+  height: 20px;
+  background-color: #f8f2e2;
+  border: 1px solid #222;
+}
+
+.vintage-newspaper-text ol > li::after {
+  content: attr(data-index);
+  position: absolute;
+  left: 0;
+  top: 0.25em;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #222;
+  font-weight: bold;
+  font-size: calc(12px * 1);
+  font-style: italic;
+}
+
+/* 强调和链接样式 */
+.vintage-newspaper-text strong {
+  font-weight: bold;
+}
+
+.vintage-newspaper-text em {
+  font-style: italic;
+}
+
+.vintage-newspaper-text a {
+  color: #000;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+.vintage-newspaper-text a:hover {
+  text-decoration-style: solid;
+}
+
+/* 引用块样式 */
+.vintage-newspaper-text blockquote {
+  margin: 1.5em 2em;
+  padding: 0.8em 1.2em;
+  font-style: italic;
+  position: relative;
+  font-size: calc(0.9em * 1);
+  line-height: 1.7;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-left: 3px double #000;
+}
+
+.vintage-newspaper-text blockquote::before,
+.vintage-newspaper-text blockquote::after {
+  content: '"';
+  font-size: 2em;
+  line-height: 0.1em;
+}
+
+.vintage-newspaper-text blockquote::before {
+  position: absolute;
+  left: 0.2em;
+  top: 0.5em;
+}
+
+.vintage-newspaper-text blockquote::after {
+  position: absolute;
+  right: 0.2em;
+  bottom: 0;
+}
+
+/* 分割线样式 */
+.vintage-newspaper-text hr {
+  border: none;
+  border-top: 1px dotted #000;
+  margin: 2em 0;
+  position: relative;
+}
+
+.vintage-newspaper-text hr::before {
+  content: "☙";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f8f2e2;
+  padding: 0 10px;
+  font-size: 1em;
+  color: #000;
+}
+
+/* 图片说明文字样式 */
+.vintage-newspaper-text .caption {
+  font-size: calc(0.8em * 1);
+  font-style: italic;
+  text-align: center;
+  display: block;
+  margin-top: 0.5em;
+  border-bottom: 1px dotted #000;
+  padding-bottom: 0.5em;
+}
+
+/* 特色内容样式 */
+.vintage-newspaper-text .featured {
+  font-size: calc(1.1em * 1);
+  font-weight: bold;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  padding: 0.5em 0;
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+/* 日期和作者信息样式 */
+.vintage-newspaper-text .byline {
+  font-style: italic;
+  font-size: calc(0.9em * 1);
+  margin-bottom: 1.5em;
+  text-align: right;
+}
+
+/* 纵向正文区域的列布局 */
+@media (max-width: 768px) {
+  .vintage-newspaper-content {
+    column-count: 1 !important;
+  }
+  
+  .vintage-newspaper-text h1 {
+    font-size: calc(1.6em * 1);
+  }
+  
+  .vintage-newspaper-text h2 {
+    font-size: calc(1.4em * 1);
+  }
+  
+  .vintage-newspaper-text h3 {
+    font-size: calc(1.2em * 1);
+  }
+  
+  .vintage-newspaper-text h4 {
+    font-size: calc(1em * 1);
+  }
+}
+
+/* 专栏装饰样式 */
+.vintage-newspaper-text .column-heading {
+  text-align: center;
+  font-variant: small-caps;
+  letter-spacing: 1px;
+  font-weight: bold;
+  border-bottom: 1px solid #000;
+  margin-bottom: 1em;
+  padding-bottom: 0.3em;
+}
+
+/* 字母间距调整 */
+.vintage-newspaper-text .spaced {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* 复古装饰元素 */
+.vintage-newspaper-text .ornament {
+  text-align: center;
+  font-size: calc(1.5em * 1);
+  margin: 1em 0;
+}
+
+/* 窄列样式 */
+.vintage-newspaper-text .narrow-column {
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  padding: 0 1em;
+  margin: 1em 0;
+}
+
+/* 正文首字样式 */
+.vintage-newspaper-text .first-paragraph::first-letter {
+  font-size: calc(3.5em * 1);
+  float: left;
+  line-height: 0.8;
+  padding-right: 8px;
+  padding-top: 4px;
+  font-weight: bold;
+}
+
+/* 复古报纸表格样式 */
+.vintage-newspaper-text table.tableWrapper,
+.vintage-newspaper-text table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  border: 2px solid #222;
+  font-size: 13px;
+  background-color: #f8f2e2;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* 表头和单元格通用样式 */
+.vintage-newspaper-text table.tableWrapper th,
+.vintage-newspaper-text table.tableWrapper td,
+.vintage-newspaper-text table th,
+.vintage-newspaper-text table td {
+  padding: 8px 12px;
+  text-align: left;
+  border: 1px solid #222;
+  vertical-align: top;
+  line-height: 1.4;
+}
+
+/* 表头样式 */
+.vintage-newspaper-text table.tableWrapper th,
+.vintage-newspaper-text table th {
+  background-color: #222;
+  color: #f8f2e2;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  padding: 10px 12px;
+}
+
+/* 表格行交替颜色 */
+.vintage-newspaper-text table.tableWrapper tr:nth-child(even),
+.vintage-newspaper-text table tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* 表格行悬停效果 */
+.vintage-newspaper-text table.tableWrapper tr:hover,
+.vintage-newspaper-text table tr:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 确保单元格内的段落没有边距 */
+.vintage-newspaper-text table.tableWrapper td p,
+.vintage-newspaper-text table td p {
+  margin: 0;
+}
+
+/* 表格容器样式 */
+.vintage-newspaper-text .table-container {
+  overflow-x: auto;
+  margin-bottom: 2em;
+  position: relative;
+}
+
+/* 复古表格装饰 */
+.vintage-newspaper-text table.tableWrapper::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: calc(100% + 6px);
+  height: calc(100% + 6px);
+  pointer-events: none;
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  z-index: -1;
+}
+
+/* 表格标题样式 */
+.vintage-newspaper-text .table-caption {
+  text-align: center;
+  font-style: italic;
+  font-size: calc(12px * 1);
+  margin-bottom: 0.5em;
+  padding: 5px;
+  border-bottom: 1px solid #222;
+  font-weight: bold;
+}
+
+/* 特殊单元格样式 */
+.vintage-newspaper-text table.tableWrapper .headline-cell {
+  font-weight: bold;
+  font-size: calc(14px * 1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.vintage-newspaper-text table.tableWrapper .date-cell {
+  font-style: italic;
+  font-size: calc(13px * 1);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .vintage-newspaper-text table.tableWrapper th,
+  .vintage-newspaper-text table.tableWrapper td {
+    padding: 6px 8px;
+    font-size: calc(12px * 1);
+  }
+}
+
+/* 段落中的列表间距 */
+.vintage-newspaper-text li > p {
+  margin-bottom: 0.5em;
+}
+
+/* 特别处理 li > p + ul/ol 的情况 */
+.vintage-newspaper-text li > p + ul,
+.vintage-newspaper-text li > p + ol {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding-left: 0;
+}
+
+/* 调整列表项中段落和列表的间距 */
+.vintage-newspaper-text li > p + ul > li,
+.vintage-newspaper-text li > p + ol > li {
+  margin-bottom: 0.7em;
+}
+
+/* 确保列表嵌套时，内部列表项的上下间距合适 */
+.vintage-newspaper-text ul ul > li,
+.vintage-newspaper-text ol ol > li {
+  margin-bottom: 0.7em;
+}
+
+/* 多级嵌套列表处理 */
+.vintage-newspaper-text ul ul,
+.vintage-newspaper-text ol ol {
+  margin-top: 0.8em;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+/* 确保列表项正确显示为块元素 */
+.vintage-newspaper-text li {
+  display: block;
+}
+
+/* 确保段落在列表中正确显示 */
+.vintage-newspaper-text li p {
+  display: block;
+}
+
+/* ol li的特殊样式 */
+.vintage-newspaper-text ol > li {
+  counter-increment: none;
+}

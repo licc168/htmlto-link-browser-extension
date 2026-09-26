@@ -1,0 +1,393 @@
+/* --- Alibaba Style Card with SVG Backgrounds --- */
+
+.card-alibaba {
+  font-family:
+    "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", sans-serif;
+  box-shadow: 0 8px 24px rgba(255, 106, 0, 0.1);
+  background: #ffffff;
+  overflow: hidden; /* Important for containing positioned pseudo-elements */
+  position: relative;
+}
+
+/* SVG Background Decoration - Top Right Corner - 移动到content-inner */
+.card-alibaba .card-content-inner::before {
+  content: "";
+  position: absolute;
+  top: -10px; /* Adjust positioning as needed */
+  right: -15px;
+  width: 120px; /* Size of the SVG container */
+  height: 120px;
+  /* SVG: Abstract overlapping circles/blobs */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='80' cy='40' r='35' fill='%23FF6A00' opacity='0.08'/%3E%3Ccircle cx='95' cy='65' r='25' fill='%23FF8C00' opacity='0.06'/%3E%3Ccircle cx='70' cy='70' r='15' fill='%23FF6A00' opacity='0.1'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain; /* Scale SVG to fit the container */
+  background-position: top right;
+  opacity: 0.8; /* Control overall visibility */
+  pointer-events: none; /* Don't interfere with clicks */
+  z-index: 0; /* Behind content */
+}
+
+/* SVG Background Decoration - Bottom Left Corner - 移动到content-inner */
+.card-alibaba .card-content-inner::after {
+  content: "";
+  position: absolute;
+  bottom: -60px; /* Adjust positioning */
+  left: 0px;
+  width: 100%; /* Size of the SVG container */
+  height: 210px;
+  /* SVG: Simple wave pattern */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 100'%3E%3Cpath d='M0,50 Q37.5,10 75,50 T150,50 L150,100 L0,100 Z' fill='%23FF6A00' opacity='0.05'/%3E%3Cpath d='M0,60 Q37.5,30 75,60 T150,60 L150,100 L0,100 Z' fill='%23FF8C00' opacity='0.07'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom left;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+
+.card-alibaba .card-content {
+  padding: 0;
+  position: relative;
+  z-index: 1; /* Above background SVGs */
+  min-height: 100%;
+  overflow: hidden;
+}
+
+/* Alibaba Orange Header - 移动到content内部 */
+.card-alibaba .card-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: linear-gradient(90deg, #ff8c00, #ff6a00);
+  border-radius: 8px 8px 0 0;
+  z-index: 3;
+}
+
+/* Header decoration - subtle dots - 移动到content内部 */
+.card-alibaba .card-content::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow:
+    -10px 0 0 rgba(255, 255, 255, 0.4),
+    -20px 0 0 rgba(255, 255, 255, 0.2);
+  z-index: 4;
+}
+
+.card-alibaba .card-content-inner {
+  padding: 24px 28px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2; /* Highest level for text content */
+  background: transparent; /* Ensure background SVGs are visible */
+}
+
+/* --- REST OF THE STYLES (h1, h2, p, lists, code, table, footer etc.) --- */
+/* Copy the rest of the styles from the previous response here */
+/* Make sure there are no conflicting ::before/::after rules on card-content */
+
+/* Main Title (H1) */
+.card-alibaba .card-content-inner h1 {
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #111111;
+  margin-top: 0;
+  margin-bottom: 24px;
+  position: relative;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+.card-alibaba .card-content-inner h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 50px;
+  height: 4px;
+  background: #ff6a00;
+  border-radius: 2px;
+}
+
+/* Secondary Title (H2) */
+.card-alibaba h2 {
+  display: table;
+  padding: 0.4em 1.2em;
+  margin: 2.4em auto 1.2em;
+  font-size: 1.2em;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(135deg, #ff6a00, #ff8c00);
+  border-radius: 30px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(255, 106, 0, 0.2);
+  letter-spacing: 0.02em;
+  /* 淘宝特有的双层边框效果 */
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  z-index: 1;
+}
+
+/* 光晕效果 */
+.card-alibaba h2::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: linear-gradient(135deg, #ff6a00, #ff8c00);
+  border-radius: 32px;
+  z-index: -1;
+  opacity: 0.4;
+  filter: blur(12px);
+}
+
+/* Tertiary Title (H3) */
+.card-alibaba h3 {
+  font-size: 1.15em;
+  font-weight: 600;
+  color: #333;
+  margin: 2em 0 0.8em;
+  padding-left: 12px;
+  border-left: 3px solid #ff8c00;
+  line-height: 1.5;
+}
+
+/* Paragraph Text */
+.card-alibaba .card-content-inner p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #555555;
+  margin-bottom: 16px;
+}
+
+/* List Container Styles */
+.card-alibaba .card-content-inner ol,
+.card-alibaba .card-content-inner ul {
+  margin-bottom: 18px;
+  padding: 10px 10px 10px 30px;
+  background: rgba(255, 106, 0, 0.03);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 106, 0, 0.08);
+}
+
+/* List Item Styles */
+.card-alibaba .card-content-inner li {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #555555;
+  margin-bottom: 8px;
+  position: relative;
+}
+.card-alibaba .card-content-inner li:last-child {
+  margin-bottom: 0;
+}
+
+/* Ordered List Marker Styling */
+.card-alibaba .card-content-inner ol {
+  list-style: none;
+}
+.card-alibaba .card-content-inner ol li {
+  padding-left: 10px;
+}
+.card-alibaba .card-content-inner ol li::before {
+  content: attr(data-index);
+  position: absolute;
+  left: -19px;
+  top: 4px;
+  background-color: #ff6a00;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  line-height: 20px;
+}
+
+/* Unordered List Marker Styling */
+.card-alibaba .card-content-inner ul {
+  list-style: none;
+}
+.card-alibaba .card-content-inner ul li {
+  padding-left: 15px;
+}
+.card-alibaba .card-content-inner ul li::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 11px;
+  width: 6px;
+  height: 6px;
+  background-color: #ff8c00;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+/* Strong/Bold Text */
+.card-alibaba .card-content-inner strong {
+  font-weight: 600;
+  color: #ff6a00;
+}
+
+/* Blockquote */
+.card-alibaba .card-content-inner blockquote {
+  margin: 24px 0;
+  padding: 15px 20px 15px 25px; /* Added left padding for quote */
+  background: #fffaf5;
+  border-left: 4px solid #ff6a00;
+  border-radius: 0 8px 8px 0;
+  position: relative;
+  color: #444;
+}
+.card-alibaba .card-content-inner blockquote p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.card-alibaba .card-content-inner blockquote::before {
+  content: "“";
+  font-family: Georgia, serif;
+  position: absolute;
+  left: 8px; /* Adjusted position */
+  top: 5px; /* Adjusted position */
+  font-size: 30px; /* Adjusted size */
+  color: rgba(255, 106, 0, 0.2);
+  line-height: 1;
+}
+
+/* Inline Code */
+.card-alibaba .card-content-inner code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  background: rgba(211, 211, 211, 0.2);
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #d9480f;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Code Block */
+.card-alibaba .card-content-inner pre {
+  background: #f7f7f7;
+  border-radius: 8px;
+  padding: 16px 20px;
+  overflow-x: auto;
+  position: relative;
+  border: 1px solid #e0e0e0;
+  margin: 20px 0;
+  line-height: 1.5;
+}
+.card-alibaba .card-content-inner pre::before {
+  content: "CODE";
+  position: absolute;
+  top: -1px;
+  right: 15px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #aaa;
+  background: #f7f7f7;
+  padding: 1px 6px;
+  border-radius: 0 0 4px 4px;
+  border: 1px solid #e0e0e0;
+  border-top: none;
+}
+.card-alibaba .card-content-inner pre code {
+  background: transparent;
+  padding: 0;
+  color: #333;
+  border: none;
+  font-size: 14px;
+  display: block;
+}
+
+/* Table Styles */
+.card-alibaba .card-content-inner table.tableWrapper,
+.card-alibaba .card-content-inner table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14px;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-alibaba .card-content-inner table.tableWrapper th,
+.card-alibaba .card-content-inner table th {
+  background: rgba(255, 106, 0, 0.08);
+  font-weight: 600;
+  text-align: left;
+  padding: 12px 15px;
+  color: #333;
+  border-bottom: 2px solid rgba(255, 106, 0, 0.2);
+}
+
+.card-alibaba .card-content-inner table.tableWrapper td,
+.card-alibaba .card-content-inner table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #555;
+  line-height: 1.6;
+}
+
+.card-alibaba .card-content-inner table.tableWrapper tr:nth-child(even) td,
+.card-alibaba .card-content-inner table tr:nth-child(even) td {
+  background-color: #fffdfa;
+}
+
+.card-alibaba .card-content-inner table.tableWrapper tr:last-child td,
+.card-alibaba .card-content-inner table tr:last-child td {
+  border-bottom: none;
+}
+
+.card-alibaba .card-footer {
+  padding: 12px 24px;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center; /* Vertically center items in the footer */
+  color: #aaaaaa;
+  font-size: 13px;
+  position: relative;
+  background: #fafafa;
+  min-height: 40px; /* Ensure footer has some height */
+  z-index: 1; /* Ensure footer is above background SVGs */
+}
+
+/* Replace the dot with the Taoxiaobao SVG */
+.card-alibaba .card-footer::before {
+  content: "";
+  display: inline-block;
+  width: 22px; /* Adjust size as needed */
+  height: 22px; /* Adjust size as needed */
+  /* background-color: #ff6a00; Removed */
+  /* border-radius: 50%; Removed */
+  margin-right: 8px; /* Space between icon and any potential text */
+  vertical-align: middle; /* Align icon vertically if text is present */
+
+  /* Simple Taobao/Taoxiaobao Smiley SVG */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23FF6A00'/%3E%3Ccircle cx='8.5' cy='10' r='1.5' fill='%23FFFFFF'/%3E%3Ccircle cx='15.5' cy='10' r='1.5' fill='%23FFFFFF'/%3E%3Cpath d='M8 14.5 Q12 18 16 14.5' stroke='%23FFFFFF' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+
+  background-size: contain; /* Scale SVG nicely */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Optional: If you have text or other elements in the footer, ensure they align nicely */
+.card-alibaba .card-footer > * {
+  vertical-align: middle;
+}

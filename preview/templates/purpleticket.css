@@ -1,0 +1,334 @@
+/* styles/templates/purpleticket.css */
+
+/* 紫色票券模板变量 */
+.purple-ticket-template {
+  --ticket-bg-gradient-start: #8863cf;
+  --ticket-bg-gradient-end: #6b4da8;
+  --ticket-base-font-size: 16px;
+  --ticket-line-height: 1.7;
+  --ticket-font-family: "Ma Shan Zheng", "PingFang SC", cursive;
+
+  /* 装饰 */
+  --ticket-dashed-border-color: rgba(255, 255, 255, 0.35);
+  --ticket-hole-bg-color: var(--ticket-bg-gradient-start);
+
+  /* 顶部箭头 */
+  --ticket-top-arrow-outer-bg: rgba(255, 255, 255, 0.15);
+  --ticket-top-arrow-inner-bg: rgba(255, 255, 255, 0.7);
+  --ticket-top-arrow-icon-stroke: #6b4da8;
+
+  /* 内容层 */
+  --ticket-content-underlay-bg: #f5f0ff;
+  --ticket-content-bg: #FFFFFF;
+  --ticket-content-border-color: #8863cf;
+  --ticket-content-padding: 18px;
+  --ticket-content-shadow-offset: 4px;
+
+  /* 文本颜色 */
+  --ticket-text-color: #333;
+  --ticket-h1-color: #8863cf;
+  --ticket-h2-color: #6b4da8;
+  --ticket-h3-color: #8863cf;
+  --ticket-strong-color: #333;
+  --ticket-em-color: #8863cf;
+  --ticket-link-color: #8863cf;
+
+  /* 列表 */
+  --ticket-list-star-color: #8863cf;
+  --ticket-list-number-bg: white;
+  --ticket-list-number-text: #333;
+
+  /* 其他元素 */
+  --ticket-blockquote-bg: #f9f7fc;
+  --ticket-blockquote-border: #8863cf;
+  --ticket-blockquote-text: #6b4da8;
+  --ticket-hr-bg: #d5c8f0;
+  --ticket-table-header-bg: #f5f0ff;
+  --ticket-table-header-text: #8863cf;
+  --ticket-table-border-color: #d5c8f0;
+  --ticket-table-even-row-bg: #fafafa;
+
+  /* RGB 变量 */
+  --ticket-white-rgb: 255, 255, 255;
+  --ticket-h1-color-rgb: 136, 99, 207;
+}
+
+/* 1. 最外层卡片容器 (.card.purple-ticket-template) */
+.purple-ticket-template {
+  background: linear-gradient(135deg, var(--ticket-bg-gradient-start) 0%, var(--ticket-bg-gradient-end) 100%);
+  box-shadow: 0 10px 25px rgba(136, 99, 207, 0.15);
+  padding: 0px 10px 10px 0px;
+  font-family: var(--ticket-font-family);
+  font-size: var(--ticket-base-font-size);
+  line-height: var(--ticket-line-height);
+  color: var(--ticket-text-color);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 顶部日历穿孔效果 */
+.purple-ticket-template:before {
+  content: "";
+  position: absolute;
+  top: 24px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 15px,
+    #fff 15px,
+    #fff 20px
+  );
+}
+
+/* 紫色圆环装饰 */
+.purple-ticket-template:after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 3px solid var(--ticket-bg-gradient-start);
+  background: white;
+  box-shadow: 0 2px 5px rgba(136, 99, 207, 0.2);
+}
+
+/* 卡片内容区域容器 (.card-content) */
+.purple-ticket-template .card-content {
+  position: relative;
+  margin: 22px 10px 10px 10px; /* 增加上边距来为头部留出空间 */
+  border: 2px solid #000;
+  border-radius: 10px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 32px 24px 16px;
+  overflow: hidden;
+  z-index: 10;
+  box-sizing: border-box;
+  background: rgb(203, 108, 230);
+  transform: translate(10px, 10px);
+  overflow: hidden;
+  right: 10px;
+}
+
+/* 头部效果通过伪元素实现 */
+.purple-ticket-template .card-content::after {
+  content: "";
+  position: absolute;
+  top: -22px;
+  left: 0;
+  right: 0;
+  height: 22px;
+  z-index: 20;
+}
+
+.purple-ticket-template .card-content::before {
+  content: "";
+  background: #fff;
+  border: 2px solid #000;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: -10px;
+}
+
+/* 4. 实际文本内容的容器 (.card-content-inner.purple-ticket-text-content) */
+.purple-ticket-template .card-content-inner {
+  position: relative;
+  background-color: var(--ticket-content-bg);
+  padding: var(--ticket-content-padding);
+  z-index: 2;
+  flex-grow: 1;
+  overflow-y: hidden;
+  box-sizing: border-box;
+  color: var(--ticket-text-color);
+}
+
+/* 标题样式 */
+.purple-ticket-template .card-content-inner h1 {
+  font-size: 28px;
+  position: relative;
+  color: rgb(201, 168, 238);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-align: center;
+  z-index: 1;
+}
+
+.purple-ticket-template .card-content-inner h1:before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  -webkit-text-stroke: 3px rgb(82, 49, 119);
+  color: transparent;
+}
+
+.purple-ticket-template .card-content-inner h2 {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 24px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.purple-ticket-template .card-content-inner h2:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: #8863cf;
+  opacity: 0.5;
+}
+
+/* 段落样式 */
+.purple-ticket-template .card-content-inner p {
+  color: #333;
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 16px 0;
+}
+
+.purple-ticket-template .card-content-inner strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.purple-ticket-template .card-content-inner em {
+  color: #8863cf;
+  font-style: italic;
+}
+
+.purple-ticket-template .card-content-inner a {
+  color: #8863cf;
+  text-decoration: none;
+  border-bottom: 1px dashed #d5c8f0;
+  transition: all 0.3s ease;
+}
+
+.purple-ticket-template .card-content-inner a:hover {
+  color: #6b4da8;
+  border-bottom: 1px solid #8863cf;
+}
+
+/* 列表样式 */
+.purple-ticket-template .card-content-inner  ul  li,
+.purple-ticket-template .card-content-inner ol li {
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 20px;
+  color: #333;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.purple-ticket-template .card-content-inner  ul > li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  color: #8863cf;
+  font-size: 16px;
+}
+
+.purple-ticket-template .card-content-inner ol > li::before {
+  content: attr(data-index);
+  position: absolute;
+  left: 0;
+  top: -3px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #8863cf;
+  background: white;
+  color: #333;
+  text-align: center;
+  line-height: 24px;
+  font-weight: bold;
+}
+
+/* 引用块样式 */
+.purple-ticket-template .card-content-inner blockquote {
+  background-color: #f9f7fc;
+  padding: 10px 15px 10px 20px;
+  border-left: 4px solid #8863cf;
+  color: #6b4da8;
+}
+
+/* HR 分隔线样式 */
+.purple-ticket-template .card-content-inner hr {
+  background: linear-gradient(to right, transparent, #8863cf, transparent);
+  height: 1px;
+  opacity: 0.5;
+}
+
+/* 表格样式 */
+.purple-ticket-template .card-content-inner table.tableWrapper,
+.purple-ticket-template .card-content-inner table {
+  box-shadow: 0 4px 15px rgba(136, 99, 207, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  border: 1px solid #d5c8f0;
+}
+
+.purple-ticket-template .card-content-inner table.tableWrapper th,
+.purple-ticket-template .card-content-inner table th {
+  background-color: #f5f0ff;
+  color: #8863cf;
+  border-bottom: 2px solid #d5c8f0;
+  padding: 10px 15px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.purple-ticket-template .card-content-inner table.tableWrapper td,
+.purple-ticket-template .card-content-inner table td {
+  color: #333;
+  padding: 8px 15px;
+  border-bottom: 1px solid #d5c8f0;
+}
+
+.purple-ticket-template .card-content-inner table.tableWrapper tr:nth-child(even),
+.purple-ticket-template .card-content-inner table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* 代码块样式 */
+.purple-ticket-template .card-content-inner pre {
+  border: 1px solid #d5c8f0;
+  box-shadow: 0 4px 15px rgba(136, 99, 207, 0.1);
+  background-color: #f9f7fc;
+}
+
+.purple-ticket-template .card-content-inner code:not(pre code) {
+  background-color: #f5f0ff;
+  color: #8863cf;
+}
+
+/* 图片样式 */
+.purple-ticket-template .card-content-inner img {
+  border: 2px solid #f5f0ff;
+  box-shadow: 0 4px 15px rgba(136, 99, 207, 0.1);
+}

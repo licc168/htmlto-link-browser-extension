@@ -1,0 +1,346 @@
+/* 暗黑科技风格基础样式 */
+.card-darktech {
+  width: 100%;
+  background: #0f1218;
+  box-shadow:
+    0 0 30px rgba(0, 230, 255, 0.15),
+    0 0 10px rgba(0, 230, 255, 0.1) inset;
+  padding: 30px 25px;
+  font-family: "JetBrains Mono", "SFMono-Regular", monospace;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 230, 255, 0.2);
+}
+
+/* 背景网格效果 */
+.card-darktech:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 230, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(0, 230, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: 0;
+}
+
+/* 顶部装饰线 */
+.card-darktech:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00e6ff, transparent);
+}
+
+/* 卡片内容区域 */
+.card-darktech .card-content {
+  position: relative;
+  z-index: 1;
+  background: rgba(15, 18, 24, 0.7);
+  border: 1px solid rgba(0, 230, 255, 0.1);
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  height: 100%;
+  overflow: hidden;
+}
+
+.card-darktech .card-content::before {
+  content: "// SYSTEM ONLINE";
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  font-size: 10px;
+  color: #00e6ff;
+  font-family: "JetBrains Mono", monospace;
+  opacity: 0.7;
+}
+
+/* 内容区域 */
+.card-darktech .card-content-inner {
+  position: relative;
+  z-index: 1;
+  color: #a4b1cd;
+  font-size: 14px;
+  line-height: 1.7;
+  overflow: hidden;
+}
+
+/* 标题样式 */
+.card-darktech .card-content-inner h1 {
+  font-size: 28px;
+  color: #00e6ff;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(0, 230, 255, 0.5);
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.card-darktech .card-content-inner h1:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00e6ff, transparent);
+}
+
+.card-darktech .card-content-inner h2,
+.card-darktech .card-content-inner h3,
+.card-darktech .card-content-inner h4 {
+  color: #0FF !important;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  font-weight: bold;
+  margin-bottom: 1.5em;
+  margin-top: 1em;
+}
+
+.card-darktech .card-content-inner h2 {
+  font-size: 24px;
+}
+
+.card-darktech .card-content-inner h3 {
+  font-size: 20px;
+}
+
+.card-darktech .card-content-inner h4 {
+  font-size: 16px;
+}
+
+/* 段落样式 */
+.card-darktech .card-content-inner p {
+  margin-bottom: 1em;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+/* 列表样式 */
+.card-darktech .card-content-inner ul, 
+.card-darktech .card-content-inner ol {
+  margin-bottom: 1rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.card-darktech .card-content-inner ul > li {
+  position: relative;
+  list-style: none;
+  margin-bottom: 12px;
+  padding-left: 40px;
+  line-height: 1.6;
+}
+
+.card-darktech .card-content-inner ul > li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  top: 3px;
+  color: #00e6ff;
+  font-weight: bold;
+}
+
+/* 有序列表样式 */
+.card-darktech .card-content-inner ol {
+  counter-reset: item;
+}
+
+.card-darktech .card-content-inner ol li {
+  position: relative;
+  counter-increment: item;
+  list-style: none;
+  margin-bottom: 16px;
+  padding-left: 40px;
+  color: #a4b1cd;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+/* 序号样式 */
+.card-darktech .card-content-inner ol > li::before {
+  content: attr(data-index);
+  position: absolute;
+  left: 0;
+  top: -3px;
+  width: 26px;
+  height: 26px;
+  background: rgba(0, 230, 255, 0.1);
+  border: 1px solid rgba(0, 230, 255, 0.3);
+  color: #00e6ff;
+  text-align: center;
+  line-height: 24px;
+  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0, 230, 255, 0.2);
+}
+
+/* 引用块样式 */
+.card-darktech .card-content-inner blockquote {
+  background: rgba(0, 0, 0, 0.2);
+  border-left: 3px solid #00e6ff;
+  color: #7fdbff;
+  padding: 15px 20px;
+  margin: 20px 0;
+  font-style: italic;
+  position: relative;
+  border-radius: 0 4px 4px 0;
+}
+
+/* 表格样式 */
+.card-darktech .card-content-inner table.tableWrapper,
+.card-darktech .card-content-inner table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: rgba(15, 18, 24, 0.5);
+  border: 1px solid rgba(0, 230, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-darktech .card-content-inner table.tableWrapper th,
+.card-darktech .card-content-inner table th {
+  background: rgba(0, 230, 255, 0.1);
+  color: #00e6ff;
+  border-bottom: 1px solid rgba(0, 230, 255, 0.2);
+  padding: 10px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.card-darktech .card-content-inner table.tableWrapper td,
+.card-darktech .card-content-inner table td {
+  color: #a4b1cd;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 230, 255, 0.1);
+}
+
+.card-darktech .card-content-inner table.tableWrapper tr:nth-child(even),
+.card-darktech .card-content-inner table tr:nth-child(even) {
+  background: rgba(0, 230, 255, 0.03);
+}
+
+/* 代码块样式 */
+.card-darktech .card-content-inner pre {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 230, 255, 0.2);
+  border-radius: 4px;
+  padding: 15px;
+  overflow-x: auto;
+  position: relative;
+}
+
+.card-darktech .card-content-inner pre:before {
+  content: "CODE";
+  position: absolute;
+  top: 4px;
+  right: 10px;
+  background: #0f1218;
+  color: #00e6ff;
+  font-size: 10px;
+  padding: 0 5px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 230, 255, 0.2);
+}
+
+.card-darktech .card-content-inner code:not(pre code) {
+  background: rgba(0, 230, 255, 0.05);
+  color: #00e6ff;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9em;
+  border: 1px solid rgba(0, 230, 255, 0.1);
+}
+
+/* 图片样式 */
+.card-darktech .card-content-inner img {
+  max-width: 100%;
+  border: 1px solid rgba(0, 230, 255, 0.3);
+  border-radius: 4px;
+  box-shadow:
+    0 0 15px rgba(0, 0, 0, 0.5),
+    0 0 5px rgba(0, 230, 255, 0.2);
+  margin: 20px auto;
+}
+
+/* 水平线样式 */
+.card-darktech .card-content-inner hr {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00e6ff, transparent);
+  margin: 25px 0;
+  opacity: 0.5;
+}
+
+/* 强调文本样式 */
+.card-darktech .card-content-inner strong {
+  color: #00e6ff;
+  font-weight: 600;
+}
+
+.card-darktech .card-content-inner em {
+  color: #ff00e6;
+  font-style: italic;
+}
+
+/* 链接样式 */
+.card-darktech .card-content-inner a {
+  color: #00e6ff;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(0, 230, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.card-darktech .card-content-inner a:hover {
+  color: #7fdbff;
+  border-bottom: 1px solid #7fdbff;
+  text-shadow: 0 0 5px rgba(0, 230, 255, 0.5);
+}
+
+/* 终端效果 */
+.card-darktech .card-content-inner .terminal {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 230, 255, 0.3);
+  border-radius: 4px;
+  padding: 15px;
+  margin: 20px 0;
+  font-family: "JetBrains Mono", monospace;
+  color: #00ff00;
+  position: relative;
+}
+
+.card-darktech .card-content-inner .terminal:before {
+  content: "$ ";
+  color: #00e6ff;
+}
+
+/* 数据面板效果 */
+.card-darktech .card-content-inner .data-panel {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 230, 255, 0.3);
+  border-radius: 4px;
+  padding: 15px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.card-darktech .card-content-inner .data-panel:before {
+  content: "DATA";
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  background: #0f1218;
+  color: #00e6ff;
+  font-size: 10px;
+  padding: 0 5px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 230, 255, 0.2);
+} 
