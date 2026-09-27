@@ -44,9 +44,10 @@ Website: https://htmlto.link
 
 Upload screenshots in this order:
 
-1. `screenshots/screenshot-1-publish.png` — publish from the toolbar
-2. `screenshots/screenshot-2-link-copied.png` — the link is copied
-3. `screenshots/screenshot-3-phone-opens.png` — the page opened on a phone
+1. `screenshots/screenshot-1-panel.png` — the publish panel on a chat
+2. `screenshots/screenshot-2-preview.png` — memo preview
+3. `screenshots/screenshot-3-link-copied.png` — the link is copied
+4. `screenshots/screenshot-4-phone.png` — the page opened on a phone
 
 Promo tiles:
 

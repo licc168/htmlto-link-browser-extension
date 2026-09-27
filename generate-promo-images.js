@@ -6,136 +6,162 @@ const outScreens = path.join(__dirname, "素材", "en", "screenshots");
 const outAssets = path.join(__dirname, "素材", "en", "promo");
 for (const d of [outScreens, outAssets]) {
   if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true });
+  for (const file of fs.readdirSync(d)) {
+    if (file.endsWith(".png")) fs.unlinkSync(path.join(d, file));
+  }
 }
 
-const PRIMARY = "#2563eb";
-const PRIMARY_2 = "#4f46e5";
-const ACCENT = "#10b981";
-const LINK = "#38bdf8";
-const TEXT = "#f8fafc";
-const MUTED = "#94a3b8";
-const BG = "#0f172a";
-const CARD = "#1e293b";
-const INPUT = "#182232";
-const BORDER = "rgba(255,255,255,0.12)";
+const BRAND = "#3451C7";
+const TEXT = "#17191f";
+const MUTED = "#6b7280";
+const LINE = "#e6e8ee";
+const PAGE = "#f3f5f9";
+const PAPER = "#f6f1e7";
+const FONT = "PingFang SC, Hiragino Sans GB, sans-serif";
 
-const brandDef = `<defs>
-  <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="${PRIMARY}"/>
-    <stop offset="100%" stop-color="${PRIMARY_2}"/>
-  </linearGradient>
-</defs>`;
+function panel(x, y, previewOn) {
+  const previewFill = previewOn ? BRAND : "#fff";
+  const previewText = previewOn ? "#fff" : BRAND;
+  const previewLabel = previewOn ? "Exit preview" : "Preview";
+  return `
+    <g font-family="${FONT}">
+      <rect x="${x}" y="${y}" width="292" height="392" rx="12" fill="#fff" stroke="${LINE}" stroke-width="1"/>
+      <text x="${x + 16}" y="${y + 32}" font-size="13" fill="#b0b6c2">⋮⋮</text>
+      <text x="${x + 40}" y="${y + 32}" font-size="15" font-weight="650" fill="${TEXT}">HTML to URL</text>
+      <rect x="${x + 16}" y="${y + 52}" width="260" height="36" rx="8" fill="#fff" stroke="${LINE}"/>
+      <text x="${x + 146}" y="${y + 75}" font-size="14" fill="${TEXT}" text-anchor="middle">Copy chat Markdown</text>
+      <text x="${x + 16}" y="${y + 112}" font-size="12" fill="${MUTED}">Template</text>
+      <rect x="${x + 16}" y="${y + 122}" width="260" height="36" rx="8" fill="#fff" stroke="${LINE}"/>
+      <text x="${x + 28}" y="${y + 145}" font-size="14" fill="${TEXT}">Memo</text>
+      <text x="${x + 16}" y="${y + 182}" font-size="12" fill="${MUTED}">Theme</text>
+      <rect x="${x + 16}" y="${y + 192}" width="260" height="36" rx="8" fill="#fff" stroke="${LINE}"/>
+      <text x="${x + 28}" y="${y + 215}" font-size="14" fill="${TEXT}">Bright</text>
+      <rect x="${x + 16}" y="${y + 248}" width="260" height="36" rx="8" fill="${previewFill}" stroke="${BRAND}"/>
+      <text x="${x + 146}" y="${y + 271}" font-size="14" font-weight="650" fill="${previewText}" text-anchor="middle">${previewLabel}</text>
+      <rect x="${x + 16}" y="${y + 296}" width="260" height="36" rx="8" fill="${BRAND}"/>
+      <text x="${x + 146}" y="${y + 319}" font-size="14" font-weight="650" fill="#fff" text-anchor="middle">Publish chat</text>
+      <rect x="${x + 16}" y="${y + 344}" width="260" height="32" rx="8" fill="#fff" stroke="${LINE}"/>
+      <text x="${x + 146}" y="${y + 365}" font-size="13" fill="${MUTED}" text-anchor="middle">Hide code buttons</text>
+    </g>`;
+}
 
 function screenshot1() {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800">
-    ${brandDef}
-    <rect width="1280" height="800" fill="${BG}"/>
-    <text x="48" y="56" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="${TEXT}">ChatGPT made a page. Click once.</text>
-    <text x="48" y="88" font-family="Arial, sans-serif" font-size="16" fill="${MUTED}">A “Generate link” button appears on the code block.</text>
-    <rect x="48" y="120" width="1184" height="56" rx="12" fill="#10a37f"/>
-    <text x="72" y="154" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#fff">ChatGPT</text>
-    <text x="180" y="154" font-family="Arial, sans-serif" font-size="15" fill="rgba(255,255,255,0.85)">Make a birthday page for my mom</text>
-    <rect x="48" y="192" width="1184" height="520" rx="16" fill="#0d1424" stroke="${BORDER}" stroke-width="1"/>
-    <rect x="48" y="192" width="1184" height="52" fill="#161d31"/>
-    <text x="72" y="224" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${TEXT}">HTML</text>
-    <rect x="860" y="204" width="250" height="28" rx="14" fill="url(#brand)"/>
-    <text x="888" y="223" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">Generate link</text>
-    <text x="72" y="280" font-family="Consolas, monospace" font-size="16" fill="#7dd3fc">&lt;!DOCTYPE html&gt;</text>
-    <text x="72" y="312" font-family="Consolas, monospace" font-size="16" fill="${TEXT}">&lt;title&gt;Happy Birthday, Mom&lt;/title&gt;</text>
-    <text x="72" y="344" font-family="Consolas, monospace" font-size="16" fill="#93c5fd">&lt;h1&gt;Happy Birthday!&lt;/h1&gt;</text>
-    <text x="72" y="376" font-family="Consolas, monospace" font-size="16" fill="${MUTED}">&lt;p&gt;A page you can open on any phone.&lt;/p&gt;</text>
-    <text x="48" y="750" font-family="Arial, sans-serif" font-size="16" fill="${MUTED}">Also works on Claude and Gemini. No website. No code knowledge.</text>
+    <rect width="1280" height="800" fill="${PAGE}"/>
+    <text x="64" y="58" font-family="${FONT}" font-size="28" font-weight="700" fill="${TEXT}">Select the turns, then publish a link.</text>
+    <text x="64" y="92" font-family="${FONT}" font-size="16" fill="${MUTED}">Preview it, and pick a page style first.</text>
+    <rect x="64" y="120" width="820" height="640" rx="16" fill="#fff" stroke="${LINE}"/>
+    <rect x="390" y="156" width="450" height="64" rx="16" fill="#eef2ff"/>
+    <text x="414" y="194" font-family="${FONT}" font-size="16" fill="${TEXT}">Turn today's notes into a page I can send.</text>
+    <rect x="96" y="260" width="18" height="18" rx="4" fill="${BRAND}"/>
+    <path d="M100 269 l4 4 l8 -9" fill="none" stroke="#fff" stroke-width="2"/>
+    <text x="128" y="276" font-family="${FONT}" font-size="18" font-weight="700" fill="${TEXT}">Meeting notes</text>
+    <text x="128" y="316" font-family="${FONT}" font-size="16" fill="${TEXT}">1. Publish the notes page next week</text>
+    <text x="128" y="348" font-family="${FONT}" font-size="16" fill="${TEXT}">2. Preview the style, then make the link</text>
+    <text x="128" y="380" font-family="${FONT}" font-size="16" fill="${TEXT}">3. Send the link to the group</text>
+    <rect x="96" y="420" width="18" height="18" rx="4" fill="${BRAND}"/>
+    <path d="M100 429 l4 4 l8 -9" fill="none" stroke="#fff" stroke-width="2"/>
+    <text x="128" y="436" font-family="${FONT}" font-size="16" fill="${TEXT}">I'll send it like this.</text>
+    ${panel(940, 120, false)}
   </svg>`;
 }
 
 function screenshot2() {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800">
-    ${brandDef}
-    <rect width="1280" height="800" fill="${BG}"/>
-    <text x="48" y="56" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="${TEXT}">The link is copied. Send it.</text>
-    <text x="48" y="88" font-family="Arial, sans-serif" font-size="16" fill="${MUTED}">Anyone can open it. You do not send the code.</text>
-    <rect x="240" y="160" width="800" height="420" rx="24" fill="${CARD}" stroke="${BORDER}" stroke-width="1"/>
-    <circle cx="640" cy="250" r="44" fill="rgba(16,185,129,0.2)"/>
-    <text x="640" y="266" font-family="Arial, sans-serif" font-size="40" font-weight="800" fill="${ACCENT}" text-anchor="middle">✓</text>
-    <text x="640" y="340" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="${TEXT}" text-anchor="middle">Link copied</text>
-    <rect x="340" y="370" width="600" height="56" rx="12" fill="${INPUT}" stroke="${BORDER}" stroke-width="1"/>
-    <text x="640" y="406" font-family="Consolas, monospace" font-size="20" fill="${LINK}" text-anchor="middle">https://htmlto.link/s/mom-bday</text>
-    <text x="640" y="470" font-family="Arial, sans-serif" font-size="16" fill="${MUTED}" text-anchor="middle">Paste into WhatsApp, iMessage, or email</text>
-    <text x="640" y="530" font-family="Arial, sans-serif" font-size="14" fill="${MUTED}" text-anchor="middle">Guest links last about 24 hours · Sign in to keep them</text>
+    <rect width="1280" height="800" fill="${PAPER}"/>
+    <rect x="160" y="48" width="700" height="704" rx="8" fill="#fffdf8" stroke="#e7dcc8"/>
+    <text x="200" y="120" font-family="${FONT}" font-size="28" font-weight="700" fill="#3f3426">Meeting notes</text>
+    <text x="200" y="168" font-family="${FONT}" font-size="14" fill="#8a7560">Memo · Bright</text>
+    <text x="200" y="230" font-family="${FONT}" font-size="16" font-weight="700" fill="#3f3426">Me</text>
+    <text x="200" y="262" font-family="${FONT}" font-size="16" fill="#3f3426">Turn today's notes into a page I can send.</text>
+    <text x="200" y="320" font-family="${FONT}" font-size="16" font-weight="700" fill="#3f3426">Reply</text>
+    <text x="200" y="352" font-family="${FONT}" font-size="16" fill="#3f3426">1. Publish the notes page next week</text>
+    <text x="200" y="384" font-family="${FONT}" font-size="16" fill="#3f3426">2. Preview the style, then make the link</text>
+    <text x="200" y="416" font-family="${FONT}" font-size="16" fill="#3f3426">3. Send the link to the group</text>
+    ${panel(900, 48, true)}
   </svg>`;
 }
 
 function screenshot3() {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800">
-    ${brandDef}
-    <rect width="1280" height="800" fill="${BG}"/>
-    <text x="48" y="56" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="${TEXT}">They open it on their phone.</text>
-    <text x="48" y="88" font-family="Arial, sans-serif" font-size="16" fill="${MUTED}">No app to install. It is just a normal link.</text>
-    <rect x="460" y="130" width="360" height="620" rx="40" fill="#111827" stroke="${BORDER}" stroke-width="2"/>
-    <rect x="476" y="168" width="328" height="540" rx="24" fill="#fff7ed"/>
-    <text x="640" y="230" font-family="Arial, sans-serif" font-size="18" fill="#9a3412" text-anchor="middle">htmlto.link</text>
-    <text x="640" y="340" font-family="Arial, sans-serif" font-size="36" font-weight="800" fill="#9a3412" text-anchor="middle">Happy</text>
-    <text x="640" y="386" font-family="Arial, sans-serif" font-size="36" font-weight="800" fill="#9a3412" text-anchor="middle">Birthday</text>
-    <text x="640" y="430" font-family="Arial, sans-serif" font-size="36" font-weight="800" fill="#9a3412" text-anchor="middle">Mom!</text>
-    <text x="640" y="500" font-family="Arial, sans-serif" font-size="16" fill="#c2410c" text-anchor="middle">A page anyone can open</text>
-    <rect x="540" y="540" width="200" height="48" rx="24" fill="#ea580c"/>
-    <text x="640" y="570" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">Open card</text>
+    <rect width="1280" height="800" fill="${PAGE}"/>
+    <text x="64" y="58" font-family="${FONT}" font-size="28" font-weight="700" fill="${TEXT}">The link is copied. Send it.</text>
+    <text x="64" y="92" font-family="${FONT}" font-size="16" fill="${MUTED}">Anyone can open it on a phone.</text>
+    <rect x="64" y="140" width="560" height="150" rx="12" fill="#fff" stroke="${BRAND}"/>
+    <text x="88" y="188" font-family="${FONT}" font-size="18" font-weight="700" fill="${TEXT}">Link copied</text>
+    <text x="88" y="228" font-family="ui-monospace, Menlo, monospace" font-size="16" fill="${BRAND}">https://htmlto.link/s/notes</text>
+    <rect x="88" y="248" width="88" height="28" rx="6" fill="${BRAND}"/>
+    <text x="132" y="267" font-family="${FONT}" font-size="13" fill="#fff" text-anchor="middle">Open</text>
+    ${panel(760, 140, false)}
+  </svg>`;
+}
+
+function screenshot4() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800">
+    <rect width="1280" height="800" fill="${PAGE}"/>
+    <text x="64" y="58" font-family="${FONT}" font-size="28" font-weight="700" fill="${TEXT}">They open the link. No app to install.</text>
+    <text x="64" y="92" font-family="${FONT}" font-size="16" fill="${MUTED}">It is a normal web page.</text>
+    <rect x="470" y="130" width="340" height="620" rx="36" fill="#111827"/>
+    <rect x="486" y="168" width="308" height="548" rx="24" fill="${PAPER}"/>
+    <text x="640" y="214" font-family="${FONT}" font-size="13" fill="#8a7560" text-anchor="middle">htmlto.link</text>
+    <text x="510" y="280" font-family="${FONT}" font-size="26" font-weight="700" fill="#3f3426">Meeting notes</text>
+    <text x="510" y="330" font-family="${FONT}" font-size="14" font-weight="700" fill="#3f3426">Me</text>
+    <text x="510" y="356" font-family="${FONT}" font-size="14" fill="#3f3426">Turn today's notes into a page.</text>
+    <text x="510" y="400" font-family="${FONT}" font-size="14" font-weight="700" fill="#3f3426">Reply</text>
+    <text x="510" y="426" font-family="${FONT}" font-size="14" fill="#3f3426">1. Publish the notes page</text>
+    <text x="510" y="452" font-family="${FONT}" font-size="14" fill="#3f3426">2. Preview, then make the link</text>
+    <text x="510" y="478" font-family="${FONT}" font-size="14" fill="#3f3426">3. Send the link</text>
   </svg>`;
 }
 
 function promoSmall() {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="440" height="280" viewBox="0 0 440 280">
-    ${brandDef}
-    <rect width="440" height="280" fill="${BG}"/>
-    <rect x="20" y="20" width="56" height="56" rx="14" fill="url(#brand)"/>
-    <text x="48" y="56" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="#fff" text-anchor="middle">&lt;/&gt;</text>
-    <text x="90" y="44" font-family="Arial, sans-serif" font-size="20" font-weight="800" fill="#fff">htmlto.link</text>
-    <text x="90" y="66" font-family="Arial, sans-serif" font-size="12" fill="${MUTED}">Share a ChatGPT page</text>
-    <text x="20" y="130" font-family="Arial, sans-serif" font-size="20" font-weight="800" fill="${TEXT}">ChatGPT → link</text>
-    <text x="20" y="162" font-family="Arial, sans-serif" font-size="16" fill="${LINK}">One click. Anyone can open it.</text>
-    <rect x="20" y="200" width="180" height="40" rx="20" fill="url(#brand)"/>
-    <text x="110" y="226" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">Add to Chrome</text>
+    <rect width="440" height="280" fill="#0f172a"/>
+    <rect x="24" y="24" width="52" height="52" rx="14" fill="${BRAND}"/>
+    <path d="M40 50 h8 a8 8 0 0 1 0 16 h-8 a8 8 0 0 1 0 -16 M52 42 h8 a8 8 0 0 1 0 16 h-8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <text x="88" y="46" font-family="${FONT}" font-size="18" font-weight="700" fill="#fff">htmlto.link</text>
+    <text x="88" y="68" font-family="${FONT}" font-size="12" fill="#94a3b8">HTML to URL</text>
+    <text x="24" y="140" font-family="${FONT}" font-size="26" font-weight="700" fill="#fff">A chat, as a link</text>
+    <text x="24" y="176" font-family="${FONT}" font-size="16" fill="#93c5fd">Preview it, then send it.</text>
+    <rect x="24" y="208" width="168" height="40" rx="20" fill="${BRAND}"/>
+    <text x="108" y="234" font-family="${FONT}" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">Add to Chrome</text>
   </svg>`;
 }
 
 function promoMarquee() {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="560" viewBox="0 0 1400 560">
-    ${brandDef}
-    <rect width="1400" height="560" fill="${BG}"/>
-    <rect x="64" y="64" width="84" height="84" rx="20" fill="url(#brand)"/>
-    <text x="106" y="118" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="#fff" text-anchor="middle">&lt;/&gt;</text>
-    <text x="172" y="108" font-family="Arial, sans-serif" font-size="36" font-weight="800" fill="#fff">htmlto.link</text>
-    <text x="172" y="140" font-family="Arial, sans-serif" font-size="18" fill="${MUTED}">Share ChatGPT pages as a link</text>
-    <text x="64" y="250" font-family="Arial, sans-serif" font-size="48" font-weight="800" fill="#fff">ChatGPT made a page.</text>
-    <text x="64" y="312" font-family="Arial, sans-serif" font-size="48" font-weight="800" fill="${LINK}">Send it as a link.</text>
-    <text x="64" y="372" font-family="Arial, sans-serif" font-size="22" fill="${MUTED}">One click on ChatGPT. Open on any phone.</text>
-    <rect x="64" y="420" width="280" height="56" rx="28" fill="url(#brand)"/>
-    <text x="204" y="456" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">Add to Chrome</text>
-    <rect x="820" y="80" width="500" height="400" rx="24" fill="${CARD}" stroke="${BORDER}" stroke-width="1"/>
-    <text x="852" y="130" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="${TEXT}">ChatGPT</text>
-    <rect x="1040" y="108" width="240" height="32" rx="16" fill="url(#brand)"/>
-    <text x="1160" y="130" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">Generate link</text>
-    <text x="852" y="190" font-family="Consolas, monospace" font-size="16" fill="#7dd3fc">&lt;h1&gt;Happy Birthday&lt;/h1&gt;</text>
-    <rect x="852" y="240" width="436" height="80" rx="12" fill="${INPUT}" stroke="rgba(16,185,129,0.35)" stroke-width="1"/>
-    <text x="872" y="274" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="${ACCENT}">Link copied</text>
-    <text x="872" y="300" font-family="Consolas, monospace" font-size="16" fill="${LINK}">https://htmlto.link/s/mom-bday</text>
+    <rect width="1400" height="560" fill="#0f172a"/>
+    <text x="72" y="150" font-family="${FONT}" font-size="22" font-weight="700" fill="#93c5fd">htmlto.link</text>
+    <text x="72" y="240" font-family="${FONT}" font-size="52" font-weight="700" fill="#fff">Turn a whole chat</text>
+    <text x="72" y="312" font-family="${FONT}" font-size="52" font-weight="700" fill="#fff">into one link.</text>
+    <text x="72" y="372" font-family="${FONT}" font-size="22" fill="#94a3b8">Preview the page style, then copy the link.</text>
+    <rect x="72" y="420" width="240" height="56" rx="28" fill="${BRAND}"/>
+    <text x="192" y="456" font-family="${FONT}" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">Add to Chrome</text>
+    <rect x="860" y="80" width="460" height="400" rx="16" fill="#fff"/>
+    <text x="892" y="132" font-family="${FONT}" font-size="18" font-weight="700" fill="${TEXT}">HTML to URL</text>
+    <rect x="892" y="160" width="396" height="44" rx="8" fill="#fff" stroke="${LINE}"/>
+    <text x="1090" y="188" font-family="${FONT}" font-size="16" fill="${TEXT}" text-anchor="middle">Memo · Bright</text>
+    <rect x="892" y="220" width="396" height="48" rx="8" fill="#fff" stroke="${BRAND}"/>
+    <text x="1090" y="250" font-family="${FONT}" font-size="16" font-weight="650" fill="${BRAND}" text-anchor="middle">Preview</text>
+    <rect x="892" y="284" width="396" height="48" rx="8" fill="${BRAND}"/>
+    <text x="1090" y="314" font-family="${FONT}" font-size="16" font-weight="650" fill="#fff" text-anchor="middle">Publish chat</text>
+    <text x="892" y="390" font-family="${FONT}" font-size="16" font-weight="700" fill="${BRAND}">https://htmlto.link/s/notes</text>
+    <text x="892" y="424" font-family="${FONT}" font-size="14" fill="${MUTED}">Link copied</text>
   </svg>`;
 }
 
-async function render(svg, file, dirs) {
-  const buf = Buffer.from(svg);
-  for (const dir of dirs) {
-    await sharp(buf).flatten({ background: BG }).png({ palette: false }).toFile(path.join(dir, file));
-  }
-  console.log("Generated", file);
+async function render(svg, file, dir) {
+  await sharp(Buffer.from(svg)).flatten({ background: "#ffffff" }).png().toFile(path.join(dir, file));
+  console.log("Generated", path.relative(__dirname, path.join(dir, file)));
 }
 
 (async () => {
-  await render(screenshot1(), "screenshot-1-chatgpt-button.png", [outScreens]);
-  await render(screenshot2(), "screenshot-2-link-copied.png", [outScreens]);
-  await render(screenshot3(), "screenshot-3-phone-opens.png", [outScreens]);
-  await render(promoSmall(), "promo-tile-440x280.png", [outAssets]);
-  await render(promoMarquee(), "promo-tile-1400x560.png", [outAssets]);
+  await render(screenshot1(), "screenshot-1-panel.png", outScreens);
+  await render(screenshot2(), "screenshot-2-preview.png", outScreens);
+  await render(screenshot3(), "screenshot-3-link-copied.png", outScreens);
+  await render(screenshot4(), "screenshot-4-phone.png", outScreens);
+  await render(promoSmall(), "promo-tile-440x280.png", outAssets);
+  await render(promoMarquee(), "promo-tile-1400x560.png", outAssets);
   console.log("All EN promo images generated.");
 })().catch((err) => {
   console.error("Generation failed:", err);
