@@ -387,6 +387,7 @@
       input.checked = true;
       input.title = t("chatSelect");
       input.addEventListener("click", (event) => event.stopPropagation());
+      input.addEventListener("change", () => refreshSelectAllLabel());
       shadow.append(style, input);
       host.addEventListener("click", (event) => event.stopPropagation());
       if (custom) document.body.appendChild(host);
@@ -414,7 +415,24 @@
         : box.parentElement;
       if (!anchor?.isConnected || (box.dataset.anchorId ? !live.has(anchor) : !live.has(box.parentElement))) box.remove();
     });
+    refreshSelectAllLabel();
     return turns;
+  }
+
+  function messageCheckInputs() {
+    return [...document.querySelectorAll(".htmlto-link-check")]
+      .map((host) => host.shadowRoot?.querySelector("input"))
+      .filter(Boolean);
+  }
+
+  function allMessagesSelected() {
+    const inputs = messageCheckInputs();
+    return inputs.length > 0 && inputs.every((input) => input.checked);
+  }
+
+  function refreshSelectAllLabel() {
+    const link = document.getElementById("htmlto-link-chat-export")?.shadowRoot?.querySelector("[data-role=select-all]");
+    if (link) link.textContent = allMessagesSelected() ? t("deselectAll") : t("selectAll");
   }
 
   function conversationMarkdown(turns) {
@@ -894,6 +912,28 @@
       .preview.is-on { color: #fff; background: #3451c7; }
       .publish { color: #fff; background: #3451c7; border: 0; font-weight: 600; }
       .publish:hover { background: #2c46b0; }
+      .site-link {
+        display: block;
+        margin-top: 2px;
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.4;
+        color: #9aa1ad;
+        text-decoration: none;
+      }
+      .site-link:hover { color: #6b7280; }
+      .select-all {
+        height: auto;
+        border: 0;
+        background: transparent;
+        padding: 0;
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.4;
+        color: #9aa1ad;
+        cursor: pointer;
+      }
+      .select-all:hover { color: #6b7280; }
       button:disabled { opacity: 0.72; cursor: default; }
       button.is-busy {
         display: inline-flex;
@@ -960,6 +1000,19 @@
     copyBtn.type = "button";
     copyBtn.className = "copy";
     copyBtn.textContent = t("copyChatMd");
+    const selectAll = document.createElement("button");
+    selectAll.type = "button";
+    selectAll.className = "select-all";
+    selectAll.dataset.role = "select-all";
+    selectAll.textContent = t("deselectAll");
+    selectAll.addEventListener("click", () => {
+      const checked = !allMessagesSelected();
+      messageCheckInputs().forEach((input) => {
+        input.checked = checked;
+      });
+      refreshSelectAllLabel();
+    });
+
     copyBtn.addEventListener("click", async () => {
       const started = Date.now();
       setPanelBusy(copyBtn, t("copyingChat"));
@@ -1034,7 +1087,14 @@
       chrome.storage.local.set({ autoInject: !autoInjectEnabled });
     });
 
-    body.append(copyBtn, templateLabel, templateSelect, themeLabel, themeSelect, previewBtn, publishBtn, codeToggle);
+    const siteLink = document.createElement("a");
+    siteLink.className = "site-link";
+    siteLink.href = useZh ? "https://htmlto.link/zh-CN/publish" : "https://htmlto.link/en/publish";
+    siteLink.target = "_blank";
+    siteLink.rel = "noopener noreferrer";
+    siteLink.textContent = t("openSitePublish");
+
+    body.append(copyBtn, selectAll, templateLabel, templateSelect, themeLabel, themeSelect, previewBtn, publishBtn, codeToggle, siteLink);
     panel.append(header, body);
     const dock = document.createElement("div");
     dock.className = "dock";

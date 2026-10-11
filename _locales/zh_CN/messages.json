@@ -445,6 +445,10 @@
     "message": "发布对话",
     "description": "导出整段对话"
   },
+  "openSitePublish": {
+    "message": "去网站发布 HTML",
+    "description": "打开网站发布页"
+  },
   "copyChatMd": {
     "message": "复制对话 Markdown",
     "description": "复制当前对话"
@@ -524,6 +528,14 @@
   "chatSelect": {
     "message": "发布时包含这条",
     "description": "消息复选框"
+  },
+  "selectAll": {
+    "message": "全选",
+    "description": "勾选全部对话"
+  },
+  "deselectAll": {
+    "message": "取消全选",
+    "description": "取消全部对话勾选"
   },
   "chatNoneSelected": {
     "message": "请至少勾选一条对话",

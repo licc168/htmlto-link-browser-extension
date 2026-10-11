@@ -445,6 +445,10 @@
     "message": "Publish chat",
     "description": "Publish the whole conversation"
   },
+  "openSitePublish": {
+    "message": "Publish HTML on the site",
+    "description": "Open the website publish page"
+  },
   "copyChatMd": {
     "message": "Copy chat Markdown",
     "description": "Copy the current conversation"
@@ -524,6 +528,14 @@
   "chatSelect": {
     "message": "Include this message",
     "description": "Message checkbox"
+  },
+  "selectAll": {
+    "message": "Select all",
+    "description": "Select every message"
+  },
+  "deselectAll": {
+    "message": "Clear selection",
+    "description": "Unselect every message"
   },
   "chatNoneSelected": {
     "message": "Select at least one message",
