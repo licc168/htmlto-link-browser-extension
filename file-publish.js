@@ -105,7 +105,7 @@
         manageUrl: response.manageUrl || "",
         temporary: response.temporary !== false
       });
-      showToast(t("publishSuccessToast", ["HTML"]), response.url);
+      await showPublished(t("publishSuccessToast", ["HTML"]), response.url);
 
       setTimeout(() => {
         btn.innerHTML = original;
@@ -120,6 +120,21 @@
         btn.disabled = false;
       }, 3000);
     }
+  }
+
+  const REVIEW_URL = "https://chromewebstore.google.com/detail/htmltolink-html-to-url-pu/bmbgkkgaadbankkjngemdljnbjbjlbbl/reviews";
+
+  async function showPublished(message, url) {
+    const stored = await chrome.storage.local.get(["publishCount", "reviewPromptDismissed"]);
+    const due = (stored.publishCount || 0) >= 2 && !stored.reviewPromptDismissed;
+    if (!due) {
+      showToast(message, url);
+      return;
+    }
+    showToast(message, url, t("reviewPrompt"), () => {
+      chrome.storage.local.set({ reviewPromptDismissed: true });
+      window.open(REVIEW_URL, "_blank", "noopener,noreferrer");
+    });
   }
 
   async function savePublishHistory(item) {
@@ -151,7 +166,7 @@
     }
   }
 
-  function showToast(message, linkUrl) {
+  function showToast(message, linkUrl, actionLabel, onAction) {
     let toast = document.getElementById("htmlto-link-toast");
     if (!toast) {
       toast = document.createElement("div");
@@ -162,10 +177,17 @@
       <div class="htmlto-link-toast-content">
         <p>${escapeHtml(message)}</p>
         ${linkUrl ? `<a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkUrl)}</a>` : ""}
+        ${actionLabel ? `<button class="htmlto-link-toast-action" type="button">${escapeHtml(actionLabel)}</button>` : ""}
       </div>
     `;
+    if (actionLabel && onAction) {
+      toast.querySelector(".htmlto-link-toast-action")?.addEventListener("click", () => {
+        toast.classList.remove("show");
+        onAction();
+      });
+    }
     toast.classList.add("show");
-    setTimeout(() => toast.classList.remove("show"), 4500);
+    setTimeout(() => toast.classList.remove("show"), actionLabel ? 8000 : 4500);
   }
 
   function escapeHtml(str) {

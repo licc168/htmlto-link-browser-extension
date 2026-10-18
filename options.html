@@ -34,26 +34,9 @@
 
       <section class="setting-item">
         <p id="accountStatus" class="account-status"></p>
-        <a id="loginBtn" href="https://htmlto.link/settings" target="_blank" rel="noopener noreferrer" class="btn-primary" data-i18n="loginToKeep"></a>
-        <p class="hint" data-i18n="loginHint"></p>
+        <button type="button" id="loginBtn" class="btn-primary" data-i18n="loginToKeep"></button>
+        <p id="loginHint" class="hint" data-i18n="loginHint"></p>
       </section>
-
-      <details class="more-options">
-        <summary data-i18n="advancedSettings"></summary>
-        <section class="setting-item">
-          <label for="serverInput" data-i18n="serverLabel"></label>
-          <input type="text" id="serverInput" value="https://htmlto.link">
-          <p class="hint" data-i18n="serverHint"></p>
-        </section>
-
-        <section class="setting-item">
-          <label for="tokenInput" data-i18n="tokenLabel"></label>
-          <input type="password" id="tokenInput" data-i18n-placeholder="tokenPlaceholder">
-          <p class="hint" data-i18n="tokenHint"></p>
-        </section>
-
-        <button type="button" id="saveBtn" class="btn-primary" data-i18n="saveSettings"></button>
-      </details>
     </main>
 
     <div id="toast" class="toast hidden"></div>

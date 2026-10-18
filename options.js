@@ -13,41 +13,56 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   const autoInjectToggle = document.getElementById("autoInjectToggle");
-  const serverInput = document.getElementById("serverInput");
-  const tokenInput = document.getElementById("tokenInput");
-  const saveBtn = document.getElementById("saveBtn");
   const loginBtn = document.getElementById("loginBtn");
+  const loginHint = document.getElementById("loginHint");
   const accountStatus = document.getElementById("accountStatus");
   const toast = document.getElementById("toast");
 
   const settings = await chrome.storage.local.get({
     autoInject: true,
-    apiServer: DEFAULT_API_SERVER,
     apiToken: "",
   });
 
   autoInjectToggle.checked = settings.autoInject !== false;
-  serverInput.value = settings.apiServer;
-  tokenInput.value = settings.apiToken || "";
-  loginBtn.href = `${String(settings.apiServer || DEFAULT_API_SERVER).replace(/\/$/, "")}/settings`;
-  accountStatus.textContent = settings.apiToken ? t("accountBound") : t("accountGuest");
+
+  function showAccount(token) {
+    const signedIn = Boolean(token);
+    accountStatus.textContent = signedIn ? t("accountBound") : t("accountGuest");
+    loginBtn.classList.toggle("hidden", signedIn);
+    if (loginHint) loginHint.classList.toggle("hidden", signedIn);
+  }
+  showAccount(settings.apiToken);
+  try {
+    const synced = await chrome.runtime.sendMessage({ type: "SYNC_SITE_LOGIN" });
+    if (synced?.ok || synced?.reason === "signed-out" || synced?.reason === "unauthorized") {
+      const next = await chrome.storage.local.get(["apiToken"]);
+      showAccount(next.apiToken);
+    }
+  } catch {
+    /* 打开页面时网站未登录，保留本地状态 */
+  }
 
   autoInjectToggle.addEventListener("change", async () => {
     await chrome.storage.local.set({ autoInject: autoInjectToggle.checked });
     showToast(t("settingsSaved"));
   });
 
-  saveBtn.addEventListener("click", async () => {
-    let server = serverInput.value.trim().replace(/\/$/, "");
-    if (!server) server = DEFAULT_API_SERVER;
-
-    await chrome.storage.local.set({
-      apiServer: server,
-      apiToken: tokenInput.value.trim(),
-    });
-    loginBtn.href = `${server}/settings`;
-    accountStatus.textContent = tokenInput.value.trim() ? t("accountBound") : t("accountGuest");
-    showToast(t("settingsSaved"));
+  loginBtn.addEventListener("click", async () => {
+    loginBtn.disabled = true;
+    try {
+      const synced = await chrome.runtime.sendMessage({ type: "SYNC_SITE_LOGIN" });
+      if (synced?.ok) {
+        const next = await chrome.storage.local.get(["apiToken"]);
+        showAccount(next.apiToken);
+        showToast(t("accountConnected"));
+        return;
+      }
+      await chrome.tabs.create({ url: `${DEFAULT_API_SERVER}/login` });
+    } catch (err) {
+      showToast(err.message || t("publishFailed"));
+    } finally {
+      loginBtn.disabled = false;
+    }
   });
 
   function showToast(msg) {

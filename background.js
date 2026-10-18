@@ -12,6 +12,13 @@ chrome.runtime.onInstalled.addListener((details) => {
 });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.type === "SYNC_SITE_LOGIN") {
+    syncSiteLogin()
+      .then((result) => sendResponse(result))
+      .catch((err) => sendResponse({ ok: false, reason: err.message }));
+    return true;
+  }
+
   if (request.type === "READ_EXTENSION_TEXT") {
     const path = String(request.path || "");
     if (!path.startsWith("preview/") || path.includes("..") || path.includes("\\")) {
@@ -44,6 +51,40 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       .catch((err) => sendResponse({ success: false, error: err.message }));
     return true;
   }
+});
+
+function isSiteSessionCookie(cookie) {
+  const domain = String(cookie?.domain || "").replace(/^\./, "");
+  return cookie?.name === "token" && domain === "htmlto.link";
+}
+
+async function syncSiteLogin() {
+  const cookie = await chrome.cookies.get({ url: DEFAULT_API_SERVER + "/", name: "token" });
+  if (!cookie?.value) {
+    await chrome.storage.local.remove("apiToken");
+    return { ok: false, reason: "signed-out" };
+  }
+  const response = await fetch(`${DEFAULT_API_SERVER}/api/user/api-token`, {
+    headers: { Authorization: `Bearer ${cookie.value}` }
+  });
+  if (!response.ok) {
+    if (response.status === 401) await chrome.storage.local.remove("apiToken");
+    return { ok: false, reason: "unauthorized" };
+  }
+  const body = await response.json();
+  const token = body?.data?.token;
+  if (!token) return { ok: false, reason: "no-token" };
+  await chrome.storage.local.set({ apiToken: token });
+  return { ok: true };
+}
+
+chrome.cookies.onChanged.addListener((change) => {
+  if (!isSiteSessionCookie(change.cookie)) return;
+  if (change.removed) {
+    chrome.storage.local.remove("apiToken");
+    return;
+  }
+  syncSiteLogin().catch(() => {});
 });
 
 const MAX_UPLOAD_ATTEMPTS = 3;
@@ -185,8 +226,8 @@ function buildManageUrl(baseUrl, shareUrl) {
 }
 
 async function uploadContent(codeContent, filename = "index.html", format = "html", templateId = "plain", themeClass = "") {
-  const settings = await chrome.storage.local.get(["apiServer", "apiToken"]);
-  const baseUrl = (settings.apiServer || DEFAULT_API_SERVER).replace(/\/$/, "");
+  const settings = await chrome.storage.local.get(["apiToken"]);
+  const baseUrl = DEFAULT_API_SERVER;
   const token = settings.apiToken || "";
 
   const headers = {

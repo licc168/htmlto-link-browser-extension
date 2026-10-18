@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const formatBtns = document.querySelectorAll(".format-btn");
 
   const codeInput = document.getElementById("codeInput");
-  const filenameInput = document.getElementById("filenameInput");
+
   const publishBtn = document.getElementById("publishBtn");
   const publishBtnText = document.getElementById("publishBtnText");
   const tryDemoBtn = document.getElementById("tryDemoBtn");
@@ -48,62 +48,70 @@ document.addEventListener("DOMContentLoaded", async () => {
   const reviewLink = document.getElementById("reviewLink");
 
   const historyList = document.getElementById("historyList");
-  const serverInput = document.getElementById("serverInput");
-  const tokenInput = document.getElementById("tokenInput");
-  const saveSettingsBtn = document.getElementById("saveSettingsBtn");
-  const autoInjectToggle = document.getElementById("autoInjectToggle");
-  const serverBadge = document.getElementById("serverBadge");
   const popupToast = document.getElementById("popupToast");
   const autoInjectOffBanner = document.getElementById("autoInjectOffBanner");
   const reEnableBtn = document.getElementById("reEnableBtn");
   const pinHint = document.getElementById("pinHint");
   const pinHintDismiss = document.getElementById("pinHintDismiss");
   const loginBtn = document.getElementById("loginBtn");
+  const loginHint = document.getElementById("loginHint");
   const accountStatus = document.getElementById("accountStatus");
 
   let currentFormat = "html";
+  let savedToken = "";
 
   const settings = await chrome.storage.local.get([
-    "apiServer",
     "apiToken",
     "autoInject",
     "pinHintDismissed"
   ]);
-  const apiServer = settings.apiServer || DEFAULT_API_SERVER;
-  serverInput.value = apiServer;
-  tokenInput.value = settings.apiToken || "";
-  autoInjectToggle.checked = settings.autoInject !== false;
+  savedToken = settings.apiToken || "";
   if (editorPreviewLink) {
-    editorPreviewLink.href = `${apiServer.replace(/\/$/, "")}/editor`;
+    editorPreviewLink.href = `${DEFAULT_API_SERVER}/editor`;
   }
-  loginBtn.href = `${apiServer.replace(/\/$/, "")}/settings`;
   reviewLink.href = REVIEW_URL;
   reviewLink.addEventListener("click", () => {
     chrome.storage.local.set({ reviewPromptDismissed: true });
   });
 
-  if (apiServer.replace(/\/$/, "") !== DEFAULT_API_SERVER) {
-    serverBadge.textContent = apiServer;
-    serverBadge.classList.remove("hidden");
-  }
-
   function isSignedIn() {
-    return Boolean(tokenInput.value.trim());
+    return Boolean(savedToken);
   }
 
   function updateAccountStatus() {
-    accountStatus.textContent = isSignedIn() ? t("accountBound") : t("accountGuest");
+    const signedIn = isSignedIn();
+    accountStatus.textContent = signedIn ? t("accountBound") : t("accountGuest");
+    loginBtn.classList.toggle("hidden", signedIn);
+    loginHint.classList.toggle("hidden", signedIn);
+  }
+
+  async function connectSiteAccount() {
+    const synced = await chrome.runtime.sendMessage({ type: "SYNC_SITE_LOGIN" });
+    if (!synced?.ok) {
+      if (synced?.reason === "signed-out" || synced?.reason === "unauthorized") {
+        savedToken = "";
+        updateAccountStatus();
+      }
+      return false;
+    }
+    const next = await chrome.storage.local.get(["apiToken"]);
+    savedToken = next.apiToken || "";
+    updateAccountStatus();
+    return true;
+  }
+
+  try {
+    if (await connectSiteAccount()) {
+      /* 打开弹窗时，网站已经登录就直接接上 */
+    }
+  } catch {
+    updateAccountStatus();
   }
   updateAccountStatus();
 
-  function updateAutoInjectBanner() {
-    if (autoInjectToggle.checked) {
-      autoInjectOffBanner.classList.add("hidden");
-    } else {
-      autoInjectOffBanner.classList.remove("hidden");
-    }
+  if (settings.autoInject === false) {
+    autoInjectOffBanner.classList.remove("hidden");
   }
-  updateAutoInjectBanner();
 
   if (!settings.pinHintDismissed) {
     pinHint.classList.remove("hidden");
@@ -113,17 +121,28 @@ document.addEventListener("DOMContentLoaded", async () => {
     await chrome.storage.local.set({ pinHintDismissed: true });
   });
 
-  autoInjectToggle.addEventListener("change", async () => {
-    await chrome.storage.local.set({ autoInject: autoInjectToggle.checked });
-    updateAutoInjectBanner();
-    showToast(t("settingsSaved"));
+  reEnableBtn.addEventListener("click", async () => {
+    await chrome.storage.local.set({ autoInject: true });
+    autoInjectOffBanner.classList.add("hidden");
   });
 
-  reEnableBtn.addEventListener("click", async () => {
-    autoInjectToggle.checked = true;
-    await chrome.storage.local.set({ autoInject: true });
-    updateAutoInjectBanner();
-    showToast(t("settingsSaved"));
+  loginBtn.addEventListener("click", async () => {
+    loginBtn.disabled = true;
+    try {
+      if (await connectSiteAccount()) {
+        showToast(t("accountConnected"));
+        return;
+      }
+      await chrome.tabs.create({ url: `${DEFAULT_API_SERVER}/login` });
+    } catch (err) {
+      showToast(err.message || t("publishFailed"));
+    } finally {
+      loginBtn.disabled = false;
+    }
+  });
+
+  keepLongTermBtn.addEventListener("click", () => {
+    loginBtn.click();
   });
 
   tabBtns.forEach((btn) => {
@@ -150,12 +169,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (currentFormat === "md") {
         templateRow.classList.remove("hidden");
         codeInput.placeholder = t("mdPlaceholder");
-        filenameInput.value = "document.md";
         publishBtnText.textContent = t("publishMdBtn");
       } else {
         templateRow.classList.add("hidden");
         codeInput.placeholder = t("htmlPlaceholder");
-        filenameInput.value = "index.html";
         publishBtnText.textContent = t("publishHtmlBtn");
       }
     });
@@ -167,7 +184,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     currentFormat = "html";
     formatBtns.forEach((b) => b.classList.toggle("active", b.dataset.format === "html"));
     templateRow.classList.add("hidden");
-    filenameInput.value = "index.html";
     publishBtnText.textContent = t("publishHtmlBtn");
     codeInput.focus();
   });
@@ -181,7 +197,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    const filename = filenameInput.value.trim() || (currentFormat === "md" ? "document.md" : "index.html");
+    const filename = currentFormat === "md" ? "document.md" : "index.html";
     const selectedTemplate = currentFormat === "md" ? (templateSelect.value || "plain") : undefined;
 
     publishBtn.disabled = true;
@@ -217,29 +233,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  saveSettingsBtn.addEventListener("click", async () => {
-    let server = serverInput.value.trim().replace(/\/$/, "");
-    if (!server) server = DEFAULT_API_SERVER;
-
-    await chrome.storage.local.set({
-      apiServer: server,
-      apiToken: tokenInput.value.trim()
-    });
-
-    if (server !== DEFAULT_API_SERVER) {
-      serverBadge.textContent = server;
-      serverBadge.classList.remove("hidden");
-    } else {
-      serverBadge.classList.add("hidden");
-    }
-    loginBtn.href = `${server}/settings`;
-    if (editorPreviewLink) {
-      editorPreviewLink.href = `${server}/editor`;
-    }
-    updateAccountStatus();
-    showToast(t("settingsSaved"));
-  });
-
   async function showPublishResult(response, filename, selectedTemplate) {
     resultUrlInput.value = response.url;
     openUrlBtn.href = response.url;
@@ -252,7 +245,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       : t("loggedInNotice");
 
     if (guest) {
-      keepLongTermBtn.href = response.manageUrl || `${(serverInput.value || DEFAULT_API_SERVER).replace(/\/$/, "")}/settings`;
       keepLongTermBtn.classList.remove("hidden");
     } else {
       keepLongTermBtn.classList.add("hidden");
@@ -449,7 +441,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       publishLocalBtnText.textContent = t("publishing");
       try {
         const page = await captureTabHtml(tab.id);
-        filenameInput.value = page.filename;
         currentFormat = "html";
         formatBtns.forEach((b) => b.classList.toggle("active", b.dataset.format === "html"));
         templateRow.classList.add("hidden");

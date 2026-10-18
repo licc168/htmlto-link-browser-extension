@@ -21,7 +21,6 @@
           <span class="version">v1.5.0</span>
         </div>
       </div>
-      <div class="server-badge hidden" id="serverBadge"></div>
     </header>
 
     <div id="pinHint" class="pin-hint hidden">
@@ -37,7 +36,6 @@
     <nav class="tabs">
       <button type="button" class="tab-btn active" data-tab="paste" data-i18n="tabPaste"></button>
       <button type="button" class="tab-btn" data-tab="history" data-i18n="tabHistory"></button>
-      <button type="button" class="tab-btn" data-tab="settings" data-i18n="tabSettings"></button>
     </nav>
 
     <main class="content">
@@ -81,12 +79,11 @@
           <textarea id="codeInput" data-i18n-placeholder="codePlaceholder" spellcheck="false"></textarea>
         </div>
         <button type="button" id="tryDemoBtn" class="text-btn demo-link" data-i18n="tryDemo"></button>
-        <details class="more-options">
-          <summary data-i18n="moreOptions"></summary>
-          <div class="form-row">
-            <input type="text" id="filenameInput" data-i18n-placeholder="filenamePlaceholder" value="index.html">
-          </div>
-        </details>
+        <div class="account-card">
+          <p id="accountStatus" class="account-status"></p>
+          <button type="button" id="loginBtn" class="btn-secondary" data-i18n="loginToKeep"></button>
+          <p id="loginHint" class="hint" data-i18n="loginHint"></p>
+        </div>
         <button type="button" id="publishBtn" class="btn-primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M11 14h10"/><path d="M16 4h2a2 2 0 0 1 2 2v1.344"/><path d="m17 18 4-4-4-4"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 1.793-1.113"/><rect x="8" y="2" width="8" height="4" rx="1"/>
@@ -107,7 +104,7 @@
             <a id="openUrlBtn" target="_blank" class="btn-link" data-i18n="openNewTab"></a>
           </div>
           <p id="expiryNotice" class="expiry-notice"></p>
-          <a id="keepLongTermBtn" target="_blank" rel="noopener noreferrer" class="btn-keep hidden" data-i18n="keepLongTerm"></a>
+          <button type="button" id="keepLongTermBtn" class="btn-keep hidden" data-i18n="keepLongTerm"></button>
           <a id="reviewLink" target="_blank" rel="noopener noreferrer" class="review-link hidden" data-i18n="reviewPrompt"></a>
         </div>
       </section>
@@ -118,37 +115,6 @@
         </div>
       </section>
 
-      <section id="tab-settings" class="tab-panel">
-        <div class="setting-item">
-          <label class="switch-row">
-            <input type="checkbox" id="autoInjectToggle">
-            <span data-i18n="autoInjectLabel"></span>
-          </label>
-          <p class="hint" data-i18n="autoInjectHint"></p>
-        </div>
-        <div class="setting-item">
-          <p class="hint" data-i18n="localFileAccessHint"></p>
-        </div>
-        <div class="setting-item">
-          <p id="accountStatus" class="account-status"></p>
-          <a id="loginBtn" href="https://htmlto.link/settings" target="_blank" rel="noopener noreferrer" class="btn-secondary" data-i18n="loginToKeep"></a>
-          <p class="hint" data-i18n="loginHint"></p>
-        </div>
-        <details class="more-options">
-          <summary data-i18n="advancedSettings"></summary>
-          <div class="setting-item">
-            <label for="serverInput" data-i18n="serverLabel"></label>
-            <input type="text" id="serverInput" value="https://htmlto.link">
-            <p class="hint" data-i18n="serverHint"></p>
-          </div>
-          <div class="setting-item">
-            <label for="tokenInput" data-i18n="tokenLabel"></label>
-            <input type="password" id="tokenInput" data-i18n-placeholder="tokenPlaceholder">
-            <p class="hint" data-i18n="tokenHint"></p>
-          </div>
-          <button type="button" id="saveSettingsBtn" class="btn-secondary" data-i18n="saveSettings"></button>
-        </details>
-      </section>
     </main>
 
     <div id="popupToast" class="popup-toast hidden"></div>

@@ -1,11 +1,15 @@
 {
   "extName": {
-    "message": "HTML转URL",
-    "description": "扩展名称"
+    "message": "HTML转URL：把 AI 对话发成网页",
+    "description": "扩展名称，与商店标题一致，最多 45 个字符"
   },
   "extDescription": {
-    "message": "把网页或一整段 AI 对话变成链接，手机上就能打开。",
-    "description": "扩展描述"
+    "message": "把一整段 AI 对话发成网页，复制链接就能打开。",
+    "description": "扩展描述，最多 132 个字符"
+  },
+  "panelTitle": {
+    "message": "HTML转URL",
+    "description": "对话面板标题，保持短，避免 232px 面板换行"
   },
   "tabPaste": {
     "message": "粘贴发布",
@@ -344,8 +348,12 @@
     "description": "设置页登录按钮"
   },
   "loginHint": {
-    "message": "登录后到网站设置里复制 API Token，再粘贴到下方「高级」中。未登录的匿名链接约 24 小时失效。",
-    "description": "设置页登录提示"
+    "message": "浏览器里已经登录时，点这里会自动接上账号。还没登录会打开登录页。",
+    "description": "发布页登录提示"
+  },
+  "accountConnected": {
+    "message": "已接上账号",
+    "description": "自动写入令牌后的提示"
   },
   "advancedSettings": {
     "message": "高级：API 节点与 Token",

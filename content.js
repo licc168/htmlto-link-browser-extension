@@ -247,7 +247,7 @@
           manageUrl: response.manageUrl || "",
           temporary: response.temporary !== false
         });
-        showToast(t("publishSuccessToast", [fmtName]), response.url);
+        await showPublished(t("publishSuccessToast", [fmtName]), response.url);
         setTimeout(() => {
           btn.innerHTML = originalText;
           btn.disabled = false;
@@ -872,6 +872,12 @@
         font-size: 13px;
         font-weight: 650;
       }
+      .head .title {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
       .grip { color: #b0b6c2; font-size: 12px; letter-spacing: 1px; }
       .fold {
         margin-left: auto;
@@ -982,7 +988,7 @@
     panel.className = "panel";
     const header = document.createElement("div");
     header.className = "head";
-    header.innerHTML = `<span class="grip" aria-hidden="true">⋮⋮</span><span>${t("extName")}</span>`;
+    header.innerHTML = `<span class="grip" aria-hidden="true">⋮⋮</span><span class="title">${t("panelTitle")}</span>`;
     const toggle = document.createElement("button");
     toggle.type = "button";
     toggle.className = "fold";
@@ -1096,6 +1102,7 @@
 
     body.append(copyBtn, selectAll, templateLabel, templateSelect, themeLabel, themeSelect, previewBtn, publishBtn, codeToggle, siteLink);
     panel.append(header, body);
+    void mountReviewLink(body);
     const dock = document.createElement("div");
     dock.className = "dock";
     dock.append(panel);
@@ -1175,7 +1182,7 @@
       clearPanelBusy();
       btn.classList.remove("is-busy");
       btn.textContent = t("copiedLink", [t("fmtMdName")]);
-      showToast(t("publishSuccessToast", [t("fmtMdName")]), response.url);
+      await showPublished(t("publishSuccessToast", [t("fmtMdName")]), response.url);
       setTimeout(() => {
         btn.textContent = t("shareChat");
         btn.disabled = false;
@@ -1236,6 +1243,55 @@
     return null;
   }
 
+  const REVIEW_URL = "https://chromewebstore.google.com/detail/htmltolink-html-to-url-pu/bmbgkkgaadbankkjngemdljnbjbjlbbl/reviews";
+
+  async function reviewIsDue() {
+    const stored = await chrome.storage.local.get(["publishCount", "reviewPromptDismissed"]);
+    return (stored.publishCount || 0) >= 2 && !stored.reviewPromptDismissed;
+  }
+
+  function dismissReviewPrompt() {
+    chrome.storage.local.set({ reviewPromptDismissed: true });
+    document.getElementById("htmlto-link-chat-export")?.shadowRoot?.querySelector("[data-role='review']")?.remove();
+  }
+
+  function openReviewPage() {
+    dismissReviewPrompt();
+    window.open(REVIEW_URL, "_blank", "noopener,noreferrer");
+  }
+
+  async function mountReviewLink(parent) {
+    if (!parent || parent.querySelector("[data-role='review']")) return;
+    if (!(await reviewIsDue())) return;
+    if (parent.querySelector("[data-role='review']")) return;
+    const link = document.createElement("a");
+    link.dataset.role = "review";
+    link.className = "site-link";
+    link.href = REVIEW_URL;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = t("reviewPrompt");
+    link.addEventListener("click", () => {
+      chrome.storage.local.set({ reviewPromptDismissed: true });
+      link.remove();
+    });
+    parent.appendChild(link);
+  }
+
+  async function showPublished(message, url) {
+    const body = document.getElementById("htmlto-link-chat-export")?.shadowRoot?.querySelector(".body");
+    if (body) {
+      showToast(message, url);
+      await mountReviewLink(body);
+      return;
+    }
+    if (await reviewIsDue()) {
+      showToast(message, url, t("reviewPrompt"), openReviewPage);
+      return;
+    }
+    showToast(message, url);
+  }
+
   async function savePublishHistory(item) {
     const data = await chrome.storage.local.get(["uploadHistory", "publishCount"]);
     const list = data.uploadHistory || [];
@@ -1284,7 +1340,7 @@
         });
       }
       clearTimeout(toast._hideTimer);
-      toast._hideTimer = setTimeout(() => toast.remove(), 2500);
+      toast._hideTimer = setTimeout(() => toast.remove(), actionLabel ? 8000 : 2500);
       return;
     }
     let toast = document.getElementById("htmlto-link-toast");
@@ -1307,7 +1363,7 @@
       });
     }
     toast.classList.add("show");
-    setTimeout(() => toast.classList.remove("show"), 4500);
+    setTimeout(() => toast.classList.remove("show"), actionLabel ? 8000 : 4500);
   }
 
   function escapeHtml(str) {

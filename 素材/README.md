@@ -23,5 +23,6 @@
 | activeTab | 点击工具栏图标后，发布当前本地 HTML。 |
 | scripting | 在你选择发布时读取当前页 HTML。 |
 | storage | 保存发布记录，以及页面按钮是否开启。 |
+| cookies | 只读取 htmlto.link 的登录状态。已经登录时，点「登录」会自动接上账号。 |
 | clipboardWrite | 发布后复制新链接。 |
 | htmlto.link | 把页面上传出去，变成公开链接。 |

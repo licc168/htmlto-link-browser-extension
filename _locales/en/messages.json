@@ -1,11 +1,15 @@
 {
   "extName": {
-    "message": "HTML to URL",
-    "description": "Extension name"
+    "message": "HTML to URL: Share an AI Chat as a Page",
+    "description": "Extension name. Matches the store title. Max 45 characters."
   },
   "extDescription": {
-    "message": "Turn an HTML page or a whole AI chat into a link anyone can open.",
-    "description": "Extension description"
+    "message": "Share an AI chat, or an HTML page, as a link anyone can open.",
+    "description": "Extension description. Max 132 characters."
+  },
+  "panelTitle": {
+    "message": "HTML to URL",
+    "description": "Short title for the 232px chat panel"
   },
   "tabPaste": {
     "message": "Publish",
@@ -344,8 +348,12 @@
     "description": "Settings login button"
   },
   "loginHint": {
-    "message": "After signing in, copy your API token from Settings and paste it under Advanced. Guest links expire in about 24 hours.",
-    "description": "Settings login hint"
+    "message": "If this browser is already signed in, this connects your account. Otherwise it opens the sign-in page.",
+    "description": "Publish tab sign-in hint"
+  },
+  "accountConnected": {
+    "message": "Account connected",
+    "description": "Toast after the site session is saved"
   },
   "advancedSettings": {
     "message": "Advanced: API server and token",

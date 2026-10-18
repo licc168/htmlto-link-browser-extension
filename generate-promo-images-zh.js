@@ -156,10 +156,10 @@ async function render(svg, file, dir) {
 }
 
 (async () => {
-  await render(screenshot1(), "screenshot-1-panel.png", outScreens);
-  await render(screenshot2(), "screenshot-2-preview.png", outScreens);
-  await render(screenshot3(), "screenshot-3-link-copied.png", outScreens);
-  await render(screenshot4(), "screenshot-4-phone.png", outScreens);
+  await render(screenshot4(), "screenshot-1-phone.png", outScreens);
+  await render(screenshot1(), "screenshot-2-panel.png", outScreens);
+  await render(screenshot2(), "screenshot-3-preview.png", outScreens);
+  await render(screenshot3(), "screenshot-4-link-copied.png", outScreens);
   await render(promoSmall(), "promo-tile-440x280.png", outAssets);
   await render(promoMarquee(), "promo-tile-1400x560.png", outAssets);
   console.log("All ZH promo images generated.");

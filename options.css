@@ -165,7 +165,9 @@ input[type="password"]:focus {
   transition: opacity 0.2s ease;
 }
 
-.toast.hidden {
+.toast.hidden,
+.btn-primary.hidden,
+.hint.hidden {
   display: none;
 }
 
