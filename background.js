@@ -8,6 +8,11 @@ chrome.runtime.onInstalled.addListener((details) => {
 
   if (details.reason === "install") {
     chrome.tabs.create({ url: chrome.runtime.getURL("welcome.html") });
+    // Site funnel: open htmlto.link with install UTM after the welcome tab.
+    chrome.tabs.create({
+      url: `${DEFAULT_API_SERVER}/en?utm_source=chrome_extension&utm_medium=install&utm_campaign=extension_onboarding`,
+      active: false,
+    });
   }
 });
 

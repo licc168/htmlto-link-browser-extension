@@ -52,7 +52,10 @@
     .brand-name { font-size: 19px; font-weight: 800; letter-spacing: -0.02em; }
     .brand-name b { color: var(--accent); font-weight: 900; }
     h1 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
-    .subtitle { color: var(--muted); font-size: 15px; margin-bottom: 28px; }
+    .subtitle { color: var(--muted); font-size: 15px; margin-bottom: 16px; }
+    .site-cta { margin-bottom: 28px; }
+    .site-cta a { color: var(--accent); font-weight: 700; text-decoration: none; }
+    .site-cta a:hover { text-decoration: underline; }
     .steps { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
     .step {
       display: flex;
@@ -153,6 +156,7 @@
 
     <h1 data-i18n="welcomeTitle"></h1>
     <p class="subtitle" data-i18n="welcomeSubtitle"></p>
+    <p class="site-cta"><a id="openSiteLink" href="https://htmlto.link/en?utm_source=chrome_extension&amp;utm_medium=install&amp;utm_campaign=extension_onboarding" target="_blank" rel="noreferrer">Open htmlto.link</a></p>
 
     <div class="steps">
       <div class="step">
