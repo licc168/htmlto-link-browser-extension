@@ -1,6 +1,6 @@
 {
   "name": "htmlto-link-browser-extension",
-  "version": "1.0.0",
+  "version": "1.5.2",
   "private": true,
   "description": "Icon generation for HTML To Link browser extension",
   "scripts": {
