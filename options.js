@@ -5,6 +5,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   const t = (key) => chrome.i18n.getMessage(key) || key;
   document.title = t("optionsTitle");
 
+  let siteOrigin = DEFAULT_API_SERVER;
+  try {
+    const originRes = await chrome.runtime.sendMessage({ type: "GET_SITE_ORIGIN" });
+    if (originRes?.origin) siteOrigin = originRes.origin;
+  } catch {
+    // fallback
+  }
+
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     el.textContent = t(el.getAttribute("data-i18n"));
   });
@@ -57,7 +65,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         showToast(t("accountConnected"));
         return;
       }
-      await chrome.tabs.create({ url: `${DEFAULT_API_SERVER}/login` });
+      await chrome.tabs.create({ url: `${siteOrigin}/login` });
     } catch (err) {
       showToast(err.message || t("publishFailed"));
     } finally {

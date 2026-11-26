@@ -7,6 +7,7 @@
     el.textContent = t(el.getAttribute("data-i18n"));
   });
 
+  const openSiteLink = document.getElementById("openSiteLink");
   const demoBtn = document.getElementById("demoBtn");
   const chatgptBtn = document.getElementById("chatgptBtn");
   const demoResult = document.getElementById("demoResult");
@@ -16,9 +17,19 @@
   const keepDemoBtn = document.getElementById("keepDemoBtn");
   const demoError = document.getElementById("demoError");
 
+  const uiLang = (chrome.i18n.getUILanguage() || "").toLowerCase();
+  const isSimplifiedZh = uiLang.startsWith("zh") && !uiLang.startsWith("zh-tw") && !uiLang.startsWith("zh-hk") && !uiLang.startsWith("zh-mo") && !uiLang.includes("hant");
+  let siteOrigin = isSimplifiedZh ? "https://htmlto.cn" : "https://htmlto.link";
+  chrome.runtime.sendMessage({ type: "GET_SITE_ORIGIN" }).then((res) => {
+    if (res?.origin) siteOrigin = res.origin;
+    if (openSiteLink) {
+      const siteLocale = isSimplifiedZh ? "zh-CN" : "en";
+      openSiteLink.href = `${siteOrigin}/${siteLocale}?utm_source=chrome_extension&utm_medium=install&utm_campaign=extension_onboarding`;
+    }
+  }).catch(() => {});
+
   chatgptBtn.addEventListener("click", () => {
-    const lang = (chrome.i18n.getUILanguage() || "").toLowerCase();
-    const url = lang.startsWith("zh") ? "https://chat.deepseek.com/" : "https://chatgpt.com/";
+    const url = isSimplifiedZh ? "https://chat.deepseek.com/" : "https://chatgpt.com/";
     chrome.tabs.create({ url });
   });
 
@@ -43,7 +54,7 @@
 
       demoUrlInput.value = response.url;
       openDemoBtn.href = response.url;
-      keepDemoBtn.href = response.manageUrl || "https://htmlto.link/settings";
+      keepDemoBtn.href = response.manageUrl || `${siteOrigin}/settings`;
       demoResult.classList.add("show");
       await copyToClipboard(response.url);
 

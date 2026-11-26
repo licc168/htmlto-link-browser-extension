@@ -5,6 +5,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   const REVIEW_URL = "https://chromewebstore.google.com/detail/htmltolink-html-to-url-pu/bmbgkkgaadbankkjngemdljnbjbjlbbl/reviews";
   const t = (key, substitutions) => chrome.i18n.getMessage(key, substitutions) || key;
 
+  const extVersion = document.getElementById("extVersion");
+  if (extVersion) {
+    extVersion.textContent = `v${chrome.runtime.getManifest().version}`;
+  }
+
+  let siteOrigin = DEFAULT_API_SERVER;
+  try {
+    const originRes = await chrome.runtime.sendMessage({ type: "GET_SITE_ORIGIN" });
+    if (originRes?.origin) siteOrigin = originRes.origin;
+  } catch {
+    // fallback to DEFAULT_API_SERVER
+  }
+
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const msg = t(el.getAttribute("data-i18n"));
     if (msg) el.textContent = msg;
@@ -67,7 +80,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   ]);
   savedToken = settings.apiToken || "";
   if (editorPreviewLink) {
-    editorPreviewLink.href = `${DEFAULT_API_SERVER}/editor`;
+    editorPreviewLink.href = `${siteOrigin}/editor`;
   }
   reviewLink.href = REVIEW_URL;
   reviewLink.addEventListener("click", () => {
@@ -133,7 +146,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         showToast(t("accountConnected"));
         return;
       }
-      await chrome.tabs.create({ url: `${DEFAULT_API_SERVER}/login` });
+      await chrome.tabs.create({ url: `${siteOrigin}/login` });
     } catch (err) {
       showToast(err.message || t("publishFailed"));
     } finally {

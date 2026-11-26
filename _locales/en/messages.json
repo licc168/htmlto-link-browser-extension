@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "HTML to URL: Share an AI Chat as a Page",
+    "message": "HTML to URL — Share AI Chats & HTML Pages",
     "description": "Extension name. Matches the store title. Max 45 characters."
   },
   "extDescription": {
-    "message": "Share an AI chat, or an HTML page, as a link anyone can open.",
+    "message": "Share ChatGPT, Claude, DeepSeek & Gemini chats or HTML/Markdown code as a live web link in one click.",
     "description": "Extension description. Max 132 characters."
   },
   "panelTitle": {
@@ -548,5 +548,17 @@
   "chatNoneSelected": {
     "message": "Select at least one message",
     "description": "Nothing selected"
+  },
+  "welcomeOpenSite": {
+    "message": "Open htmlto.link",
+    "description": "Welcome page site link"
+  },
+  "collapsePanel": {
+    "message": "Collapse",
+    "description": "Collapse floating panel"
+  },
+  "expandPanel": {
+    "message": "Expand",
+    "description": "Expand floating panel"
   }
 }

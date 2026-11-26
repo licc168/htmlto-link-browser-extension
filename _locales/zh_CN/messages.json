@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "HTML转URL：把 AI 对话发成网页",
+    "message": "HTML转URL — 一键把 AI 对话与 HTML 网页转链接",
     "description": "扩展名称，与商店标题一致，最多 45 个字符"
   },
   "extDescription": {
-    "message": "把一整段 AI 对话发成网页，复制链接就能打开。",
+    "message": "一键将 ChatGPT、DeepSeek、Claude、豆包、Kimi 对话或 HTML/Markdown 生成可打开的网页链接，支持模板预览。",
     "description": "扩展描述，最多 132 个字符"
   },
   "panelTitle": {
@@ -548,5 +548,17 @@
   "chatNoneSelected": {
     "message": "请至少勾选一条对话",
     "description": "没有勾选"
+  },
+  "welcomeOpenSite": {
+    "message": "打开官网（htmlto.cn）",
+    "description": "引导页官网链接"
+  },
+  "collapsePanel": {
+    "message": "收起",
+    "description": "收起悬浮面板"
+  },
+  "expandPanel": {
+    "message": "展开",
+    "description": "展开悬浮面板"
   }
 }

@@ -21,6 +21,7 @@
 
   let scanTimer = null;
   let autoInjectEnabled = true;
+  let panelExpanded = false;
 
   const observer = new MutationObserver(() => {
     if (scanTimer) return;
@@ -403,6 +404,11 @@
 
   function syncMessageChecks() {
     const turns = allConversationTurns();
+    if (!panelExpanded || document.getElementById("htmlto-link-preview")) {
+      document.querySelectorAll(".htmlto-link-check").forEach((box) => box.remove());
+      refreshSelectAllLabel();
+      return turns;
+    }
     const live = new Set();
     turns.forEach((turn) => {
       if (!(turn.wrapper instanceof Element) || !turn.wrapper.isConnected) return;
@@ -472,7 +478,9 @@
     return usedDom ? parts.join("") : "";
   }
 
-  const useZh = (chrome.i18n.getUILanguage() || "").toLowerCase().startsWith("zh");
+  const uiLang = (chrome.i18n.getUILanguage() || "").toLowerCase();
+  const useZh = uiLang.startsWith("zh");
+  const useSimplifiedZh = useZh && !uiLang.startsWith("zh-tw") && !uiLang.startsWith("zh-hk") && !uiLang.startsWith("zh-mo") && !uiLang.includes("hant");
   const labelOf = (item) => (useZh ? item.zh : item.en);
   // 与 html2url/lib/constants.ts 的 imageTextTemplates、templateThemes 一致。
   const CHAT_TEMPLATES = [
@@ -591,7 +599,7 @@
   function closePreview(notify) {
     const wasOpen = Boolean(document.getElementById("htmlto-link-preview"));
     document.getElementById("htmlto-link-preview")?.remove();
-    setMessageChecksHidden(false);
+    syncMessageChecks();
     const panel = document.getElementById("htmlto-link-chat-export");
     if (panel) delete panel.dataset.preview;
     clearPanelBusy();
@@ -893,7 +901,16 @@
       }
       .fold:hover { background: #f3f4f6; }
       .body { display: flex; flex-direction: column; gap: 8px; }
-      .panel.collapsed .body, .panel.collapsed .head { margin-bottom: 0; }
+      .panel.collapsed {
+        width: auto;
+        padding: 6px 10px;
+        border-radius: 999px;
+        opacity: 0.85;
+        transition: opacity 0.15s ease, box-shadow 0.15s ease;
+      }
+      .panel.collapsed:hover { opacity: 1; }
+      .panel.collapsed .head { height: 22px; margin-bottom: 0; cursor: pointer; }
+      .panel.collapsed .grip { display: none; }
       .panel.collapsed .body { display: none; }
       label { font-size: 11px; color: #6b7280; }
       select, button { box-sizing: border-box; width: 100%; font: 13px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
@@ -985,18 +1002,27 @@
     `;
 
     const panel = document.createElement("div");
-    panel.className = "panel";
+    panel.className = panelExpanded ? "panel" : "panel collapsed";
     const header = document.createElement("div");
     header.className = "head";
     header.innerHTML = `<span class="grip" aria-hidden="true">⋮⋮</span><span class="title">${t("panelTitle")}</span>`;
     const toggle = document.createElement("button");
     toggle.type = "button";
     toggle.className = "fold";
-    toggle.textContent = "–";
-    toggle.title = t("dismiss");
+    toggle.textContent = panelExpanded ? "–" : "+";
+    toggle.title = panelExpanded ? t("collapsePanel") : t("expandPanel");
+
+    function setPanelExpanded(expanded) {
+      panelExpanded = Boolean(expanded);
+      panel.classList.toggle("collapsed", !panelExpanded);
+      toggle.textContent = panelExpanded ? "–" : "+";
+      toggle.title = panelExpanded ? t("collapsePanel") : t("expandPanel");
+      syncMessageChecks();
+    }
+
     toggle.addEventListener("click", (event) => {
       event.stopPropagation();
-      panel.classList.toggle("collapsed");
+      setPanelExpanded(!panelExpanded);
     });
     header.appendChild(toggle);
 
@@ -1095,10 +1121,15 @@
 
     const siteLink = document.createElement("a");
     siteLink.className = "site-link";
-    siteLink.href = useZh ? "https://htmlto.link/zh-CN/publish" : "https://htmlto.link/en/publish";
+    siteLink.href = useSimplifiedZh ? "https://htmlto.cn/zh-CN/publish" : "https://htmlto.link/en/publish";
     siteLink.target = "_blank";
     siteLink.rel = "noopener noreferrer";
     siteLink.textContent = t("openSitePublish");
+    chrome.runtime.sendMessage({ type: "GET_SITE_ORIGIN" }).then((res) => {
+      if (!res?.origin) return;
+      const path = res.origin.includes("htmlto.cn") || useSimplifiedZh ? "zh-CN/publish" : "en/publish";
+      siteLink.href = `${res.origin}/${path}`;
+    }).catch(() => {});
 
     body.append(copyBtn, selectAll, templateLabel, templateSelect, themeLabel, themeSelect, previewBtn, publishBtn, codeToggle, siteLink);
     panel.append(header, body);
@@ -1107,19 +1138,27 @@
     dock.className = "dock";
     dock.append(panel);
     shadow.append(style, dock);
-    bindPanelDrag(host, header);
+    bindPanelDrag(host, header, () => {
+      if (!panelExpanded) setPanelExpanded(true);
+    });
     document.body.appendChild(host);
     try { host.showPopover(); } catch { /* 旧版浏览器仍用 fixed 定位 */ }
   }
 
-  function bindPanelDrag(panel, header) {
+  function bindPanelDrag(panel, header, onCollapsedClick) {
     let dragging = false;
+    let didDrag = false;
+    let startX = 0;
+    let startY = 0;
     let offsetX = 0;
     let offsetY = 0;
     header.addEventListener("mousedown", (event) => {
       if (event.button !== 0 || event.target.closest("button")) return;
       const rect = panel.getBoundingClientRect();
       dragging = true;
+      didDrag = false;
+      startX = event.clientX;
+      startY = event.clientY;
       offsetX = event.clientX - rect.left;
       offsetY = event.clientY - rect.top;
       panel.style.left = `${rect.left}px`;
@@ -1130,6 +1169,9 @@
     document.addEventListener("mousemove", (event) => {
       if (!dragging) return;
       event.preventDefault();
+      if (Math.hypot(event.clientX - startX, event.clientY - startY) > 4) {
+        didDrag = true;
+      }
       const rect = panel.getBoundingClientRect();
       const x = Math.max(6, Math.min(event.clientX - offsetX, window.innerWidth - rect.width - 6));
       const y = Math.max(6, Math.min(event.clientY - offsetY, window.innerHeight - rect.height - 6));
@@ -1139,6 +1181,14 @@
     document.addEventListener("mouseup", () => {
       dragging = false;
       panel.classList.remove("htmlto-link-panel-dragging");
+    });
+    header.addEventListener("click", (event) => {
+      if (event.target.closest("button")) return;
+      if (didDrag) {
+        didDrag = false;
+        return;
+      }
+      if (typeof onCollapsedClick === "function") onCollapsedClick();
     });
   }
 
@@ -1280,12 +1330,11 @@
 
   async function showPublished(message, url) {
     const body = document.getElementById("htmlto-link-chat-export")?.shadowRoot?.querySelector(".body");
-    if (body) {
-      showToast(message, url);
+    const due = await reviewIsDue();
+    if (body && due) {
       await mountReviewLink(body);
-      return;
     }
-    if (await reviewIsDue()) {
+    if (due) {
       showToast(message, url, t("reviewPrompt"), openReviewPage);
       return;
     }

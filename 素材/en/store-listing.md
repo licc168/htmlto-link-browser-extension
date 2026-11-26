@@ -1,50 +1,59 @@
 # English store listing
 
-Paste this into the Chrome Web Store dashboard as the default language.
-Do not name chat sites or brands in the description or on the images.
+Paste this into the Chrome Web Store dashboard as the default (`en`) language (and reuse for Microsoft Edge Add-ons).
+
+> **Required Dashboard Action Checklist**:
+> 1. **Category**: Switch from `Tools / Extension Tools` to **`Productivity`**.
+> 2. **Multilingual Store Listings**: Add store listings for `zh_TW`, `ja`, `ko`, `es`, `de`, `fr` from `../aso-multilingual.md` to capture non-English organic search traffic.
+> 3. **Microsoft Edge Add-ons**: Submit the same `dist/htmlto-link-extension.zip` package to Edge Add-ons.
 
 ## Title (max 45 characters)
 
 ```
-HTML to URL: Share an AI Chat as a Page
+HTML to URL — Share AI Chats & HTML Pages
 ```
 
-39 characters. Do not use “html to link”. That query is about writing an anchor tag.
+41 characters.
 
 ## Short description (max 132 characters)
 
 ```
-Share an AI chat, or an HTML page, as a link anyone can open.
+Share ChatGPT, Claude, DeepSeek & Gemini chats or HTML/Markdown code as a live web link in one click.
 ```
+
+101 characters.
 
 ## Detailed description
 
 ```
-HTML to URL turns a whole AI chat, or a page, into a link someone can open.
+HTML to URL (htmlto.link) turns an AI conversation, an AI-generated HTML prototype, or a Markdown document into a clean, shareable web link anyone can open on desktop or mobile.
 
-A chat is already a document. Click “Publish chat” and the conversation becomes a page. You can preview it and pick a page style before publishing. If the assistant wrote an HTML page, click “Generate link” on that code block instead.
+Works with popular AI platforms
+Compatible with ChatGPT, Claude, DeepSeek, Gemini, Grok, v0, Kimi, Qwen, Doubao, and local HTML files.
 
-How to use
-1. Install the extension and pin it.
-2. Open the chat you want to share.
-3. Click “Publish chat”, or click “Generate link” on a webpage code block.
-4. The link is copied. Send it.
+Key features
+1. Export & share an entire AI chat as a styled webpage:
+   - Starts collapsed as a lightweight pill so your chat stays clutter-free until you want to share.
+   - Expand to pick specific messages, preview with 30+ page templates (Memo, Dark Tech, Blueprint, Plain, and more) with TOC and KaTeX math support, then publish in one click.
+   - Or copy any conversation cleanly as Markdown.
+2. Instant HTML & Markdown hosting from code blocks:
+   - Whenever an assistant writes an HTML page or Markdown block, click "Generate HTML link" / "Generate Markdown link" directly on the code block to deploy it live and copy the URL automatically.
+3. Publish from popup or local HTML files:
+   - Paste raw HTML/Markdown in the extension popup, or publish an open file:// or localhost page in one click.
 
-You can also click the toolbar icon and paste the code yourself.
+Privacy & low-intrusion design
+- Your chat or code is only read and sent to https://htmlto.link when you explicitly click Preview, Copy, or Publish.
+- No background chat scraping or tracking.
+- In-page code block buttons can be hidden at any time while keeping popup publishing available.
 
-Privacy
-- A page or conversation is sent to https://htmlto.link only when you click publish.
-- The extension does not read chats in the background.
-- You can turn off the in-page buttons and still publish from the popup.
-
-Guest links last about 24 hours. Sign in at htmlto.link to keep a page longer.
+Guest links last about 24 hours. Sign in to htmlto.link to keep and manage your published pages long-term.
 
 Website: https://htmlto.link
 ```
 
 ## Category
 
-In the store listing, set the category to Productivity. The public page is currently Extension Tools. This is a dashboard field.
+Set the category to **Productivity**.
 
 ## Images in this folder
 

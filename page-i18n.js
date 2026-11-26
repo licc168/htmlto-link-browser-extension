@@ -28,7 +28,9 @@
       filePublishBtn: "发布此页面",
       filePublishDismiss: "隐藏",
       filePublishCopied: "链接已复制",
-      localFileCaptureFailed: "读不到这个本地页面。请打开「允许访问文件网址」，或把 HTML 粘贴到插件里发布。"
+      localFileCaptureFailed: "读不到这个本地页面。请打开「允许访问文件网址」，或把 HTML 粘贴到插件里发布。",
+      collapsePanel: "收起",
+      expandPanel: "展开"
     },
     en: {
       genHtmlLink: "Generate HTML link",
@@ -55,7 +57,9 @@
       filePublishBtn: "Publish this page",
       filePublishDismiss: "Hide",
       filePublishCopied: "Link copied",
-      localFileCaptureFailed: "Could not read this local page. Enable “Allow access to file URLs”, or paste the HTML in the popup."
+      localFileCaptureFailed: "Could not read this local page. Enable “Allow access to file URLs”, or paste the HTML in the popup.",
+      collapsePanel: "Collapse",
+      expandPanel: "Expand"
     }
   };
 
