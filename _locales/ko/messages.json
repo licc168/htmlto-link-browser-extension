@@ -1,6 +1,6 @@
 {
   "extName": { "message": "HTML to URL — AI 대화와 HTML을 웹 링크로 공유" },
-  "extDescription": { "message": "ChatGPT, Claude, DeepSeek, Gemini 대화 또는 HTML/Markdown 코드를 한 번의 클릭으로 공유 가능한 웹 링크로 만듭니다." },
+  "extDescription": { "message": "AI 대화, HTML 페이지, Markdown 문서를 한 번의 클릭으로 공유 가능한 웹 링크로 만들고 템플릿으로 미리보세요." },
   "panelTitle": { "message": "HTML to URL" },
   "tabPaste": { "message": "게시" },
   "tabHistory": { "message": "기록" },

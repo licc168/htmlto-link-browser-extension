@@ -1,6 +1,6 @@
 {
   "extName": { "message": "HTML轉URL — 一鍵把 AI 對話與 HTML 網頁轉連結" },
-  "extDescription": { "message": "一鍵將 ChatGPT、Claude、DeepSeek、Gemini 對話或 HTML/Markdown 轉成可開啟的網頁連結，支援模板預覽。" },
+  "extDescription": { "message": "一鍵將 AI 對話、HTML 網頁程式碼或 Markdown 文件轉成可開啟的網頁連結，支援多種排版模板與即時預覽。" },
   "panelTitle": { "message": "HTML轉URL" },
   "tabPaste": { "message": "貼上發佈" },
   "tabHistory": { "message": "歷史" },

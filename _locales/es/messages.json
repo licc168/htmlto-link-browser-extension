@@ -1,6 +1,6 @@
 {
   "extName": { "message": "HTML a URL — Comparte chats de IA y HTML" },
-  "extDescription": { "message": "Convierte chats de ChatGPT, Claude, DeepSeek y Gemini o código HTML/Markdown en un enlace web al instante." },
+  "extDescription": { "message": "Convierte chats de IA, páginas HTML y documentos Markdown en enlaces web públicos al instante con vista previa." },
   "panelTitle": { "message": "HTML a URL" },
   "tabPaste": { "message": "Publicar" },
   "tabHistory": { "message": "Historial" },

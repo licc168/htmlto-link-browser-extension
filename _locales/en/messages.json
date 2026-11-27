@@ -4,7 +4,7 @@
     "description": "Extension name. Matches the store title. Max 45 characters."
   },
   "extDescription": {
-    "message": "Share ChatGPT, Claude, DeepSeek & Gemini chats or HTML/Markdown code as a live web link in one click.",
+    "message": "Turn AI chats, HTML prototypes, and Markdown documents into clean, shareable web links in one click with live preview.",
     "description": "Extension description. Max 132 characters."
   },
   "panelTitle": {

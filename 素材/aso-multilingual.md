@@ -7,18 +7,18 @@
 ## 日本語 (`ja`)
 
 - **Title (30/45 chars)**: `HTML to URL — AIチャットとHTMLを1クリック共有`
-- **Short description (79/132 chars)**: `ChatGPT・Claude・DeepSeek・Geminiの会話やHTML/Markdownを1クリックで公開URLに変換。テンプレートプレビュー対応。`
+- **Short description (61/132 chars)**: `AIチャットやHTML・Markdownコードを1クリックで公開URLに変換。30種類以上のテンプレートでプレビュー対応。`
 - **Detailed description**:
 ```text
 HTML to URL（htmlto.link）は、AIチャット全体、AIが生成したHTMLコード、またはMarkdownドキュメントを、誰でも開ける公開Webリンクに1クリックで変換します。
 
-対応プラットフォーム
-ChatGPT、Claude、DeepSeek、Gemini、Grok、v0、Qwen、ローカルHTMLファイルに対応。
+対応環境
+主要なWeb版AIチャット・コード生成ツール、およびブラウザで開いたローカルHTMLファイル（file:// / localhost）に対応しています。
 
 主な機能
 1. AI会話を美しいWebページとして共有：
    - 普段は右上の小さなピル型に折りたたまれているため、チャットの邪魔になりません。
-   - 展開すると送信・回答メッセージを選択でき、30種類以上のテンプレート（メモ、ダークテック、ブループリントなど）でプレビューしてそのまま公開できます。
+   - 展開すると送信・回答メッセージを選択でき、30種類以上のテンプレートでプレビューしてそのまま公開できます。
    - 会話全体をMarkdownとしてコピーする機能も搭載。
 2. コードブロックから直接公開：
    - AIが出力したHTML/Markdownコードブロック上の「HTMLリンクを作成」ボタンから、即座にホスティングしてURLを自動コピー。
@@ -37,13 +37,13 @@ ChatGPT、Claude、DeepSeek、Gemini、Grok、v0、Qwen、ローカルHTMLファ
 ## 繁體中文 (`zh_TW`)
 
 - **Title (26/45 chars)**: `HTML轉URL — 一鍵把 AI 對話與 HTML 網頁轉連結`
-- **Short description (74/132 chars)**: `一鍵將 ChatGPT、Claude、DeepSeek、Gemini 對話或 HTML/Markdown 轉成可開啟的網頁連結，支援模板預覽。`
+- **Short description (58/132 chars)**: `一鍵將 AI 對話、HTML 網頁程式碼或 Markdown 文件轉成可開啟的網頁連結，支援多種排版模板與即時預覽。`
 - **Detailed description**:
 ```text
 HTML轉URL（htmlto.link）可將整段 AI 對話、AI 產生的 HTML 網頁程式碼或 Markdown 文件，一鍵轉為任何人都能直接開啟的線上網頁連結。
 
-支援平台
-相容 ChatGPT、Claude、DeepSeek、Gemini、Grok、v0、Kimi、Qwen 與本機 HTML 檔案。
+適用範圍
+支援常見網頁版 AI 對話與網頁產生工具，以及瀏覽器開啟的本機 HTML 檔案（file:// 與 localhost）。
 
 核心功能
 1. 將整段 AI 對話發佈成精美網頁：
@@ -65,13 +65,13 @@ HTML轉URL（htmlto.link）可將整段 AI 對話、AI 產生的 HTML 網頁程�
 ## 한국어 (`ko`)
 
 - **Title (31/45 chars)**: `HTML to URL — AI 대화와 HTML을 웹 링크로 공유`
-- **Short description (82/132 chars)**: `ChatGPT, Claude, DeepSeek, Gemini 대화 또는 HTML/Markdown 코드를 한 번의 클릭으로 공유 가능한 웹 링크로 만듭니다.`
+- **Short description (69/132 chars)**: `AI 대화, HTML 페이지, Markdown 문서를 한 번의 클릭으로 공유 가능한 웹 링크로 만들고 템플릿으로 미리보세요.`
 - **Detailed description**:
 ```text
 HTML to URL(htmlto.link)은 AI 대화 전체, AI가 생성한 HTML 페이지, Markdown 문서를 누구나 열 수 있는 라이브 웹 링크로 한 번에 변환해 줍니다.
 
-지원 플랫폼
-ChatGPT, Claude, DeepSeek, Gemini, Grok, v0, Qwen 및 로컬 HTML 파일을 지원합니다.
+지원 환경
+주요 웹 기반 AI 채팅 및 코드 생성 워크스페이스는 물론, 브라우저에서 연 로컬 HTML 파일(file:// 및 localhost)을 지원합니다.
 
 주요 기능
 1. AI 대화를 깔끔한 웹페이지로 공유:
@@ -93,13 +93,13 @@ ChatGPT, Claude, DeepSeek, Gemini, Grok, v0, Qwen 및 로컬 HTML 파일을 지�
 ## Español (`es`)
 
 - **Title (40/45 chars)**: `HTML a URL — Comparte chats de IA y HTML`
-- **Short description (106/132 chars)**: `Convierte chats de ChatGPT, Claude, DeepSeek y Gemini o código HTML/Markdown en un enlace web al instante.`
+- **Short description (111/132 chars)**: `Convierte chats de IA, páginas HTML y documentos Markdown en enlaces web públicos al instante con vista previa.`
 - **Detailed description**:
 ```text
 HTML a URL (htmlto.link) convierte una conversación completa de IA, una página HTML generada por IA o un documento Markdown en un enlace web público listo para compartir.
 
-Plataformas compatibles
-Compatible con ChatGPT, Claude, DeepSeek, Gemini, Grok, v0, Qwen y archivos HTML locales.
+Dónde funciona
+Funciona en los principales asistentes de chat de IA en la web, herramientas de generación de código y archivos HTML locales (file:// o localhost).
 
 Funciones principales
 1. Publica chats de IA como páginas web:
@@ -121,13 +121,13 @@ Sitio web: https://htmlto.link
 ## Deutsch (`de`)
 
 - **Title (41/45 chars)**: `HTML zu URL — KI-Chats & HTML als Weblink`
-- **Short description (101/132 chars)**: `Teile ChatGPT-, Claude-, DeepSeek- & Gemini-Chats oder HTML/Markdown-Code per Klick als Live-Weblink.`
+- **Short description (110/132 chars)**: `Verwandle KI-Chats, HTML-Seiten und Markdown-Dokumente mit einem Klick in teilbare Weblinks mit Live-Vorschau.`
 - **Detailed description**:
 ```text
 HTML zu URL (htmlto.link) verwandelt ganze KI-Chats, generierte HTML-Seiten oder Markdown-Dokumente mit einem Klick in einen öffentlich teilbaren Weblink.
 
-Unterstützte Plattformen
-Funktioniert mit ChatGPT, Claude, DeepSeek, Gemini, Grok, v0, Qwen sowie lokalen HTML-Dateien.
+Wo es funktioniert
+Funktioniert in gängigen webbasierten KI-Chat-Oberflächen, Code-Generatoren sowie mit lokal geöffneten HTML-Dateien (file:// und localhost).
 
 Hauptfunktionen
 1. KI-Chats als gestaltete Webseite teilen:
@@ -149,13 +149,13 @@ Website: https://htmlto.link
 ## Français (`fr`)
 
 - **Title (39/45 chars)**: `HTML en URL — Partager chats IA & pages`
-- **Short description (109/132 chars)**: `Partagez vos conversations ChatGPT, Claude, DeepSeek & Gemini ou code HTML/Markdown en un lien web en 1 clic.`
+- **Short description (104/132 chars)**: `Transformez vos conversations IA, pages HTML et documents Markdown en liens web partageables en un clic.`
 - **Detailed description**:
 ```text
 HTML en URL (htmlto.link) transforme une conversation IA complète, une page HTML ou un document Markdown en un lien web partageable en un clic.
 
-Plateformes compatibles
-Compatible avec ChatGPT, Claude, DeepSeek, Gemini, Grok, v0, Qwen et les fichiers HTML locaux.
+Environnements pris en charge
+Fonctionne sur les principaux assistants de discussion IA sur le web, les générateurs de code et les fichiers HTML locaux (file:// ou localhost).
 
 Fonctionnalités clés
 1. Publier une conversation IA en page web :

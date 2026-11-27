@@ -4,7 +4,7 @@
     "description": "扩展名称，与商店标题一致，最多 45 个字符"
   },
   "extDescription": {
-    "message": "一键将 ChatGPT、DeepSeek、Claude、豆包、Kimi 对话或 HTML/Markdown 生成可打开的网页链接，支持模板预览。",
+    "message": "一键将 AI 对话、HTML 网页代码或 Markdown 文档生成可打开的网页链接，支持多种排版模板与实时预览。",
     "description": "扩展描述，最多 132 个字符"
   },
   "panelTitle": {

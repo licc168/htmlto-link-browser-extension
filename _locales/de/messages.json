@@ -1,6 +1,6 @@
 {
   "extName": { "message": "HTML zu URL — KI-Chats & HTML als Weblink" },
-  "extDescription": { "message": "Teile ChatGPT-, Claude-, DeepSeek- & Gemini-Chats oder HTML/Markdown-Code per Klick als Live-Weblink." },
+  "extDescription": { "message": "Verwandle KI-Chats, HTML-Seiten und Markdown-Dokumente mit einem Klick in teilbare Weblinks mit Live-Vorschau." },
   "panelTitle": { "message": "HTML zu URL" },
   "tabPaste": { "message": "Veröffentlichen" },
   "tabHistory": { "message": "Verlauf" },

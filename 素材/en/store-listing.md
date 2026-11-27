@@ -18,23 +18,23 @@ HTML to URL — Share AI Chats & HTML Pages
 ## Short description (max 132 characters)
 
 ```
-Share ChatGPT, Claude, DeepSeek & Gemini chats or HTML/Markdown code as a live web link in one click.
+Turn AI chats, HTML prototypes, and Markdown documents into clean, shareable web links in one click with live preview.
 ```
 
-101 characters.
+118 characters.
 
 ## Detailed description
 
 ```
 HTML to URL (htmlto.link) turns an AI conversation, an AI-generated HTML prototype, or a Markdown document into a clean, shareable web link anyone can open on desktop or mobile.
 
-Works with popular AI platforms
-Compatible with ChatGPT, Claude, DeepSeek, Gemini, Grok, v0, Kimi, Qwen, Doubao, and local HTML files.
+Where it works
+Works on major web-based AI chat workspaces, AI code generators, and locally opened HTML files (file:// or localhost).
 
 Key features
 1. Export & share an entire AI chat as a styled webpage:
    - Starts collapsed as a lightweight pill so your chat stays clutter-free until you want to share.
-   - Expand to pick specific messages, preview with 30+ page templates (Memo, Dark Tech, Blueprint, Plain, and more) with TOC and KaTeX math support, then publish in one click.
+   - Expand to pick specific messages, preview with 30+ built-in page themes featuring table of contents and KaTeX math rendering, then publish in one click.
    - Or copy any conversation cleanly as Markdown.
 2. Instant HTML & Markdown hosting from code blocks:
    - Whenever an assistant writes an HTML page or Markdown block, click "Generate HTML link" / "Generate Markdown link" directly on the code block to deploy it live and copy the URL automatically.

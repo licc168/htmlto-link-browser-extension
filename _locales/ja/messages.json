@@ -1,6 +1,6 @@
 {
   "extName": { "message": "HTML to URL — AIチャットとHTMLを1クリック共有" },
-  "extDescription": { "message": "ChatGPT・Claude・DeepSeek・Geminiの会話やHTML/Markdownを1クリックで公開URLに変換。テンプレートプレビュー対応。" },
+  "extDescription": { "message": "AIチャットやHTML・Markdownコードを1クリックで公開URLに変換。30種類以上のテンプレートでプレビュー対応。" },
   "panelTitle": { "message": "HTML to URL" },
   "tabPaste": { "message": "公開" },
   "tabHistory": { "message": "履歴" },
